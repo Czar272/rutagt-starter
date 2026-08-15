@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "project": "RutaGT",
+  "sources": [
+    {
+      "id": "muniguate_transmetro_stops_2025",
+      "name": "Estaciones Transmetro 2025",
+      "type": "arcgis_feature_service",
+      "authority": "Municipalidad de Guatemala - Dirección de Movilidad Urbana / DIGM",
+      "catalog_url": "https://datosabiertos-digm.hub.arcgis.com/",
+      "discover_query": "owner:digm_clrivas AND title:\"ESTACIONES TRANSMETRO 2,025\"",
+      "fallback_item_id": "33ccb2f3a7ca4e9f9684a6e820ac3264",
+      "layer": 0,
+      "output": "muniguate/transmetro_stops_2025.geojson",
+      "expected_geometry": ["Point"],
+      "required_fields": ["Nombre_lug", "Codigoruta"],
+      "license_note": "Uso público y reutilización con atribución según los metadatos del portal; solicitar a DIGM la variante exacta de Creative Commons."
+    },
+    {
+      "id": "muniguate_tubus_stops_2025",
+      "name": "Paradas TuBus 2025",
+      "type": "arcgis_feature_service",
+      "authority": "Municipalidad de Guatemala - Dirección de Movilidad Urbana / DIGM",
+      "catalog_url": "https://datosabiertos-digm.hub.arcgis.com/",
+      "discover_query": "owner:digm_clrivas AND title:\"PARADAS SISTEMA TUBUS 2,025\"",
+      "fallback_item_id": "4ad911fd926b4320b92c67a26385bd94",
+      "layer": 0,
+      "output": "muniguate/tubus_stops_2025.geojson",
+      "expected_geometry": ["Point"],
+      "required_fields": ["Nombre_lug", "Codigoruta"],
+      "license_note": "Uso público y reutilización con atribución según los metadatos del portal; solicitar a DIGM la variante exacta de Creative Commons."
+    },
+    {
+      "id": "muniguate_transmetro_routes_2025",
+      "name": "Rutas Transmetro 2025",
+      "type": "arcgis_feature_service",
+      "authority": "Municipalidad de Guatemala - Dirección de Movilidad Urbana / DIGM",
+      "catalog_url": "https://datosabiertos-digm.hub.arcgis.com/",
+      "discover_query": "owner:digm_clrivas AND title:\"RUTAS SISTEMA TRANSMETRO 2,025\"",
+      "fallback_item_id": "863fb3efa0d74f688755a3f21de035a2",
+      "layer": 0,
+      "output": "muniguate/transmetro_routes_2025.geojson",
+      "expected_geometry": ["LineString", "MultiLineString"],
+      "required_fields": ["Nombre", "Codigoruta"],
+      "license_note": "Uso público y reutilización con atribución según los metadatos del portal; solicitar a DIGM la variante exacta de Creative Commons."
+    },
+    {
+      "id": "muniguate_tubus_routes_2025",
+      "name": "Rutas TuBus 2025",
+      "type": "arcgis_feature_service",
+      "authority": "Municipalidad de Guatemala - Dirección de Movilidad Urbana / DIGM",
+      "catalog_url": "https://datosabiertos-digm.hub.arcgis.com/",
+      "discover_query": "owner:digm_clrivas AND title:\"RUTAS SISTEMA TUBUS 2,025\"",
+      "fallback_item_id": "a355c245f38f4ccd89a3291fc0162f74",
+      "layer": 0,
+      "output": "muniguate/tubus_routes_2025.geojson",
+      "expected_geometry": ["LineString", "MultiLineString"],
+      "required_fields": ["Codigoruta"],
+      "license_note": "Uso público y reutilización con atribución según los metadatos del portal; solicitar a DIGM la variante exacta de Creative Commons."
+    },
+    {
+      "id": "muniguate_transmetro_catalog",
+      "name": "Catálogo oficial de líneas de Transmetro",
+      "type": "html_links",
+      "authority": "Municipalidad de Guatemala",
+      "url": "https://www.muniguate.com/movilidadurbana/transmetro/",
+      "output": "muniguate/transmetro_catalog_links.json",
+      "keep_extensions": [".pdf", ".jpg", ".jpeg", ".png", ".webp"],
+      "license_note": "Catálogo de referencia; confirmar permiso antes de redistribuir imágenes o PDF completos."
+    },
+    {
+      "id": "muniguate_tubus_route_105_catalog",
+      "name": "Información oficial de TuBus ruta 105",
+      "type": "html_links",
+      "authority": "Municipalidad de Guatemala",
+      "url": "https://www.muniguate.com/movilidadurbana/ruta-105/",
+      "output": "muniguate/tubus_route_105_links.json",
+      "keep_extensions": [".pdf", ".jpg", ".jpeg", ".png", ".webp"],
+      "license_note": "Catálogo de referencia; confirmar permiso antes de redistribuir imágenes o PDF completos."
+    },
+    {
+      "id": "muniguate_tubus_route_801_catalog",
+      "name": "Información oficial de TuBus ruta 801",
+      "type": "html_links",
+      "authority": "Municipalidad de Guatemala",
+      "url": "https://www.muniguate.com/movilidadurbana/ruta-801/",
+      "output": "muniguate/tubus_route_801_links.json",
+      "keep_extensions": [".pdf", ".jpg", ".jpeg", ".png", ".webp"],
+      "license_note": "Catálogo de referencia; confirmar permiso antes de redistribuir imágenes o PDF completos."
+    },
+    {
+      "id": "dgt_open_data_catalog",
+      "name": "Datos abiertos de la Dirección General de Transportes",
+      "type": "html_links",
+      "authority": "Dirección General de Transportes - CIV",
+      "url": "https://dgt.gob.gt/datos-abiertos/",
+      "output": "dgt/open_data_catalog_links.json",
+      "keep_extensions": [".csv", ".xls", ".xlsx", ".pdf", ".jpg", ".jpeg", ".png"],
+      "license_note": "Verificar licencia y vigencia de cada archivo. El portal actualmente puede exponer imágenes aunque anuncie CSV/XLS/PDF."
+    },
+    {
+      "id": "insivumeh_recent_weather_catalog",
+      "name": "Variables y descargas meteorológicas recientes",
+      "type": "html_links",
+      "authority": "INSIVUMEH",
+      "url": "https://insivumeh.gob.gt/variables_clima/",
+      "output": "insivumeh/weather_catalog_links.json",
+      "keep_extensions": [".csv", ".json", ".geojson"],
+      "license_note": "Datos preliminares; confirmar condiciones de reutilización y solicitar históricos validados."
+    }
+  ]
+}
