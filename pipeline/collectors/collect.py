@@ -23,7 +23,6 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urljoin, urlparse
 from urllib.request import Request, urlopen
 
-
 USER_AGENT = "RutaGT-data-collector/0.1 (+contacto-pendiente)"
 ARCGIS_SEARCH = "https://www.arcgis.com/sharing/rest/search"
 ARCGIS_ITEM = "https://www.arcgis.com/sharing/rest/content/items/{item_id}"
@@ -117,7 +116,9 @@ def http_get(
                     body=response.read(),
                     final_url=response.geturl(),
                     status=getattr(response, "status", 200),
-                    headers={key.lower(): value for key, value in response.headers.items()},
+                    headers={
+                        key.lower(): value for key, value in response.headers.items()
+                    },
                 )
         except (HTTPError, URLError, TimeoutError) as exc:
             error = exc
@@ -128,12 +129,16 @@ def http_get(
     raise CollectorError(f"No fue posible consultar {url}: {error}")
 
 
-def get_json(url: str, params: dict[str, Any] | None = None) -> tuple[Any, HttpResponse]:
+def get_json(
+    url: str, params: dict[str, Any] | None = None
+) -> tuple[Any, HttpResponse]:
     response = http_get(url, params=params)
     try:
         payload = json.loads(response.body.decode("utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise CollectorError(f"Respuesta JSON inválida de {response.final_url}: {exc}") from exc
+        raise CollectorError(
+            f"Respuesta JSON inválida de {response.final_url}: {exc}"
+        ) from exc
     if isinstance(payload, dict) and payload.get("error"):
         raise CollectorError(f"ArcGIS devolvió un error: {payload['error']}")
     return payload, response
@@ -162,10 +167,14 @@ def discover_arcgis_item(source: dict[str, Any]) -> dict[str, Any]:
 
     item_id = source.get("fallback_item_id")
     if not item_id:
-        raise CollectorError(f"{source['id']}: no se encontró un Feature Service público")
+        raise CollectorError(
+            f"{source['id']}: no se encontró un Feature Service público"
+        )
     item, _ = get_json(ARCGIS_ITEM.format(item_id=item_id), {"f": "json"})
     if not item.get("url"):
-        raise CollectorError(f"{source['id']}: el ítem de respaldo no tiene URL de servicio")
+        raise CollectorError(
+            f"{source['id']}: el ítem de respaldo no tiene URL de servicio"
+        )
     return item
 
 
@@ -187,10 +196,14 @@ def collect_arcgis(source: dict[str, Any], destination: Path) -> dict[str, Any]:
 
     service_url = item.get("url")
     if not service_url:
-        raise CollectorError(f"{source['id']}: ArcGIS no publicó la URL del Feature Service")
+        raise CollectorError(
+            f"{source['id']}: ArcGIS no publicó la URL del Feature Service"
+        )
     endpoint = layer_url(service_url, int(source.get("layer", 0)))
     layer_meta, _ = get_json(endpoint, {"f": "json"})
-    object_id_field = layer_meta.get("objectIdField") or layer_meta.get("objectIdFieldName")
+    object_id_field = layer_meta.get("objectIdField") or layer_meta.get(
+        "objectIdFieldName"
+    )
     max_records = int(layer_meta.get("maxRecordCount") or DEFAULT_PAGE_SIZE)
     page_size = min(max_records, DEFAULT_PAGE_SIZE)
 
@@ -250,7 +263,9 @@ def collect_arcgis(source: dict[str, Any], destination: Path) -> dict[str, Any]:
         },
         "quality_warnings": warnings,
     }
-    write_json(destination.with_suffix(destination.suffix + ".provenance.json"), metadata)
+    write_json(
+        destination.with_suffix(destination.suffix + ".provenance.json"), metadata
+    )
     return metadata
 
 
@@ -327,9 +342,13 @@ def collect_html_links(source: dict[str, Any], destination: Path) -> dict[str, A
         "sha256": sha256_bytes(body),
         "source_page_sha256": sha256_bytes(response.body),
         "license_note": source.get("license_note"),
-        "quality_warnings": (["El HTML contiene caracteres de reemplazo Unicode"] if "�" in html else []),
+        "quality_warnings": (
+            ["El HTML contiene caracteres de reemplazo Unicode"] if "�" in html else []
+        ),
     }
-    write_json(destination.with_suffix(destination.suffix + ".provenance.json"), metadata)
+    write_json(
+        destination.with_suffix(destination.suffix + ".provenance.json"), metadata
+    )
     return metadata
 
 
@@ -374,7 +393,9 @@ def default_config() -> Path:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Recolector de fuentes públicas de RutaGT")
+    parser = argparse.ArgumentParser(
+        description="Recolector de fuentes públicas de RutaGT"
+    )
     parser.add_argument("--config", type=Path, default=default_config())
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -397,7 +418,9 @@ def main(argv: list[str] | None = None) -> int:
         sources = load_sources(args.config)
         if args.command == "list":
             for source in sources:
-                print(f"{source['id']:<42} {source['type']:<24} {source.get('name', '')}")
+                print(
+                    f"{source['id']:<42} {source['type']:<24} {source.get('name', '')}"
+                )
             return 0
 
         selected = select_sources(sources, args.source, args.all)
@@ -413,7 +436,9 @@ def main(argv: list[str] | None = None) -> int:
                     f"[RutaGT] OK {source['id']}: {result.get('record_count', 0)} "
                     f"registros, {warnings} advertencias"
                 )
-            except Exception as exc:  # continuar con las demás fuentes y resumir al final
+            except (
+                Exception
+            ) as exc:  # continuar con las demás fuentes y resumir al final
                 failures.append({"source_id": source["id"], "error": str(exc)})
                 print(f"[RutaGT] ERROR {source['id']}: {exc}", file=sys.stderr)
 

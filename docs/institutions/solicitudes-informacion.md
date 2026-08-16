@@ -129,16 +129,15 @@ Referencia: [Moovit Transit APIs](https://moovit.com/es/maas-solutions-es/transi
 
 Registrar por cada expediente:
 
-| Campo | Descripción |
-|---|---|
-| `request_id` | Número oficial o identificador interno |
-| `organization` | Institución u operador |
-| `sent_at` / `answered_at` | Fechas y horas |
-| `scope` | Sistemas, municipios y años solicitados |
-| `files_received` | Nombre, formato, tamaño y checksum |
-| `license_text` | Texto exacto o referencia legal |
-| `valid_from` / `valid_to` | Vigencia declarada |
-| `technical_contact` | Área o persona responsable, si fue proporcionada |
-| `limitations` | Omisiones, reservas, campos protegidos y dudas |
-| `next_update_due` | Fecha de seguimiento |
-
+| Campo                     | Descripción                                      |
+| ------------------------- | ------------------------------------------------ |
+| `request_id`              | Número oficial o identificador interno           |
+| `organization`            | Institución u operador                           |
+| `sent_at` / `answered_at` | Fechas y horas                                   |
+| `scope`                   | Sistemas, municipios y años solicitados          |
+| `files_received`          | Nombre, formato, tamaño y checksum               |
+| `license_text`            | Texto exacto o referencia legal                  |
+| `valid_from` / `valid_to` | Vigencia declarada                               |
+| `technical_contact`       | Área o persona responsable, si fue proporcionada |
+| `limitations`             | Omisiones, reservas, campos protegidos y dudas   |
+| `next_update_due`         | Fecha de seguimiento                             |

@@ -4,7 +4,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-
 MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "collect.py"
 SPEC = importlib.util.spec_from_file_location("rutagt_collect", MODULE_PATH)
 collect = importlib.util.module_from_spec(SPEC)
@@ -51,7 +50,10 @@ class ValidationTests(unittest.TestCase):
     def test_rejects_unexpected_geometry(self):
         collection = {
             "features": [
-                {"geometry": {"type": "LineString", "coordinates": []}, "properties": {}}
+                {
+                    "geometry": {"type": "LineString", "coordinates": []},
+                    "properties": {},
+                }
             ]
         }
         warnings = collect.validate_geojson(

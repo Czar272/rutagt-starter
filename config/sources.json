@@ -95,7 +95,15 @@
       "authority": "Dirección General de Transportes - CIV",
       "url": "https://dgt.gob.gt/datos-abiertos/",
       "output": "dgt/open_data_catalog_links.json",
-      "keep_extensions": [".csv", ".xls", ".xlsx", ".pdf", ".jpg", ".jpeg", ".png"],
+      "keep_extensions": [
+        ".csv",
+        ".xls",
+        ".xlsx",
+        ".pdf",
+        ".jpg",
+        ".jpeg",
+        ".png"
+      ],
       "license_note": "Verificar licencia y vigencia de cada archivo. El portal actualmente puede exponer imágenes aunque anuncie CSV/XLS/PDF."
     },
     {
