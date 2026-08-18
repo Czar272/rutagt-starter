@@ -4,7 +4,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
-MODULE_PATH = Path(__file__).resolve().parents[1] / "src" / "collect.py"
+MODULE_PATH = (
+    Path(__file__).resolve().parents[2] / "pipeline" / "collectors" / "collect.py"
+)
 SPEC = importlib.util.spec_from_file_location("rutagt_collect", MODULE_PATH)
 collect = importlib.util.module_from_spec(SPEC)
 assert SPEC and SPEC.loader
@@ -64,7 +66,7 @@ class ValidationTests(unittest.TestCase):
 
 class ConfigurationTests(unittest.TestCase):
     def test_project_configuration_loads(self):
-        config = Path(__file__).resolve().parents[1] / "config" / "sources.json"
+        config = Path(__file__).resolve().parents[2] / "config" / "sources.json"
         sources = collect.load_sources(config)
         self.assertGreaterEqual(len(sources), 4)
         self.assertEqual(len({source["id"] for source in sources}), len(sources))

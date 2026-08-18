@@ -28,6 +28,7 @@ ARCGIS_SEARCH = "https://www.arcgis.com/sharing/rest/search"
 ARCGIS_ITEM = "https://www.arcgis.com/sharing/rest/content/items/{item_id}"
 DEFAULT_TIMEOUT = 45
 DEFAULT_PAGE_SIZE = 1000
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
 class CollectorError(RuntimeError):
@@ -389,7 +390,7 @@ def select_sources(
 
 
 def default_config() -> Path:
-    return Path(__file__).resolve().parents[1] / "config" / "sources.json"
+    return PROJECT_ROOT / "config" / "sources.json"
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -406,7 +407,9 @@ def build_parser() -> argparse.ArgumentParser:
     fetch.add_argument(
         "--output",
         type=Path,
-        default=Path(os.environ.get("RUTAGT_DATA_DIR", "data/raw")),
+        default=Path(
+            os.environ.get("RUTAGT_DATA_DIR", str(PROJECT_ROOT / "data" / "raw"))
+        ),
         help="Directorio para datos crudos",
     )
     return parser
