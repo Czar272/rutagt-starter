@@ -40,6 +40,39 @@ Estas fuentes son una base cartográfica y documental; todavía no bastan para c
 
 El recolector utiliza únicamente la biblioteca estándar de Python.
 
+## Configuración local
+
+RutaGT utiliza variables de entorno para configuración que puede variar entre equipos o contener información sensible.
+
+El repositorio incluye `.env.example` como referencia:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+El archivo .env es exclusivamente local y no debe versionarse.
+
+Las variables definidas actualmente son:
+
+| Variable             | Propósito                  | Valor por defecto         |
+| -------------------- | -------------------------- | ------------------------- |
+| `RUTAGT_ENV`         | Entorno de ejecución       | `development`             |
+| `RUTAGT_DATA_DIR`    | Directorio de datos crudos | `<project_root>/data/raw` |
+| `RUTAGT_DB_HOST`     | Host de PostgreSQL         | `localhost`               |
+| `RUTAGT_DB_PORT`     | Puerto de PostgreSQL       | `5432`                    |
+| `RUTAGT_DB_NAME`     | Base de datos              | `rutagt`                  |
+| `RUTAGT_DB_USER`     | Usuario de desarrollo      | `rutagt`                  |
+| `RUTAGT_DB_PASSWORD` | Contraseña local           | sin valor                 |
+| `RUTAGT_LOG_LEVEL`   | Nivel de logging           | `INFO`                    |
+
+Los secretos reales nunca deben agregarse a .env.example, documentación, código fuente o commits.
+
+Hay un matiz importante: **crear `.env` no hace que `collect.py` lo lea automáticamente**. Por eso, inmediatamente después de la tabla añadiría:
+
+```markdown
+> Nota: el recolector actual lee variables del entorno del proceso. El archivo `.env` establece la convención de configuración local del proyecto y será utilizado por los servicios que incorporaremos posteriormente. No se carga automáticamente desde Python en esta etapa. Eso evita documentación engañosa.
+```
+
 ## Uso rápido
 
 Ejecutar desde la raíz del proyecto:

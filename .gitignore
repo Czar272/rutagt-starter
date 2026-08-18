@@ -3,3 +3,8 @@ __pycache__/
 .venv/
 data/raw/
 work/
+
+# Environment variables
+.env
+.env.*
+!.env.example
