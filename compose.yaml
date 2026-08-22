@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${RUTAGT_DB_NAME}
+      POSTGRES_USER: ${RUTAGT_DB_USER}
+      POSTGRES_PASSWORD: ${RUTAGT_DB_PASSWORD}
+
+    ports:
+      - "${RUTAGT_DB_PORT}:5432"
+
+    volumes:
+      - rutagt_postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        ["CMD-SHELL", "pg_isready -U ${RUTAGT_DB_USER} -d ${RUTAGT_DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  rutagt_postgres_data:
