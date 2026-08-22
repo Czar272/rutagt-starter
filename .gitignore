@@ -8,3 +8,6 @@ work/
 .env
 .env.*
 !.env.example
+
+# Docs for dev
+commands.md
