@@ -23,11 +23,11 @@ Los servicios de infraestructura se definen en **`compose.yaml`** y se ejecutan 
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Instalación nativa | Sin capa de contenedores | Versiones distintas entre equipos | No reproducible |
-| Base de datos administrada en la nube | Sin operación local | Costo y dependencia de red para desarrollar | Innecesario en esta etapa |
-| Kubernetes local | Cercano a producción | Complejidad desproporcionada | Sobredimensionado para el MVP |
+| Alternativa                           | Ventajas                 | Desventajas                                 | Motivo de descarte            |
+| ------------------------------------- | ------------------------ | ------------------------------------------- | ----------------------------- |
+| Instalación nativa                    | Sin capa de contenedores | Versiones distintas entre equipos           | No reproducible               |
+| Base de datos administrada en la nube | Sin operación local      | Costo y dependencia de red para desarrollar | Innecesario en esta etapa     |
+| Kubernetes local                      | Cercano a producción     | Complejidad desproporcionada                | Sobredimensionado para el MVP |
 
 ## Consecuencias
 

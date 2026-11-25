@@ -36,11 +36,11 @@ Reglas:
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Documento único de arquitectura | Una sola lectura | Se reescribe y pierde el historial de cada decisión | No da trazabilidad por decisión |
-| Decisiones solo en Jira | Ya integrado al flujo | Disperso, no versionado con el código, inaccesible fuera de Jira | El repositorio debe ser autosuficiente |
-| Wiki externa (Confluence) | Edición cómoda | Separada del código y de su revisión por pull request | Pierde la relación con los cambios de código |
+| Alternativa                     | Ventajas              | Desventajas                                                      | Motivo de descarte                           |
+| ------------------------------- | --------------------- | ---------------------------------------------------------------- | -------------------------------------------- |
+| Documento único de arquitectura | Una sola lectura      | Se reescribe y pierde el historial de cada decisión              | No da trazabilidad por decisión              |
+| Decisiones solo en Jira         | Ya integrado al flujo | Disperso, no versionado con el código, inaccesible fuera de Jira | El repositorio debe ser autosuficiente       |
+| Wiki externa (Confluence)       | Edición cómoda        | Separada del código y de su revisión por pull request            | Pierde la relación con los cambios de código |
 
 ## Consecuencias
 

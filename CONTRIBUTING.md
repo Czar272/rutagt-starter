@@ -43,13 +43,13 @@ Los cambios en `pyproject.toml` y `uv.lock` se versionan juntos.
 
 ## Calidad de código
 
-| Herramienta | Propósito                                      | Configuración             |
-| ----------- | ---------------------------------------------- | ------------------------- |
-| Ruff        | Linting y formateo de Python                   | `pyproject.toml`          |
-| mypy        | Verificación estática de tipos (modo estricto) | `pyproject.toml`          |
-| pytest      | Pruebas y cobertura (mínimo 90 %)              | `pyproject.toml`          |
-| pre-commit  | Ejecuta las verificaciones en cada commit      | `.pre-commit-config.yaml` |
-| EditorConfig | Codificación, finales de línea e indentación  | `.editorconfig`           |
+| Herramienta  | Propósito                                      | Configuración             |
+| ------------ | ---------------------------------------------- | ------------------------- |
+| Ruff         | Linting y formateo de Python                   | `pyproject.toml`          |
+| mypy         | Verificación estática de tipos (modo estricto) | `pyproject.toml`          |
+| pytest       | Pruebas y cobertura (mínimo 90 %)              | `pyproject.toml`          |
+| pre-commit   | Ejecuta las verificaciones en cada commit      | `.pre-commit-config.yaml` |
+| EditorConfig | Codificación, finales de línea e indentación   | `.editorconfig`           |
 
 ```powershell
 uv run ruff check .            # linting
@@ -109,14 +109,14 @@ Las ramas de trabajo se crean desde `main` y se eliminan después de integrarse.
 <tipo>/RGT-<n>-<descripcion-corta>
 ```
 
-| Prefijo     | Uso                                                  |
-| ----------- | ---------------------------------------------------- |
-| `feature/`  | Funcionalidad nueva o trabajo planificado de ticket  |
-| `fix/`      | Corrección de un defecto                             |
-| `docs/`     | Cambios exclusivamente de documentación              |
-| `chore/`    | Mantenimiento, configuración o dependencias          |
-| `refactor/` | Reestructuración sin cambio de comportamiento        |
-| `spike/`    | Investigación técnica aislada del código productivo  |
+| Prefijo     | Uso                                                 |
+| ----------- | --------------------------------------------------- |
+| `feature/`  | Funcionalidad nueva o trabajo planificado de ticket |
+| `fix/`      | Corrección de un defecto                            |
+| `docs/`     | Cambios exclusivamente de documentación             |
+| `chore/`    | Mantenimiento, configuración o dependencias         |
+| `refactor/` | Reestructuración sin cambio de comportamiento       |
+| `spike/`    | Investigación técnica aislada del código productivo |
 
 La descripción va en minúsculas, en inglés o español sin tildes, separada por guiones.
 
@@ -137,18 +137,18 @@ Los mensajes siguen [Conventional Commits 1.0](https://www.conventionalcommits.o
 [cuerpo opcional: qué cambia y por qué]
 ```
 
-| Tipo       | Uso                                                       |
-| ---------- | --------------------------------------------------------- |
-| `feat`     | Funcionalidad nueva                                       |
-| `fix`      | Corrección de un defecto                                  |
-| `docs`     | Documentación                                             |
-| `test`     | Pruebas nuevas o corregidas                               |
-| `refactor` | Cambio de código sin alterar comportamiento               |
-| `perf`     | Mejora de rendimiento                                     |
-| `build`    | Empaquetado, dependencias o sistema de construcción       |
-| `ci`       | Configuración de integración continua                     |
-| `chore`    | Mantenimiento que no encaja en los tipos anteriores       |
-| `data`     | Cambios en catálogos de fuentes o datos versionados       |
+| Tipo       | Uso                                                 |
+| ---------- | --------------------------------------------------- |
+| `feat`     | Funcionalidad nueva                                 |
+| `fix`      | Corrección de un defecto                            |
+| `docs`     | Documentación                                       |
+| `test`     | Pruebas nuevas o corregidas                         |
+| `refactor` | Cambio de código sin alterar comportamiento         |
+| `perf`     | Mejora de rendimiento                               |
+| `build`    | Empaquetado, dependencias o sistema de construcción |
+| `ci`       | Configuración de integración continua               |
+| `chore`    | Mantenimiento que no encaja en los tipos anteriores |
+| `data`     | Cambios en catálogos de fuentes o datos versionados |
 
 Reglas:
 

@@ -1,12 +1,12 @@
 # ADR-0024: Usar la confianza de los datos internamente y mostrar las estimaciones como rangos
 
-| Campo       | Valor                  |
-| ----------- | ---------------------- |
-| Estado      | Aceptado               |
-| Fecha       | 2026-11-25             |
-| Decisores   | @Czar272               |
-| Tickets     | RGT-117, RGT-61        |
-| Reemplaza a | ADR-0017               |
+| Campo       | Valor           |
+| ----------- | --------------- |
+| Estado      | Aceptado        |
+| Fecha       | 2026-11-25      |
+| Decisores   | @Czar272        |
+| Tickets     | RGT-117, RGT-61 |
+| Reemplaza a | ADR-0017        |
 
 ## Contexto
 
@@ -38,10 +38,10 @@ Separamos el **uso interno** de la confianza de su **presentación** en la aplic
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Mantener ADR-0017 (confianza visible por itinerario) | Máxima transparencia | Riesgo de desconfianza y abandono | Se prioriza la adopción por parte de las personas usuarias |
-| Confianza totalmente oculta, con horas puntuales | Interfaz más simple | Horas estimadas que parecen exactas y no se cumplen | Daña la confianza más que un rango |
+| Alternativa                                          | Ventajas             | Desventajas                                         | Motivo de descarte                                         |
+| ---------------------------------------------------- | -------------------- | --------------------------------------------------- | ---------------------------------------------------------- |
+| Mantener ADR-0017 (confianza visible por itinerario) | Máxima transparencia | Riesgo de desconfianza y abandono                   | Se prioriza la adopción por parte de las personas usuarias |
+| Confianza totalmente oculta, con horas puntuales     | Interfaz más simple  | Horas estimadas que parecen exactas y no se cumplen | Daña la confianza más que un rango                         |
 
 ## Consecuencias
 

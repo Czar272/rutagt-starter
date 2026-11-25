@@ -16,11 +16,11 @@
 
 Usamos **GitHub Actions** con el flujo `.github/workflows/ci.yml`:
 
-| Trabajo | Disparador | Qué verifica |
-| --- | --- | --- |
-| Calidad de código | Push a cualquier rama y pull request | Todos los hooks de pre-commit: archivos, Ruff, formato y mypy |
-| Pruebas | Push a cualquier rama y pull request | pytest con cobertura mínima de 90 % en Ubuntu y Windows con Python 3.12, y Ubuntu con Python 3.13 |
-| Mensajes de commit | Pull request | Título del pull request y cada commit cumplen Conventional Commits |
+| Trabajo            | Disparador                           | Qué verifica                                                                                      |
+| ------------------ | ------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| Calidad de código  | Push a cualquier rama y pull request | Todos los hooks de pre-commit: archivos, Ruff, formato y mypy                                     |
+| Pruebas            | Push a cualquier rama y pull request | pytest con cobertura mínima de 90 % en Ubuntu y Windows con Python 3.12, y Ubuntu con Python 3.13 |
+| Mensajes de commit | Pull request                         | Título del pull request y cada commit cumplen Conventional Commits                                |
 
 Principios:
 
@@ -34,11 +34,11 @@ Principios:
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| GitLab CI / Jenkins | Muy configurables | Requieren migrar el repositorio u operar un servidor | El repositorio vive en GitHub |
-| CircleCI / Azure Pipelines | Servicios maduros | Integración y permisos externos adicionales | GitHub Actions es nativo y gratuito para repositorios públicos |
-| Acciones por etiqueta (`@v7`) | Actualización automática | Una etiqueta puede moverse a código no revisado | Se prefiere fijar por SHA con Dependabot |
+| Alternativa                   | Ventajas                 | Desventajas                                          | Motivo de descarte                                             |
+| ----------------------------- | ------------------------ | ---------------------------------------------------- | -------------------------------------------------------------- |
+| GitLab CI / Jenkins           | Muy configurables        | Requieren migrar el repositorio u operar un servidor | El repositorio vive en GitHub                                  |
+| CircleCI / Azure Pipelines    | Servicios maduros        | Integración y permisos externos adicionales          | GitHub Actions es nativo y gratuito para repositorios públicos |
+| Acciones por etiqueta (`@v7`) | Actualización automática | Una etiqueta puede moverse a código no revisado      | Se prefiere fijar por SHA con Dependabot                       |
 
 ## Consecuencias
 

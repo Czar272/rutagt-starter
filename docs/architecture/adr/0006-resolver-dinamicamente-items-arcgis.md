@@ -1,12 +1,12 @@
 # ADR-0006: Resolver dinámicamente los ítems ArcGIS vigentes
 
-| Campo       | Valor          |
-| ----------- | -------------- |
-| Estado      | Aceptado       |
-| Fecha       | 2026-08-15     |
-| Decisores   | @Czar272       |
+| Campo       | Valor                  |
+| ----------- | ---------------------- |
+| Estado      | Aceptado               |
+| Fecha       | 2026-08-15             |
+| Decisores   | @Czar272               |
 | Tickets     | RGT-18, RGT-22, RGT-23 |
-| Reemplaza a | —              |
+| Reemplaza a | —                      |
 
 ## Contexto
 
@@ -20,10 +20,10 @@ Si la búsqueda no devuelve resultados, usa un **identificador de respaldo** (`f
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Identificadores fijos | Determinista | Se rompe o queda obsoleto con cada republicación | Comprobado como frágil |
-| Descarga manual desde el portal | Sin código | No reproducible ni automatizable | Contrario a [ADR-0004](0004-capas-de-datos-inmutables-con-procedencia.md) |
+| Alternativa                     | Ventajas     | Desventajas                                      | Motivo de descarte                                                        |
+| ------------------------------- | ------------ | ------------------------------------------------ | ------------------------------------------------------------------------- |
+| Identificadores fijos           | Determinista | Se rompe o queda obsoleto con cada republicación | Comprobado como frágil                                                    |
+| Descarga manual desde el portal | Sin código   | No reproducible ni automatizable                 | Contrario a [ADR-0004](0004-capas-de-datos-inmutables-con-procedencia.md) |
 
 ## Consecuencias
 

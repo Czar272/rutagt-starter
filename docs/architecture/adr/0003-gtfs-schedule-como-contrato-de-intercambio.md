@@ -23,11 +23,11 @@ Adoptamos **GTFS Schedule** como contrato de intercambio de datos estáticos de 
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Formato propio | Libertad total | Ningún tercero lo consume; aislaría al proyecto | Contrario a la interoperabilidad buscada |
-| NeTEx | Muy expresivo, estándar europeo | Complejo y con poco soporte en la región | Costo de adopción desproporcionado |
-| Solo GeoJSON | Simple para mapas | No modela horarios, calendarios ni viajes | Insuficiente para ruteo |
+| Alternativa    | Ventajas                        | Desventajas                                     | Motivo de descarte                       |
+| -------------- | ------------------------------- | ----------------------------------------------- | ---------------------------------------- |
+| Formato propio | Libertad total                  | Ningún tercero lo consume; aislaría al proyecto | Contrario a la interoperabilidad buscada |
+| NeTEx          | Muy expresivo, estándar europeo | Complejo y con poco soporte en la región        | Costo de adopción desproporcionado       |
+| Solo GeoJSON   | Simple para mapas               | No modela horarios, calendarios ni viajes       | Insuficiente para ruteo                  |
 
 ## Consecuencias
 

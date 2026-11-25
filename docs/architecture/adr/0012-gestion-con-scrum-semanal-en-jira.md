@@ -23,11 +23,11 @@ El backlog inicial se organizó en sprints de dos semanas, uno por épica. En la
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Sprints de dos semanas por épica | Plan inicial existente | No refleja el ritmo real; sprints vencidos | Reemplazado por cadencia semanal |
-| Kanban | Flujo continuo, menos ceremonia | Sin objetivos ni reportes por iteración | Se prefiere evidencia por iteración |
-| Board nuevo | Empezar desde cero | Pierde historial y continuidad de claves | Se reorganizó el board existente |
+| Alternativa                      | Ventajas                        | Desventajas                                | Motivo de descarte                  |
+| -------------------------------- | ------------------------------- | ------------------------------------------ | ----------------------------------- |
+| Sprints de dos semanas por épica | Plan inicial existente          | No refleja el ritmo real; sprints vencidos | Reemplazado por cadencia semanal    |
+| Kanban                           | Flujo continuo, menos ceremonia | Sin objetivos ni reportes por iteración    | Se prefiere evidencia por iteración |
+| Board nuevo                      | Empezar desde cero              | Pierde historial y continuidad de claves   | Se reorganizó el board existente    |
 
 ## Consecuencias
 

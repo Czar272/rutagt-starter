@@ -1,12 +1,12 @@
 # ADR-0007: Adquirir datos solo por canales legítimos
 
-| Campo       | Valor                  |
-| ----------- | ---------------------- |
-| Estado      | Aceptado               |
-| Fecha       | 2026-08-15             |
-| Decisores   | @Czar272               |
-| Tickets     | RGT-21, RGT-24         |
-| Reemplaza a | —                      |
+| Campo       | Valor          |
+| ----------- | -------------- |
+| Estado      | Aceptado       |
+| Fecha       | 2026-08-15     |
+| Decisores   | @Czar272       |
+| Tickets     | RGT-21, RGT-24 |
+| Reemplaza a | —              |
 
 ## Contexto
 
@@ -26,10 +26,10 @@ No se realiza ingeniería inversa de aplicaciones ni APIs privadas, ni se raspan
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
+| Alternativa                  | Ventajas            | Desventajas                                                     | Motivo de descarte                          |
+| ---------------------------- | ------------------- | --------------------------------------------------------------- | ------------------------------------------- |
 | Raspar aplicaciones privadas | Cobertura inmediata | Riesgo legal, fragilidad, imposibilita acuerdos institucionales | Incompatible con los objetivos del proyecto |
-| Copiar bases de terceros | Rapidez | Infringe términos y derechos sobre la base de datos | Mismo motivo |
+| Copiar bases de terceros     | Rapidez             | Infringe términos y derechos sobre la base de datos             | Mismo motivo                                |
 
 ## Consecuencias
 

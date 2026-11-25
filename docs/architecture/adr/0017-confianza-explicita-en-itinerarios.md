@@ -1,12 +1,12 @@
 # ADR-0017: Mostrar la incertidumbre y el nivel de confianza en cada itinerario
 
-| Campo       | Valor                  |
-| ----------- | ---------------------- |
+| Campo       | Valor                                                                            |
+| ----------- | -------------------------------------------------------------------------------- |
 | Estado      | Reemplazado por [ADR-0024](0024-confianza-interna-y-estimaciones-como-rangos.md) |
-| Fecha       | 2026-08-15             |
-| Decisores   | @Czar272               |
-| Tickets     | RGT-31, RGT-61, RGT-85 |
-| Reemplaza a | —                      |
+| Fecha       | 2026-08-15                                                                       |
+| Decisores   | @Czar272                                                                         |
+| Tickets     | RGT-31, RGT-61, RGT-85                                                           |
+| Reemplaza a | —                                                                                |
 
 ## Contexto
 
@@ -26,10 +26,10 @@ Los niveles concretos y sus reglas de cálculo se definen en RGT-31.
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Mostrar horas exactas siempre | Interfaz más simple | Falsa precisión y pérdida de confianza | Engañoso para el usuario |
-| Ocultar rutas sin horario oficial | Solo datos seguros | Dejaría fuera la mayor parte del sistema | Cobertura insuficiente |
+| Alternativa                       | Ventajas            | Desventajas                              | Motivo de descarte       |
+| --------------------------------- | ------------------- | ---------------------------------------- | ------------------------ |
+| Mostrar horas exactas siempre     | Interfaz más simple | Falsa precisión y pérdida de confianza   | Engañoso para el usuario |
+| Ocultar rutas sin horario oficial | Solo datos seguros  | Dejaría fuera la mayor parte del sistema | Cobertura insuficiente   |
 
 ## Consecuencias
 

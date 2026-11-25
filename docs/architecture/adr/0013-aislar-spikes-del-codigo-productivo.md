@@ -24,10 +24,10 @@ Los spikes se desarrollan en **`prototype/<tema>/`**, aislados del pipeline y de
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
+| Alternativa                 | Ventajas                | Desventajas                                               | Motivo de descarte      |
+| --------------------------- | ----------------------- | --------------------------------------------------------- | ----------------------- |
 | Experimentar en el pipeline | Reutilización inmediata | Contamina el código productivo con supuestos no validados | Riesgo de deuda técnica |
-| Repositorio separado | Aislamiento total | Pierde acceso directo a datos y contexto | Fricción innecesaria |
+| Repositorio separado        | Aislamiento total       | Pierde acceso directo a datos y contexto                  | Fricción innecesaria    |
 
 ## Consecuencias
 

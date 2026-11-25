@@ -23,10 +23,10 @@ Esta decisión se confirmará al inventariar la disponibilidad real de AVL por o
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Estado |
-| --- | --- | --- | --- |
-| Formatos propietarios por operador | Sin conversión | Integraciones acopladas a cada proveedor | Descartada |
-| SIRI | Estándar europeo completo | Poco soporte regional y en OTP para este caso | Descartada |
+| Alternativa                        | Ventajas                  | Desventajas                                   | Estado     |
+| ---------------------------------- | ------------------------- | --------------------------------------------- | ---------- |
+| Formatos propietarios por operador | Sin conversión            | Integraciones acopladas a cada proveedor      | Descartada |
+| SIRI                               | Estándar europeo completo | Poco soporte regional y en OTP para este caso | Descartada |
 
 ## Consecuencias esperadas
 
