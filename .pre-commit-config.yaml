@@ -26,12 +26,23 @@ repos:
         args: [--fix]
       - id: ruff-format
 
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier
+        entry: prettier --write --ignore-unknown
+        language: node
+        additional_dependencies: ["prettier@3.10.1"]
+        types: [text]
+        exclude_types: [python]
+
   - repo: https://github.com/compilerla/conventional-pre-commit
     rev: v4.5.0
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
-        args: [build, chore, ci, data, docs, feat, fix, perf, refactor, test]
+        args:
+          [build, chore, ci, data, docs, feat, fix, perf, refactor, style, test]
 
   - repo: local
     hooks:
