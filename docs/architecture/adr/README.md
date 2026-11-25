@@ -44,6 +44,7 @@ El proceso está definido en [ADR-0001](0001-registrar-decisiones-de-arquitectur
 | [0017](0017-confianza-explicita-en-itinerarios.md) | Mostrar la incertidumbre y el nivel de confianza en cada itinerario | Aceptado | 2026-08-15 | RGT-31, RGT-61, RGT-85 |
 | [0018](0018-gtfs-realtime-para-tiempo-real.md) | Usar GTFS-Realtime para la información en tiempo real | Propuesto | 2026-11-25 | RGT-97, RGT-98 |
 | [0019](0019-herramientas-de-entorno-y-calidad-de-codigo.md) | Usar uv, Ruff, mypy y pre-commit con Python 3.12 | Aceptado | 2026-11-25 | RGT-123 |
+| [0020](0020-pytest-y-cobertura-como-estrategia-de-pruebas.md) | Usar pytest con cobertura mínima y pruebas sin red por defecto | Aceptado | 2026-11-25 | RGT-124 |
 
 ## Decisiones pendientes
 
@@ -52,7 +53,6 @@ Decisiones identificadas que todavía no tienen ADR. Cada una se registrará al 
 | Decisión | Ticket |
 | -------- | ------ |
 | Patrones de diseño y estructura de paquetes del pipeline | RGT-122 |
-| Framework y estrategia de pruebas | RGT-124 |
 | Plataforma y diseño de integración continua | RGT-107 |
 | Tecnología del backend API | RGT-120 |
 | Framework de la PWA y librería de mapas | RGT-121 |
