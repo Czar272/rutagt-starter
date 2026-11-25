@@ -98,7 +98,7 @@ Reglas de comunicación:
 ```mermaid
 flowchart LR
     config["config/sources.json<br/>Catálogo de fuentes"]
-    subgraph pipeline["pipeline/"]
+    subgraph pipeline["rutagt.pipeline"]
         col["<b>collectors</b><br/>ArcGIS · HTML"]
         nor["<b>normalizers</b><br/><i>planificado</i>"]
         val["<b>validators</b><br/><i>planificado</i>"]
@@ -118,14 +118,14 @@ flowchart LR
     gtfs --> pub
 ```
 
-| Componente  | Entrada                         | Salida                                                            | Estado                                          |
-| ----------- | ------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
-| Collectors  | Catálogo de fuentes             | `data/raw/` con archivo de procedencia y manifiesto de ejecución  | Implementado (`pipeline/collectors/collect.py`) |
-| Normalizers | `data/raw/`                     | `data/staging/` → `data/normalized/` con identificadores estables | Planificado (Sprint 6)                          |
-| Validators  | Capas normalizadas y feeds GTFS | Reporte de calidad; bloquea la publicación si hay errores         | Planificado (Sprint 6)                          |
-| Exporters   | Base canónica                   | `data/gtfs/` → `data/published/`                                  | Planificado (Sprint 8)                          |
+| Componente  | Entrada                         | Salida                                                            | Estado                                           |
+| ----------- | ------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------ |
+| Collectors  | Catálogo de fuentes             | `data/raw/` con archivo de procedencia y manifiesto de ejecución  | Implementado (`src/rutagt/pipeline/collectors/`) |
+| Normalizers | `data/raw/`                     | `data/staging/` → `data/normalized/` con identificadores estables | Planificado (Sprint 6)                           |
+| Validators  | Capas normalizadas y feeds GTFS | Reporte de calidad; bloquea la publicación si hay errores         | Planificado (Sprint 6)                           |
+| Exporters   | Base canónica                   | `data/gtfs/` → `data/published/`                                  | Planificado (Sprint 8)                           |
 
-Los contratos comunes entre etapas y la estructura de paquetes se definen en RGT-122.
+Los contratos comunes entre etapas y la estructura de paquetes están definidos en el [diseño del pipeline](pipeline-design.md).
 
 ## 4. Flujo de datos
 
