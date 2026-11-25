@@ -72,12 +72,28 @@ class JsonFormatter(logging.Formatter):
         return json.dumps(entry, ensure_ascii=False, default=str)
 
 
+def use_utf8_output() -> None:
+    """Fuerza UTF-8 en la salida estándar y de error.
+
+    En Windows, cuando la salida se redirige, Python usa la codificación de la
+    consola (por ejemplo cp1252) y corrompe los caracteres no ASCII.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is not None:
+            try:
+                reconfigure(encoding="utf-8", errors="backslashreplace")
+            except (OSError, ValueError):
+                continue
+
+
 def configure_logging(level: str = "INFO", log_format: LogFormat = "text") -> None:
     """Configura el logger raíz de `rutagt` para escribir en la salida de error.
 
     Se llama una sola vez desde cada punto de entrada. Volver a llamarla
     reemplaza la configuración previa, lo que permite usarla en pruebas.
     """
+    use_utf8_output()
     logger = logging.getLogger("rutagt")
     logger.handlers.clear()
     handler = logging.StreamHandler(sys.stderr)
