@@ -43,18 +43,20 @@ Los cambios en `pyproject.toml` y `uv.lock` se versionan juntos.
 
 ## Calidad de código
 
-| Herramienta  | Propósito                                      | Configuración             |
-| ------------ | ---------------------------------------------- | ------------------------- |
-| Ruff         | Linting y formateo de Python                   | `pyproject.toml`          |
-| mypy         | Verificación estática de tipos (modo estricto) | `pyproject.toml`          |
-| pytest       | Pruebas y cobertura (mínimo 90 %)              | `pyproject.toml`          |
-| pre-commit   | Ejecuta las verificaciones en cada commit      | `.pre-commit-config.yaml` |
-| EditorConfig | Codificación, finales de línea e indentación   | `.editorconfig`           |
+| Herramienta  | Propósito                                                               | Configuración                         |
+| ------------ | ----------------------------------------------------------------------- | ------------------------------------- |
+| Ruff         | Linting y formateo de Python                                            | `pyproject.toml`                      |
+| Prettier     | Formateo del resto de archivos (Markdown, YAML, JSON, HTML, CSS, TS/JS) | `.prettierrc.json`, `.prettierignore` |
+| mypy         | Verificación estática de tipos (modo estricto)                          | `pyproject.toml`                      |
+| pytest       | Pruebas y cobertura (mínimo 90 %)                                       | `pyproject.toml`                      |
+| pre-commit   | Ejecuta las verificaciones en cada commit                               | `.pre-commit-config.yaml`             |
+| EditorConfig | Codificación, finales de línea e indentación                            | `.editorconfig`                       |
 
 ```powershell
 uv run ruff check .            # linting
 uv run ruff check . --fix      # linting con correcciones automáticas
-uv run ruff format .           # formateo
+uv run ruff format .           # formateo de Python
+uv run pre-commit run prettier --all-files   # formateo del resto de archivos
 uv run mypy                    # tipos
 uv run pytest --cov            # pruebas con cobertura
 uv run pre-commit run --all-files   # todas las verificaciones
@@ -62,12 +64,17 @@ uv run pre-commit run --all-files   # todas las verificaciones
 
 Los hooks de pre-commit se ejecutan automáticamente:
 
-- **Antes del commit:** espacios finales, fin de archivo, finales de línea LF, validez de YAML/JSON/TOML, archivos grandes, claves privadas, Ruff y mypy.
+- **Antes del commit:** espacios finales, fin de archivo, finales de línea LF, validez de YAML/JSON/TOML, archivos grandes, claves privadas, Ruff, Prettier y mypy.
 - **Al escribir el mensaje:** formato Conventional Commits.
+
+### Editor
+
+El repositorio incluye configuración compartida de VS Code en `.vscode/`: formatea al guardar con **Ruff** para Python y **Prettier** para el resto de archivos, igual que pre-commit y el CI. Al abrir el proyecto, VS Code sugiere las extensiones recomendadas (`.vscode/extensions.json`); la extensión Black no se usa en este proyecto.
 
 Convenciones:
 
 - Python: estilo de Ruff (compatible con Black), líneas de 88 caracteres, anotaciones de tipo obligatorias en el código del pipeline, `pathlib` para rutas.
+- Archivos que no son Python: estilo de Prettier con la configuración del repositorio (80 caracteres, comillas dobles, punto y coma, comas finales).
 - Todos los archivos de texto en UTF-8 con finales de línea LF (`.gitattributes`).
 - Las excepciones a una regla de linting se justifican con un comentario junto al `noqa`.
 - Docstrings y comentarios en español; identificadores de código en inglés.
@@ -144,6 +151,7 @@ Los mensajes siguen [Conventional Commits 1.0](https://www.conventionalcommits.o
 | `docs`     | Documentación                                       |
 | `test`     | Pruebas nuevas o corregidas                         |
 | `refactor` | Cambio de código sin alterar comportamiento         |
+| `style`    | Cambios exclusivamente de formato                   |
 | `perf`     | Mejora de rendimiento                               |
 | `build`    | Empaquetado, dependencias o sistema de construcción |
 | `ci`       | Configuración de integración continua               |
