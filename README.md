@@ -243,6 +243,7 @@ El alcance, los criterios de éxito y los hitos del MVP están definidos en [`do
 ## Documentación
 
 - [`docs/product/alcance-mvp.md`](docs/product/alcance-mvp.md): alcance, criterios de éxito e hitos del MVP.
+- [`docs/architecture/overview.md`](docs/architecture/overview.md): vista de arquitectura (modelo C4).
 - [`docs/architecture/adr/`](docs/architecture/adr/README.md): registro de decisiones de arquitectura (ADR).
 - [`docs/architecture/testing-strategy.md`](docs/architecture/testing-strategy.md): estrategia de pruebas.
 - [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
