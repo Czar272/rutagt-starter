@@ -4,6 +4,8 @@ Este documento define cómo se planifica, desarrolla, revisa e integra el trabaj
 
 ## Contenido
 
+- [Entorno de desarrollo](#entorno-de-desarrollo)
+- [Calidad de código](#calidad-de-código)
 - [Flujo de trabajo](#flujo-de-trabajo)
 - [Ramas](#ramas)
 - [Commits](#commits)
@@ -12,6 +14,61 @@ Este documento define cómo se planifica, desarrolla, revisa e integra el trabaj
 - [Definition of Ready](#definition-of-ready)
 - [Definition of Done](#definition-of-done)
 - [Versionado y releases](#versionado-y-releases)
+
+## Entorno de desarrollo
+
+El proyecto usa [uv](https://docs.astral.sh/uv/) para gestionar Python, el entorno virtual y las dependencias. La versión de Python está fijada en `.python-version` y las dependencias exactas en `uv.lock`.
+
+```powershell
+# Instalar uv (una sola vez)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Crear el entorno e instalar dependencias de desarrollo
+uv sync
+
+# Instalar los hooks de Git (una sola vez por clon)
+uv run pre-commit install
+```
+
+Todos los comandos del proyecto se ejecutan con `uv run`, que usa el entorno del proyecto sin activarlo manualmente.
+
+Para agregar una dependencia:
+
+```powershell
+uv add <paquete>          # dependencia de ejecución
+uv add --dev <paquete>    # dependencia de desarrollo
+```
+
+Los cambios en `pyproject.toml` y `uv.lock` se versionan juntos.
+
+## Calidad de código
+
+| Herramienta | Propósito                                      | Configuración             |
+| ----------- | ---------------------------------------------- | ------------------------- |
+| Ruff        | Linting y formateo de Python                   | `pyproject.toml`          |
+| mypy        | Verificación estática de tipos (modo estricto) | `pyproject.toml`          |
+| pre-commit  | Ejecuta las verificaciones en cada commit      | `.pre-commit-config.yaml` |
+| EditorConfig | Codificación, finales de línea e indentación  | `.editorconfig`           |
+
+```powershell
+uv run ruff check .            # linting
+uv run ruff check . --fix      # linting con correcciones automáticas
+uv run ruff format .           # formateo
+uv run mypy                    # tipos
+uv run pre-commit run --all-files   # todas las verificaciones
+```
+
+Los hooks de pre-commit se ejecutan automáticamente:
+
+- **Antes del commit:** espacios finales, fin de archivo, finales de línea LF, validez de YAML/JSON/TOML, archivos grandes, claves privadas, Ruff y mypy.
+- **Al escribir el mensaje:** formato Conventional Commits.
+
+Convenciones:
+
+- Python: estilo de Ruff (compatible con Black), líneas de 88 caracteres, anotaciones de tipo obligatorias en el código del pipeline, `pathlib` para rutas.
+- Todos los archivos de texto en UTF-8 con finales de línea LF (`.gitattributes`).
+- Las excepciones a una regla de linting se justifican con un comentario junto al `noqa`.
+- Docstrings y comentarios en español; identificadores de código en inglés.
 
 ## Flujo de trabajo
 
