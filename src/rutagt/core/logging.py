@@ -14,7 +14,7 @@ emitido dentro de ese bloque.
 import json
 import logging
 import sys
-from collections.abc import Iterator
+from collections.abc import Generator
 from contextlib import contextmanager
 from contextvars import ContextVar
 from datetime import UTC, datetime
@@ -31,7 +31,7 @@ _context: ContextVar[dict[str, Any] | None] = ContextVar(
 
 
 @contextmanager
-def log_context(**fields: Any) -> Iterator[None]:
+def log_context(**fields: Any) -> Generator[None]:
     """Agrega campos de correlación a todos los registros emitidos en el bloque."""
     token = _context.set({**current_context(), **fields})
     try:
