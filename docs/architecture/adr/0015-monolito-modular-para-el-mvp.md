@@ -2,7 +2,7 @@
 
 | Campo       | Valor            |
 | ----------- | ---------------- |
-| Estado      | Propuesto        |
+| Estado      | Aceptado         |
 | Fecha       | 2026-11-25       |
 | Decisores   | @Czar272         |
 | Tickets     | RGT-118, RGT-120 |
