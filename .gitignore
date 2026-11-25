@@ -11,3 +11,9 @@ work/
 
 # Docs for dev
 commands.md
+# Herramientas de calidad
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
