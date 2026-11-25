@@ -87,7 +87,7 @@ data/raw → data/staging → data/normalized → data/gtfs → data/published
 | OpenStreetMap         | Red vial y conexiones peatonales                  | Planificado        |
 | OpenTripPlanner       | Motor de planificación multimodal                 | Planificado        |
 | FastAPI               | API de datos e itinerarios (OpenAPI)              | Decidido ([ADR-0022](docs/architecture/adr/0022-fastapi-para-la-api.md)) |
-| PWA                   | Aplicación web instalable y ligera                | Por definir        |
+| React + Vite + MapLibre | PWA ligera con mapas vectoriales abiertos        | Decidido ([ADR-0023](docs/architecture/adr/0023-react-vite-y-maplibre-para-la-pwa.md)) |
 
 ## Estructura del repositorio
 
