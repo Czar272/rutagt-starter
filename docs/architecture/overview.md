@@ -63,7 +63,7 @@ flowchart LR
         db[("<b>Base canónica</b><br/>PostgreSQL 17 + PostGIS 3.5")]
         otp["<b>Motor de planificación</b><br/>OpenTripPlanner<br/><i>planificado</i>"]
         api["<b>API RutaGT</b><br/>FastAPI · monolito modular<br/><i>planificado</i>"]
-        pwa["<b>PWA RutaGT</b><br/><i>planificado · tecnología en RGT-121</i>"]
+        pwa["<b>PWA RutaGT</b><br/>React · Vite · MapLibre<br/><i>planificado</i>"]
     end
 
     arcgis -- "HTTPS" --> pipeline
@@ -85,7 +85,7 @@ flowchart LR
 | Base canónica | Modelo de transporte con procedencia, vigencia y calidad | PostgreSQL 17 + PostGIS 3.5 | Esquema definido; migraciones en RGT-29 | [0002](adr/0002-postgresql-postgis-como-modelo-canonico.md) |
 | Motor de planificación | Calcular itinerarios multimodales sobre GTFS + OSM | OpenTripPlanner | Planificado (Sprint 9) | [0014](adr/0014-opentripplanner-como-motor-de-planificacion.md) |
 | API RutaGT | Exponer paradas, rutas, lugares y planificación; aplicar el ranking y la confianza | FastAPI, Pydantic, SQLAlchemy + GeoAlchemy2 | Planificado (Sprint 10) | [0015](adr/0015-monolito-modular-para-el-mvp.md), [0022](adr/0022-fastapi-para-la-api.md) |
-| PWA RutaGT | Interfaz de usuario ligera y accesible | Por definir (RGT-121) | Planificado (Sprint 11) | [0016](adr/0016-pwa-como-cliente-principal.md) |
+| PWA RutaGT | Interfaz de usuario ligera y accesible para Android e iPhone | React, Vite, TypeScript, MapLibre GL JS | Planificado (Sprint 11) | [0016](adr/0016-pwa-como-cliente-principal.md), [0023](adr/0023-react-vite-y-maplibre-para-la-pwa.md) |
 
 Reglas de comunicación:
 
