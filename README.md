@@ -220,22 +220,29 @@ Niveles, marcadores y criterios en [`docs/architecture/testing-strategy.md`](doc
 
 ## Hoja de ruta
 
-| Etapa                             | Objetivo                                      |
-| --------------------------------- | --------------------------------------------- |
-| Sprint 0 — Bases                  | Investigación, decisiones y estructura        |
-| Sprint 1 — Fundación reproducible | Docker, base de datos, esquema y herramientas |
-| Sprint 2 — Normalización base     | Transformación y validación de datos          |
-| Sprint 3 — Operación y secuencias | Sentidos, paradas, horarios y frecuencias     |
-| Sprint 4 — Primer GTFS            | Feed GTFS válido de Transmetro y TuBus        |
-| Sprint 5 — Routing local          | OpenTripPlanner, itinerarios, ranking         |
-| Sprint 6 — API MVP                | Servicios de consulta de datos e itinerarios  |
-| Sprint 7 — PWA MVP                | Aplicación web/móvil inicial                  |
-| Sprint 8 — Corredor piloto        | Validación con recorridos reales              |
+El alcance, los criterios de éxito y los hitos del MVP están definidos en [`docs/product/alcance-mvp.md`](docs/product/alcance-mvp.md). El trabajo se organiza en sprints semanales ([ADR-0012](docs/architecture/adr/0012-gestion-con-scrum-semanal-en-jira.md)).
 
-**Hito siguiente:** un piloto estático validado para Transmetro y TuBus capaz de devolver opciones reproducibles entre dos puntos, donde cada instrucción muestre recorrido, sentido, parada de ascenso y descenso, caminata, tarifa y nivel de confianza.
+| Sprint | Objetivo | Hito |
+| --- | --- | --- |
+| 0 — Bases | Investigación, decisiones iniciales y recolector | H1 |
+| 1 — Fundación reproducible | Estructura, configuración y PostgreSQL/PostGIS con Docker | H1 |
+| 2 — Ingeniería base | Flujo Git, ADR, calidad automatizada, pruebas y CI | H1 |
+| 3 — Arquitectura declarada | Alcance, vista de arquitectura, patrones del pipeline y stack de API/PWA | H2 |
+| 4 — Spike ruta 801 | Itinerario experimental e informe de datos faltantes | H2 |
+| 5 — Base de datos y gobierno de datos | Esquema migrado, snapshot de fuentes, calidad y versionado | H2 |
+| 6 — Normalización base | Paradas, rutas y shapes normalizados y cargados en PostGIS | H3 |
+| 7 — Operación y secuencias | Sentidos, variantes, horarios, frecuencias, tarifas y transbordos | H3 |
+| 8 — Primer GTFS | Feed GTFS válido de Transmetro y TuBus | H3 |
+| 9 — Routing local | OpenTripPlanner, ranking RutaGT y nivel de confianza | H4 |
+| 10 — API MVP | Contrato OpenAPI y servicios de planificación | H4 |
+| 11 — PWA MVP | Aplicación web ligera con búsqueda, alternativas y mapa | H5 |
+| 12 — Corredor piloto | Metrocentro ↔ UVG validado en campo y con usuarios | H5 |
+
+**Hito siguiente (H2):** arquitectura declarada, spike de la ruta 801 concluido y esquema canónico migrado con políticas de calidad de datos.
 
 ## Documentación
 
+- [`docs/product/alcance-mvp.md`](docs/product/alcance-mvp.md): alcance, criterios de éxito e hitos del MVP.
 - [`docs/architecture/adr/`](docs/architecture/adr/README.md): registro de decisiones de arquitectura (ADR).
 - [`docs/architecture/testing-strategy.md`](docs/architecture/testing-strategy.md): estrategia de pruebas.
 - [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
