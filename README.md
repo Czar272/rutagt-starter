@@ -67,11 +67,7 @@ Las variables definidas actualmente son:
 
 Los secretos reales nunca deben agregarse a .env.example, documentación, código fuente o commits.
 
-Hay un matiz importante: **crear `.env` no hace que `collect.py` lo lea automáticamente**. Por eso, inmediatamente después de la tabla añadiría:
-
-```markdown
-> Nota: el recolector actual lee variables del entorno del proceso. El archivo `.env` establece la convención de configuración local del proyecto y será utilizado por los servicios que incorporaremos posteriormente. No se carga automáticamente desde Python en esta etapa. Eso evita documentación engañosa.
-```
+> Nota: el recolector lee variables del entorno del proceso; el archivo `.env` no se carga automáticamente desde Python en esta etapa. `.env` sí es utilizado por Docker Compose y lo será por los servicios que se incorporen posteriormente.
 
 ## Uso rápido
 
