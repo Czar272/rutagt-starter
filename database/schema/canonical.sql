@@ -1,4 +1,4 @@
--- Esquema canónico inicial de RutaGT (PostgreSQL 16 + PostGIS 3).
+-- Esquema canónico inicial de RutaGT (PostgreSQL 17 + PostGIS 3.5).
 -- GTFS sigue siendo el formato de intercambio; estas tablas permiten además
 -- procedencia, datos incompletos, observaciones reales y predicciones.
 
