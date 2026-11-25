@@ -47,6 +47,7 @@ Los cambios en `pyproject.toml` y `uv.lock` se versionan juntos.
 | ----------- | ---------------------------------------------- | ------------------------- |
 | Ruff        | Linting y formateo de Python                   | `pyproject.toml`          |
 | mypy        | Verificación estática de tipos (modo estricto) | `pyproject.toml`          |
+| pytest      | Pruebas y cobertura (mínimo 90 %)              | `pyproject.toml`          |
 | pre-commit  | Ejecuta las verificaciones en cada commit      | `.pre-commit-config.yaml` |
 | EditorConfig | Codificación, finales de línea e indentación  | `.editorconfig`           |
 
@@ -55,6 +56,7 @@ uv run ruff check .            # linting
 uv run ruff check . --fix      # linting con correcciones automáticas
 uv run ruff format .           # formateo
 uv run mypy                    # tipos
+uv run pytest --cov            # pruebas con cobertura
 uv run pre-commit run --all-files   # todas las verificaciones
 ```
 
@@ -69,6 +71,7 @@ Convenciones:
 - Todos los archivos de texto en UTF-8 con finales de línea LF (`.gitattributes`).
 - Las excepciones a una regla de linting se justifican con un comentario junto al `noqa`.
 - Docstrings y comentarios en español; identificadores de código en inglés.
+- Pruebas según [`docs/architecture/testing-strategy.md`](docs/architecture/testing-strategy.md): sin red ni datos reales, datos de muestra en `tests/fixtures/`.
 
 ## Flujo de trabajo
 

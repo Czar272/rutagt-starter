@@ -198,8 +198,11 @@ insivumeh/weather_catalog_links.json
 ## Pruebas
 
 ```powershell
-uv run python -m unittest discover -s tests -v
+uv run pytest          # suite por defecto, sin red ni servicios
+uv run pytest --cov    # con cobertura (mínimo 90 %)
 ```
+
+Niveles, marcadores y criterios en [`docs/architecture/testing-strategy.md`](docs/architecture/testing-strategy.md).
 
 ## Principios de diseño
 
@@ -232,6 +235,7 @@ uv run python -m unittest discover -s tests -v
 ## Documentación
 
 - [`docs/architecture/adr/`](docs/architecture/adr/README.md): registro de decisiones de arquitectura (ADR).
+- [`docs/architecture/testing-strategy.md`](docs/architecture/testing-strategy.md): estrategia de pruebas.
 - [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
 - [`docs/institutions/solicitudes-informacion.md`](docs/institutions/solicitudes-informacion.md): plantillas de solicitudes a municipalidades, DGT y operadores.
 
