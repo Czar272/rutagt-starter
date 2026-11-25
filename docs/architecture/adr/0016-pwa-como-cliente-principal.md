@@ -10,12 +10,13 @@
 
 ## Contexto
 
-Las personas usuarias de transporte público en Guatemala acceden principalmente desde teléfonos Android de gama media o baja, con almacenamiento limitado y conectividad variable. Publicar aplicaciones nativas para Android e iOS duplica el desarrollo y exige instalación desde tiendas.
+Las personas usuarias de transporte público en Guatemala usan teléfonos Android e iPhone; una parte importante tiene equipos Android de gama media o baja, con almacenamiento limitado y conectividad variable, que se toman como referencia de rendimiento. Publicar aplicaciones nativas para Android e iOS duplica el desarrollo y exige instalación desde tiendas.
 
 ## Decisión propuesta
 
 El cliente principal del MVP es una **Progressive Web App (PWA)**:
 
+- Compatible con navegadores actuales de Android (Chrome) e iOS (Safari).
 - Instalable desde el navegador, sin tiendas de aplicaciones.
 - Con un **presupuesto de rendimiento** explícito para dispositivos de gama baja.
 - Con funcionamiento degradado sin conexión para consultas recientes.
@@ -40,11 +41,12 @@ Una aplicación nativa solo se considerará cuando funciones como GPS en segundo
 
 ### Negativas y riesgos
 
-- Capacidades limitadas en iOS (notificaciones y segundo plano).
+- En iOS, las notificaciones web requieren instalar la PWA en la pantalla de inicio y no hay ejecución en segundo plano; ninguna de las dos es necesaria para el MVP.
 
 ## Verificación
 
 - Auditoría Lighthouse con puntajes mínimos de rendimiento, accesibilidad y PWA (RGT-78).
+- Flujo principal verificado en Android de gama baja y en Safari para iOS (RGT-78).
 
 ## Referencias
 
