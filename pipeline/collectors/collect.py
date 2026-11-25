@@ -19,7 +19,7 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urljoin, urlparse
 from urllib.request import Request, urlopen
@@ -47,7 +47,7 @@ class HttpResponse:
 class LinkParser(HTMLParser):
     """Extrae enlaces y recursos declarados en HTML sin ejecutar JavaScript."""
 
-    ATTRS = {
+    ATTRS: ClassVar[dict[str, str]] = {
         "a": "href",
         "img": "src",
         "iframe": "src",
