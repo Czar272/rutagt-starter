@@ -50,21 +50,21 @@ El proceso está definido en [ADR-0001](0001-registrar-decisiones-de-arquitectur
 | [0023](0023-react-vite-y-maplibre-para-la-pwa.md)                | Construir la PWA con React, Vite y MapLibre GL JS                                             | Aceptado                 | 2026-11-25 | RGT-121, RGT-70        |
 | [0024](0024-confianza-interna-y-estimaciones-como-rangos.md)     | Usar la confianza de los datos internamente y mostrar las estimaciones como rangos            | Aceptado                 | 2026-11-25 | RGT-117, RGT-61        |
 | [0025](0025-prettier-y-configuracion-compartida-del-editor.md)   | Formatear con Prettier los archivos que no son Python y compartir la configuración del editor | Aceptado                 | 2026-11-25 | RGT-134                |
+| [0026](0026-paquete-rutagt-y-patrones-del-pipeline.md)           | Organizar el código en el paquete `rutagt` con collectors registrados por tipo de fuente      | Aceptado                 | 2026-11-25 | RGT-122                |
 
 ## Decisiones pendientes
 
 Decisiones identificadas que todavía no tienen ADR. Cada una se registrará al resolverse su ticket.
 
-| Decisión                                                 | Ticket  |
-| -------------------------------------------------------- | ------- |
-| Patrones de diseño y estructura de paquetes del pipeline | RGT-122 |
-| Herramienta de migraciones del esquema canónico          | RGT-29  |
-| Niveles de confianza y calidad de datos                  | RGT-31  |
-| Política de versionado de datasets                       | RGT-32  |
-| Función de ranking de itinerarios                        | RGT-60  |
-| Licencia del código y de los datos publicados            | RGT-111 |
-| Estrategia de seguridad base                             | RGT-113 |
-| Observabilidad del backend                               | RGT-109 |
+| Decisión                                        | Ticket  |
+| ----------------------------------------------- | ------- |
+| Herramienta de migraciones del esquema canónico | RGT-29  |
+| Niveles de confianza y calidad de datos         | RGT-31  |
+| Política de versionado de datasets              | RGT-32  |
+| Función de ranking de itinerarios               | RGT-60  |
+| Licencia del código y de los datos publicados   | RGT-111 |
+| Estrategia de seguridad base                    | RGT-113 |
+| Observabilidad del backend                      | RGT-109 |
 
 ## Nota sobre fechas
 
