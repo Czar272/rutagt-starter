@@ -212,9 +212,9 @@ Niveles, marcadores y criterios en [`docs/architecture/testing-strategy.md`](doc
 - **Datos reproducibles.** La recolección y normalización pueden repetirse para detectar cambios.
 - **Separación de responsabilidades.** Collectors obtienen, normalizers transforman, validators comprueban y exporters publican.
 - **Estándares abiertos.** GTFS Schedule es el formato de intercambio; GTFS-Realtime queda para una fase posterior.
-- **Confianza explícita.** Horarios, tiempos o conexiones estimados se distinguen de los confirmados.
+- **Recomendaciones honestas.** Los tiempos estimados se presentan como rangos, nunca como horas exactas ficticias; la confianza de cada dato se usa internamente para ordenar alternativas.
 - **Unidad de ruteo completa.** La unidad no es solo la línea: es `ruta + variante + sentido + calendario`.
-- **Diseño accesible.** La aplicación debe funcionar en teléfonos de gama baja.
+- **Diseño accesible.** La aplicación funciona en Android e iPhone, tomando como referencia los teléfonos de gama baja.
 - **Escalabilidad territorial.** Nuevos operadores y municipios se incorporan sin rediseñar la plataforma.
 - **Uso legítimo de datos.** No se extraen aplicaciones privadas por ingeniería inversa ni se publican datos sin permiso.
 
