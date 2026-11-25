@@ -63,7 +63,15 @@ def test_fetch_writes_manifest_and_continues_after_failures(
     manifest = json.loads((output / "run_manifest.json").read_text(encoding="utf-8"))
     assert exit_code == cli.EXIT_SOURCE_FAILURES
     assert [r["source_id"] for r in manifest["successful"]] == ["b"]
-    assert manifest["failed"] == [{"source_id": "a", "error": expected_error}]
+    assert [(f["source_id"], f["error"]) for f in manifest["failed"]] == [
+        ("a", expected_error)
+    ]
+    assert manifest["summary"] == {"requested": 2, "successful": 1, "failed": 1}
+    assert len(manifest["run_id"]) == 32
+    assert all(
+        entry["duration_seconds"] >= 0
+        for entry in manifest["successful"] + manifest["failed"]
+    )
     assert "OK b: 2 registros, 0 advertencias" in capsys.readouterr().err
 
 
@@ -86,3 +94,32 @@ def test_configuration_errors_return_exit_code_two(
 
     assert exit_code == cli.EXIT_CONFIGURATION_ERROR
     assert "Fuentes desconocidas: z" in capsys.readouterr().err
+
+
+def test_json_log_format_includes_run_and_source_context(
+    monkeypatch: pytest.MonkeyPatch,
+    config: Path,
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    monkeypatch.setenv("RUTAGT_LOG_FORMAT", "json")
+    monkeypatch.setattr(cli, "collect_source", lambda source, output: {})
+
+    cli.main(
+        ["--config", str(config), "fetch", "--source", "a", "--output", str(tmp_path)]
+    )
+
+    manifest = json.loads((tmp_path / "run_manifest.json").read_text(encoding="utf-8"))
+    entries = [json.loads(line) for line in capsys.readouterr().err.splitlines()]
+    assert {entry["run_id"] for entry in entries} == {manifest["run_id"]}
+    assert any(entry.get("source_id") == "a" for entry in entries)
+    assert all(entry["service"] == "rutagt" for entry in entries)
+
+
+def test_invalid_log_format_is_a_configuration_error(
+    monkeypatch: pytest.MonkeyPatch, config: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    monkeypatch.setenv("RUTAGT_LOG_FORMAT", "xml")
+
+    assert cli.main(["--config", str(config), "list"]) == cli.EXIT_CONFIGURATION_ERROR
+    assert "RUTAGT_LOG_FORMAT" in capsys.readouterr().err
