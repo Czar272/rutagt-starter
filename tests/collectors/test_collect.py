@@ -64,6 +64,13 @@ class ValidationTests(unittest.TestCase):
         self.assertTrue(any("Geometrías" in warning for warning in warnings))
 
 
+class HttpTests(unittest.TestCase):
+    def test_rejects_non_http_schemes(self):
+        for url in ("file:///etc/passwd", "ftp://example.test/data", "datos.json"):
+            with self.subTest(url=url), self.assertRaises(collect.CollectorError):
+                collect.http_get(url, attempts=1)
+
+
 class ConfigurationTests(unittest.TestCase):
     def test_project_configuration_loads(self):
         config = Path(__file__).resolve().parents[2] / "config" / "sources.json"

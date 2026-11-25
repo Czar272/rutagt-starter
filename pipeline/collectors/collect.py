@@ -29,6 +29,7 @@ ARCGIS_SEARCH = "https://www.arcgis.com/sharing/rest/search"
 ARCGIS_ITEM = "https://www.arcgis.com/sharing/rest/content/items/{item_id}"
 DEFAULT_TIMEOUT = 45
 DEFAULT_PAGE_SIZE = 1000
+ALLOWED_URL_SCHEMES = frozenset({"http", "https"})
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -99,13 +100,18 @@ def http_get(
     timeout: int = DEFAULT_TIMEOUT,
     attempts: int = 3,
 ) -> HttpResponse:
+    scheme = urlparse(url).scheme.lower()
+    if scheme not in ALLOWED_URL_SCHEMES:
+        raise CollectorError(
+            f"Esquema de URL no permitido ({scheme or 'vacío'}): {url}"
+        )
     if params:
         separator = "&" if "?" in url else "?"
         url = f"{url}{separator}{urlencode(params)}"
 
     error: Exception | None = None
     for attempt in range(1, attempts + 1):
-        request = Request(
+        request = Request(  # noqa: S310
             url,
             headers={
                 "User-Agent": USER_AGENT,
@@ -113,7 +119,8 @@ def http_get(
             },
         )
         try:
-            with urlopen(request, timeout=timeout) as response:
+            # El esquema se valida al inicio de la función: solo http y https.
+            with urlopen(request, timeout=timeout) as response:  # noqa: S310
                 return HttpResponse(
                     body=response.read(),
                     final_url=response.geturl(),
