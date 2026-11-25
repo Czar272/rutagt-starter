@@ -175,6 +175,11 @@ docs(RGT-118): add container diagram
 ## Integración a main
 
 - `main` está protegida: no se permite push directo, force push ni eliminación.
+- Toda rama publicada y todo pull request ejecutan el flujo de [integración continua](.github/workflows/ci.yml):
+  - **Calidad de código:** todos los hooks de pre-commit.
+  - **Pruebas:** pytest con cobertura mínima en Ubuntu y Windows (Python 3.12) y Ubuntu (Python 3.13).
+  - **Mensajes de commit:** título del pull request y cada commit en formato Conventional Commits.
+- Las tres verificaciones son obligatorias para integrar.
 - La integración se realiza con **rebase and merge**, lo que conserva los commits atómicos de la rama en un historial lineal.
 - La rama se elimina automáticamente después de integrarse.
 
