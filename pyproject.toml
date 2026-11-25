@@ -80,7 +80,7 @@ markers = [
 xfail_strict = true
 
 [tool.coverage.run]
-source = ["pipeline"]
+source = ["rutagt"]
 branch = true
 
 [tool.coverage.report]
