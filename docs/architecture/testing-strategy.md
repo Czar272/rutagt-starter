@@ -26,7 +26,7 @@ Por defecto, `pytest` excluye las pruebas `integration` y `network` (`-m "not in
 | Herramienta              | Uso                                                                               |
 | ------------------------ | --------------------------------------------------------------------------------- |
 | pytest                   | Ejecución de pruebas, fixtures, parametrización y marcadores                      |
-| pytest-cov (coverage.py) | Cobertura de líneas y ramas sobre `pipeline/`                                     |
+| pytest-cov (coverage.py) | Cobertura de líneas y ramas sobre el paquete `rutagt`                             |
 | `monkeypatch` de pytest  | Simulación de red (`http_get`, `get_json`, `urlopen`) y de esperas (`time.sleep`) |
 | `tmp_path` de pytest     | Archivos temporales aislados por prueba                                           |
 
@@ -37,12 +37,12 @@ tests/
 ├── conftest.py                 # fixtures globales (cuando existan)
 ├── fixtures/                   # datos de muestra pequeños y versionados
 │   └── html/
-└── <componente>/               # refleja la estructura de pipeline/
+└── <módulo>/                   # refleja la estructura de src/rutagt/
     ├── conftest.py             # fixtures del componente
     └── test_<aspecto>.py
 ```
 
-- Las pruebas reflejan la estructura del código: `pipeline/collectors/` → `tests/collectors/`.
+- Las pruebas reflejan la estructura del código: `src/rutagt/pipeline/collectors/` → `tests/pipeline/collectors/`, e importan los módulos directamente (`from rutagt.pipeline.collectors import arcgis`).
 - Un archivo por aspecto del componente (`test_http.py`, `test_arcgis.py`, `test_cli.py`).
 - Nombres descriptivos en inglés que expresan el comportamiento: `test_http_get_retries_transient_errors_with_backoff`.
 - Estructura _Arrange-Act-Assert_, separada por líneas en blanco.
@@ -56,12 +56,12 @@ tests/
 
 ## Umbrales y criterios
 
-| Criterio                                            | Valor                                                                     |
-| --------------------------------------------------- | ------------------------------------------------------------------------- |
-| Cobertura mínima de `pipeline/` (líneas y ramas)    | **90 %**; la ejecución falla por debajo                                   |
-| Pruebas que fallan en `main`                        | 0                                                                         |
-| Pruebas dependientes de red en la suite por defecto | 0                                                                         |
-| Pruebas omitidas sin motivo                         | No permitidas: todo `skip` o `xfail` indica la razón; `xfail` es estricto |
+| Criterio                                               | Valor                                                                     |
+| ------------------------------------------------------ | ------------------------------------------------------------------------- |
+| Cobertura mínima del paquete `rutagt` (líneas y ramas) | **90 %**; la ejecución falla por debajo                                   |
+| Pruebas que fallan en `main`                           | 0                                                                         |
+| Pruebas dependientes de red en la suite por defecto    | 0                                                                         |
+| Pruebas omitidas sin motivo                            | No permitidas: todo `skip` o `xfail` indica la razón; `xfail` es estricto |
 
 El umbral se revisará al alza a medida que crezca el código. Un pull request no puede reducir la cobertura por debajo del umbral.
 
@@ -70,7 +70,7 @@ El umbral se revisará al alza a medida que crezca el código. Un pull request n
 ```powershell
 uv run pytest                                  # suite por defecto
 uv run pytest --cov                            # con cobertura y umbral
-uv run pytest tests/collectors/test_http.py    # un archivo
+uv run pytest tests/pipeline/collectors/test_http.py   # un archivo
 uv run pytest -k retries                       # por nombre
 uv run pytest -m integration                   # pruebas de integración
 uv run pytest -m network                       # pruebas contra fuentes reales
