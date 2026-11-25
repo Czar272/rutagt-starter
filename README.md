@@ -223,5 +223,8 @@ python -m unittest discover -s tests -v
 
 ## Convenciones de contribución
 
-- Commits con [Conventional Commits](https://www.conventionalcommits.org/), incluyendo la clave del ticket de Jira como alcance cuando aplique: `feat(RGT-28): ...`.
-- Commits pequeños y atómicos, limitados al alcance del ticket.
+El flujo de trabajo completo está en [`CONTRIBUTING.md`](CONTRIBUTING.md). En resumen:
+
+- Todo cambio parte de un ticket de Jira (`RGT-<n>`) y se desarrolla en una rama `<tipo>/RGT-<n>-<descripcion>`.
+- Commits con [Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/) y la clave del ticket como alcance: `feat(RGT-28): ...`.
+- `main` está protegida y solo recibe cambios mediante pull request con las verificaciones en verde.
