@@ -1,58 +1,122 @@
-# RutaGT Starter
+# RutaGT
 
-Base inicial para organizar un planificador multimodal de transporte público en el área metropolitana de Guatemala.
+**Rutas de transporte público de Guatemala** — _Tu bus, tu ruta, a tiempo._
+
+RutaGT es una plataforma de planificación de viajes en transporte público multimodal para el Área Metropolitana de Guatemala. Su objetivo es que cualquier persona indique dónde está y a dónde quiere llegar, y reciba recomendaciones claras, accesibles y verificables: qué transporte usar, dónde abordarlo, dónde bajarse y cómo completar el viaje.
+
+La información del transporte público guatemalteco está fragmentada y rara vez disponible en formatos estructurados. RutaGT la recolecta desde fuentes oficiales, la normaliza conservando su procedencia y la transforma en itinerarios con un nivel de confianza explícito.
+
+## Contenido
+
+- [Estado actual](#estado-actual)
+- [Arquitectura](#arquitectura)
+- [Tecnologías](#tecnologías)
+- [Estructura del repositorio](#estructura-del-repositorio)
+- [Requisitos](#requisitos)
+- [Configuración local](#configuración-local)
+- [Uso](#uso)
+- [Pruebas](#pruebas)
+- [Principios de diseño](#principios-de-diseño)
+- [Hoja de ruta](#hoja-de-ruta)
+- [Documentación](#documentación)
+- [Convenciones de contribución](#convenciones-de-contribución)
 
 ## Estado actual
 
-El proyecto ya cuenta con un recolector reproducible para fuentes públicas. La primera ejecución verificada descargó 169 paradas de Transmetro 2025 desde la Municipalidad de Guatemala y generó su archivo de procedencia y el manifiesto de ejecución.
+Desarrollo inicial. La infraestructura base y la recolección de datos están operativas; todavía no existe un MVP para usuarios finales.
 
-El recolector también está configurado para consultar:
+- Recolector reproducible de fuentes públicas con procedencia y manifiesto de ejecución.
+- Datos oficiales descargados del catálogo DIGM de la Municipalidad de Guatemala:
 
-- Paradas y geometrías de rutas de Transmetro y TuBus.
-- Catálogos oficiales de Transmetro y de las rutas 105 y 801 de TuBus.
-- El catálogo de datos abiertos de la Dirección General de Transportes.
-- Variables y descargas meteorológicas recientes de INSIVUMEH.
+  | Conjunto                   | Registros | Contenido                                       |
+  | -------------------------- | --------: | ----------------------------------------------- |
+  | Estaciones Transmetro 2025 |       169 | punto, nombre, dirección, zona, código de ruta  |
+  | Paradas TuBus 2025         |       278 | punto, nombre, dirección, zona, código de ruta  |
+  | Rutas Transmetro 2025      |        12 | geometría y código de línea/variante            |
+  | Rutas TuBus 2025           |         8 | geometría y código de ruta                      |
 
-Estas fuentes son una base cartográfica y documental; todavía no bastan para calcular un viaje completo. Faltan, entre otros datos, secuencias confiables por sentido, calendarios, frecuencias, tarifas estructuradas, transbordos y telemetría.
+- Esquema canónico PostgreSQL/PostGIS y entorno local con Docker Compose.
+- Spike de ruteo en curso sobre la ruta 801 de TuBus (`prototype/routing/`).
 
-## Estructura del proyecto
+Estas fuentes son una base cartográfica; todavía no bastan para calcular un viaje completo. Faltan secuencias confiables por sentido, calendarios, frecuencias, tarifas estructuradas, transbordos y telemetría.
 
-- `config/sources.json`: catálogo versionado de fuentes y rutas de salida.
-- `pipeline/collectors/collect.py`: recolector de servicios ArcGIS y enlaces publicados en páginas HTML.
-- `pipeline/normalizers/`: espacio para transformaciones posteriores sin modificar los datos originales.
-- `pipeline/validators/`: espacio para validaciones adicionales de calidad.
-- `pipeline/exporters/`: espacio para exportar datos derivados, incluido GTFS.
-- `database/schema/canonical.sql`: esquema canónico inicial para PostgreSQL 16 + PostGIS 3.
-- `data/raw/`: datos originales recolectados y sus archivos de procedencia; está excluida de Git.
-- `data/staging/`: datos en preparación.
-- `data/normalized/`: datos depurados y normalizados.
-- `data/gtfs/`: feeds GTFS de trabajo.
-- `data/published/`: artefactos listos para publicación.
-- `docs/data/plan-producto-y-datos.md`: alcance, datos, fuentes, módulos, arquitectura y fases.
-- `docs/institutions/solicitudes-informacion.md`: plantillas de solicitudes a municipalidades, DGT y operadores.
-- `tests/collectors/test_collect.py`: pruebas unitarias del recolector.
+## Arquitectura
+
+El sistema es modular y separa adquisición, procesamiento, almacenamiento, cálculo de rutas y presentación.
+
+```text
+Fuentes (municipalidades, ArcGIS, PDF, OSM, operadores)
+        │
+        ▼
+Pipeline de datos (Python)
+  collectors → normalizers → validators → exporters
+        │
+        ▼
+PostgreSQL + PostGIS  ── modelo canónico con procedencia
+        │
+        ▼
+GTFS + OpenTripPlanner ── red, itinerarios y ranking RutaGT
+        │
+        ▼
+API RutaGT
+        │
+        ▼
+PWA RutaGT ── mapa, búsqueda y resultados
+```
+
+Los datos atraviesan capas que nunca sobrescriben a la anterior:
+
+```text
+data/raw → data/staging → data/normalized → data/gtfs → data/published
+```
+
+## Tecnologías
+
+| Tecnología            | Uso                                               | Estado             |
+| --------------------- | ------------------------------------------------- | ------------------ |
+| Python 3.10+          | Recolección, validación y procesamiento de datos  | En uso             |
+| GeoJSON / JSON        | Datos geográficos, catálogo de fuentes            | En uso             |
+| PostgreSQL 17         | Base de datos relacional                          | Operativo (Docker) |
+| PostGIS 3.5           | Almacenamiento y operaciones geoespaciales        | Operativo (Docker) |
+| Docker Compose        | Entorno local reproducible                        | En uso             |
+| GTFS Schedule         | Formato de intercambio de datos de transporte     | Planificado        |
+| OpenStreetMap         | Red vial y conexiones peatonales                  | Planificado        |
+| OpenTripPlanner       | Motor de planificación multimodal                 | Planificado        |
+| API                   | Exposición de datos e itinerarios                 | Por definir        |
+| PWA                   | Aplicación web instalable y ligera                | Por definir        |
+
+## Estructura del repositorio
+
+```text
+config/sources.json            Catálogo versionado de fuentes y rutas de salida
+pipeline/
+  collectors/collect.py        Recolector de servicios ArcGIS y enlaces HTML
+  normalizers/                 Transformaciones sin modificar los datos originales
+  validators/                  Validaciones de calidad
+  exporters/                   Exportación de datos derivados, incluido GTFS
+database/schema/canonical.sql  Esquema canónico PostgreSQL + PostGIS
+data/                          Capas de datos (raw está excluida de Git)
+prototype/routing/             Spike experimental, aislado del pipeline
+tests/                         Pruebas unitarias
+docs/                          Plan de producto, datos y solicitudes institucionales
+compose.yaml                   Servicio PostgreSQL/PostGIS local
+```
 
 ## Requisitos
 
-- Python 3.10 o posterior.
+- Python 3.10 o posterior (el pipeline usa solo la biblioteca estándar).
+- Docker y Docker Compose para la base de datos.
 - Conexión a Internet para recolectar fuentes.
-- PostgreSQL con PostGIS para instalar el esquema, opcional en esta etapa.
-
-El recolector utiliza únicamente la biblioteca estándar de Python.
 
 ## Configuración local
 
-RutaGT utiliza variables de entorno para configuración que puede variar entre equipos o contener información sensible.
-
-El repositorio incluye `.env.example` como referencia:
+RutaGT utiliza variables de entorno para la configuración que varía entre equipos o contiene información sensible. Crear el archivo local a partir de la plantilla:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-El archivo .env es exclusivamente local y no debe versionarse.
-
-Las variables definidas actualmente son:
+`.env` es exclusivamente local y no se versiona. Los secretos reales nunca deben agregarse a `.env.example`, documentación, código fuente ni commits.
 
 | Variable             | Propósito                  | Valor por defecto         |
 | -------------------- | -------------------------- | ------------------------- |
@@ -65,41 +129,44 @@ Las variables definidas actualmente son:
 | `RUTAGT_DB_PASSWORD` | Contraseña local           | sin valor                 |
 | `RUTAGT_LOG_LEVEL`   | Nivel de logging           | `INFO`                    |
 
-Los secretos reales nunca deben agregarse a .env.example, documentación, código fuente o commits.
-
 > Nota: el recolector lee variables del entorno del proceso; el archivo `.env` no se carga automáticamente desde Python en esta etapa. `.env` sí es utilizado por Docker Compose y lo será por los servicios que se incorporen posteriormente.
 
-## Uso rápido
-
-Ejecutar desde la raíz del proyecto:
+### Base de datos
 
 ```powershell
-python pipeline/collectors/collect.py list
-python pipeline/collectors/collect.py fetch --all --output data/raw
-python -m unittest discover -s tests -v
+docker compose up -d
+docker compose ps        # el servicio db debe estar "healthy"
 ```
 
-También se puede descargar una sola fuente:
+## Uso
+
+Ejecutar desde la raíz del proyecto.
 
 ```powershell
+# Listar las fuentes configuradas
+python pipeline/collectors/collect.py list
+
+# Descargar todas las fuentes
+python pipeline/collectors/collect.py fetch --all --output data/raw
+
+# Descargar una sola fuente
 python pipeline/collectors/collect.py fetch `
   --source muniguate_transmetro_stops_2025 `
   --output data/raw
 ```
 
-La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. También se puede cambiar la carpeta de datos con la variable `RUTAGT_DATA_DIR`.
+La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. La carpeta de datos puede cambiarse con `RUTAGT_DATA_DIR`.
 
-Cada descarga crea:
+Cada descarga genera:
 
-- El archivo original normalizado como GeoJSON o JSON, según la fuente.
-- Un archivo `.provenance.json` con URL final, fecha UTC, checksum SHA-256, conteos, campos, licencia declarada y alertas de validación.
+- El archivo original como GeoJSON o JSON, según la fuente.
+- Un archivo `.provenance.json` con URL final, fecha UTC, checksum SHA-256, conteos, licencia declarada y advertencias de validación.
 - `data/raw/run_manifest.json`, con las fuentes exitosas y fallidas de la ejecución.
 
-Una ejecución parcial no borra descargas anteriores. Si una fuente falla, el manifiesto registra el error y el proceso continúa con las demás fuentes.
+Una ejecución parcial no borra descargas anteriores. Si una fuente falla, el manifiesto registra el error y el proceso continúa con las demás.
 
-## Rutas de datos configuradas
-
-Las rutas son relativas al directorio indicado por `--output`:
+<details>
+<summary>Rutas de salida configuradas (relativas a <code>--output</code>)</summary>
 
 ```text
 muniguate/transmetro_stops_2025.geojson
@@ -107,35 +174,54 @@ muniguate/tubus_stops_2025.geojson
 muniguate/transmetro_routes_2025.geojson
 muniguate/tubus_routes_2025.geojson
 muniguate/transmetro_catalog_links.json
+muniguate/tubus_route_105_links.json
+muniguate/tubus_route_801_links.json
 dgt/open_data_catalog_links.json
 insivumeh/weather_catalog_links.json
 ```
 
-Las fuentes de catálogos de TuBus se guardan en:
+</details>
 
-```text
-muniguate/tubus_route_105_links.json
-muniguate/tubus_route_801_links.json
+## Pruebas
+
+```powershell
+python -m unittest discover -s tests -v
 ```
 
-## Flujo recomendado
+## Principios de diseño
 
-1. Recolectar las capas oficiales públicas sin modificarlas.
-2. Conseguir secuencias, calendarios, frecuencias, tarifas y licencias mediante las solicitudes preparadas.
-3. Crear una capa de depuración con reglas y revisiones humanas; no sobrescribir el origen.
-4. Publicar un primer feed GTFS de Transmetro y TuBus.
-5. Probar un corredor de extremo a extremo, por ejemplo Metrocentro/Villa Nueva–UVG.
-6. Añadir Transurbano, TransMIO, Express/municipales y extraurbanos mediante acuerdos y entregas verificables.
-7. Incorporar AVL/GTFS-Realtime y predicción de llegada después de estabilizar la red estática.
+- **Procedencia verificable.** Cada dato conserva origen, versión, licencia y vigencia. Las inferencias nunca se presentan como información oficial.
+- **Datos reproducibles.** La recolección y normalización pueden repetirse para detectar cambios.
+- **Separación de responsabilidades.** Collectors obtienen, normalizers transforman, validators comprueban y exporters publican.
+- **Estándares abiertos.** GTFS Schedule es el formato de intercambio; GTFS-Realtime queda para una fase posterior.
+- **Confianza explícita.** Horarios, tiempos o conexiones estimados se distinguen de los confirmados.
+- **Unidad de ruteo completa.** La unidad no es solo la línea: es `ruta + variante + sentido + calendario`.
+- **Diseño accesible.** La aplicación debe funcionar en teléfonos de gama baja.
+- **Escalabilidad territorial.** Nuevos operadores y municipios se incorporan sin rediseñar la plataforma.
+- **Uso legítimo de datos.** No se extraen aplicaciones privadas por ingeniería inversa ni se publican datos sin permiso.
 
-## Decisiones importantes
+## Hoja de ruta
 
-- La unidad de ruteo no es solo la línea: es `ruta + variante + sentido + calendario`.
-- Las fuentes, licencias y vigencias son datos de primera clase.
-- Un horario publicado y una observación real nunca se mezclan sin indicar su origen.
-- No se debe extraer una aplicación privada por ingeniería inversa ni publicar datos sin permiso.
-- El costo de ruta debe permitir preferencias: tiempo, menos transbordos, menos caminata, menor costo y accesibilidad.
+| Etapa                             | Objetivo                                      |
+| --------------------------------- | --------------------------------------------- |
+| Sprint 0 — Bases                  | Investigación, decisiones y estructura        |
+| Sprint 1 — Fundación reproducible | Docker, base de datos, esquema y herramientas |
+| Sprint 2 — Normalización base     | Transformación y validación de datos          |
+| Sprint 3 — Operación y secuencias | Sentidos, paradas, horarios y frecuencias     |
+| Sprint 4 — Primer GTFS            | Feed GTFS válido de Transmetro y TuBus        |
+| Sprint 5 — Routing local          | OpenTripPlanner, itinerarios, ranking         |
+| Sprint 6 — API MVP                | Servicios de consulta de datos e itinerarios  |
+| Sprint 7 — PWA MVP                | Aplicación web/móvil inicial                  |
+| Sprint 8 — Corredor piloto        | Validación con recorridos reales              |
 
-## Próximo hito sugerido
+**Hito siguiente:** un piloto estático validado para Transmetro y TuBus capaz de devolver opciones reproducibles entre dos puntos, donde cada instrucción muestre recorrido, sentido, parada de ascenso y descenso, caminata, tarifa y nivel de confianza.
 
-Completar un piloto estático validado para Transmetro y TuBus, capaz de devolver opciones reproducibles entre dos puntos. El criterio de salida es que cada instrucción muestre recorrido, sentido, parada de ascenso, parada de descenso, caminata, tarifa y nivel de confianza.
+## Documentación
+
+- [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
+- [`docs/institutions/solicitudes-informacion.md`](docs/institutions/solicitudes-informacion.md): plantillas de solicitudes a municipalidades, DGT y operadores.
+
+## Convenciones de contribución
+
+- Commits con [Conventional Commits](https://www.conventionalcommits.org/), incluyendo la clave del ticket de Jira como alcance cuando aplique: `feat(RGT-28): ...`.
+- Commits pequeños y atómicos, limitados al alcance del ticket.
