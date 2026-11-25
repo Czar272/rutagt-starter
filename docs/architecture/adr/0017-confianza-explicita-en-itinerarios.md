@@ -2,7 +2,7 @@
 
 | Campo       | Valor                  |
 | ----------- | ---------------------- |
-| Estado      | Aceptado               |
+| Estado      | Reemplazado por [ADR-0024](0024-confianza-interna-y-estimaciones-como-rangos.md) |
 | Fecha       | 2026-08-15             |
 | Decisores   | @Czar272               |
 | Tickets     | RGT-31, RGT-61, RGT-85 |
