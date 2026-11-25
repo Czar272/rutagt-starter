@@ -1,90 +1,90 @@
-import importlib.util
-import sys
-import tempfile
-import unittest
+"""Pruebas de validación, configuración y utilidades del recolector."""
+
 from pathlib import Path
+from types import ModuleType
 
-MODULE_PATH = (
-    Path(__file__).resolve().parents[2] / "pipeline" / "collectors" / "collect.py"
-)
-SPEC = importlib.util.spec_from_file_location("rutagt_collect", MODULE_PATH)
-assert SPEC and SPEC.loader
-collect = importlib.util.module_from_spec(SPEC)
-sys.modules[SPEC.name] = collect
-SPEC.loader.exec_module(collect)
+import pytest
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
-class LinkParserTests(unittest.TestCase):
-    def test_resolves_relative_urls_and_ignores_data_urls(self):
-        parser = collect.LinkParser("https://example.test/catalog/")
-        parser.feed(
-            '<a href="docs/mapa.pdf">Mapa</a>'
-            '<img src="/img/ruta.png">'
-            '<img src="data:image/png;base64,AAAA">'
-        )
-        self.assertEqual(
-            parser.links,
+def test_link_parser_resolves_relative_urls_and_ignores_data_urls(
+    collect: ModuleType,
+) -> None:
+    parser = collect.LinkParser("https://example.test/catalog/")
+    parser.feed(
+        '<a href="docs/mapa.pdf">Mapa</a>'
+        '<img src="/img/ruta.png">'
+        '<img src="data:image/png;base64,AAAA">'
+    )
+
+    assert parser.links == {
+        "https://example.test/catalog/docs/mapa.pdf",
+        "https://example.test/img/ruta.png",
+    }
+
+
+def test_validation_reports_missing_fields_and_bad_encoding(
+    collect: ModuleType,
+) -> None:
+    collection = {
+        "features": [
             {
-                "https://example.test/catalog/docs/mapa.pdf",
-                "https://example.test/img/ruta.png",
-            },
-        )
+                "geometry": {"type": "Point", "coordinates": [-90.5, 14.6]},
+                "properties": {"Nombre_lug": "Estaci�n", "Codigoruta": None},
+            }
+        ]
+    }
+    source = {
+        "expected_geometry": ["Point"],
+        "required_fields": ["Nombre_lug", "Codigoruta"],
+    }
+
+    warnings = collect.validate_geojson(collection, source)
+
+    assert any("Codigoruta" in warning for warning in warnings)
+    assert any("Unicode" in warning for warning in warnings)
 
 
-class ValidationTests(unittest.TestCase):
-    def test_reports_missing_fields_and_bad_encoding(self):
-        collection = {
-            "features": [
-                {
-                    "geometry": {"type": "Point", "coordinates": [-90.5, 14.6]},
-                    "properties": {"Nombre_lug": "Estaci�n", "Codigoruta": None},
-                }
-            ]
-        }
-        source = {
-            "expected_geometry": ["Point"],
-            "required_fields": ["Nombre_lug", "Codigoruta"],
-        }
-        warnings = collect.validate_geojson(collection, source)
-        self.assertTrue(any("Codigoruta" in warning for warning in warnings))
-        self.assertTrue(any("Unicode" in warning for warning in warnings))
+def test_validation_rejects_unexpected_geometry(collect: ModuleType) -> None:
+    collection = {
+        "features": [
+            {"geometry": {"type": "LineString", "coordinates": []}, "properties": {}}
+        ]
+    }
 
-    def test_rejects_unexpected_geometry(self):
-        collection = {
-            "features": [
-                {
-                    "geometry": {"type": "LineString", "coordinates": []},
-                    "properties": {},
-                }
-            ]
-        }
-        warnings = collect.validate_geojson(
-            collection, {"expected_geometry": ["Point"], "required_fields": []}
-        )
-        self.assertTrue(any("Geometrías" in warning for warning in warnings))
+    warnings = collect.validate_geojson(
+        collection, {"expected_geometry": ["Point"], "required_fields": []}
+    )
+
+    assert any("Geometrías" in warning for warning in warnings)
 
 
-class HttpTests(unittest.TestCase):
-    def test_rejects_non_http_schemes(self):
-        for url in ("file:///etc/passwd", "ftp://example.test/data", "datos.json"):
-            with self.subTest(url=url), self.assertRaises(collect.CollectorError):
-                collect.http_get(url, attempts=1)
+def test_validation_warns_on_empty_source(collect: ModuleType) -> None:
+    assert collect.validate_geojson({"features": []}, {}) == [
+        "La fuente no devolvió registros"
+    ]
 
 
-class ConfigurationTests(unittest.TestCase):
-    def test_project_configuration_loads(self):
-        config = Path(__file__).resolve().parents[2] / "config" / "sources.json"
-        sources = collect.load_sources(config)
-        self.assertGreaterEqual(len(sources), 4)
-        self.assertEqual(len({source["id"] for source in sources}), len(sources))
-
-    def test_write_json_is_utf8_and_repeatable(self):
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "dato.json"
-            body = collect.write_json(path, {"nombre": "Línea 13"})
-            self.assertEqual(body, path.read_bytes())
-            self.assertIn("Línea".encode(), body)
+@pytest.mark.parametrize(
+    "url", ["file:///etc/passwd", "ftp://example.test/data", "datos.json"]
+)
+def test_http_get_rejects_non_http_schemes(collect: ModuleType, url: str) -> None:
+    with pytest.raises(collect.CollectorError, match="Esquema de URL no permitido"):
+        collect.http_get(url, attempts=1)
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_project_configuration_loads(collect: ModuleType) -> None:
+    sources = collect.load_sources(PROJECT_ROOT / "config" / "sources.json")
+
+    assert len(sources) >= 4
+    assert len({source["id"] for source in sources}) == len(sources)
+
+
+def test_write_json_is_utf8_and_repeatable(collect: ModuleType, tmp_path: Path) -> None:
+    path = tmp_path / "dato.json"
+
+    body = collect.write_json(path, {"nombre": "Línea 13"})
+
+    assert body == path.read_bytes()
+    assert "Línea".encode() in body
