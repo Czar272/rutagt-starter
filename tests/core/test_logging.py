@@ -5,7 +5,7 @@ import logging
 
 import pytest
 
-from rutagt.core.logging import configure_logging, log_context
+from rutagt.core.logging import configure_logging, log_context, use_utf8_output
 
 
 def test_configure_logging_writes_to_stderr_with_prefix(
@@ -58,3 +58,22 @@ def test_json_format_includes_exception_traceback(
 
     entry = json.loads(capsys.readouterr().err)
     assert "ValueError: falla" in entry["exception"]
+
+
+def test_use_utf8_output_reconfigures_streams(monkeypatch: pytest.MonkeyPatch) -> None:
+    calls: list[dict[str, str]] = []
+
+    class Stream:
+        def reconfigure(self, **kwargs: str) -> None:
+            calls.append(kwargs)
+
+    class FailingStream:
+        def reconfigure(self, **kwargs: str) -> None:
+            raise ValueError("stream cerrado")
+
+    monkeypatch.setattr("sys.stdout", Stream())
+    monkeypatch.setattr("sys.stderr", FailingStream())
+
+    use_utf8_output()
+
+    assert calls == [{"encoding": "utf-8", "errors": "backslashreplace"}]
