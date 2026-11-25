@@ -1,0 +1,36 @@
+name: Reporte de error
+description: Un comportamiento del software no funciona como se espera.
+title: "[Error]: "
+labels: ["bug", "triage"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Descripción
+      description: Qué ocurre y qué se esperaba que ocurriera.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      placeholder: |
+        1. Ejecutar `...`
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Salida o registros relevantes
+      render: text
+  - type: input
+    id: version
+    attributes:
+      label: Versión o commit
+      placeholder: v0.1.0 o hash del commit
+  - type: input
+    id: environment
+    attributes:
+      label: Entorno
+      placeholder: Sistema operativo, versión de Python, Docker
