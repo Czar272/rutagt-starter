@@ -62,7 +62,7 @@ flowchart LR
         files[("<b>Almacén de archivos</b><br/>data/raw … data/published<br/>+ procedencia")]
         db[("<b>Base canónica</b><br/>PostgreSQL 17 + PostGIS 3.5")]
         otp["<b>Motor de planificación</b><br/>OpenTripPlanner<br/><i>planificado</i>"]
-        api["<b>API RutaGT</b><br/>Monolito modular<br/><i>planificado · tecnología en RGT-120</i>"]
+        api["<b>API RutaGT</b><br/>FastAPI · monolito modular<br/><i>planificado</i>"]
         pwa["<b>PWA RutaGT</b><br/><i>planificado · tecnología en RGT-121</i>"]
     end
 
@@ -84,7 +84,7 @@ flowchart LR
 | Almacén de archivos | Conservar capas inmutables con procedencia y artefactos publicados | Sistema de archivos local; almacenamiento de objetos en producción | Implementado (local) | [0004](adr/0004-capas-de-datos-inmutables-con-procedencia.md) |
 | Base canónica | Modelo de transporte con procedencia, vigencia y calidad | PostgreSQL 17 + PostGIS 3.5 | Esquema definido; migraciones en RGT-29 | [0002](adr/0002-postgresql-postgis-como-modelo-canonico.md) |
 | Motor de planificación | Calcular itinerarios multimodales sobre GTFS + OSM | OpenTripPlanner | Planificado (Sprint 9) | [0014](adr/0014-opentripplanner-como-motor-de-planificacion.md) |
-| API RutaGT | Exponer paradas, rutas, lugares y planificación; aplicar el ranking y la confianza | Por definir (RGT-120) | Planificado (Sprint 10) | [0015](adr/0015-monolito-modular-para-el-mvp.md) |
+| API RutaGT | Exponer paradas, rutas, lugares y planificación; aplicar el ranking y la confianza | FastAPI, Pydantic, SQLAlchemy + GeoAlchemy2 | Planificado (Sprint 10) | [0015](adr/0015-monolito-modular-para-el-mvp.md), [0022](adr/0022-fastapi-para-la-api.md) |
 | PWA RutaGT | Interfaz de usuario ligera y accesible | Por definir (RGT-121) | Planificado (Sprint 11) | [0016](adr/0016-pwa-como-cliente-principal.md) |
 
 Reglas de comunicación:
