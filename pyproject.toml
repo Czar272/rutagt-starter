@@ -8,6 +8,7 @@ dependencies = []
 
 [dependency-groups]
 dev = [
+    "mypy>=2.4.1",
     "ruff>=0.17.6",
 ]
 
@@ -38,3 +39,16 @@ select = [
 [tool.ruff.format]
 quote-style = "double"
 line-ending = "lf"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+pretty = true
+files = ["pipeline", "tests"]
+exclude = ["^data/", "^work/"]
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
