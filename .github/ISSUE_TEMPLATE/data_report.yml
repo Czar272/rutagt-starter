@@ -1,0 +1,54 @@
+name: Reporte de datos de transporte
+description: Una parada, ruta, horario, tarifa o transbordo es incorrecto o falta.
+title: "[Datos]: "
+labels: ["data-quality", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por ayudar a mejorar los datos de RutaGT. Cada corrección se valida contra una fuente o evidencia antes de incorporarse.
+  - type: dropdown
+    id: system
+    attributes:
+      label: Sistema de transporte
+      options:
+        - Transmetro
+        - TuBus
+        - Transurbano
+        - TransMIO
+        - Extraurbano
+        - Otro
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Tipo de dato
+      options:
+        - Parada o estación
+        - Recorrido o sentido
+        - Horario o frecuencia
+        - Tarifa o medio de pago
+        - Transbordo
+        - Accesibilidad
+        - Otro
+    validations:
+      required: true
+  - type: input
+    id: route
+    attributes:
+      label: Ruta o línea
+      placeholder: "Ej.: TuBus 801, Transmetro Línea 12"
+  - type: textarea
+    id: description
+    attributes:
+      label: Qué es incorrecto o falta
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidencia o fuente
+      description: Enlace a una fuente oficial, fotografía o fecha de la observación en campo.
+    validations:
+      required: true
