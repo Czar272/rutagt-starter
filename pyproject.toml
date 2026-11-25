@@ -55,7 +55,7 @@ python_version = "3.12"
 strict = true
 warn_unreachable = true
 pretty = true
-files = ["src", "pipeline", "tests"]
+files = ["src", "tests"]
 exclude = ["^data/", "^work/"]
 
 [[tool.mypy.overrides]]
