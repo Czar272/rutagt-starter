@@ -86,7 +86,7 @@ data/raw → data/staging → data/normalized → data/gtfs → data/published
 | GTFS Schedule         | Formato de intercambio de datos de transporte     | Planificado        |
 | OpenStreetMap         | Red vial y conexiones peatonales                  | Planificado        |
 | OpenTripPlanner       | Motor de planificación multimodal                 | Planificado        |
-| API                   | Exposición de datos e itinerarios                 | Por definir        |
+| FastAPI               | API de datos e itinerarios (OpenAPI)              | Decidido ([ADR-0022](docs/architecture/adr/0022-fastapi-para-la-api.md)) |
 | PWA                   | Aplicación web instalable y ligera                | Por definir        |
 
 ## Estructura del repositorio
