@@ -7,4 +7,34 @@ requires-python = ">=3.12"
 dependencies = []
 
 [dependency-groups]
-dev = []
+dev = [
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+extend-exclude = ["data", "work"]
+
+[tool.ruff.lint]
+select = [
+  "E",    # pycodestyle errores
+  "W",    # pycodestyle advertencias
+  "F",    # pyflakes
+  "I",    # orden de imports
+  "N",    # convenciones de nombres
+  "UP",   # sintaxis moderna de Python
+  "B",    # errores probables
+  "C4",   # comprensiones
+  "SIM",  # simplificaciones
+  "PTH",  # uso de pathlib
+  "S",    # seguridad (bandit)
+  "RUF",  # reglas propias de Ruff
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+
+[tool.ruff.format]
+quote-style = "double"
+line-ending = "lf"
