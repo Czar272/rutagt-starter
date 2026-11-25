@@ -126,7 +126,7 @@ Un ticket puede entrar a un sprint cuando:
 - [ ] Tiene criterios de aceptación verificables.
 - [ ] Pertenece a una épica.
 - [ ] Sus dependencias están resueltas o identificadas.
-- [ ] Las decisiones técnicas que requiere están tomadas o tienen un ticket previo.
+- [ ] Las decisiones técnicas que requiere están registradas como ADR o tienen un ticket previo.
 - [ ] Su tamaño permite completarlo dentro del sprint; si no, se divide en subtareas.
 
 ## Definition of Done
@@ -136,7 +136,8 @@ Un ticket se considera terminado cuando:
 - [ ] Los criterios de aceptación se cumplen y se verificaron.
 - [ ] El código tiene pruebas para el comportamiento nuevo o modificado.
 - [ ] Todas las verificaciones de CI pasan.
-- [ ] La documentación afectada está actualizada (README, docs, ADR, docstrings).
+- [ ] La documentación afectada está actualizada (README, docs, docstrings).
+- [ ] Toda decisión de arquitectura nueva o modificada tiene su ADR en `docs/architecture/adr/`.
 - [ ] No quedan secretos, datos crudos ni archivos temporales en el cambio.
 - [ ] El pull request está integrado en `main` y la rama eliminada.
 - [ ] El ticket de Jira está en `Done` con un comentario de cierre y el enlace al pull request.
