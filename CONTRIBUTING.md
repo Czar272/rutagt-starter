@@ -9,6 +9,8 @@ Este documento define cómo se planifica, desarrolla, revisa e integra el trabaj
 - [Commits](#commits)
 - [Pull requests](#pull-requests)
 - [Integración a main](#integración-a-main)
+- [Definition of Ready](#definition-of-ready)
+- [Definition of Done](#definition-of-done)
 - [Versionado y releases](#versionado-y-releases)
 
 ## Flujo de trabajo
@@ -115,6 +117,29 @@ docs(RGT-118): add container diagram
 - `main` está protegida: no se permite push directo, force push ni eliminación.
 - La integración se realiza con **rebase and merge**, lo que conserva los commits atómicos de la rama en un historial lineal.
 - La rama se elimina automáticamente después de integrarse.
+
+## Definition of Ready
+
+Un ticket puede entrar a un sprint cuando:
+
+- [ ] Tiene un objetivo claro y un alcance acotado.
+- [ ] Tiene criterios de aceptación verificables.
+- [ ] Pertenece a una épica.
+- [ ] Sus dependencias están resueltas o identificadas.
+- [ ] Las decisiones técnicas que requiere están tomadas o tienen un ticket previo.
+- [ ] Su tamaño permite completarlo dentro del sprint; si no, se divide en subtareas.
+
+## Definition of Done
+
+Un ticket se considera terminado cuando:
+
+- [ ] Los criterios de aceptación se cumplen y se verificaron.
+- [ ] El código tiene pruebas para el comportamiento nuevo o modificado.
+- [ ] Todas las verificaciones de CI pasan.
+- [ ] La documentación afectada está actualizada (README, docs, ADR, docstrings).
+- [ ] No quedan secretos, datos crudos ni archivos temporales en el cambio.
+- [ ] El pull request está integrado en `main` y la rama eliminada.
+- [ ] El ticket de Jira está en `Done` con un comentario de cierre y el enlace al pull request.
 
 ## Versionado y releases
 
