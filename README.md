@@ -135,16 +135,17 @@ Copy-Item .env.example .env
 
 `.env` es exclusivamente local y no se versiona. Los secretos reales nunca deben agregarse a `.env.example`, documentación, código fuente ni commits.
 
-| Variable             | Propósito                  | Valor por defecto         |
-| -------------------- | -------------------------- | ------------------------- |
-| `RUTAGT_ENV`         | Entorno de ejecución       | `development`             |
-| `RUTAGT_DATA_DIR`    | Directorio de datos crudos | `<project_root>/data/raw` |
-| `RUTAGT_DB_HOST`     | Host de PostgreSQL         | `localhost`               |
-| `RUTAGT_DB_PORT`     | Puerto de PostgreSQL       | `5432`                    |
-| `RUTAGT_DB_NAME`     | Base de datos              | `rutagt`                  |
-| `RUTAGT_DB_USER`     | Usuario de desarrollo      | `rutagt`                  |
-| `RUTAGT_DB_PASSWORD` | Contraseña local           | sin valor                 |
-| `RUTAGT_LOG_LEVEL`   | Nivel de logging           | `INFO`                    |
+| Variable             | Propósito                           | Valor por defecto         |
+| -------------------- | ----------------------------------- | ------------------------- |
+| `RUTAGT_ENV`         | Entorno de ejecución                | `development`             |
+| `RUTAGT_DATA_DIR`    | Directorio de datos crudos          | `<project_root>/data/raw` |
+| `RUTAGT_DB_HOST`     | Host de PostgreSQL                  | `localhost`               |
+| `RUTAGT_DB_PORT`     | Puerto de PostgreSQL                | `5432`                    |
+| `RUTAGT_DB_NAME`     | Base de datos                       | `rutagt`                  |
+| `RUTAGT_DB_USER`     | Usuario de desarrollo               | `rutagt`                  |
+| `RUTAGT_DB_PASSWORD` | Contraseña local                    | sin valor                 |
+| `RUTAGT_LOG_LEVEL`   | Nivel de logging                    | `INFO`                    |
+| `RUTAGT_LOG_FORMAT`  | Formato de logging: `text` o `json` | `text`                    |
 
 > Nota: el recolector lee variables del entorno del proceso; el archivo `.env` no se carga automáticamente desde Python en esta etapa. `.env` sí es utilizado por Docker Compose y lo será por los servicios que se incorporen posteriormente.
 
@@ -170,13 +171,13 @@ uv run rutagt-collect fetch --all
 uv run rutagt-collect fetch --source muniguate_transmetro_stops_2025
 ```
 
-La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. La carpeta de datos puede cambiarse con `--output` o con `RUTAGT_DATA_DIR`, y el nivel de detalle de los mensajes con `RUTAGT_LOG_LEVEL`. Códigos de salida: `0` éxito, `1` alguna fuente falló, `2` error de configuración.
+La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. La carpeta de datos puede cambiarse con `--output` o con `RUTAGT_DATA_DIR`, el nivel de detalle de los mensajes con `RUTAGT_LOG_LEVEL` y su formato con `RUTAGT_LOG_FORMAT`. Códigos de salida: `0` éxito, `1` alguna fuente falló, `2` error de configuración.
 
 Cada descarga genera:
 
 - El archivo original como GeoJSON o JSON, según la fuente.
 - Un archivo `.provenance.json` con URL final, fecha UTC, checksum SHA-256, conteos, licencia declarada y advertencias de validación.
-- `data/raw/run_manifest.json`, con las fuentes exitosas y fallidas de la ejecución.
+- `data/raw/run_manifest.json`, con el identificador de la ejecución (`run_id`), su duración, un resumen y las fuentes exitosas y fallidas.
 
 Una ejecución parcial no borra descargas anteriores. Si una fuente falla, el manifiesto registra el error y el proceso continúa con las demás.
 
