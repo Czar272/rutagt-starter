@@ -1,0 +1,20 @@
+# Datos y espacios de trabajo locales
+data/
+work/
+
+# Entornos, cachés y artefactos generados
+.venv/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+htmlcov/
+coverage.xml
+junit.xml
+
+# Archivos generados por herramientas
+uv.lock
+*.lock
+package-lock.json
+
+# Python se formatea con Ruff
+*.py
