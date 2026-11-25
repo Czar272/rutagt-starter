@@ -14,11 +14,12 @@ import json
 import os
 import sys
 import time
+from collections.abc import Iterable
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urljoin, urlparse
 from urllib.request import Request, urlopen
@@ -72,7 +73,7 @@ class LinkParser(HTMLParser):
 
 
 def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+    return datetime.now(UTC).isoformat(timespec="seconds")
 
 
 def sha256_bytes(value: bytes) -> str:
@@ -276,7 +277,7 @@ def validate_geojson(collection: dict[str, Any], source: dict[str, Any]) -> list
     allowed = set(source.get("expected_geometry", []))
     required = set(source.get("required_fields", []))
     geometry_types: set[str] = set()
-    missing_counts = {field: 0 for field in required}
+    missing_counts = dict.fromkeys(required, 0)
     replacement_characters = 0
 
     for feature in features:

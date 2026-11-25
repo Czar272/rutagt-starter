@@ -76,7 +76,7 @@ class ConfigurationTests(unittest.TestCase):
             path = Path(directory) / "dato.json"
             body = collect.write_json(path, {"nombre": "Línea 13"})
             self.assertEqual(body, path.read_bytes())
-            self.assertIn("Línea".encode("utf-8"), body)
+            self.assertIn("Línea".encode(), body)
 
 
 if __name__ == "__main__":
