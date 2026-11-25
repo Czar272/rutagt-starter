@@ -166,7 +166,7 @@ def discover_arcgis_item(source: dict[str, Any]) -> dict[str, Any]:
                 "sortOrder": "desc",
             },
         )
-        candidates = [
+        candidates: list[dict[str, Any]] = [
             item
             for item in payload.get("results", [])
             if item.get("type") == "Feature Service" and item.get("access") == "public"
@@ -180,7 +180,7 @@ def discover_arcgis_item(source: dict[str, Any]) -> dict[str, Any]:
             f"{source['id']}: no se encontró un Feature Service público"
         )
     item, _ = get_json(ARCGIS_ITEM.format(item_id=item_id), {"f": "json"})
-    if not item.get("url"):
+    if not isinstance(item, dict) or not item.get("url"):
         raise CollectorError(
             f"{source['id']}: el ítem de respaldo no tiene URL de servicio"
         )

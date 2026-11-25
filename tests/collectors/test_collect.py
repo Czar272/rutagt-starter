@@ -8,8 +8,8 @@ MODULE_PATH = (
     Path(__file__).resolve().parents[2] / "pipeline" / "collectors" / "collect.py"
 )
 SPEC = importlib.util.spec_from_file_location("rutagt_collect", MODULE_PATH)
-collect = importlib.util.module_from_spec(SPEC)
 assert SPEC and SPEC.loader
+collect = importlib.util.module_from_spec(SPEC)
 sys.modules[SPEC.name] = collect
 SPEC.loader.exec_module(collect)
 
