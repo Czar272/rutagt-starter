@@ -2,7 +2,7 @@
 
 | Campo         | Valor                                       |
 | ------------- | ------------------------------------------- |
-| Versión       | 1.0                                         |
+| Versión       | 1.1                                         |
 | Fecha         | 2026-11-25                                  |
 | Responsable   | @Czar272                                    |
 | Ticket        | RGT-117                                     |
@@ -24,7 +24,7 @@ La información del transporte público del Área Metropolitana de Guatemala est
 | Persona con movilidad reducida | Identificar opciones accesibles y minimizar caminatas |
 | Institución pública u operador (usuario secundario) | Ver cómo sus datos se convierten en información útil y verificable |
 
-Supuesto de diseño: teléfonos Android de gama media o baja, con datos móviles limitados e intermitentes ([ADR-0016](../architecture/adr/0016-pwa-como-cliente-principal.md)).
+Dispositivos: teléfonos **Android e iPhone** con un navegador actual. El diseño toma como referencia de rendimiento los teléfonos Android de gama media o baja, con datos móviles limitados e intermitentes, para que la aplicación funcione bien en cualquier dispositivo ([ADR-0016](../architecture/adr/0016-pwa-como-cliente-principal.md)).
 
 ## 3. Propuesta de valor
 
@@ -32,7 +32,7 @@ Supuesto de diseño: teléfonos Android de gama media o baja, con datos móviles
 
 Lo que diferencia a RutaGT:
 
-1. **Confianza explícita**: cada itinerario muestra la fuente, la fecha de verificación y el nivel de confianza de sus datos ([ADR-0017](../architecture/adr/0017-confianza-explicita-en-itinerarios.md)).
+1. **Recomendaciones honestas**: los tiempos estimados se muestran como rangos, nunca como horas exactas ficticias, y el ranking prefiere las opciones basadas en datos más confiables ([ADR-0024](../architecture/adr/0024-confianza-interna-y-estimaciones-como-rangos.md)).
 2. **Datos abiertos y legítimos**: construido sobre fuentes oficiales y estándares abiertos (GTFS), reutilizable por instituciones ([ADR-0003](../architecture/adr/0003-gtfs-schedule-como-contrato-de-intercambio.md), [ADR-0007](../architecture/adr/0007-adquirir-datos-solo-por-canales-legitimos.md)).
 3. **Ligero y accesible**: funciona en dispositivos modestos y conexiones inestables.
 
@@ -54,7 +54,7 @@ Lo que diferencia a RutaGT:
 | F2 | Planificación de itinerarios con alternativas ordenadas por el ranking RutaGT | RGT-4 |
 | F3 | Detalle paso a paso: caminata, parada y lado de la vía, ruta y sentido, parada de descenso, transbordos | RGT-6 |
 | F4 | Intervalos de espera y tiempos como rangos cuando no hay horario oficial | RGT-4 |
-| F5 | Nivel de confianza, fuente y fecha de verificación por itinerario | RGT-4 |
+| F5 | Sección «Acerca de los datos» con fuentes, atribución y fecha de actualización | RGT-6 |
 | F6 | Costo estimado y medio de pago por tramo cuando la tarifa es conocida | RGT-2 |
 | F7 | Mapa con el recorrido y las paradas del itinerario | RGT-6 |
 | F8 | Consulta de paradas cercanas y de rutas con su recorrido | RGT-5 |
@@ -110,9 +110,9 @@ El MVP se considera logrado cuando se cumplen todos estos criterios:
 | C2 | Feed GTFS válido | 0 errores en el validador oficial | RGT-53 |
 | C3 | Viajes de prueba sin error grave de dirección, sentido o parada | 20 de 20 en la suite de rutas doradas | RGT-62 |
 | C4 | Corredor Metrocentro ↔ UVG validado en ambos sentidos | Itinerario verificado en campo | RGT-83, RGT-84 |
-| C5 | Itinerarios con fuente, fecha de verificación y nivel de confianza | 100 % | Pruebas de contrato de la API |
+| C5 | Tiempos estimados presentados como rangos y respuestas de la API con confianza y procedencia | 100 % | Pruebas de contrato de la API y de la PWA |
 | C6 | Tiempo de respuesta de planificación | p95 < 3 s en el entorno de referencia | Pruebas de rendimiento |
-| C7 | PWA en dispositivo de gama baja | Lighthouse ≥ 90 en rendimiento y accesibilidad | RGT-78 |
+| C7 | PWA en dispositivo de gama baja y en Safari para iOS | Lighthouse ≥ 90 en rendimiento y accesibilidad; flujo principal verificado en iPhone | RGT-78 |
 | C8 | Prueba con usuarios piloto | Al menos 10 personas completan un viaje usando RutaGT | RGT-86 |
 
 Las métricas de producto posteriores al lanzamiento se definen en RGT-114.
@@ -126,3 +126,10 @@ Las métricas de producto posteriores al lanzamiento se definen en RGT-114.
 | H3 — Red estática | 6–8 | Datos normalizados, secuencias y primer feed GTFS válido |
 | H4 — Planificación | 9–10 | OpenTripPlanner, ranking RutaGT y API MVP |
 | H5 — MVP | 11–12 | PWA y corredor piloto validado en campo; criterios C1–C8 cumplidos |
+
+## Historial de cambios
+
+| Versión | Fecha | Cambio |
+| --- | --- | --- |
+| 1.0 | 2026-11-25 | Versión inicial (RGT-117) |
+| 1.1 | 2026-11-25 | Se incluye iPhone en los dispositivos objetivo; la confianza de los datos pasa a uso interno y las estimaciones se muestran como rangos ([ADR-0024](../architecture/adr/0024-confianza-interna-y-estimaciones-como-rangos.md)) |
