@@ -93,16 +93,18 @@ data/raw → data/staging → data/normalized → data/gtfs → data/published
 
 ```text
 config/sources.json            Catálogo versionado de fuentes y rutas de salida
-pipeline/
-  collectors/collect.py        Recolector de servicios ArcGIS y enlaces HTML
-  normalizers/                 Transformaciones sin modificar los datos originales
-  validators/                  Validaciones de calidad
-  exporters/                   Exportación de datos derivados, incluido GTFS
+src/rutagt/                    Paquete Python de RutaGT
+  core/                        Errores, E/S, configuración y logging compartidos
+  pipeline/collectors/         Collectors registrados por tipo de fuente (ArcGIS, HTML)
+  pipeline/validators/         Validaciones de calidad
+  pipeline/normalizers/        Normalización de datos (Sprint 6)
+  pipeline/exporters/          Exportación de datos derivados, incluido GTFS (Sprint 8)
+  pipeline/cli.py              Comando rutagt-collect
 database/schema/canonical.sql  Esquema canónico PostgreSQL + PostGIS
 data/                          Capas de datos (raw está excluida de Git)
-prototype/routing/             Spike experimental, aislado del pipeline
-tests/                         Pruebas unitarias
-docs/                          Plan de producto, datos y solicitudes institucionales
+prototype/routing/             Spike experimental, aislado del paquete
+tests/                         Pruebas (misma estructura que src/rutagt/)
+docs/                          Producto, arquitectura, datos y solicitudes institucionales
 compose.yaml                   Servicio PostgreSQL/PostGIS local
 ```
 
@@ -159,18 +161,16 @@ Ejecutar desde la raíz del proyecto.
 
 ```powershell
 # Listar las fuentes configuradas
-uv run python pipeline/collectors/collect.py list
+uv run rutagt-collect list
 
 # Descargar todas las fuentes
-uv run python pipeline/collectors/collect.py fetch --all --output data/raw
+uv run rutagt-collect fetch --all
 
 # Descargar una sola fuente
-uv run python pipeline/collectors/collect.py fetch `
-  --source muniguate_transmetro_stops_2025 `
-  --output data/raw
+uv run rutagt-collect fetch --source muniguate_transmetro_stops_2025
 ```
 
-La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. La carpeta de datos puede cambiarse con `RUTAGT_DATA_DIR`.
+La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. La carpeta de datos puede cambiarse con `--output` o con `RUTAGT_DATA_DIR`, y el nivel de detalle de los mensajes con `RUTAGT_LOG_LEVEL`. Códigos de salida: `0` éxito, `1` alguna fuente falló, `2` error de configuración.
 
 Cada descarga genera:
 
@@ -245,6 +245,7 @@ El alcance, los criterios de éxito y los hitos del MVP están definidos en [`do
 - [`docs/product/alcance-mvp.md`](docs/product/alcance-mvp.md): alcance, criterios de éxito e hitos del MVP.
 - [`docs/architecture/overview.md`](docs/architecture/overview.md): vista de arquitectura (modelo C4).
 - [`docs/architecture/adr/`](docs/architecture/adr/README.md): registro de decisiones de arquitectura (ADR).
+- [`docs/architecture/pipeline-design.md`](docs/architecture/pipeline-design.md): estructura de paquetes y patrones del pipeline.
 - [`docs/architecture/testing-strategy.md`](docs/architecture/testing-strategy.md): estrategia de pruebas.
 - [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
 - [`docs/institutions/solicitudes-informacion.md`](docs/institutions/solicitudes-informacion.md): plantillas de solicitudes a municipalidades, DGT y operadores.
