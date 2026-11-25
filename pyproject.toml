@@ -6,6 +6,13 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = []
 
+[project.scripts]
+rutagt-collect = "rutagt.pipeline.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.13.10,<0.14"]
+build-backend = "uv_build"
+
 [dependency-groups]
 dev = [
     "mypy>=2.4.1",
@@ -48,7 +55,7 @@ python_version = "3.12"
 strict = true
 warn_unreachable = true
 pretty = true
-files = ["pipeline", "tests"]
+files = ["src", "pipeline", "tests"]
 exclude = ["^data/", "^work/"]
 
 [[tool.mypy.overrides]]
