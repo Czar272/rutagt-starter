@@ -1,5 +1,7 @@
 # RutaGT
 
+[![CI](https://github.com/Czar272/rutagt-starter/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Czar272/rutagt-starter/actions/workflows/ci.yml)
+
 **Rutas de transporte público de Guatemala** — _Tu bus, tu ruta, a tiempo._
 
 RutaGT es una plataforma de planificación de viajes en transporte público multimodal para el Área Metropolitana de Guatemala. Su objetivo es que cualquier persona indique dónde está y a dónde quiere llegar, y reciba recomendaciones claras, accesibles y verificables: qué transporte usar, dónde abordarlo, dónde bajarse y cómo completar el viaje.
