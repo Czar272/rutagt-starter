@@ -23,16 +23,16 @@ Requisitos:
 
 Escala de 1 (deficiente) a 5 (excelente).
 
-| Criterio | Peso | FastAPI (Python) | Django REST + GeoDjango | NestJS (TypeScript) | Go (chi + sqlc) |
-| --- | ---: | :-: | :-: | :-: | :-: |
-| Integración geoespacial (PostGIS, geometrías, proyecciones) | 20 % | 5 | 5 | 3 | 3 |
-| Coherencia con el stack y herramientas existentes | 20 % | 5 | 4 | 2 | 2 |
-| Contrato OpenAPI y validación de datos | 15 % | 5 | 3 | 4 | 3 |
-| Rendimiento y concurrencia (E/S hacia OTP y PostGIS) | 15 % | 4 | 3 | 4 | 5 |
-| Tipado estático y calidad verificable | 10 % | 4 | 3 | 5 | 4 |
-| Ecosistema, documentación y disponibilidad de talento | 10 % | 4 | 4 | 5 | 3 |
-| Simplicidad de despliegue y operación | 10 % | 4 | 4 | 4 | 5 |
-| **Puntaje ponderado** | 100 % | **4.55** | 3.80 | 3.60 | 3.40 |
+| Criterio                                                    |  Peso | FastAPI (Python) | Django REST + GeoDjango | NestJS (TypeScript) | Go (chi + sqlc) |
+| ----------------------------------------------------------- | ----: | :--------------: | :---------------------: | :-----------------: | :-------------: |
+| Integración geoespacial (PostGIS, geometrías, proyecciones) |  20 % |        5         |            5            |          3          |        3        |
+| Coherencia con el stack y herramientas existentes           |  20 % |        5         |            4            |          2          |        2        |
+| Contrato OpenAPI y validación de datos                      |  15 % |        5         |            3            |          4          |        3        |
+| Rendimiento y concurrencia (E/S hacia OTP y PostGIS)        |  15 % |        4         |            3            |          4          |        5        |
+| Tipado estático y calidad verificable                       |  10 % |        4         |            3            |          5          |        4        |
+| Ecosistema, documentación y disponibilidad de talento       |  10 % |        4         |            4            |          5          |        3        |
+| Simplicidad de despliegue y operación                       |  10 % |        4         |            4            |          4          |        5        |
+| **Puntaje ponderado**                                       | 100 % |     **4.55**     |          3.80           |        3.60         |      3.40       |
 
 Observaciones:
 
@@ -45,16 +45,16 @@ Observaciones:
 
 Construimos la API con **FastAPI** sobre **Python 3.12**, con:
 
-| Aspecto | Elección |
-| --- | --- |
-| Framework | FastAPI con servidor ASGI Uvicorn |
-| Modelos y validación | Pydantic v2; el contrato OpenAPI se genera desde el código y se versiona |
-| Acceso a datos | SQLAlchemy 2 con GeoAlchemy2 y el driver psycopg 3; consultas espaciales en SQL/PostGIS |
-| Geometrías | GeoJSON en la API; Shapely solo donde se requiera cálculo en la aplicación |
-| Cliente de OpenTripPlanner | `httpx` asíncrono con tiempos de espera explícitos |
-| Configuración | Variables `RUTAGT_*` validadas con pydantic-settings ([ADR-0009](0009-configuracion-mediante-variables-de-entorno.md)) |
-| Pruebas | pytest con el cliente de pruebas de FastAPI; integración contra PostGIS con marcador `integration` |
-| Estructura | Módulos por dominio (paradas, rutas, lugares, planificación) dentro de un único servicio ([ADR-0015](0015-monolito-modular-para-el-mvp.md)) |
+| Aspecto                    | Elección                                                                                                                                    |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Framework                  | FastAPI con servidor ASGI Uvicorn                                                                                                           |
+| Modelos y validación       | Pydantic v2; el contrato OpenAPI se genera desde el código y se versiona                                                                    |
+| Acceso a datos             | SQLAlchemy 2 con GeoAlchemy2 y el driver psycopg 3; consultas espaciales en SQL/PostGIS                                                     |
+| Geometrías                 | GeoJSON en la API; Shapely solo donde se requiera cálculo en la aplicación                                                                  |
+| Cliente de OpenTripPlanner | `httpx` asíncrono con tiempos de espera explícitos                                                                                          |
+| Configuración              | Variables `RUTAGT_*` validadas con pydantic-settings ([ADR-0009](0009-configuracion-mediante-variables-de-entorno.md))                      |
+| Pruebas                    | pytest con el cliente de pruebas de FastAPI; integración contra PostGIS con marcador `integration`                                          |
+| Estructura                 | Módulos por dominio (paradas, rutas, lugares, planificación) dentro de un único servicio ([ADR-0015](0015-monolito-modular-para-el-mvp.md)) |
 
 La estructura de paquetes compartida entre la API y el pipeline se define en RGT-122. La herramienta de migraciones del esquema se decide en RGT-29.
 

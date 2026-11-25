@@ -20,16 +20,16 @@ La PWA consume únicamente la API RutaGT ([ADR-0022](0022-fastapi-para-la-api.md
 
 Escala de 1 (deficiente) a 5 (excelente).
 
-| Criterio | Peso | React + Vite | SvelteKit | Vue + Vite | Next.js | Angular |
-| --- | ---: | :-: | :-: | :-: | :-: | :-: |
-| Rendimiento y tamaño del bundle en gama baja | 25 % | 3 | 5 | 4 | 3 | 2 |
-| Capacidades PWA (service worker, offline, instalación) | 15 % | 5 | 4 | 5 | 3 | 5 |
-| Integración con MapLibre GL JS | 15 % | 5 | 4 | 4 | 4 | 3 |
-| Ecosistema, talento y valor de portafolio | 15 % | 5 | 3 | 4 | 5 | 4 |
-| Accesibilidad (componentes y herramientas) | 10 % | 4 | 4 | 3 | 4 | 4 |
-| TypeScript y experiencia de desarrollo | 10 % | 5 | 4 | 4 | 4 | 4 |
-| Sostenibilidad a largo plazo | 10 % | 5 | 4 | 4 | 4 | 4 |
-| **Puntaje ponderado** | 100 % | **4.40** | 4.10 | 4.05 | 3.75 | 3.50 |
+| Criterio                                               |  Peso | React + Vite | SvelteKit | Vue + Vite | Next.js | Angular |
+| ------------------------------------------------------ | ----: | :----------: | :-------: | :--------: | :-----: | :-----: |
+| Rendimiento y tamaño del bundle en gama baja           |  25 % |      3       |     5     |     4      |    3    |    2    |
+| Capacidades PWA (service worker, offline, instalación) |  15 % |      5       |     4     |     5      |    3    |    5    |
+| Integración con MapLibre GL JS                         |  15 % |      5       |     4     |     4      |    4    |    3    |
+| Ecosistema, talento y valor de portafolio              |  15 % |      5       |     3     |     4      |    5    |    4    |
+| Accesibilidad (componentes y herramientas)             |  10 % |      4       |     4     |     3      |    4    |    4    |
+| TypeScript y experiencia de desarrollo                 |  10 % |      5       |     4     |     4      |    4    |    4    |
+| Sostenibilidad a largo plazo                           |  10 % |      5       |     4     |     4      |    4    |    4    |
+| **Puntaje ponderado**                                  | 100 % |   **4.40**   |   4.10    |    4.05    |  3.75   |  3.50   |
 
 Observaciones:
 
@@ -44,30 +44,30 @@ Se adopta **MapLibre GL JS**: abierta (licencia BSD), con mapas vectoriales flui
 
 ## Decisión
 
-| Aspecto | Elección |
-| --- | --- |
-| Lenguaje | TypeScript en modo estricto |
-| Framework | React con Vite; aplicación de una sola página (SPA) estática, sin renderizado en servidor |
-| PWA | `vite-plugin-pwa` (Workbox): manifiesto, instalación y caché de consultas recientes ([ADR-0016](0016-pwa-como-cliente-principal.md)) |
-| Mapas | MapLibre GL JS mediante `react-map-gl/maplibre`, cargado de forma diferida |
-| Mapa base | Tiles vectoriales de OpenStreetMap; la fuente concreta (autoalojada o servicio abierto) se decide en RGT-75 con atribución ODbL |
-| Cliente de la API | Tipos generados desde el contrato OpenAPI de la API |
-| Calidad | ESLint, Prettier y `tsc --noEmit` en pre-commit y CI |
-| Pruebas | Vitest y Testing Library; pruebas extremo a extremo con Playwright a partir del Sprint 11 |
-| Despliegue | Archivos estáticos servidos desde CDN |
+| Aspecto           | Elección                                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Lenguaje          | TypeScript en modo estricto                                                                                                          |
+| Framework         | React con Vite; aplicación de una sola página (SPA) estática, sin renderizado en servidor                                            |
+| PWA               | `vite-plugin-pwa` (Workbox): manifiesto, instalación y caché de consultas recientes ([ADR-0016](0016-pwa-como-cliente-principal.md)) |
+| Mapas             | MapLibre GL JS mediante `react-map-gl/maplibre`, cargado de forma diferida                                                           |
+| Mapa base         | Tiles vectoriales de OpenStreetMap; la fuente concreta (autoalojada o servicio abierto) se decide en RGT-75 con atribución ODbL      |
+| Cliente de la API | Tipos generados desde el contrato OpenAPI de la API                                                                                  |
+| Calidad           | ESLint, Prettier y `tsc --noEmit` en pre-commit y CI                                                                                 |
+| Pruebas           | Vitest y Testing Library; pruebas extremo a extremo con Playwright a partir del Sprint 11                                            |
+| Despliegue        | Archivos estáticos servidos desde CDN                                                                                                |
 
 ### Presupuesto de rendimiento
 
 Medido en la emulación de dispositivo móvil de gama baja de Lighthouse (CPU 4× más lenta, red 4G lenta):
 
-| Métrica | Presupuesto |
-| --- | --- |
-| JavaScript inicial (comprimido), sin el mapa | ≤ 170 KB |
-| MapLibre y estilos del mapa | Carga diferida, fuera del bundle inicial |
-| Largest Contentful Paint (LCP) | ≤ 2.5 s |
-| Interaction to Next Paint (INP) | ≤ 200 ms |
-| Cumulative Layout Shift (CLS) | ≤ 0.1 |
-| Lighthouse rendimiento y accesibilidad | ≥ 90 |
+| Métrica                                      | Presupuesto                              |
+| -------------------------------------------- | ---------------------------------------- |
+| JavaScript inicial (comprimido), sin el mapa | ≤ 170 KB                                 |
+| MapLibre y estilos del mapa                  | Carga diferida, fuera del bundle inicial |
+| Largest Contentful Paint (LCP)               | ≤ 2.5 s                                  |
+| Interaction to Next Paint (INP)              | ≤ 200 ms                                 |
+| Cumulative Layout Shift (CLS)                | ≤ 0.1                                    |
+| Lighthouse rendimiento y accesibilidad       | ≥ 90                                     |
 
 El presupuesto se verificará en CI cuando exista la PWA (RGT-70, RGT-78).
 

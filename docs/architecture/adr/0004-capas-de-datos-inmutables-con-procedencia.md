@@ -1,12 +1,12 @@
 # ADR-0004: Separar los datos en capas inmutables con procedencia obligatoria
 
-| Campo       | Valor                          |
-| ----------- | ------------------------------ |
-| Estado      | Aceptado                       |
-| Fecha       | 2026-08-15                     |
-| Decisores   | @Czar272                       |
-| Tickets     | RGT-14, RGT-16, RGT-25         |
-| Reemplaza a | —                              |
+| Campo       | Valor                  |
+| ----------- | ---------------------- |
+| Estado      | Aceptado               |
+| Fecha       | 2026-08-15             |
+| Decisores   | @Czar272               |
+| Tickets     | RGT-14, RGT-16, RGT-25 |
+| Reemplaza a | —                      |
 
 ## Contexto
 
@@ -20,13 +20,13 @@ Organizamos los datos en **capas sucesivas que nunca sobrescriben a la anterior*
 data/raw → data/staging → data/normalized → data/gtfs → data/published
 ```
 
-| Capa         | Contenido                                                    |
-| ------------ | ------------------------------------------------------------ |
-| `raw`        | Respuesta original de la fuente, sin modificaciones          |
-| `staging`    | Datos en preparación o revisión manual                       |
-| `normalized` | Datos depurados con identificadores y estructura comunes     |
-| `gtfs`       | Feeds GTFS de trabajo                                        |
-| `published`  | Artefactos validados y aptos para distribución               |
+| Capa         | Contenido                                                |
+| ------------ | -------------------------------------------------------- |
+| `raw`        | Respuesta original de la fuente, sin modificaciones      |
+| `staging`    | Datos en preparación o revisión manual                   |
+| `normalized` | Datos depurados con identificadores y estructura comunes |
+| `gtfs`       | Feeds GTFS de trabajo                                    |
+| `published`  | Artefactos validados y aptos para distribución           |
 
 Toda descarga genera un archivo `.provenance.json` con: fuente, autoridad, URL final, fecha UTC, checksum SHA-256, número de registros, licencia declarada y advertencias de calidad. Cada ejecución del recolector genera un `run_manifest.json`.
 
@@ -34,9 +34,9 @@ Las correcciones se aplican en capas posteriores y deben registrar la evidencia 
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Corregir en el lugar | Menos archivos | Destruye evidencia; no reproducible | Incompatible con la trazabilidad requerida |
+| Alternativa                   | Ventajas           | Desventajas                                            | Motivo de descarte                                  |
+| ----------------------------- | ------------------ | ------------------------------------------------------ | --------------------------------------------------- |
+| Corregir en el lugar          | Menos archivos     | Destruye evidencia; no reproducible                    | Incompatible con la trazabilidad requerida          |
 | Versionar datos crudos en Git | Historial completo | Repositorio pesado; posibles restricciones de licencia | Se reemplaza con checksums y snapshots fuera de Git |
 
 ## Consecuencias

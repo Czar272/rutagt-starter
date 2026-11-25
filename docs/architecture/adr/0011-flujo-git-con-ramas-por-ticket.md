@@ -27,11 +27,11 @@ El detalle operativo está en `CONTRIBUTING.md`.
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Git Flow (`develop`, `release/*`) | Separación formal de releases | Ramas de larga duración y fusiones complejas | Innecesario para entregas continuas |
-| Commits directos a `main` | Rápido | Sin revisión ni verificación previa | No auditable |
-| Squash merge | Historial compacto | Pierde los commits atómicos del ticket | Se prefiere granularidad para control de versiones |
+| Alternativa                       | Ventajas                      | Desventajas                                  | Motivo de descarte                                 |
+| --------------------------------- | ----------------------------- | -------------------------------------------- | -------------------------------------------------- |
+| Git Flow (`develop`, `release/*`) | Separación formal de releases | Ramas de larga duración y fusiones complejas | Innecesario para entregas continuas                |
+| Commits directos a `main`         | Rápido                        | Sin revisión ni verificación previa          | No auditable                                       |
+| Squash merge                      | Historial compacto            | Pierde los commits atómicos del ticket       | Se prefiere granularidad para control de versiones |
 
 ## Consecuencias
 

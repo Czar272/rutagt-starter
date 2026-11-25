@@ -11,24 +11,24 @@ Este documento define qué se prueba en RutaGT, con qué herramientas, dónde vi
 
 ## Niveles de prueba
 
-| Nivel | Qué valida | Dependencias | Marcador | Ejecución |
-| --- | --- | --- | --- | --- |
-| Unitarias | Funciones y clases aisladas: parsers, validaciones, transformaciones, CLI | Ninguna; red y servicios simulados | — | Siempre, local y CI |
-| De datos | Contratos de archivos versionados: `config/sources.json`, fixtures, salidas GTFS | Ninguna | — | Siempre, local y CI |
-| Integración | Interacción con PostgreSQL/PostGIS, migraciones, carga de datos y OpenTripPlanner | Servicios de Docker Compose | `integration` | Bajo demanda local; CI con servicios |
-| Red | Disponibilidad y estructura de fuentes oficiales reales | Internet | `network` | Bajo demanda y programadas; nunca bloquean un PR |
-| Extremo a extremo | Itinerarios de la API y la PWA contra rutas doradas | Sistema completo | `e2e` (futuro) | A partir del Sprint 9 |
+| Nivel             | Qué valida                                                                        | Dependencias                       | Marcador       | Ejecución                                        |
+| ----------------- | --------------------------------------------------------------------------------- | ---------------------------------- | -------------- | ------------------------------------------------ |
+| Unitarias         | Funciones y clases aisladas: parsers, validaciones, transformaciones, CLI         | Ninguna; red y servicios simulados | —              | Siempre, local y CI                              |
+| De datos          | Contratos de archivos versionados: `config/sources.json`, fixtures, salidas GTFS  | Ninguna                            | —              | Siempre, local y CI                              |
+| Integración       | Interacción con PostgreSQL/PostGIS, migraciones, carga de datos y OpenTripPlanner | Servicios de Docker Compose        | `integration`  | Bajo demanda local; CI con servicios             |
+| Red               | Disponibilidad y estructura de fuentes oficiales reales                           | Internet                           | `network`      | Bajo demanda y programadas; nunca bloquean un PR |
+| Extremo a extremo | Itinerarios de la API y la PWA contra rutas doradas                               | Sistema completo                   | `e2e` (futuro) | A partir del Sprint 9                            |
 
 Por defecto, `pytest` excluye las pruebas `integration` y `network` (`-m "not integration and not network"` en `pyproject.toml`).
 
 ## Herramientas
 
-| Herramienta | Uso |
-| --- | --- |
-| pytest | Ejecución de pruebas, fixtures, parametrización y marcadores |
-| pytest-cov (coverage.py) | Cobertura de líneas y ramas sobre `pipeline/` |
-| `monkeypatch` de pytest | Simulación de red (`http_get`, `get_json`, `urlopen`) y de esperas (`time.sleep`) |
-| `tmp_path` de pytest | Archivos temporales aislados por prueba |
+| Herramienta              | Uso                                                                               |
+| ------------------------ | --------------------------------------------------------------------------------- |
+| pytest                   | Ejecución de pruebas, fixtures, parametrización y marcadores                      |
+| pytest-cov (coverage.py) | Cobertura de líneas y ramas sobre `pipeline/`                                     |
+| `monkeypatch` de pytest  | Simulación de red (`http_get`, `get_json`, `urlopen`) y de esperas (`time.sleep`) |
+| `tmp_path` de pytest     | Archivos temporales aislados por prueba                                           |
 
 ## Organización
 
@@ -56,12 +56,12 @@ tests/
 
 ## Umbrales y criterios
 
-| Criterio | Valor |
-| --- | --- |
-| Cobertura mínima de `pipeline/` (líneas y ramas) | **90 %**; la ejecución falla por debajo |
-| Pruebas que fallan en `main` | 0 |
-| Pruebas dependientes de red en la suite por defecto | 0 |
-| Pruebas omitidas sin motivo | No permitidas: todo `skip` o `xfail` indica la razón; `xfail` es estricto |
+| Criterio                                            | Valor                                                                     |
+| --------------------------------------------------- | ------------------------------------------------------------------------- |
+| Cobertura mínima de `pipeline/` (líneas y ramas)    | **90 %**; la ejecución falla por debajo                                   |
+| Pruebas que fallan en `main`                        | 0                                                                         |
+| Pruebas dependientes de red en la suite por defecto | 0                                                                         |
+| Pruebas omitidas sin motivo                         | No permitidas: todo `skip` o `xfail` indica la razón; `xfail` es estricto |
 
 El umbral se revisará al alza a medida que crezca el código. Un pull request no puede reducir la cobertura por debajo del umbral.
 

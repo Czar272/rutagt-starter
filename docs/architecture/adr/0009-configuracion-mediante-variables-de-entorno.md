@@ -23,10 +23,10 @@ La configuración que varía entre entornos se lee de **variables de entorno con
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Archivos de configuración versionados por entorno | Visibles | Riesgo de versionar secretos | Inseguro en un repositorio público |
-| Valores fijos en el código | Simple | Imposible cambiar de entorno sin modificar código | No portable |
+| Alternativa                                       | Ventajas | Desventajas                                       | Motivo de descarte                 |
+| ------------------------------------------------- | -------- | ------------------------------------------------- | ---------------------------------- |
+| Archivos de configuración versionados por entorno | Visibles | Riesgo de versionar secretos                      | Inseguro en un repositorio público |
+| Valores fijos en el código                        | Simple   | Imposible cambiar de entorno sin modificar código | No portable                        |
 
 ## Consecuencias
 

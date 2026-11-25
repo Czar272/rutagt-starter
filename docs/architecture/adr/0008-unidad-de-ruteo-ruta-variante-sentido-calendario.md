@@ -1,12 +1,12 @@
 # ADR-0008: Modelar la unidad de ruteo como ruta, variante, sentido y calendario
 
-| Campo       | Valor      |
-| ----------- | ---------- |
-| Estado      | Aceptado   |
-| Fecha       | 2026-08-15 |
-| Decisores   | @Czar272   |
+| Campo       | Valor          |
+| ----------- | -------------- |
+| Estado      | Aceptado       |
+| Fecha       | 2026-08-15     |
+| Decisores   | @Czar272       |
 | Tickets     | RGT-13, RGT-44 |
-| Reemplaza a | —          |
+| Reemplaza a | —              |
 
 ## Contexto
 
@@ -25,10 +25,10 @@ Ninguna parada se asocia a una ruta sin indicar el patrón y la posición en la 
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Ruta como unidad | Coincide con los datos municipales actuales | No distingue sentido ni variantes; produce instrucciones erróneas | Inseguro para el usuario |
-| Ordenar paradas por proximidad a la línea | Automatizable | Falla en circuitos, retornos y vías compartidas | Comprobado como insuficiente |
+| Alternativa                               | Ventajas                                    | Desventajas                                                       | Motivo de descarte           |
+| ----------------------------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ---------------------------- |
+| Ruta como unidad                          | Coincide con los datos municipales actuales | No distingue sentido ni variantes; produce instrucciones erróneas | Inseguro para el usuario     |
+| Ordenar paradas por proximidad a la línea | Automatizable                               | Falla en circuitos, retornos y vías compartidas                   | Comprobado como insuficiente |
 
 ## Consecuencias
 

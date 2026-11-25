@@ -20,11 +20,11 @@ El recolector inicial usa **únicamente la biblioteca estándar** para minimizar
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Node.js / TypeScript | Mismo lenguaje que un posible frontend | Ecosistema geoespacial y científico menos maduro | Python domina el procesamiento de datos GIS |
-| Java / Kotlin | Mismo ecosistema que OpenTripPlanner | Más verboso para scripts de datos | Mayor costo de desarrollo para el pipeline |
-| SQL puro en PostGIS | Sin capa intermedia | Difícil para descargas, HTML y validaciones complejas | Insuficiente como único lenguaje |
+| Alternativa          | Ventajas                               | Desventajas                                           | Motivo de descarte                          |
+| -------------------- | -------------------------------------- | ----------------------------------------------------- | ------------------------------------------- |
+| Node.js / TypeScript | Mismo lenguaje que un posible frontend | Ecosistema geoespacial y científico menos maduro      | Python domina el procesamiento de datos GIS |
+| Java / Kotlin        | Mismo ecosistema que OpenTripPlanner   | Más verboso para scripts de datos                     | Mayor costo de desarrollo para el pipeline  |
+| SQL puro en PostGIS  | Sin capa intermedia                    | Difícil para descargas, HTML y validaciones complejas | Insuficiente como único lenguaje            |
 
 ## Consecuencias
 

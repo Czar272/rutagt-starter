@@ -16,27 +16,27 @@ Para que el proyecto sea auditable y mantenible por más personas, el entorno de
 
 ## Decisión
 
-| Aspecto | Decisión |
-| --- | --- |
-| Versión de Python | **3.12** como mínimo (`requires-python = ">=3.12"`), fijada en `.python-version`. Actualiza el mínimo indicado en ADR-0005. |
-| Entorno y dependencias | **uv**: entorno virtual, instalación de Python y dependencias, con `uv.lock` versionado para instalaciones reproducibles. |
-| Configuración | **`pyproject.toml`** como fuente única de metadatos y configuración de herramientas. |
-| Linting y formateo | **Ruff** con reglas de pycodestyle, pyflakes, isort, pep8-naming, pyupgrade, bugbear, comprehensions, simplify, pathlib, bandit (seguridad) y Ruff. |
-| Tipado | **mypy** en modo estricto para `pipeline/`; las pruebas pueden omitir anotaciones. |
-| Verificación local | **pre-commit** ejecuta las verificaciones en cada commit y valida Conventional Commits en el mensaje. |
-| Archivos de texto | UTF-8 y finales de línea LF, aplicados por `.gitattributes` y `.editorconfig`. |
+| Aspecto                | Decisión                                                                                                                                            |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Versión de Python      | **3.12** como mínimo (`requires-python = ">=3.12"`), fijada en `.python-version`. Actualiza el mínimo indicado en ADR-0005.                         |
+| Entorno y dependencias | **uv**: entorno virtual, instalación de Python y dependencias, con `uv.lock` versionado para instalaciones reproducibles.                           |
+| Configuración          | **`pyproject.toml`** como fuente única de metadatos y configuración de herramientas.                                                                |
+| Linting y formateo     | **Ruff** con reglas de pycodestyle, pyflakes, isort, pep8-naming, pyupgrade, bugbear, comprehensions, simplify, pathlib, bandit (seguridad) y Ruff. |
+| Tipado                 | **mypy** en modo estricto para `pipeline/`; las pruebas pueden omitir anotaciones.                                                                  |
+| Verificación local     | **pre-commit** ejecuta las verificaciones en cada commit y valida Conventional Commits en el mensaje.                                               |
+| Archivos de texto      | UTF-8 y finales de línea LF, aplicados por `.gitattributes` y `.editorconfig`.                                                                      |
 
 Las mismas herramientas y versiones se ejecutarán en la integración continua (RGT-107).
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| pip + venv | Incluido en Python | Sin lockfile nativo; reproducibilidad manual | Menor garantía de entornos idénticos |
-| Poetry | Maduro, con lockfile | Más lento; configuración propia fuera del estándar de grupos de dependencias | uv cubre lo mismo con mejor rendimiento |
-| Black + isort + Flake8 | Herramientas consolidadas | Tres herramientas y configuraciones; más lentas | Ruff las reemplaza con una sola |
-| Pyright | Rápido, buen soporte en editores | Menos usado como verificador en CI de proyectos Python de datos | mypy es el estándar de referencia |
-| Python 3.13 | Versión más reciente | Soporte todavía incompleto en algunas librerías geoespaciales | 3.12 ofrece mejor compatibilidad |
+| Alternativa            | Ventajas                         | Desventajas                                                                  | Motivo de descarte                      |
+| ---------------------- | -------------------------------- | ---------------------------------------------------------------------------- | --------------------------------------- |
+| pip + venv             | Incluido en Python               | Sin lockfile nativo; reproducibilidad manual                                 | Menor garantía de entornos idénticos    |
+| Poetry                 | Maduro, con lockfile             | Más lento; configuración propia fuera del estándar de grupos de dependencias | uv cubre lo mismo con mejor rendimiento |
+| Black + isort + Flake8 | Herramientas consolidadas        | Tres herramientas y configuraciones; más lentas                              | Ruff las reemplaza con una sola         |
+| Pyright                | Rápido, buen soporte en editores | Menos usado como verificador en CI de proyectos Python de datos              | mypy es el estándar de referencia       |
+| Python 3.13            | Versión más reciente             | Soporte todavía incompleto en algunas librerías geoespaciales                | 3.12 ofrece mejor compatibilidad        |
 
 ## Consecuencias
 

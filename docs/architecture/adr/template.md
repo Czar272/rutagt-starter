@@ -1,12 +1,12 @@
 # ADR-NNNN: Título breve en forma de decisión
 
-| Campo          | Valor                                              |
-| -------------- | -------------------------------------------------- |
-| Estado         | Propuesto · Aceptado · Rechazado · Obsoleto · Reemplazado por ADR-NNNN |
-| Fecha          | AAAA-MM-DD                                         |
-| Decisores      | @usuario                                           |
-| Tickets        | RGT-n                                              |
-| Reemplaza a    | — (o ADR-NNNN)                                     |
+| Campo       | Valor                                                                  |
+| ----------- | ---------------------------------------------------------------------- |
+| Estado      | Propuesto · Aceptado · Rechazado · Obsoleto · Reemplazado por ADR-NNNN |
+| Fecha       | AAAA-MM-DD                                                             |
+| Decisores   | @usuario                                                               |
+| Tickets     | RGT-n                                                                  |
+| Reemplaza a | — (o ADR-NNNN)                                                         |
 
 ## Contexto
 

@@ -1,12 +1,12 @@
 # ADR-0014: Usar OpenTripPlanner como motor de planificación con ranking propio
 
-| Campo       | Valor                           |
-| ----------- | ------------------------------- |
-| Estado      | Propuesto                       |
-| Fecha       | 2026-11-25                      |
-| Decisores   | @Czar272                        |
-| Tickets     | RGT-57, RGT-58, RGT-59, RGT-60  |
-| Reemplaza a | —                               |
+| Campo       | Valor                          |
+| ----------- | ------------------------------ |
+| Estado      | Propuesto                      |
+| Fecha       | 2026-11-25                     |
+| Decisores   | @Czar272                       |
+| Tickets     | RGT-57, RGT-58, RGT-59, RGT-60 |
+| Reemplaza a | —                              |
 
 ## Contexto
 
@@ -25,12 +25,12 @@ Esta decisión se confirmará o reemplazará al desplegar OTP local y probar iti
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Estado |
-| --- | --- | --- | --- |
-| Algoritmo propio (RAPTOR/CSA) | Control total | Alto costo y riesgo de errores | Descartada para el MVP |
-| Grafo propio sobre PostGIS/pgRouting | Integrado a la base | No maneja horarios ni frecuencias de forma nativa | Útil solo para spikes |
-| APIs comerciales (Google, Moovit) | Sin operación | Costo, dependencia y datos de terceros | Incompatible con [ADR-0007](0007-adquirir-datos-solo-por-canales-legitimos.md) |
-| R5 / MOTIS | Alternativas abiertas | Menor adopción para itinerarios de usuario final | Por evaluar si OTP no cumple |
+| Alternativa                          | Ventajas              | Desventajas                                       | Estado                                                                         |
+| ------------------------------------ | --------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Algoritmo propio (RAPTOR/CSA)        | Control total         | Alto costo y riesgo de errores                    | Descartada para el MVP                                                         |
+| Grafo propio sobre PostGIS/pgRouting | Integrado a la base   | No maneja horarios ni frecuencias de forma nativa | Útil solo para spikes                                                          |
+| APIs comerciales (Google, Moovit)    | Sin operación         | Costo, dependencia y datos de terceros            | Incompatible con [ADR-0007](0007-adquirir-datos-solo-por-canales-legitimos.md) |
+| R5 / MOTIS                           | Alternativas abiertas | Menor adopción para itinerarios de usuario final  | Por evaluar si OTP no cumple                                                   |
 
 ## Consecuencias esperadas
 

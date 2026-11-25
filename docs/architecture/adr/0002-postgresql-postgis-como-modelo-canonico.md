@@ -29,12 +29,12 @@ La versión de referencia es **PostgreSQL 17 con PostGIS 3.5**, fijada por la im
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Archivos GTFS como única fuente | Estándar, simple | No representa procedencia, incertidumbre ni datos parciales | GTFS es un formato de salida, no un modelo de trabajo |
-| MongoDB u otra base documental | Esquema flexible | Integridad referencial y consultas espaciales más débiles | El dominio es fuertemente relacional |
-| SpatiaLite / GeoPackage | Sin servidor | No apto para concurrencia ni para una API en producción | Limita la evolución a servicio |
-| Base espacial comercial | Soporte del proveedor | Costo de licencias y dependencia | Incompatible con un proyecto de bajo costo y abierto |
+| Alternativa                     | Ventajas              | Desventajas                                                 | Motivo de descarte                                    |
+| ------------------------------- | --------------------- | ----------------------------------------------------------- | ----------------------------------------------------- |
+| Archivos GTFS como única fuente | Estándar, simple      | No representa procedencia, incertidumbre ni datos parciales | GTFS es un formato de salida, no un modelo de trabajo |
+| MongoDB u otra base documental  | Esquema flexible      | Integridad referencial y consultas espaciales más débiles   | El dominio es fuertemente relacional                  |
+| SpatiaLite / GeoPackage         | Sin servidor          | No apto para concurrencia ni para una API en producción     | Limita la evolución a servicio                        |
+| Base espacial comercial         | Soporte del proveedor | Costo de licencias y dependencia                            | Incompatible con un proyecto de bajo costo y abierto  |
 
 ## Consecuencias
 

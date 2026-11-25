@@ -30,12 +30,12 @@ Desarrollo inicial. La infraestructura base y la recolección de datos están op
 - Recolector reproducible de fuentes públicas con procedencia y manifiesto de ejecución.
 - Datos oficiales descargados del catálogo DIGM de la Municipalidad de Guatemala:
 
-  | Conjunto                   | Registros | Contenido                                       |
-  | -------------------------- | --------: | ----------------------------------------------- |
-  | Estaciones Transmetro 2025 |       169 | punto, nombre, dirección, zona, código de ruta  |
-  | Paradas TuBus 2025         |       278 | punto, nombre, dirección, zona, código de ruta  |
-  | Rutas Transmetro 2025      |        12 | geometría y código de línea/variante            |
-  | Rutas TuBus 2025           |         8 | geometría y código de ruta                      |
+  | Conjunto                   | Registros | Contenido                                      |
+  | -------------------------- | --------: | ---------------------------------------------- |
+  | Estaciones Transmetro 2025 |       169 | punto, nombre, dirección, zona, código de ruta |
+  | Paradas TuBus 2025         |       278 | punto, nombre, dirección, zona, código de ruta |
+  | Rutas Transmetro 2025      |        12 | geometría y código de línea/variante           |
+  | Rutas TuBus 2025           |         8 | geometría y código de ruta                     |
 
 - Esquema canónico PostgreSQL/PostGIS y entorno local con Docker Compose.
 - Spike de ruteo en curso sobre la ruta 801 de TuBus (`prototype/routing/`).
@@ -74,19 +74,19 @@ data/raw → data/staging → data/normalized → data/gtfs → data/published
 
 ## Tecnologías
 
-| Tecnología            | Uso                                               | Estado             |
-| --------------------- | ------------------------------------------------- | ------------------ |
-| Python 3.12           | Recolección, validación y procesamiento de datos  | En uso             |
-| uv                    | Entorno, dependencias y versión de Python         | En uso             |
-| Ruff / mypy           | Linting, formateo y tipado estático               | En uso             |
-| GeoJSON / JSON        | Datos geográficos, catálogo de fuentes            | En uso             |
-| PostgreSQL 17         | Base de datos relacional                          | Operativo (Docker) |
-| PostGIS 3.5           | Almacenamiento y operaciones geoespaciales        | Operativo (Docker) |
-| Docker Compose        | Entorno local reproducible                        | En uso             |
-| GTFS Schedule         | Formato de intercambio de datos de transporte     | Planificado        |
-| OpenStreetMap         | Red vial y conexiones peatonales                  | Planificado        |
-| OpenTripPlanner       | Motor de planificación multimodal                 | Planificado        |
-| FastAPI               | API de datos e itinerarios (OpenAPI)              | Decidido ([ADR-0022](docs/architecture/adr/0022-fastapi-para-la-api.md)) |
+| Tecnología              | Uso                                              | Estado                                                                                 |
+| ----------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| Python 3.12             | Recolección, validación y procesamiento de datos | En uso                                                                                 |
+| uv                      | Entorno, dependencias y versión de Python        | En uso                                                                                 |
+| Ruff / mypy             | Linting, formateo y tipado estático              | En uso                                                                                 |
+| GeoJSON / JSON          | Datos geográficos, catálogo de fuentes           | En uso                                                                                 |
+| PostgreSQL 17           | Base de datos relacional                         | Operativo (Docker)                                                                     |
+| PostGIS 3.5             | Almacenamiento y operaciones geoespaciales       | Operativo (Docker)                                                                     |
+| Docker Compose          | Entorno local reproducible                       | En uso                                                                                 |
+| GTFS Schedule           | Formato de intercambio de datos de transporte    | Planificado                                                                            |
+| OpenStreetMap           | Red vial y conexiones peatonales                 | Planificado                                                                            |
+| OpenTripPlanner         | Motor de planificación multimodal                | Planificado                                                                            |
+| FastAPI                 | API de datos e itinerarios (OpenAPI)             | Decidido ([ADR-0022](docs/architecture/adr/0022-fastapi-para-la-api.md))               |
 | React + Vite + MapLibre | PWA ligera con mapas vectoriales abiertos        | Decidido ([ADR-0023](docs/architecture/adr/0023-react-vite-y-maplibre-para-la-pwa.md)) |
 
 ## Estructura del repositorio
@@ -222,21 +222,21 @@ Niveles, marcadores y criterios en [`docs/architecture/testing-strategy.md`](doc
 
 El alcance, los criterios de éxito y los hitos del MVP están definidos en [`docs/product/alcance-mvp.md`](docs/product/alcance-mvp.md). El trabajo se organiza en sprints semanales ([ADR-0012](docs/architecture/adr/0012-gestion-con-scrum-semanal-en-jira.md)).
 
-| Sprint | Objetivo | Hito |
-| --- | --- | --- |
-| 0 — Bases | Investigación, decisiones iniciales y recolector | H1 |
-| 1 — Fundación reproducible | Estructura, configuración y PostgreSQL/PostGIS con Docker | H1 |
-| 2 — Ingeniería base | Flujo Git, ADR, calidad automatizada, pruebas y CI | H1 |
-| 3 — Arquitectura declarada | Alcance, vista de arquitectura, patrones del pipeline y stack de API/PWA | H2 |
-| 4 — Spike ruta 801 | Itinerario experimental e informe de datos faltantes | H2 |
-| 5 — Base de datos y gobierno de datos | Esquema migrado, snapshot de fuentes, calidad y versionado | H2 |
-| 6 — Normalización base | Paradas, rutas y shapes normalizados y cargados en PostGIS | H3 |
-| 7 — Operación y secuencias | Sentidos, variantes, horarios, frecuencias, tarifas y transbordos | H3 |
-| 8 — Primer GTFS | Feed GTFS válido de Transmetro y TuBus | H3 |
-| 9 — Routing local | OpenTripPlanner, ranking RutaGT y nivel de confianza | H4 |
-| 10 — API MVP | Contrato OpenAPI y servicios de planificación | H4 |
-| 11 — PWA MVP | Aplicación web ligera con búsqueda, alternativas y mapa | H5 |
-| 12 — Corredor piloto | Metrocentro ↔ UVG validado en campo y con usuarios | H5 |
+| Sprint                                | Objetivo                                                                 | Hito |
+| ------------------------------------- | ------------------------------------------------------------------------ | ---- |
+| 0 — Bases                             | Investigación, decisiones iniciales y recolector                         | H1   |
+| 1 — Fundación reproducible            | Estructura, configuración y PostgreSQL/PostGIS con Docker                | H1   |
+| 2 — Ingeniería base                   | Flujo Git, ADR, calidad automatizada, pruebas y CI                       | H1   |
+| 3 — Arquitectura declarada            | Alcance, vista de arquitectura, patrones del pipeline y stack de API/PWA | H2   |
+| 4 — Spike ruta 801                    | Itinerario experimental e informe de datos faltantes                     | H2   |
+| 5 — Base de datos y gobierno de datos | Esquema migrado, snapshot de fuentes, calidad y versionado               | H2   |
+| 6 — Normalización base                | Paradas, rutas y shapes normalizados y cargados en PostGIS               | H3   |
+| 7 — Operación y secuencias            | Sentidos, variantes, horarios, frecuencias, tarifas y transbordos        | H3   |
+| 8 — Primer GTFS                       | Feed GTFS válido de Transmetro y TuBus                                   | H3   |
+| 9 — Routing local                     | OpenTripPlanner, ranking RutaGT y nivel de confianza                     | H4   |
+| 10 — API MVP                          | Contrato OpenAPI y servicios de planificación                            | H4   |
+| 11 — PWA MVP                          | Aplicación web ligera con búsqueda, alternativas y mapa                  | H5   |
+| 12 — Corredor piloto                  | Metrocentro ↔ UVG validado en campo y con usuarios                       | H5   |
 
 **Hito siguiente (H2):** arquitectura declarada, spike de la ruta 801 concluido y esquema canónico migrado con políticas de calidad de datos.
 

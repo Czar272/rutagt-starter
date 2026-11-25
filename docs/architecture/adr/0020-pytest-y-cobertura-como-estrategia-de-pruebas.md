@@ -24,11 +24,11 @@ El detalle está en [`docs/architecture/testing-strategy.md`](../testing-strateg
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Motivo de descarte |
-| --- | --- | --- | --- |
-| Mantener `unittest` | Biblioteca estándar | Más verboso; sin fixtures ni parametrización expresivas | pytest es el estándar de facto y ejecuta pruebas `unittest` existentes |
-| Grabar respuestas reales (VCR) | Respuestas realistas | Grabaciones grandes y con posibles restricciones de licencia | Se prefieren respuestas mínimas construidas para cada caso |
-| Sin umbral de cobertura | Menos fricción | La cobertura se degrada sin que se note | Se requiere un criterio objetivo y verificable |
+| Alternativa                    | Ventajas             | Desventajas                                                  | Motivo de descarte                                                     |
+| ------------------------------ | -------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Mantener `unittest`            | Biblioteca estándar  | Más verboso; sin fixtures ni parametrización expresivas      | pytest es el estándar de facto y ejecuta pruebas `unittest` existentes |
+| Grabar respuestas reales (VCR) | Respuestas realistas | Grabaciones grandes y con posibles restricciones de licencia | Se prefieren respuestas mínimas construidas para cada caso             |
+| Sin umbral de cobertura        | Menos fricción       | La cobertura se degrada sin que se note                      | Se requiere un criterio objetivo y verificable                         |
 
 ## Consecuencias
 

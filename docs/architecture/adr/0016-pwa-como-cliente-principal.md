@@ -26,11 +26,11 @@ Una aplicación nativa solo se considerará cuando funciones como GPS en segundo
 
 ## Alternativas consideradas
 
-| Alternativa | Ventajas | Desventajas | Estado |
-| --- | --- | --- | --- |
-| Apps nativas Android/iOS | Acceso completo al dispositivo | Doble desarrollo, instalación obligatoria | Pospuesta |
-| Multiplataforma (Flutter, React Native) | Un código para ambas tiendas | Sigue requiriendo tiendas e instalación | Pospuesta |
-| Sitio web sin capacidades PWA | Más simple | Sin instalación ni modo sin conexión | Insuficiente |
+| Alternativa                             | Ventajas                       | Desventajas                               | Estado       |
+| --------------------------------------- | ------------------------------ | ----------------------------------------- | ------------ |
+| Apps nativas Android/iOS                | Acceso completo al dispositivo | Doble desarrollo, instalación obligatoria | Pospuesta    |
+| Multiplataforma (Flutter, React Native) | Un código para ambas tiendas   | Sigue requiriendo tiendas e instalación   | Pospuesta    |
+| Sitio web sin capacidades PWA           | Más simple                     | Sin instalación ni modo sin conexión      | Insuficiente |
 
 ## Consecuencias esperadas
 
