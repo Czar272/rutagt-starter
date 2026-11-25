@@ -74,7 +74,9 @@ data/raw → data/staging → data/normalized → data/gtfs → data/published
 
 | Tecnología            | Uso                                               | Estado             |
 | --------------------- | ------------------------------------------------- | ------------------ |
-| Python 3.10+          | Recolección, validación y procesamiento de datos  | En uso             |
+| Python 3.12           | Recolección, validación y procesamiento de datos  | En uso             |
+| uv                    | Entorno, dependencias y versión de Python         | En uso             |
+| Ruff / mypy           | Linting, formateo y tipado estático               | En uso             |
 | GeoJSON / JSON        | Datos geográficos, catálogo de fuentes            | En uso             |
 | PostgreSQL 17         | Base de datos relacional                          | Operativo (Docker) |
 | PostGIS 3.5           | Almacenamiento y operaciones geoespaciales        | Operativo (Docker) |
@@ -104,11 +106,22 @@ compose.yaml                   Servicio PostgreSQL/PostGIS local
 
 ## Requisitos
 
-- Python 3.10 o posterior (el pipeline usa solo la biblioteca estándar).
+- [uv](https://docs.astral.sh/uv/), que instala Python 3.12 y las dependencias del proyecto.
 - Docker y Docker Compose para la base de datos.
 - Conexión a Internet para recolectar fuentes.
 
 ## Configuración local
+
+Instalar el entorno de desarrollo y los hooks de Git:
+
+```powershell
+uv sync
+uv run pre-commit install
+```
+
+El detalle del entorno y de las herramientas de calidad está en [`CONTRIBUTING.md`](CONTRIBUTING.md#entorno-de-desarrollo).
+
+### Variables de entorno
 
 RutaGT utiliza variables de entorno para la configuración que varía entre equipos o contiene información sensible. Crear el archivo local a partir de la plantilla:
 
@@ -144,13 +157,13 @@ Ejecutar desde la raíz del proyecto.
 
 ```powershell
 # Listar las fuentes configuradas
-python pipeline/collectors/collect.py list
+uv run python pipeline/collectors/collect.py list
 
 # Descargar todas las fuentes
-python pipeline/collectors/collect.py fetch --all --output data/raw
+uv run python pipeline/collectors/collect.py fetch --all --output data/raw
 
 # Descargar una sola fuente
-python pipeline/collectors/collect.py fetch `
+uv run python pipeline/collectors/collect.py fetch `
   --source muniguate_transmetro_stops_2025 `
   --output data/raw
 ```
@@ -185,7 +198,7 @@ insivumeh/weather_catalog_links.json
 ## Pruebas
 
 ```powershell
-python -m unittest discover -s tests -v
+uv run python -m unittest discover -s tests -v
 ```
 
 ## Principios de diseño
