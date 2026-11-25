@@ -13,6 +13,8 @@ Es un nombre de trabajo claro, corto y extensible fuera de la capital. Antes de 
 
 ## 2. Decisión de alcance
 
+> El alcance vigente del MVP, sus exclusiones y criterios de éxito están formalizados en [`docs/product/alcance-mvp.md`](../product/alcance-mvp.md). Esta sección conserva el razonamiento original.
+
 La aplicación no debe comenzar intentando cubrir “todos los buses de Guatemala”. El producto inicial debe cubrir el **Área Metropolitana de Guatemala**, pero la primera base verificable será:
 
 1. Transmetro.
