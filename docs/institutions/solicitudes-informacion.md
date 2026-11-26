@@ -125,6 +125,28 @@ Contacto publicado: [SIGA](https://siga.com.gt/).
 
 Referencia: [Moovit Transit APIs](https://moovit.com/es/maas-solutions-es/transit-apis/).
 
+## 9. Solicitud específica derivada del spike de la ruta 801
+
+Complementa la solicitud general de la sección 1 con preguntas concretas que surgieron al reconstruir la ruta 801 de TuBus con datos abiertos. El detalle técnico está en el [informe del spike](../research/spike-ruta-801.md).
+
+**Asunto:** Información operativa y aclaraciones sobre la ruta 801 de TuBus y la capa «Paradas TuBus 2025»
+
+> A la Unidad de Información Pública de la Municipalidad de Guatemala:
+>
+> En relación con la ruta 801 de TuBus (Parque Los Pinos, zona 7 – Terminal 4a avenida y 4a calle, zona 9), rutero versión 4 vigente desde marzo de 2025, y con la capa «Paradas TuBus 2025» publicada por DIGM en el portal de datos abiertos, solicito:
+>
+> 1. **Frecuencia o intervalo de paso** de la ruta 801 por franja horaria (por ejemplo, horas pico y valle) para lunes a sábado y para domingos y feriados.
+> 2. **Tiempos de recorrido programados u observados** entre paradas, por tramo o al menos entre las paradas extremo (#063 y #087) en cada sentido.
+> 3. **Secuencia oficial de paradas por sentido en formato tabular** (CSV o XLSX), con el identificador de cada parada en la capa «Paradas TuBus 2025».
+> 4. Confirmar si las paradas registradas en la capa como **«Funerales Reforma» (Calzada San Juan y 7a avenida)** y **«C.C. Promo Centro» (Calzada San Juan y 9a avenida «B»)** son atendidas actualmente por la ruta 801. No figuran en el rutero vigente, que solo incluye la parada #095 (Calzada San Juan y 8a avenida).
+> 5. Confirmar la numeración de las paradas #094 a #105 en la capa: los registros parecen tener el número de la parada siguiente (por ejemplo, el registro «Parada 105» ubicado en Anillo Periférico y 30 avenida corresponde a la parada #104 del rutero) y un registro figura como «Parada 947».
+> 6. **Tarifa vigente**, medios de pago aceptados y reglas de transbordo de la ruta 801, incluidas las conexiones con Transmetro.
+> 7. **Licencia de uso** de las capas de paradas y rutas de TuBus (variante exacta de Creative Commons) y requisitos de atribución.
+>
+> Se solicita entrega en formato digital reutilizable (CSV, XLSX, GeoJSON o GTFS). Si algún dato no existe, agradeceré que se indique expresamente.
+
+Seguimiento: registrar la respuesta en el control de respuestas y actualizar `prototype/routing/data/route_801_official.json` o abrir los tickets de corrección que correspondan.
+
 ## Control de respuestas
 
 Registrar por cada expediente:
