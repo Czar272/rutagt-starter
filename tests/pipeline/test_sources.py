@@ -7,9 +7,9 @@ import pytest
 from rutagt.core.errors import ConfigurationError
 from rutagt.core.settings import Settings
 from rutagt.pipeline import collectors
-from rutagt.pipeline.sources import load_sources, select_sources
+from rutagt.pipeline.sources import is_enabled, load_sources, select_sources
 
-SOURCES = [{"id": "a"}, {"id": "b"}]
+SOURCES = [{"id": "a"}, {"id": "b"}, {"id": "c", "disabled_reason": "HTTP 403"}]
 
 
 def test_project_catalog_is_valid() -> None:
@@ -26,6 +26,8 @@ def test_project_catalog_is_valid() -> None:
         ("[]", "lista 'sources'"),
         ('{"sources": [{"id": "x"}, {"id": "x"}]}', "duplicados"),
         ("{no es json", "No se pudo leer"),
+        ('{"sources": [{"id": "x", "disabled_reason": " "}]}', "vacío"),
+        ('{"sources": [{"id": "x", "disabled_reason": 1}]}', "vacío"),
     ],
 )
 def test_rejects_invalid_catalogs(tmp_path: Path, content: str, message: str) -> None:
@@ -42,8 +44,21 @@ def test_missing_catalog_is_a_configuration_error(tmp_path: Path) -> None:
 
 
 def test_select_sources() -> None:
-    assert select_sources(SOURCES, [], fetch_all=True) == SOURCES
+    assert select_sources(SOURCES, [], fetch_all=True) == SOURCES[:2]
     assert select_sources(SOURCES, ["b"], fetch_all=False) == [SOURCES[1]]
+
+
+def test_disabled_sources_can_still_be_requested_explicitly() -> None:
+    assert not is_enabled(SOURCES[2])
+    assert select_sources(SOURCES, ["c"], fetch_all=False) == [SOURCES[2]]
+
+
+def test_project_catalog_disabled_sources_explain_why() -> None:
+    sources = load_sources(Settings.from_env({}).sources_config)
+
+    disabled = [source for source in sources if not is_enabled(source)]
+    assert all(len(source["disabled_reason"]) > 20 for source in disabled)
+    assert any(is_enabled(source) for source in sources)
 
 
 @pytest.mark.parametrize(
