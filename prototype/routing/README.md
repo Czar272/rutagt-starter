@@ -136,6 +136,18 @@ Construye `output/route_801_graph.json` a partir del GeoJSON enriquecido:
 
 Resultado: circuito de 19,9 km en **82–115 min**. Los tiempos usan supuestos sin fuente oficial (velocidad comercial de 12–18 km/h y 20 s de detención por parada), declarados en el archivo con calidad `unverified`; deben reemplazarse por datos operativos de la Municipalidad.
 
+### Consultas origen–destino (RGT-132)
+
+```powershell
+uv run python prototype/routing/plan_trip.py
+```
+
+Planifica viajes entre dos puntos cualesquiera: caminata de acceso hasta paradas a ≤ 1 km, espera, viaje en el sentido de circulación sobre el grafo y caminata final. Las alternativas se ordenan por el peor caso del rango de tiempo y se incluye caminar cuando conviene. La calidad del itinerario depende solo de las paradas donde la persona sube y baja.
+
+Ejecuta cinco consultas de ejemplo, definidas como desplazamientos desde paradas reales, y genera `output/route_801_od_queries.md` y `.json` con los resultados, la evaluación de cada consulta y las limitaciones del enfoque.
+
+Supuestos sin fuente oficial (`unverified`): caminata en línea recta × 1,3 a 4–5 km/h e intervalo entre buses de 10–20 min.
+
 ## Resultados
 
 Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
