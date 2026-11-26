@@ -2,6 +2,12 @@ __pycache__/
 *.py[cod]
 .venv/
 data/raw/
+# Capas derivadas y publicadas: se regeneran o se distribuyen como artefacto (ADR-0032)
+data/staging/*
+data/normalized/*
+data/gtfs/*
+data/published/*
+!data/*/.gitkeep
 work/
 
 # Environment variables
