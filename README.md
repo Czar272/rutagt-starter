@@ -257,6 +257,7 @@ El alcance, los criterios de éxito y los hitos del MVP están definidos en [`do
 - [`docs/research/spike-ruta-801.md`](docs/research/spike-ruta-801.md): informe del spike de ruteo de la ruta 801 (hallazgos y datos faltantes).
 - [`docs/architecture/canonical-schema-review.md`](docs/architecture/canonical-schema-review.md): revisión del esquema canónico y decisiones para la migración inicial.
 - [`docs/data/inventario-cobertura.md`](docs/data/inventario-cobertura.md): datos disponibles y brechas por sistema de transporte.
+- [`docs/data/versionado-datasets.md`](docs/data/versionado-datasets.md): nombres, flujo y conservación de las versiones de cada capa de datos.
 - [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
 
 ## Convenciones de contribución
