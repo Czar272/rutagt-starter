@@ -26,11 +26,12 @@ from typing import Any
 
 from rutagt.pipeline.normalizers.base import RawInput, register_adapter
 from rutagt.pipeline.normalizers.common import (
-    chain_segments,
     clean_optional,
+    external_id_of,
+    features_of,
     issue,
     line_length_m,
-    line_positions,
+    read_line,
 )
 from rutagt.pipeline.normalizers.models import (
     Issue,
@@ -64,70 +65,12 @@ def correct_spelling(name: str) -> str:
     return name
 
 
-def _geometry(
-    geometry: Any, external_id: str, issues: list[Issue]
-) -> list[Position] | None:
-    kind = geometry.get("type") if isinstance(geometry, dict) else None
-    coordinates = geometry.get("coordinates") if isinstance(geometry, dict) else None
-    if kind == "LineString":
-        line = line_positions(coordinates)
-    elif kind == "MultiLineString" and isinstance(coordinates, list):
-        segments = [line_positions(segment) for segment in coordinates]
-        valid = [segment for segment in segments if segment is not None]
-        if not valid or len(valid) != len(segments):
-            line = None
-        elif (chained := chain_segments(valid)) is None:
-            issues.append(
-                issue(
-                    Severity.ERROR,
-                    "tramos_discontinuos",
-                    "Los tramos del MultiLineString no forman una línea continua",
-                    external_id,
-                    tramos=len(segments),
-                )
-            )
-            return None
-        else:
-            line, order = chained
-            issues.append(
-                issue(
-                    Severity.INFO,
-                    "tramos_unidos",
-                    f"{len(segments)} tramos unidos en una sola línea",
-                    external_id,
-                    orden=[{"tramo": i, "invertido": r} for i, r in order],
-                )
-            )
-    else:
-        line = None
-    if line is None:
-        issues.append(
-            issue(
-                Severity.ERROR,
-                "geometria_invalida",
-                "La geometría no es una línea con coordenadas válidas",
-                external_id,
-                tipo=kind,
-            )
-        )
-    return line
-
-
 def _adapt_feature(
     feature: dict[str, Any], issues: list[Issue]
 ) -> tuple[StagedRoute, StagedShape] | None:
     props = feature.get("properties") or {}
-    fid = props.get("FID")
-    external_id = str(fid) if isinstance(fid, int | str) and fid != "" else ""
-    if not external_id:
-        issues.append(
-            Issue(
-                severity=Severity.ERROR,
-                code="sin_identificador",
-                message="Registro sin FID",
-                evidence={"properties": props},
-            )
-        )
+    external_id = external_id_of(props, issues)
+    if external_id is None:
         return None
 
     code = props.get("Codigoruta")
@@ -144,7 +87,7 @@ def _adapt_feature(
         return None
     line_code = str(code // VARIANT_BASE)
 
-    line = _geometry(feature.get("geometry"), external_id, issues)
+    line = read_line(feature.get("geometry"), external_id, issues)
     if line is None:
         return None
 
@@ -222,21 +165,12 @@ def _shared_shapes(shapes: list[StagedShape]) -> list[Issue]:
 def adapt(raw: RawInput) -> StagingBatch:
     """Traduce la capa de rutas de Transmetro a `StagedRoute` y `StagedShape`."""
     issues: list[Issue] = []
-    features = raw.content.get("features") if isinstance(raw.content, dict) else None
-    if not isinstance(features, list):
-        issues.append(
-            Issue(
-                severity=Severity.ERROR,
-                code="sin_features",
-                message="El contenido no es un FeatureCollection con features",
-            )
-        )
-        features = []
+    features = features_of(raw.content, issues)
 
     records: list[StagedRecord] = []
     shapes: list[StagedShape] = []
     for feature in features:
-        adapted = _adapt_feature(feature if isinstance(feature, dict) else {}, issues)
+        adapted = _adapt_feature(feature, issues)
         if adapted is not None:
             route, shape = adapted
             records.extend((route, shape))
