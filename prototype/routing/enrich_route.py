@@ -23,16 +23,17 @@ from pathlib import Path
 from typing import Any
 
 from analyze_route import (
-    GEOJSON_FILE,
     OFFICIAL_FILE,
     ROUTE_CODE,
+    ROUTES_LAYER,
+    STOPS_LAYER,
     get_route_stops,
     load_json,
     normalize_text,
+    raw_file,
 )
 from linear_reference import Polyline
 from sequence_reconciler import (
-    ROUTES_FILE,
     Assignment,
     reconcile_sequence,
     street_numbers,
@@ -208,8 +209,8 @@ def collect_sources(official: dict[str, Any]) -> list[dict[str, Any]]:
     """Procedencia de cada fuente usada, con su checksum."""
     sources = []
     for source_id, path in (
-        ("muniguate_tubus_stops_2025", GEOJSON_FILE),
-        ("muniguate_tubus_routes_2025", ROUTES_FILE),
+        ("muniguate_tubus_stops_2025", raw_file(STOPS_LAYER)),
+        ("muniguate_tubus_routes_2025", raw_file(ROUTES_LAYER)),
     ):
         provenance = load_json(path.with_suffix(path.suffix + ".provenance.json"))
         sources.append(
@@ -240,10 +241,10 @@ def main() -> None:
     for stream in (sys.stdout, sys.stderr):
         stream.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
     official = load_json(OFFICIAL_FILE)
-    features = get_route_stops(load_json(GEOJSON_FILE))
+    features = get_route_stops(load_json(raw_file(STOPS_LAYER)))
     route_feature = next(
         feature
-        for feature in load_json(ROUTES_FILE)["features"]
+        for feature in load_json(raw_file(ROUTES_LAYER))["features"]
         if str(feature["properties"].get("Codigoruta")) == ROUTE_CODE
     )
     enriched = build_enriched(

@@ -16,10 +16,10 @@ La capa municipal de paradas de TuBus asocia cada parada a un código de ruta (`
 
 ## Datos
 
-| Archivo                                                              | Origen                                                                                                                                               |
-| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data/route_801_official.json`                                       | Transcripción manual del rutero oficial (PDF de la Municipalidad de Guatemala): 47 paradas numeradas del #063 al #109, horarios de servicio y fuente |
-| `data/raw/muniguate/tubus_stops_2025.geojson` (raíz del repositorio) | Capa oficial de paradas de TuBus descargada con `uv run rutagt-collect fetch --source muniguate_tubus_stops_2025`                                    |
+| Archivo                                                                       | Origen                                                                                                                                               |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `data/route_801_official.json`                                                | Transcripción manual del rutero oficial (PDF de la Municipalidad de Guatemala): 47 paradas numeradas del #063 al #109, horarios de servicio y fuente |
+| `muniguate/tubus_stops_2025.geojson` del snapshot vigente (`data/raw/LATEST`) | Capa oficial de paradas de TuBus descargada con `uv run rutagt-collect fetch --all`                                                                  |
 
 ## Ejecución
 
