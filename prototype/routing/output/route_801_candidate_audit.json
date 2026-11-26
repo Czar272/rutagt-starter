@@ -1,0 +1,987 @@
+{
+  "route_code": "801",
+  "official_stops": 47,
+  "geojson_records": 49,
+  "classification_counts": {
+    "EXACT": 27,
+    "LIKELY": 13,
+    "ADDRESS_MATCH": 7
+  },
+  "stops_to_review": [
+    {
+      "sequence": 3,
+      "stop_code": "065",
+      "official_address": "33 avenida y 35 calle \"A\", Colonia Sakerty II",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 233,
+      "distance_from_previous_m": 265,
+      "flags": [],
+      "candidates": [
+        {
+          "fid": 233,
+          "name": "Parada 065",
+          "address": "33 avenida y 35 calle \"A\"",
+          "zone": 7,
+          "code_in_name": "065",
+          "coordinates": [-90.5310648915486, 14.6549216295056],
+          "score": 0.897,
+          "address_similarity": 0.706,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 105,
+          "name": "Parada 108",
+          "address": "33 avenida y  35 calle \"B\", Colonia Sakerty II",
+          "zone": 7,
+          "code_in_name": "108",
+          "coordinates": [-90.5307584429676, 14.6550887294693],
+          "score": 0.439,
+          "address_similarity": 0.97,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 106,
+          "name": "Parada 109",
+          "address": "33 avenida  y 36 calle \"A\", Colonia Sakerty I",
+          "zone": 7,
+          "code_in_name": "109",
+          "coordinates": [-90.529628119795, 14.6571752729618],
+          "score": 0.434,
+          "address_similarity": 0.954,
+          "reasons": ["zone", "address"]
+        }
+      ]
+    },
+    {
+      "sequence": 4,
+      "stop_code": "066",
+      "official_address": "33 avenida y 33 calle \"A\", Colonia Banvi I, frente a Parque Tecún Umán",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 62,
+      "distance_from_previous_m": 467,
+      "flags": [],
+      "candidates": [
+        {
+          "fid": 62,
+          "name": "Parada 066",
+          "address": "33 avenida y 32 calle, Colonia Banvi I",
+          "zone": 7,
+          "code_in_name": "066",
+          "coordinates": [-90.533101726234, 14.651213894742],
+          "score": 0.872,
+          "address_similarity": 0.635,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 59,
+          "name": "Parada 063",
+          "address": "33 avenida y 39 calle, colonia El Amaparo I",
+          "zone": 7,
+          "code_in_name": "063",
+          "coordinates": [-90.5284768883342, 14.6597971233314],
+          "score": 0.31,
+          "address_similarity": 0.6,
+          "reasons": ["zone"]
+        },
+        {
+          "fid": 63,
+          "name": "Parada 067",
+          "address": "33 avenida y 30 calle, Colonia Bethania",
+          "zone": 7,
+          "code_in_name": "067",
+          "coordinates": [-90.5341454024058, 14.6498133428979],
+          "score": 0.303,
+          "address_similarity": 0.581,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 12,
+      "stop_code": "074",
+      "official_address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata I",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 70,
+      "distance_from_previous_m": 317,
+      "flags": [],
+      "candidates": [
+        {
+          "fid": 70,
+          "name": "Parada 074",
+          "address": "14 calle y 28 avenida, Colonia Ciudad de Plata I",
+          "zone": 7,
+          "code_in_name": "074",
+          "coordinates": [-90.5466829795188, 14.637742758906],
+          "score": 0.906,
+          "address_similarity": 0.732,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 98,
+          "name": "Parada 102",
+          "address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "102",
+          "coordinates": [-90.5465556064963, 14.6377371563096],
+          "score": 0.446,
+          "address_similarity": 0.989,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 69,
+          "name": "Parada 073",
+          "address": "16 calle y 15 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "073",
+          "coordinates": [-90.5473504744873, 14.6405157075432],
+          "score": 0.377,
+          "address_similarity": 0.791,
+          "reasons": ["zone", "address"]
+        }
+      ]
+    },
+    {
+      "sequence": 13,
+      "stop_code": "075",
+      "official_address": "Parque Kaminaljuyú, diagonal 24 y 13 calle, Colonia Ciudad de Plata I",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 71,
+      "distance_from_previous_m": 398,
+      "flags": [],
+      "candidates": [
+        {
+          "fid": 71,
+          "name": "Parada 075",
+          "address": "13 calle y 29 avenida, Colonia Ciudad de Plata I",
+          "zone": 7,
+          "code_in_name": "075",
+          "coordinates": [-90.5475975623944, 14.6342774649145],
+          "score": 0.858,
+          "address_similarity": 0.594,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 98,
+          "name": "Parada 102",
+          "address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "102",
+          "coordinates": [-90.5465556064963, 14.6377371563096],
+          "score": 0.379,
+          "address_similarity": 0.796,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 69,
+          "name": "Parada 073",
+          "address": "16 calle y 15 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "073",
+          "coordinates": [-90.5473504744873, 14.6405157075432],
+          "score": 0.34,
+          "address_similarity": 0.686,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 14,
+      "stop_code": "076",
+      "official_address": "9a calle y 14 avenida, Colonia Quinta Samayoa",
+      "official_zone": 7,
+      "classification": "ADDRESS_MATCH",
+      "chosen_fid": 72,
+      "distance_from_previous_m": 664,
+      "flags": ["el número del registro no coincide con el rutero"],
+      "candidates": [
+        {
+          "fid": 72,
+          "name": "Monumento a la Madre",
+          "address": "9a calle y 13 avenida, Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": null,
+          "coordinates": [-90.5452969796467, 14.6287324396713],
+          "score": 0.44,
+          "address_similarity": 0.971,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 73,
+          "name": "Parada 077",
+          "address": "9a calle y 11 avenida, Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": "077",
+          "coordinates": [-90.5430591657812, 14.6259212483372],
+          "score": 0.44,
+          "address_similarity": 0.971,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 96,
+          "name": "Pisos Casa Blanca",
+          "address": "9a calle y 15 avenida, Colonia Quinta Smayoa",
+          "zone": 7,
+          "code_in_name": null,
+          "coordinates": [-90.5459393855676, 14.629781419931],
+          "score": 0.435,
+          "address_similarity": 0.957,
+          "reasons": ["zone", "address"]
+        }
+      ]
+    },
+    {
+      "sequence": 19,
+      "stop_code": "081",
+      "official_address": "Pasarela Hosp. Roosevelt, calzada Roosevelt y 6a avenida, Colonia El Progreso",
+      "official_zone": 11,
+      "classification": "LIKELY",
+      "chosen_fid": 77,
+      "distance_from_previous_m": 425,
+      "flags": [],
+      "candidates": [
+        {
+          "fid": 77,
+          "name": "Parada 081",
+          "address": "Calzada Roosevelt y 5a avenida, Colonia El Progreso",
+          "zone": 11,
+          "code_in_name": "081",
+          "coordinates": [-90.5403164600984, 14.6164698095009],
+          "score": 0.909,
+          "address_similarity": 0.74,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 78,
+          "name": "Parada 082",
+          "address": "Calzada Roosevelt y calzada Aguilar Batres - Trébol",
+          "zone": 11,
+          "code_in_name": "082",
+          "coordinates": [-90.5359213708242, 14.6138403220895],
+          "score": 0.267,
+          "address_similarity": 0.476,
+          "reasons": ["zone"]
+        },
+        {
+          "fid": 90,
+          "name": "Parada 947",
+          "address": "Calzada Roosevelt y 4a avenida, Colonia Landivar",
+          "zone": 7,
+          "code_in_name": "947",
+          "coordinates": [-90.5380064019211, 14.6158903332312],
+          "score": 0.202,
+          "address_similarity": 0.577,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "sequence": 20,
+      "stop_code": "082",
+      "official_address": "Calz. Roosevelt, cuchilla antes del puente El Trébol",
+      "official_zone": 11,
+      "classification": "LIKELY",
+      "chosen_fid": 78,
+      "distance_from_previous_m": 556,
+      "flags": [],
+      "candidates": [
+        {
+          "fid": 78,
+          "name": "Parada 082",
+          "address": "Calzada Roosevelt y calzada Aguilar Batres - Trébol",
+          "zone": 11,
+          "code_in_name": "082",
+          "coordinates": [-90.5359213708242, 14.6138403220895],
+          "score": 0.891,
+          "address_similarity": 0.688,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 77,
+          "name": "Parada 081",
+          "address": "Calzada Roosevelt y 5a avenida, Colonia El Progreso",
+          "zone": 11,
+          "code_in_name": "081",
+          "coordinates": [-90.5403164600984, 14.6164698095009],
+          "score": 0.307,
+          "address_similarity": 0.591,
+          "reasons": ["zone"]
+        },
+        {
+          "fid": 89,
+          "name": "Trebol zona 3",
+          "address": "Calzada Roosevelt y cuchilla Trébol",
+          "zone": 8,
+          "code_in_name": null,
+          "coordinates": [-90.5354664468963, 14.6140431926575],
+          "score": 0.256,
+          "address_similarity": 0.732,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "sequence": 29,
+      "stop_code": "091",
+      "official_address": "Blvr. Liberación y 11 avenida",
+      "official_zone": 8,
+      "classification": "ADDRESS_MATCH",
+      "chosen_fid": 87,
+      "distance_from_previous_m": 558,
+      "flags": ["el número del registro no coincide con el rutero"],
+      "candidates": [
+        {
+          "fid": 87,
+          "name": "Pasarela IGSS Pamplona oriente",
+          "address": "Bulevar Liberación y 11 avenida",
+          "zone": 8,
+          "code_in_name": null,
+          "coordinates": [-90.531776207235, 14.6090236546637],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 88,
+          "name": "Trebol zona 8",
+          "address": "Bulevar Liberación y 4a avenida",
+          "zone": 8,
+          "code_in_name": null,
+          "coordinates": [-90.5339607653772, 14.6122423733102],
+          "score": 0.42,
+          "address_similarity": 0.913,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 85,
+          "name": "Parada 089",
+          "address": "Avenida la Castellana y 39 calle, Cantón Guarda Viejo",
+          "zone": 8,
+          "code_in_name": "089",
+          "coordinates": [-90.5258576830367, 14.6098417635182],
+          "score": 0.21,
+          "address_similarity": 0.314,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 30,
+      "stop_code": "092",
+      "official_address": "Blvr. Liberación y 4a avenida",
+      "official_zone": 8,
+      "classification": "ADDRESS_MATCH",
+      "chosen_fid": 88,
+      "distance_from_previous_m": 428,
+      "flags": ["el número del registro no coincide con el rutero"],
+      "candidates": [
+        {
+          "fid": 88,
+          "name": "Trebol zona 8",
+          "address": "Bulevar Liberación y 4a avenida",
+          "zone": 8,
+          "code_in_name": null,
+          "coordinates": [-90.5339607653772, 14.6122423733102],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 87,
+          "name": "Pasarela IGSS Pamplona oriente",
+          "address": "Bulevar Liberación y 11 avenida",
+          "zone": 8,
+          "code_in_name": null,
+          "coordinates": [-90.531776207235, 14.6090236546637],
+          "score": 0.42,
+          "address_similarity": 0.913,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 86,
+          "name": "Parada 090",
+          "address": "Avenida la Castellana y 41 calle, Cantón Guarda Viejo",
+          "zone": 8,
+          "code_in_name": "090",
+          "coordinates": [-90.5277087236634, 14.6059104678696],
+          "score": 0.23,
+          "address_similarity": 0.371,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 31,
+      "stop_code": "093",
+      "official_address": "Calzada Roosevelt y Cuchilla Trébol",
+      "official_zone": 8,
+      "classification": "ADDRESS_MATCH",
+      "chosen_fid": 89,
+      "distance_from_previous_m": 258,
+      "flags": ["el número del registro no coincide con el rutero"],
+      "candidates": [
+        {
+          "fid": 89,
+          "name": "Trebol zona 3",
+          "address": "Calzada Roosevelt y cuchilla Trébol",
+          "zone": 8,
+          "code_in_name": null,
+          "coordinates": [-90.5354664468963, 14.6140431926575],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 78,
+          "name": "Parada 082",
+          "address": "Calzada Roosevelt y calzada Aguilar Batres - Trébol",
+          "zone": 11,
+          "code_in_name": "082",
+          "coordinates": [-90.5359213708242, 14.6138403220895],
+          "score": 0.271,
+          "address_similarity": 0.773,
+          "reasons": ["address"]
+        },
+        {
+          "fid": 90,
+          "name": "Parada 947",
+          "address": "Calzada Roosevelt y 4a avenida, Colonia Landivar",
+          "zone": 7,
+          "code_in_name": "947",
+          "coordinates": [-90.5380064019211, 14.6158903332312],
+          "score": 0.23,
+          "address_similarity": 0.657,
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "sequence": 32,
+      "stop_code": "094",
+      "official_address": "Pasarela Hosp. Roosevelt, calzada Roosevelt y 4a avenida, Colonia Landívar",
+      "official_zone": 7,
+      "classification": "ADDRESS_MATCH",
+      "chosen_fid": 90,
+      "distance_from_previous_m": 342,
+      "flags": ["el número del registro no coincide con el rutero"],
+      "candidates": [
+        {
+          "fid": 90,
+          "name": "Parada 947",
+          "address": "Calzada Roosevelt y 4a avenida, Colonia Landivar",
+          "zone": 7,
+          "code_in_name": "947",
+          "coordinates": [-90.5380064019211, 14.6158903332312],
+          "score": 0.361,
+          "address_similarity": 0.745,
+          "reasons": ["zone"]
+        },
+        {
+          "fid": 95,
+          "name": "Parada 100",
+          "address": "9a calle y 13 avenida, Colonia Castillo Lara",
+          "zone": 7,
+          "code_in_name": "100",
+          "coordinates": [-90.542945002485, 14.6260642743019],
+          "score": 0.251,
+          "address_similarity": 0.43,
+          "reasons": ["zone"]
+        },
+        {
+          "fid": 96,
+          "name": "Pisos Casa Blanca",
+          "address": "9a calle y 15 avenida, Colonia Quinta Smayoa",
+          "zone": 7,
+          "code_in_name": null,
+          "coordinates": [-90.5459393855676, 14.629781419931],
+          "score": 0.243,
+          "address_similarity": 0.409,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 33,
+      "stop_code": "095",
+      "official_address": "Calz. San Juan y 8a avenida, Colonia Quinta Samayoa",
+      "official_zone": 7,
+      "classification": "ADDRESS_MATCH",
+      "chosen_fid": 91,
+      "distance_from_previous_m": 346,
+      "flags": ["el número del registro no coincide con el rutero"],
+      "candidates": [
+        {
+          "fid": 91,
+          "name": "Funerales Reforma",
+          "address": "Calzada San Juan y 7a avenida, Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": null,
+          "coordinates": [-90.5407539387435, 14.6175136233446],
+          "score": 0.441,
+          "address_similarity": 0.975,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 92,
+          "name": "C.C. Promo Centro",
+          "address": "Calzada San Juan y 9a avenida \"B\", Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": null,
+          "coordinates": [-90.5450366281144, 14.6205889891375],
+          "score": 0.433,
+          "address_similarity": 0.951,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 72,
+          "name": "Monumento a la Madre",
+          "address": "9a calle y 13 avenida, Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": null,
+          "coordinates": [-90.5452969796467, 14.6287324396713],
+          "score": 0.361,
+          "address_similarity": 0.747,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 34,
+      "stop_code": "096",
+      "official_address": "10a avenida y 5a calle, Colonia Quinta Samayoa",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 208,
+      "distance_from_previous_m": 268,
+      "flags": [
+        "el registro sin asignar FID 92 (C.C. Promo Centro) tiene una dirección más parecida (0.615 frente a 0.222)",
+        "el registro sin asignar FID 101 (Parada 105) tiene una dirección más parecida (0.282 frente a 0.222)"
+      ],
+      "candidates": [
+        {
+          "fid": 208,
+          "name": "Parada 096",
+          "address": "Calzada San Juan y 8 avenida zona 7",
+          "zone": 7,
+          "code_in_name": "096",
+          "coordinates": [-90.5426911843998, 14.619031130649],
+          "score": 0.728,
+          "address_similarity": 0.222,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 93,
+          "name": "Parada 097",
+          "address": "10 Avenida y 5a calle, Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": "097",
+          "coordinates": [-90.5436796132833, 14.6222845262517],
+          "score": 0.445,
+          "address_similarity": 0.986,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 94,
+          "name": "Parada 098",
+          "address": "10a Avenida y 7a calle \"A\", Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": "098",
+          "coordinates": [-90.5423223379407, 14.6233073382881],
+          "score": 0.431,
+          "address_similarity": 0.946,
+          "reasons": ["zone", "address"]
+        }
+      ]
+    },
+    {
+      "sequence": 36,
+      "stop_code": "098",
+      "official_address": "9a calle y Calle de La Verbena, Colonia Castillo Lara",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 94,
+      "distance_from_previous_m": 185,
+      "flags": [],
+      "candidates": [
+        {
+          "fid": 94,
+          "name": "Parada 098",
+          "address": "10a Avenida y 7a calle \"A\", Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": "098",
+          "coordinates": [-90.5423223379407, 14.6233073382881],
+          "score": 0.797,
+          "address_similarity": 0.419,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 95,
+          "name": "Parada 100",
+          "address": "9a calle y 13 avenida, Colonia Castillo Lara",
+          "zone": 7,
+          "code_in_name": "100",
+          "coordinates": [-90.542945002485, 14.6260642743019],
+          "score": 0.365,
+          "address_similarity": 0.756,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 69,
+          "name": "Parada 073",
+          "address": "16 calle y 15 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "073",
+          "coordinates": [-90.5473504744873, 14.6405157075432],
+          "score": 0.294,
+          "address_similarity": 0.556,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 37,
+      "stop_code": "099",
+      "official_address": "9a calle y 15 avenida, Colonia Quinta Samayoa",
+      "official_zone": 7,
+      "classification": "ADDRESS_MATCH",
+      "chosen_fid": 96,
+      "distance_from_previous_m": 818,
+      "flags": [
+        "salto de 818 m desde la parada anterior",
+        "el número del registro no coincide con el rutero"
+      ],
+      "candidates": [
+        {
+          "fid": 96,
+          "name": "Pisos Casa Blanca",
+          "address": "9a calle y 15 avenida, Colonia Quinta Smayoa",
+          "zone": 7,
+          "code_in_name": null,
+          "coordinates": [-90.5459393855676, 14.629781419931],
+          "score": 0.445,
+          "address_similarity": 0.986,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 72,
+          "name": "Monumento a la Madre",
+          "address": "9a calle y 13 avenida, Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": null,
+          "coordinates": [-90.5452969796467, 14.6287324396713],
+          "score": 0.44,
+          "address_similarity": 0.971,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 73,
+          "name": "Parada 077",
+          "address": "9a calle y 11 avenida, Colonia Quinta Samayoa",
+          "zone": 7,
+          "code_in_name": "077",
+          "coordinates": [-90.5430591657812, 14.6259212483372],
+          "score": 0.44,
+          "address_similarity": 0.971,
+          "reasons": ["zone", "address"]
+        }
+      ]
+    },
+    {
+      "sequence": 38,
+      "stop_code": "100",
+      "official_address": "Diagonal 24 y 13 calle, Colonia Kaminal Juyú II",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 95,
+      "distance_from_previous_m": 524,
+      "flags": [
+        "FID 95 fuera de orden respecto del previo (96)",
+        "el registro sin asignar FID 92 (C.C. Promo Centro) tiene una dirección más parecida (0.405 frente a 0.395)"
+      ],
+      "candidates": [
+        {
+          "fid": 95,
+          "name": "Parada 100",
+          "address": "9a calle y 13 avenida, Colonia Castillo Lara",
+          "zone": 7,
+          "code_in_name": "100",
+          "coordinates": [-90.542945002485, 14.6260642743019],
+          "score": 0.788,
+          "address_similarity": 0.395,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 97,
+          "name": "Parada 101",
+          "address": "Diagonal 24 y 13 calle, Colonia Kaminal Juyú II",
+          "zone": 7,
+          "code_in_name": "101",
+          "coordinates": [-90.5474275930578, 14.6345097762988],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 98,
+          "name": "Parada 102",
+          "address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "102",
+          "coordinates": [-90.5465556064963, 14.6377371563096],
+          "score": 0.349,
+          "address_similarity": 0.713,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 39,
+      "stop_code": "101",
+      "official_address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 97,
+      "distance_from_previous_m": 1056,
+      "flags": ["salto de 1056 m desde la parada anterior"],
+      "candidates": [
+        {
+          "fid": 97,
+          "name": "Parada 101",
+          "address": "Diagonal 24 y 13 calle, Colonia Kaminal Juyú II",
+          "zone": 7,
+          "code_in_name": "101",
+          "coordinates": [-90.5474275930578, 14.6345097762988],
+          "score": 0.899,
+          "address_similarity": 0.713,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 98,
+          "name": "Parada 102",
+          "address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "102",
+          "coordinates": [-90.5465556064963, 14.6377371563096],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 69,
+          "name": "Parada 073",
+          "address": "16 calle y 15 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "073",
+          "coordinates": [-90.5473504744873, 14.6405157075432],
+          "score": 0.382,
+          "address_similarity": 0.805,
+          "reasons": ["zone", "address"]
+        }
+      ]
+    },
+    {
+      "sequence": 40,
+      "stop_code": "102",
+      "official_address": "31 avenida y 18 calle, Colonia Mario Julio Salazar",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 98,
+      "distance_from_previous_m": 371,
+      "flags": [],
+      "candidates": [
+        {
+          "fid": 98,
+          "name": "Parada 102",
+          "address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+          "zone": 7,
+          "code_in_name": "102",
+          "coordinates": [-90.5465556064963, 14.6377371563096],
+          "score": 0.831,
+          "address_similarity": 0.518,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 99,
+          "name": "Parada 103",
+          "address": "31 avenida y 18 calle, Colonia Mario Julio Salazar",
+          "zone": 7,
+          "code_in_name": "103",
+          "coordinates": [-90.5462102419988, 14.6409228706572],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 59,
+          "name": "Parada 063",
+          "address": "33 avenida y 39 calle, colonia El Amaparo I",
+          "zone": 7,
+          "code_in_name": "063",
+          "coordinates": [-90.5284768883342, 14.6597971233314],
+          "score": 0.33,
+          "address_similarity": 0.658,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 41,
+      "stop_code": "103",
+      "official_address": "Anillo Periférico y 21 calle, Colonia El Incienso",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 99,
+      "distance_from_previous_m": 356,
+      "flags": [
+        "el registro sin asignar FID 101 (Parada 105) tiene una dirección más parecida (0.721 frente a 0.452)"
+      ],
+      "candidates": [
+        {
+          "fid": 99,
+          "name": "Parada 103",
+          "address": "31 avenida y 18 calle, Colonia Mario Julio Salazar",
+          "zone": 7,
+          "code_in_name": "103",
+          "coordinates": [-90.5462102419988, 14.6409228706572],
+          "score": 0.808,
+          "address_similarity": 0.452,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 100,
+          "name": "Parada 104",
+          "address": "Anillo Periférico y 21 calle, Colonia El Incienso",
+          "zone": 7,
+          "code_in_name": "104",
+          "coordinates": [-90.5426327867198, 14.6432972099302],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 67,
+          "name": "Parada 071",
+          "address": "Anillo Periferico sur y 31 avenida, Colonia El Incienso",
+          "zone": 7,
+          "code_in_name": "071",
+          "coordinates": [-90.5421342136522, 14.6438494673065],
+          "score": 0.407,
+          "address_similarity": 0.876,
+          "reasons": ["zone", "address"]
+        }
+      ]
+    },
+    {
+      "sequence": 42,
+      "stop_code": "104",
+      "official_address": "Anillo Periférico y 30 avenida, Colonia 4 de febrero",
+      "official_zone": 7,
+      "classification": "LIKELY",
+      "chosen_fid": 100,
+      "distance_from_previous_m": 467,
+      "flags": [
+        "el registro sin asignar FID 101 (Parada 105) tiene una dirección más parecida (1.000 frente a 0.698)"
+      ],
+      "candidates": [
+        {
+          "fid": 100,
+          "name": "Parada 104",
+          "address": "Anillo Periférico y 21 calle, Colonia El Incienso",
+          "zone": 7,
+          "code_in_name": "104",
+          "coordinates": [-90.5426327867198, 14.6432972099302],
+          "score": 0.894,
+          "address_similarity": 0.698,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 101,
+          "name": "Parada 105",
+          "address": "Anillo Periférico y 30 avenida, Colonia 4 de febrero",
+          "zone": 7,
+          "code_in_name": "105",
+          "coordinates": [-90.5398294474503, 14.6447702489403],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        },
+        {
+          "fid": 67,
+          "name": "Parada 071",
+          "address": "Anillo Periferico sur y 31 avenida, Colonia El Incienso",
+          "zone": 7,
+          "code_in_name": "071",
+          "coordinates": [-90.5421342136522, 14.6438494673065],
+          "score": 0.357,
+          "address_similarity": 0.736,
+          "reasons": ["zone"]
+        }
+      ]
+    },
+    {
+      "sequence": 43,
+      "stop_code": "105",
+      "official_address": "33 avenida y 26 calle, Colonia Bethania",
+      "official_zone": 7,
+      "classification": "EXACT",
+      "chosen_fid": 102,
+      "distance_from_previous_m": 861,
+      "flags": [
+        "salto de 861 m desde la parada anterior",
+        "el número 105 aparece en varios registros"
+      ],
+      "candidates": [
+        {
+          "fid": 102,
+          "name": "Parada 105",
+          "address": "33 avenida y 26 calle, Colonia Bethania",
+          "zone": 7,
+          "code_in_name": "105",
+          "coordinates": [-90.5358332119588, 14.647385510308],
+          "score": 1.0,
+          "address_similarity": 1.0,
+          "reasons": ["stop_code", "zone", "address"]
+        },
+        {
+          "fid": 101,
+          "name": "Parada 105",
+          "address": "Anillo Periférico y 30 avenida, Colonia 4 de febrero",
+          "zone": 7,
+          "code_in_name": "105",
+          "coordinates": [-90.5398294474503, 14.6447702489403],
+          "score": 0.758,
+          "address_similarity": 0.31,
+          "reasons": ["stop_code", "zone"]
+        },
+        {
+          "fid": 64,
+          "name": "Parada 068",
+          "address": "33 avenida y 26 calle, Colonia Bethania",
+          "zone": 7,
+          "code_in_name": "068",
+          "coordinates": [-90.5356277304224, 14.647768770328],
+          "score": 0.45,
+          "address_similarity": 1.0,
+          "reasons": ["zone", "address"]
+        }
+      ]
+    }
+  ],
+  "unused_records": [
+    {
+      "fid": 101,
+      "name": "Parada 105",
+      "address": "Anillo Periférico y 30 avenida, Colonia 4 de febrero",
+      "coordinates": [-90.5398294474503, 14.6447702489403]
+    },
+    {
+      "fid": 92,
+      "name": "C.C. Promo Centro",
+      "address": "Calzada San Juan y 9a avenida \"B\", Colonia Quinta Samayoa",
+      "coordinates": [-90.5450366281144, 14.6205889891375]
+    }
+  ]
+}
