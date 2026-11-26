@@ -55,12 +55,12 @@ flowchart LR
 
 ## 2. Etapas y contratos
 
-| Etapa      | Entrada                              | Salida                                                        | Contrato                |
-| ---------- | ------------------------------------ | ------------------------------------------------------------- | ----------------------- |
-| Collector  | Configuración de una fuente          | Archivo en `data/raw/` + `.provenance.json`                   | `Collector`             |
-| Validator  | Datos de una capa                    | Lista de advertencias o errores de calidad                    | Función pura            |
-| Normalizer | Archivo de `data/raw/` + procedencia | Archivo en `data/staging/` o `data/normalized/` + procedencia | Por definir en Sprint 6 |
-| Exporter   | Base canónica                        | Feed en `data/gtfs/`                                          | Por definir en Sprint 8 |
+| Etapa      | Entrada                              | Salida                                                                | Contrato                |
+| ---------- | ------------------------------------ | --------------------------------------------------------------------- | ----------------------- |
+| Collector  | Configuración de una fuente          | Archivo en el snapshot `data/raw/<snapshot_id>/` + `.provenance.json` | `Collector`             |
+| Validator  | Datos de una capa                    | Lista de advertencias o errores de calidad                            | Función pura            |
+| Normalizer | Archivo de `data/raw/` + procedencia | Archivo en `data/staging/` o `data/normalized/` + procedencia         | Por definir en Sprint 6 |
+| Exporter   | Base canónica                        | Feed en `data/gtfs/`                                                  | Por definir en Sprint 8 |
 
 ### Collectors
 

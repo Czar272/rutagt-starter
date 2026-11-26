@@ -66,7 +66,10 @@ data/
 
 - El recolector crea el directorio del snapshot de forma exclusiva y falla si ya existe.
 - Ningún proceso modifica ni borra archivos de un snapshot terminado.
+- Un snapshot es **completo** si proviene de `fetch --all` (todas las fuentes habilitadas) y ninguna falló; solo entonces cambia `LATEST`.
 - Si alguna fuente falla, el snapshot se conserva, pero `LATEST` no cambia.
+- Una ejecución con `--source` crea un snapshot parcial que nunca se marca como vigente, para que `LATEST` siempre tenga todas las capas.
+- Una fuente bloqueada de forma persistente se deshabilita con `disabled_reason` en `config/sources.json`; el manifiesto la lista en `skipped` con su motivo.
 - `LATEST` se escribe al final, después del manifiesto, para que nunca apunte a un snapshot a medias.
 - Cada snapshot guarda copia completa de lo descargado, aunque no haya cambiado. Si el total supera 1 GB se evaluará deduplicar por SHA-256 (ADR-0032).
 
@@ -113,4 +116,8 @@ Ningún dato de `data/` se versiona en Git: los crudos pueden tener restriccione
 
 ## 8. Transición
 
-Los archivos actuales de `data/raw/` (descarga del 2026-08-22) usan rutas fijas. RGT-33 los moverá a un snapshot con el identificador de esa descarga, ajustará el recolector para crear snapshots y escribirá `LATEST`.
+Hecha en RGT-33 (2026-11-26):
+
+- Los archivos con rutas fijas se movieron, sin modificarlos, al snapshot `20260822T201244Z` (hora de la descarga más reciente que contenían). Su manifiesto lo marca como `legacy` e incompleto, porque reúne descargas del 18 y del 22 de agosto cuyos manifiestos se habían sobrescrito; el último manifiesto que quedó se conserva como `legacy_run_manifest.json`.
+- El primer snapshot completo es `20261126T181403Z`. Las cuatro capas GIS tienen el mismo SHA-256 que las de agosto, así que los resultados del spike de la ruta 801 siguen siendo válidos.
+- Los scripts del prototipo leen las capas desde `LATEST`.
