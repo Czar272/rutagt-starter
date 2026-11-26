@@ -264,6 +264,6 @@ El flujo de trabajo completo está en [`CONTRIBUTING.md`](CONTRIBUTING.md). En r
 
 ## Licencia
 
-Copyright © 2026 Czar272. **Todos los derechos reservados.**
+Copyright © 2026 Pablo Cesár López Medina ([Czar272](https://github.com/Czar272)). **Todos los derechos reservados.**
 
 Este repositorio se publica con fines de transparencia y consulta. Su contenido no puede usarse, copiarse, modificarse ni distribuirse sin autorización previa y por escrito del titular. Los componentes y datos de terceros conservan sus propias licencias. Consulta los términos completos en [`LICENSE`](LICENSE).
