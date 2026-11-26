@@ -94,13 +94,14 @@ data/raw → data/staging → data/normalized → data/gtfs → data/published
 ```text
 config/sources.json            Catálogo versionado de fuentes y rutas de salida
 src/rutagt/                    Paquete Python de RutaGT
+  db/                          Conexión a la base de datos
   core/                        Errores, E/S, configuración y logging compartidos
   pipeline/collectors/         Collectors registrados por tipo de fuente (ArcGIS, HTML)
   pipeline/validators/         Validaciones de calidad
   pipeline/normalizers/        Normalización de datos (Sprint 6)
   pipeline/exporters/          Exportación de datos derivados, incluido GTFS (Sprint 8)
   pipeline/cli.py              Comando rutagt-collect
-database/schema/canonical.sql  Esquema canónico PostgreSQL + PostGIS
+database/migrations/           Migraciones del esquema canónico (Alembic + SQL)
 data/                          Capas de datos (raw está excluida de Git)
 prototype/routing/             Spike experimental, aislado del paquete
 tests/                         Pruebas (misma estructura que src/rutagt/)
@@ -153,8 +154,11 @@ Copy-Item .env.example .env
 
 ```powershell
 docker compose up -d
-docker compose ps        # el servicio db debe estar "healthy"
+docker compose ps                                  # el servicio db debe estar "healthy"
+uv run --env-file .env alembic upgrade head        # crear o actualizar el esquema
 ```
+
+Guía de migraciones y organización del esquema: [`database/README.md`](database/README.md).
 
 ## Uso
 
