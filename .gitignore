@@ -17,3 +17,6 @@ commands.md
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Resultados de Playwright
+test-results/
