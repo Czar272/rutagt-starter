@@ -261,3 +261,9 @@ El flujo de trabajo completo está en [`CONTRIBUTING.md`](CONTRIBUTING.md). En r
 - Todo cambio parte de un ticket de Jira (`RGT-<n>`) y se desarrolla en una rama `<tipo>/RGT-<n>-<descripcion>`.
 - Commits con [Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/) y la clave del ticket como alcance: `feat(RGT-28): ...`.
 - `main` está protegida y solo recibe cambios mediante pull request con las verificaciones en verde.
+
+## Licencia
+
+Copyright © 2026 Czar272. **Todos los derechos reservados.**
+
+Este repositorio se publica con fines de transparencia y consulta. Su contenido no puede usarse, copiarse, modificarse ni distribuirse sin autorización previa y por escrito del titular. Los componentes y datos de terceros conservan sus propias licencias. Consulta los términos completos en [`LICENSE`](LICENSE).
