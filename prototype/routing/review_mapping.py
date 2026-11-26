@@ -264,9 +264,11 @@ def main() -> None:
     mapping_path = DATA_DIR / f"route_{ROUTE_CODE}_reviewed_mapping.json"
     report_path = OUTPUT_DIR / f"route_{ROUTE_CODE}_reviewed_mapping.md"
     mapping_path.write_text(
-        json.dumps(review, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(review, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
-    report_path.write_text(render_markdown(review), encoding="utf-8")
+    report_path.write_text(render_markdown(review), encoding="utf-8", newline="\n")
     print(json.dumps(review["summary"], ensure_ascii=False))
     print(f"Correspondencia: {mapping_path}")
     print(f"Reporte: {report_path}")
