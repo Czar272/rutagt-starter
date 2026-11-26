@@ -18,7 +18,7 @@ Matriz de qué datos existen para cada sistema de transporte del Área Metropoli
 | ✖       | No disponible en fuentes abiertas conocidas                                      |
 | ?       | Fuente identificada, contenido sin verificar                                     |
 
-La columna **Confianza** usa provisionalmente los niveles de `observation_quality` (`official`, `verified`, `probable`, `unverified`) hasta que RGT-31 defina la escala definitiva.
+La columna **Confianza** usa la escala de calidad de [ADR-0031](../architecture/adr/0031-escala-de-calidad-y-reglas-de-vigencia.md), de mayor a menor: `official` > `verified` > `probable` > `estimated` > `community` > `unverified`.
 
 ## 2. Matriz por sistema
 
