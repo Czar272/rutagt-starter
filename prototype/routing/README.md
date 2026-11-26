@@ -82,6 +82,22 @@ Reemplaza la asignación parada por parada de `analyze_route.py`, que priorizaba
 
 Genera `output/route_801_sequence_reconciliation.md` y termina con código 1 si el resultado difiere de la correspondencia revisada (`data/route_801_reviewed_mapping.json`). Resultado actual: 47 de 47 paradas iguales a la revisión, 0 registros reutilizados y FID 91 y FID 92 sin parada.
 
+### GeoJSON enriquecido (RGT-129)
+
+```powershell
+uv run python prototype/routing/enrich_route.py
+```
+
+Genera `output/route_801_enriched.geojson` (y su `.provenance.json`) con:
+
+| `feature_type`  | Contenido                                                                                                                                                                                                              |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `shape`         | Trazado oficial de la ruta y su longitud                                                                                                                                                                               |
+| `stop`          | Las 47 paradas en orden oficial: código, dirección del rutero, ubicación de la capa, FID asignado, posición y distancia a la siguiente parada, puntaje y estado de la asignación, discrepancias y calidad por atributo |
+| `excluded_stop` | Registros de la capa sin parada en el rutero vigente                                                                                                                                                                   |
+
+La calidad usa los niveles de `observation_quality` del esquema canónico: secuencia, código y dirección son `official` (rutero); la ubicación es `probable` cuando la capa y el rutero concuerdan y `unverified` cuando discrepan. Los metadatos incluyen la procedencia de cada fuente con su checksum.
+
 ## Resultados
 
 Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
