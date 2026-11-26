@@ -1,0 +1,300 @@
+[
+  {
+    "id": "Q1",
+    "description": "Cerca de Parque Kaminaljuyú (#075) → cerca de Parque de la Industria (#086)",
+    "origin": {
+      "near_stop": "075",
+      "north_m": 150,
+      "east_m": 0
+    },
+    "destination": {
+      "near_stop": "086",
+      "north_m": 0,
+      "east_m": 200
+    },
+    "purpose": "Viaje largo en el sentido 0, hacia la terminal",
+    "origin_coordinates": [-90.547598, 14.635634],
+    "destination_coordinates": [-90.524358, 14.60854],
+    "alternatives": [
+      {
+        "kind": "bus",
+        "total_min": [31.2, 46.0],
+        "walk_m": 456,
+        "steps": [
+          "Camina unos 196 m (2–3 min) hasta la parada #075: Parque Kaminaljuyú, diagonal 24 y 13 calle, Colonia Ciudad de Plata I.",
+          "Toma la ruta 801 con dirección a Terminal 4a av. y 4a calle, zona 9; pasa aproximadamente cada 10–20 min.",
+          "Viaja 11 paradas (21–29 min) y bájate en la parada #086: Parque de la Industria, avenida La Castellana y 8a calle, Cantón Guarda Viejo.",
+          "Camina unos 260 m (3–4 min) hasta tu destino."
+        ],
+        "board": "075",
+        "alight": "086",
+        "stops_ridden": 11,
+        "ride_m": 5105,
+        "data_quality": "unverified",
+        "unverified_stops": ["075", "086"]
+      },
+      {
+        "kind": "bus",
+        "total_min": [32.9, 48.0],
+        "walk_m": 697,
+        "steps": [
+          "Camina unos 196 m (2–3 min) hasta la parada #075: Parque Kaminaljuyú, diagonal 24 y 13 calle, Colonia Ciudad de Plata I.",
+          "Toma la ruta 801 con dirección a Terminal 4a av. y 4a calle, zona 9; pasa aproximadamente cada 10–20 min.",
+          "Viaja 10 paradas (20–28 min) y bájate en la parada #085: Avenida La Castellana y 9a calle, Cantón Tívoli.",
+          "Camina unos 501 m (6–8 min) hasta tu destino."
+        ],
+        "board": "075",
+        "alight": "085",
+        "stops_ridden": 10,
+        "ride_m": 4849,
+        "data_quality": "unverified",
+        "unverified_stops": ["075"]
+      },
+      {
+        "kind": "bus",
+        "total_min": [37.6, 54.5],
+        "walk_m": 744,
+        "steps": [
+          "Camina unos 196 m (2–3 min) hasta la parada #075: Parque Kaminaljuyú, diagonal 24 y 13 calle, Colonia Ciudad de Plata I.",
+          "Toma la ruta 801 con dirección a Terminal 4a av. y 4a calle, zona 9; pasa aproximadamente cada 10–20 min.",
+          "Viaja 12 paradas (24–33 min) y bájate en la parada #087: Terminal, 4a avenida y 4a calle, Cantón Tívoli.",
+          "Camina unos 548 m (7–8 min) hasta tu destino."
+        ],
+        "board": "075",
+        "alight": "087",
+        "stops_ridden": 12,
+        "ride_m": 5878,
+        "data_quality": "unverified",
+        "unverified_stops": ["075"]
+      }
+    ],
+    "evaluation": [
+      "Paradas de abordaje o descenso con ubicación no verificada: #075, #086; requieren validación en campo."
+    ]
+  },
+  {
+    "id": "Q2",
+    "description": "Cerca de la terminal (#087) → Colonia Bethania (#106)",
+    "origin": {
+      "near_stop": "087",
+      "north_m": -100,
+      "east_m": 100
+    },
+    "destination": {
+      "near_stop": "106",
+      "north_m": 100,
+      "east_m": 0
+    },
+    "purpose": "Viaje en el sentido 1, de regreso",
+    "origin_coordinates": [-90.520271, 14.609883],
+    "destination_coordinates": [-90.534113, 14.650452],
+    "alternatives": [
+      {
+        "kind": "bus",
+        "total_min": [44.2, 64.8],
+        "walk_m": 315,
+        "steps": [
+          "Camina unos 184 m (2–3 min) hasta la parada #087: Terminal, 4a avenida y 4a calle, Cantón Tívoli.",
+          "Toma la ruta 801 con dirección a Parque Los Pinos, zona 7; pasa aproximadamente cada 10–20 min.",
+          "Viaja 19 paradas (35–50 min) y bájate en la parada #106: 33 avenida y 30 calle, Colonia Bethania.",
+          "Camina unos 131 m (2 min) hasta tu destino."
+        ],
+        "board": "087",
+        "alight": "106",
+        "stops_ridden": 19,
+        "ride_m": 8717,
+        "data_quality": "probable",
+        "unverified_stops": []
+      },
+      {
+        "kind": "bus",
+        "total_min": [46.8, 68.3],
+        "walk_m": 435,
+        "steps": [
+          "Camina unos 184 m (2–3 min) hasta la parada #087: Terminal, 4a avenida y 4a calle, Cantón Tívoli.",
+          "Toma la ruta 801 con dirección a Parque Los Pinos, zona 7; pasa aproximadamente cada 10–20 min.",
+          "Viaja 20 paradas (37–52 min) y bájate en la parada #107: 33 avenida y 33 calle.",
+          "Camina unos 251 m (3–4 min) hasta tu destino."
+        ],
+        "board": "087",
+        "alight": "107",
+        "stops_ridden": 20,
+        "ride_m": 8982,
+        "data_quality": "probable",
+        "unverified_stops": []
+      },
+      {
+        "kind": "bus",
+        "total_min": [47.4, 68.6],
+        "walk_m": 688,
+        "steps": [
+          "Camina unos 184 m (2–3 min) hasta la parada #087: Terminal, 4a avenida y 4a calle, Cantón Tívoli.",
+          "Toma la ruta 801 con dirección a Parque Los Pinos, zona 7; pasa aproximadamente cada 10–20 min.",
+          "Viaja 18 paradas (34–48 min) y bájate en la parada #105: 33 avenida y 26 calle, Colonia Bethania.",
+          "Camina unos 504 m (6–8 min) hasta tu destino."
+        ],
+        "board": "087",
+        "alight": "105",
+        "stops_ridden": 18,
+        "ride_m": 8414,
+        "data_quality": "probable",
+        "unverified_stops": []
+      }
+    ],
+    "evaluation": []
+  },
+  {
+    "id": "Q3",
+    "description": "Ciudad de Plata, lado del regreso (#101) → Colonia Kjell Laugerud (#069)",
+    "origin": {
+      "near_stop": "101",
+      "north_m": 0,
+      "east_m": 30
+    },
+    "destination": {
+      "near_stop": "069",
+      "north_m": 80,
+      "east_m": 0
+    },
+    "purpose": "En la misma esquina hay paradas de ida (#074) y de regreso (#101): el planificador debe abordar en el sentido correcto",
+    "origin_coordinates": [-90.546277, 14.637737],
+    "destination_coordinates": [-90.536846, 14.646875],
+    "alternatives": [
+      {
+        "kind": "bus",
+        "total_min": [14.8, 23.4],
+        "walk_m": 199,
+        "steps": [
+          "Camina unos 39 m (0–1 min) hasta la parada #101: Diagonal 24 y 14 calle, Colonia Ciudad de Plata II.",
+          "Toma la ruta 801 con dirección a Parque Los Pinos, zona 7; pasa aproximadamente cada 10–20 min.",
+          "Viaja 4 paradas (7–10 min) y bájate en la parada #105: 33 avenida y 26 calle, Colonia Bethania.",
+          "Camina unos 160 m (2 min) hasta tu destino."
+        ],
+        "board": "101",
+        "alight": "105",
+        "stops_ridden": 4,
+        "ride_m": 1806,
+        "data_quality": "probable",
+        "unverified_stops": []
+      },
+      {
+        "kind": "bus",
+        "total_min": [16.7, 25.3],
+        "walk_m": 555,
+        "steps": [
+          "Camina unos 39 m (0–1 min) hasta la parada #101: Diagonal 24 y 14 calle, Colonia Ciudad de Plata II.",
+          "Toma la ruta 801 con dirección a Parque Los Pinos, zona 7; pasa aproximadamente cada 10–20 min.",
+          "Viaja 3 paradas (5–7 min) y bájate en la parada #104: Anillo Periférico y 30 avenida, Colonia 4 de febrero.",
+          "Camina unos 516 m (6–8 min) hasta tu destino."
+        ],
+        "board": "101",
+        "alight": "104",
+        "stops_ridden": 3,
+        "ride_m": 1195,
+        "data_quality": "probable",
+        "unverified_stops": []
+      },
+      {
+        "kind": "walk",
+        "total_min": [22.4, 28.0],
+        "walk_m": 1867,
+        "steps": ["Camina unos 1867 m (22–28 min)."],
+        "board": null,
+        "alight": null,
+        "stops_ridden": 0,
+        "ride_m": 0,
+        "data_quality": "unverified",
+        "unverified_stops": []
+      }
+    ],
+    "evaluation": []
+  },
+  {
+    "id": "Q4",
+    "description": "Trayecto corto en Colonia Bethania (#106 → #105)",
+    "origin": {
+      "near_stop": "106",
+      "north_m": 50,
+      "east_m": 0
+    },
+    "destination": {
+      "near_stop": "105",
+      "north_m": -50,
+      "east_m": 0
+    },
+    "purpose": "Caminar debería ser mejor que tomar el bus",
+    "origin_coordinates": [-90.534113, 14.65],
+    "destination_coordinates": [-90.535833, 14.646933],
+    "alternatives": [
+      {
+        "kind": "walk",
+        "total_min": [6.1, 7.6],
+        "walk_m": 504,
+        "steps": ["Camina unos 504 m (6–8 min)."],
+        "board": null,
+        "alight": null,
+        "stops_ridden": 0,
+        "ride_m": 0,
+        "data_quality": "unverified",
+        "unverified_stops": []
+      },
+      {
+        "kind": "bus",
+        "total_min": [8.1, 14.0],
+        "walk_m": 151,
+        "steps": [
+          "Camina unos 27 m (0 min) hasta la parada #067: 33 avenida y 31 calle, Colonia Bethania.",
+          "Toma la ruta 801 con dirección a Terminal 4a av. y 4a calle, zona 9; pasa aproximadamente cada 10–20 min.",
+          "Viaja 1 paradas (1–2 min) y bájate en la parada #068: 33 avenida y 26 calle, Colonia Bethania.",
+          "Camina unos 124 m (2 min) hasta tu destino."
+        ],
+        "board": "067",
+        "alight": "068",
+        "stops_ridden": 1,
+        "ride_m": 276,
+        "data_quality": "unverified",
+        "unverified_stops": ["067"]
+      },
+      {
+        "kind": "bus",
+        "total_min": [9.9, 16.3],
+        "walk_m": 208,
+        "steps": [
+          "Camina unos 27 m (0 min) hasta la parada #067: 33 avenida y 31 calle, Colonia Bethania.",
+          "Toma la ruta 801 con dirección a Terminal 4a av. y 4a calle, zona 9; pasa aproximadamente cada 10–20 min.",
+          "Viaja 2 paradas (2–3 min) y bájate en la parada #069: 33 avenida y 24 calle, Colonia Kjell Laugerud.",
+          "Camina unos 181 m (2–3 min) hasta tu destino."
+        ],
+        "board": "067",
+        "alight": "069",
+        "stops_ridden": 2,
+        "ride_m": 507,
+        "data_quality": "unverified",
+        "unverified_stops": ["067"]
+      }
+    ],
+    "evaluation": [
+      "La mejor opción es caminar.",
+      "Paradas de abordaje o descenso con ubicación no verificada: #067; requieren validación en campo."
+    ]
+  },
+  {
+    "id": "Q5",
+    "description": "Punto a 2 km al este de la terminal (#087) → Parque Los Pinos (#063)",
+    "origin": {
+      "near_stop": "087",
+      "north_m": 0,
+      "east_m": 2000
+    },
+    "destination": {
+      "near_stop": "063",
+      "north_m": 100,
+      "east_m": 0
+    },
+    "purpose": "Fuera de la cobertura de la ruta: no debería haber itinerario",
+    "origin_coordinates": [-90.502633, 14.610788],
+    "destination_coordinates": [-90.528477, 14.660702],
+    "alternatives": [],
+    "evaluation": ["Sin itinerario: ninguna parada a una caminata razonable."]
+  }
+]
