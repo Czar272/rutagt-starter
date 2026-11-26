@@ -2,6 +2,8 @@
 
 import hashlib
 import json
+import shutil
+import subprocess
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -38,3 +40,21 @@ def write_json(path: Path, value: Any) -> bytes:
 def provenance_path(destination: Path) -> Path:
     """Ruta del archivo de procedencia asociado a un archivo de datos."""
     return destination.with_suffix(destination.suffix + ".provenance.json")
+
+
+def git_revision(repository: Path) -> str | None:
+    """Commit actual del repositorio, o `None` si Git no está disponible.
+
+    Las capas derivadas lo registran como `code_version` (ADR-0032).
+    """
+    git = shutil.which("git")
+    if git is None:
+        return None
+    result = subprocess.run(  # noqa: S603 - ejecutable resuelto y argumentos fijos
+        [git, "-C", str(repository), "rev-parse", "HEAD"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    revision = result.stdout.strip()
+    return revision if result.returncode == 0 and revision else None

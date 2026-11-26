@@ -3,6 +3,8 @@
 from datetime import datetime
 from pathlib import Path
 
+import pytest
+
 from rutagt.core import io
 
 
@@ -33,3 +35,22 @@ def test_provenance_path() -> None:
     assert io.provenance_path(Path("a/paradas.geojson")) == Path(
         "a/paradas.geojson.provenance.json"
     )
+
+
+def test_git_revision_of_the_project() -> None:
+    revision = io.git_revision(Path(__file__).resolve().parents[2])
+
+    assert revision is not None
+    assert len(revision) == 40
+
+
+def test_git_revision_outside_a_repository(tmp_path: Path) -> None:
+    assert io.git_revision(tmp_path) is None
+
+
+def test_git_revision_without_git(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr("rutagt.core.io.shutil.which", lambda name: None)
+
+    assert io.git_revision(tmp_path) is None
