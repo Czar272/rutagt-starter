@@ -85,6 +85,7 @@ Funciones puras, sin efectos secundarios ni acceso a red o disco, que reciben da
 - Toda salida de etapa se acompaña de un `.provenance.json` con origen, fecha UTC, checksum SHA-256, conteo de registros, licencia y advertencias ([ADR-0004](adr/0004-capas-de-datos-inmutables-con-procedencia.md)).
 - Las escrituras usan `rutagt.core.io.write_json`, que produce JSON UTF-8 determinista (indentación fija y salto de línea final), para que el checksum dependa solo del contenido.
 - Una etapa nunca modifica la capa de la que lee.
+- Las versiones de cada capa (snapshots crudos, capas derivadas y feeds publicados) siguen la [política de versionado](../data/versionado-datasets.md) ([ADR-0032](adr/0032-versionado-de-datasets-con-snapshots-inmutables.md)).
 
 ## 4. Errores
 
