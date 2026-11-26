@@ -53,6 +53,7 @@ El proceso está definido en [ADR-0001](0001-registrar-decisiones-de-arquitectur
 | [0026](0026-paquete-rutagt-y-patrones-del-pipeline.md)                | Organizar el código en el paquete `rutagt` con collectors registrados por tipo de fuente      | Aceptado                 | 2026-11-25 | RGT-122                |
 | [0027](0027-observabilidad-con-opentelemetry-y-logs-estructurados.md) | Instrumentar con OpenTelemetry y registros estructurados correlacionados                      | Aceptado                 | 2026-11-25 | RGT-109                |
 | [0028](0028-linea-base-de-seguridad.md)                               | Adoptar una línea base de seguridad basada en OWASP ASVS nivel 1 y controles automatizados    | Aceptado                 | 2026-11-25 | RGT-113                |
+| [0029](0029-convenciones-del-esquema-canonico.md)                     | Adoptar convenciones para el esquema canónico de la base de datos                             | Aceptado                 | 2026-11-25 | RGT-28                 |
 
 ## Decisiones pendientes
 
