@@ -7,7 +7,10 @@ license = "LicenseRef-Propietaria"
 authors = [{ name = "Pablo Cesár López Medina" }]
 license-files = ["LICENSE"]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "alembic>=1.20.1",
+    "psycopg[binary]>=3.3.9",
+]
 
 [project.scripts]
 rutagt-collect = "rutagt.pipeline.cli:main"
