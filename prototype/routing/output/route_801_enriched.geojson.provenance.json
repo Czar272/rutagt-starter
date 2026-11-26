@@ -1,0 +1,40 @@
+{
+  "file": "route_801_enriched.geojson",
+  "generated_at": "2026-11-26T01:45:36+00:00",
+  "generator": "prototype/routing/enrich_route.py",
+  "ticket": "RGT-129",
+  "sha256": "a92520d4def57a9397adedc88cda8db42fb8bd883776a4ed0ba59f02d3bdb06d",
+  "summary": {
+    "stops": 47,
+    "location_probable": 33,
+    "location_unverified": 14,
+    "with_discrepancies": 23,
+    "excluded_records": 2,
+    "shape_length_m": 19856
+  },
+  "sources": [
+    {
+      "source_id": "muniguate_tubus_stops_2025",
+      "authority": "Municipalidad de Guatemala - Dirección de Movilidad Urbana / DIGM",
+      "fetched_at": "2026-08-22T20:12:16+00:00",
+      "sha256": "e23e7143e78ec846d0bfe2e4681042e3648acc0a7596cc388f284d4c8f718586",
+      "license_note": "Uso público y reutilización con atribución según los metadatos del portal; solicitar a DIGM la variante exacta de Creative Commons."
+    },
+    {
+      "source_id": "muniguate_tubus_routes_2025",
+      "authority": "Municipalidad de Guatemala - Dirección de Movilidad Urbana / DIGM",
+      "fetched_at": "2026-08-22T20:12:44+00:00",
+      "sha256": "e06f250e72ab5b4591ab87971b304612c9f08bfb5bc2ad01f8d5afda05bb2ea8",
+      "license_note": "Uso público y reutilización con atribución según los metadatos del portal; solicitar a DIGM la variante exacta de Creative Commons."
+    },
+    {
+      "source_id": "muniguate_tubus_route_801_rutero_v4",
+      "authority": "Municipalidad de Guatemala",
+      "document": "V4-Mapa-y-Rutero-individual-Ruta-801-c.pdf",
+      "url": "https://www.muniguate.com/movilidadurbana/wp-content/uploads/sites/33/2025/06/V4-Mapa-y-Rutero-individual-Ruta-801-c.pdf",
+      "document_sha256": "fe8f57f49d0b9f59b587b4efc6228e301f8ab89d25277fa15f06fc7de62b39d2",
+      "transcription_sha256": "f3e8e2df0b12fc2de39da664ff0006653e86a12c4b0f398566262a35b682e5bd",
+      "valid_from": "2025-03"
+    }
+  ]
+}
