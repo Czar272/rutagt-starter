@@ -1,7 +1,9 @@
 """Carga y selección del catálogo de fuentes (`config/sources.json`).
 
 Una fuente con `disabled_reason` queda deshabilitada: `--all` la omite y solo se
-descarga si se pide explícitamente con `--source`.
+descarga si se pide explícitamente con `--source`. Una capa de paradas puede
+declarar con `shapes_source` la fuente de trazados de sus rutas, que se usa
+para validar la distancia de cada parada a su ruta (ADR-0034).
 """
 
 from collections.abc import Iterable
@@ -26,7 +28,14 @@ def load_sources(config_path: Path) -> list[Source]:
     ids = [source.get("id") for source in sources]
     if len(ids) != len(set(ids)):
         raise ConfigurationError("Hay identificadores de fuente duplicados")
+    known = set(ids)
     for source in sources:
+        shapes_source = source.get("shapes_source")
+        if shapes_source is not None and shapes_source not in known:
+            raise ConfigurationError(
+                f"La fuente {source.get('id')} usa 'shapes_source' desconocida: "
+                f"{shapes_source}"
+            )
         reason = source.get("disabled_reason")
         if reason is not None and not (isinstance(reason, str) and reason.strip()):
             raise ConfigurationError(

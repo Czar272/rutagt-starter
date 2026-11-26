@@ -33,7 +33,11 @@ from rutagt.core.io import (
 from rutagt.core.logging import log_context
 from rutagt.core.settings import PROJECT_ROOT
 from rutagt.pipeline.normalizers.base import RawInput, get_adapter, registered_sources
-from rutagt.pipeline.normalizers.models import StagingBatch
+from rutagt.pipeline.normalizers.models import Issue, Severity, StagingBatch
+from rutagt.pipeline.normalizers.validations import (
+    validate_batch,
+    validate_stops_against_shapes,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -156,10 +160,52 @@ def write_batch(
     return summary
 
 
+@dataclass
+class _Adapted:
+    source: Source
+    batch: StagingBatch
+    checksum: str
+    duration_seconds: float
+
+
+def _with_issues(batch: StagingBatch, issues: list[Issue]) -> StagingBatch:
+    if not issues:
+        return batch
+    return batch.model_copy(update={"issues": (*batch.issues, *issues)})
+
+
+def _cross_validate(adapted: dict[str, _Adapted]) -> None:
+    """Valida cada capa de paradas contra su fuente de trazados (`shapes_source`)."""
+    for item in adapted.values():
+        shapes_source = item.source.get("shapes_source")
+        if shapes_source is None:
+            continue
+        shapes = adapted.get(shapes_source)
+        if shapes is None:
+            issues = [
+                Issue(
+                    severity=Severity.INFO,
+                    code="validacion_omitida",
+                    message=(
+                        "No se validó la distancia a las rutas: "
+                        f"{shapes_source} no se normalizó en esta ejecución"
+                    ),
+                    evidence={"shapes_source": shapes_source},
+                )
+            ]
+        else:
+            issues = validate_stops_against_shapes(item.batch, shapes.batch)
+        item.batch = _with_issues(item.batch, issues)
+
+
 def normalize_snapshot(
     sources: list[Source], snapshot: Path, staging_root: Path
 ) -> RunSummary:
-    """Ejecuta los adaptadores de `sources` sobre un snapshot y escribe staging."""
+    """Ejecuta los adaptadores de `sources` sobre un snapshot y escribe staging.
+
+    Primero adapta y valida cada fuente (ADR-0034), luego valida las paradas
+    contra los trazados de su ruta y al final escribe cada lote.
+    """
     summary = RunSummary(run_id=uuid.uuid4().hex)
     staging = staging_root / snapshot.name
     started_at = utc_now()
@@ -167,37 +213,45 @@ def normalize_snapshot(
         logger.info(
             "Normalizando %d fuentes del snapshot %s", len(sources), snapshot.name
         )
+        adapted: dict[str, _Adapted] = {}
         for source in sources:
             with log_context(source_id=source["id"]):
                 start = time.perf_counter()
                 try:
                     batch, checksum = _adapt(source, snapshot)
-                    result = write_batch(
-                        batch,
-                        staging,
-                        run_id=summary.run_id,
-                        input_file=source["output"],
-                        input_sha256=checksum,
-                    )
+                    batch = _with_issues(batch, validate_batch(batch))
                 except (SourceError, ConfigurationError, OSError) as exc:
-                    summary.failed.append(
-                        {"source_id": source["id"], "error": str(exc)}
-                    )
-                    logger.error("Falló %s: %s", source["id"], exc)
+                    _fail(summary, source, str(exc))
                     continue
                 except Exception as exc:
                     # Un error inesperado en un adaptador no detiene los demás.
-                    summary.failed.append(
-                        {"source_id": source["id"], "error": repr(exc)}
-                    )
-                    logger.exception("Error inesperado en %s", source["id"])
+                    _fail(summary, source, repr(exc), unexpected=True)
                     continue
-                result["duration_seconds"] = round(time.perf_counter() - start, 3)
+                adapted[source["id"]] = _Adapted(
+                    source, batch, checksum, round(time.perf_counter() - start, 3)
+                )
+
+        _cross_validate(adapted)
+
+        for source_id, item in adapted.items():
+            with log_context(source_id=source_id):
+                try:
+                    result = write_batch(
+                        item.batch,
+                        staging,
+                        run_id=summary.run_id,
+                        input_file=item.source["output"],
+                        input_sha256=item.checksum,
+                    )
+                except OSError as exc:
+                    _fail(summary, item.source, str(exc))
+                    continue
+                result["duration_seconds"] = item.duration_seconds
                 summary.successful.append(result)
                 log = logger.warning if result["has_errors"] else logger.info
                 log(
                     "%s: %s, problemas %s",
-                    source["id"],
+                    source_id,
                     result["records"],
                     result["issues"],
                 )
@@ -215,3 +269,13 @@ def normalize_snapshot(
             },
         )
     return summary
+
+
+def _fail(
+    summary: RunSummary, source: Source, error: str, *, unexpected: bool = False
+) -> None:
+    summary.failed.append({"source_id": source["id"], "error": error})
+    if unexpected:
+        logger.exception("Error inesperado en %s", source["id"])
+    else:
+        logger.error("Falló %s: %s", source["id"], error)
