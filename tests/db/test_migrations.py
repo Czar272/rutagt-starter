@@ -15,6 +15,7 @@ import psycopg
 import pytest
 from alembic import command
 from alembic.config import Config
+from alembic.script import ScriptDirectory
 from sqlalchemy import Connection, Engine, create_engine
 
 from rutagt.core.settings import PROJECT_ROOT
@@ -127,6 +128,14 @@ INVALID_STATEMENTS = {
     "borrar una parada usada en un patrón": (
         "DELETE FROM transit.stop WHERE stop_id = 'tubus:stop:801-095'"
     ),
+    "regla de calidad que asciende de nivel": (
+        "UPDATE provenance.quality_rule SET degrades_to = 'official' "
+        "WHERE quality = 'verified'"
+    ),
+    "regla de calidad que vence sin nivel de degradación": (
+        "UPDATE provenance.quality_rule SET max_age = interval '1 day' "
+        "WHERE quality = 'probable'"
+    ),
 }
 
 
@@ -150,10 +159,19 @@ def temporary_database() -> Iterator[Engine]:
         admin.dispose()
 
 
-def alembic(revision: str, *, downgrade: bool = False) -> None:
-    """Ejecuta Alembic con la configuración del repositorio."""
+def alembic_config() -> Config:
     config = Config(str(PROJECT_ROOT / "alembic.ini"))
     config.attributes["configure_logger"] = False
+    return config
+
+
+def head_revision() -> str | None:
+    return ScriptDirectory.from_config(alembic_config()).get_current_head()
+
+
+def alembic(revision: str, *, downgrade: bool = False) -> None:
+    """Ejecuta Alembic con la configuración del repositorio."""
+    config = alembic_config()
     if downgrade:
         command.downgrade(config, revision)
     else:
@@ -240,8 +258,8 @@ def test_audit_columns_and_updated_at_triggers(migrated: Engine) -> None:
             """,
         )
 
-    # 23 tablas originales + data_issue (D22) + feed_version (D17).
-    assert len(tables) == 25
+    # 23 tablas originales + data_issue (D22), feed_version (D17) y quality_rule.
+    assert len(tables) == 26
     assert created == tables
     assert tables - updated == APPEND_ONLY_TABLES
     assert triggered == updated
@@ -341,4 +359,93 @@ def test_downgrade_removes_everything_and_upgrade_is_repeatable() -> None:
             version = rows(conn, "SELECT version_num FROM public.alembic_version")
 
     assert leftover == set()
-    assert version == [("0001",)]
+    assert version == [(head_revision(),)]
+
+
+# ---------------------------------------------------------------------------
+# Escala de calidad y reglas de vigencia (ADR-0031)
+# ---------------------------------------------------------------------------
+
+
+def test_quality_scale_is_ordered_from_most_to_least_reliable(
+    migrated: Engine,
+) -> None:
+    with migrated.connect() as conn:
+        [(levels,)] = rows(
+            conn, "SELECT enum_range(NULL::transit.observation_quality)::text[]"
+        )
+        [(rules,)] = rows(conn, "SELECT count(*) FROM provenance.quality_rule")
+        [(weakest,)] = rows(
+            conn,
+            "SELECT max(q)::text FROM (VALUES "
+            "('official'::transit.observation_quality), ('estimated'), ('verified'))"
+            " AS t(q)",
+        )
+
+    assert levels == [
+        "official",
+        "verified",
+        "probable",
+        "estimated",
+        "community",
+        "unverified",
+    ]
+    assert rules == len(levels)
+    assert weakest == "estimated"
+
+
+@pytest.mark.parametrize(
+    ("level", "age", "source_valid_to", "expected"),
+    [
+        ("verified", "100 days", None, "verified"),
+        ("verified", "400 days", None, "probable"),
+        ("community", "5 days", None, "community"),
+        ("community", "31 days", None, "unverified"),
+        ("official", "10 years", None, "official"),
+        ("official", "1 day", "yesterday", "probable"),
+        ("estimated", "10 years", None, "estimated"),
+    ],
+)
+def test_effective_quality_degrades_when_expired(
+    migrated: Engine,
+    level: str,
+    age: str,
+    source_valid_to: str | None,
+    expected: str,
+) -> None:
+    with migrated.connect() as conn:
+        [(effective,)] = rows(
+            conn,
+            "SELECT public.rutagt_effective_quality(%(level)s::transit"
+            ".observation_quality, now() - %(age)s::interval, "
+            "%(valid_to)s::timestamptz)::text",
+            {"level": level, "age": age, "valid_to": source_valid_to},
+        )
+
+    assert effective == expected
+
+
+def test_downgrading_the_scale_maps_new_levels_to_old_ones() -> None:
+    with temporary_database() as engine:
+        alembic("head")
+        with engine.begin() as conn:
+            rows(conn, VALID_NETWORK)
+            rows(
+                conn,
+                "UPDATE transit.stop SET location_quality = 'estimated' "
+                "WHERE stop_id = 'tubus:stop:801-094';"
+                "UPDATE transit.stop SET location_quality = 'community' "
+                "WHERE stop_id = 'tubus:stop:801-095'",
+            )
+        alembic("0001", downgrade=True)
+        with engine.connect() as conn:
+            found = rows(
+                conn,
+                "SELECT stop_id, location_quality::text FROM transit.stop "
+                "ORDER BY stop_id",
+            )
+
+    assert found == [
+        ("tubus:stop:801-094", "probable"),
+        ("tubus:stop:801-095", "unverified"),
+    ]
