@@ -104,7 +104,7 @@ database/schema/canonical.sql  Esquema canónico PostgreSQL + PostGIS
 data/                          Capas de datos (raw está excluida de Git)
 prototype/routing/             Spike experimental, aislado del paquete
 tests/                         Pruebas (misma estructura que src/rutagt/)
-docs/                          Producto, arquitectura, datos y solicitudes institucionales
+docs/                          Producto, arquitectura, datos e investigación
 compose.yaml                   Servicio PostgreSQL/PostGIS local
 ```
 
@@ -253,7 +253,6 @@ El alcance, los criterios de éxito y los hitos del MVP están definidos en [`do
 - [`docs/research/spike-ruta-801.md`](docs/research/spike-ruta-801.md): informe del spike de ruteo de la ruta 801 (hallazgos y datos faltantes).
 - [`docs/architecture/canonical-schema-review.md`](docs/architecture/canonical-schema-review.md): revisión del esquema canónico y decisiones para la migración inicial.
 - [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
-- [`docs/institutions/solicitudes-informacion.md`](docs/institutions/solicitudes-informacion.md): plantillas de solicitudes a municipalidades, DGT y operadores.
 
 ## Convenciones de contribución
 
