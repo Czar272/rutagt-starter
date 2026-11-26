@@ -41,7 +41,9 @@ src/rutagt/
 │   │   ├── base.py             # contrato del adaptador y registro por source_id
 │   │   ├── runner.py           # ejecución sobre un snapshot y escritura de staging
 │   │   ├── common.py           # limpieza de texto y lectura de puntos (funciones puras)
+│   │   ├── muniguate_stops.py  # lectura común de las capas de paradas municipales
 │   │   ├── transmetro_stops.py # adaptador de estaciones de Transmetro (RGT-36)
+│   │   ├── tubus_stops.py      # adaptador de paradas de TuBus (RGT-37)
 │   │   └── cli.py              # punto de entrada `rutagt-normalize`
 │   └── exporters/              # Sprint 8 (GTFS)
 └── api/                        # Sprint 10 (ADR-0022)
