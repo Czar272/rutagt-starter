@@ -10,15 +10,13 @@ from collections import Counter
 from collections.abc import Iterator
 from typing import Any
 
-# Límites aproximados de Guatemala (lon mín., lat mín., lon máx., lat máx.).
-GUATEMALA_BOUNDS = (-92.25, 13.70, -88.20, 17.82)
+from rutagt.core.geo import GUATEMALA_BOUNDS, Bounds
+
 # Secuencias típicas de UTF-8 leído como Latin-1 y el carácter de reemplazo.
 ENCODING_MARKERS = ("Ã", "Â", "\ufffd")
 # Un campo con hasta este número de valores distintos se considera un código.
 CODE_MAX_DISTINCT = 15
 TOP_VALUES = 5
-
-Bounds = tuple[float, float, float, float]
 
 
 def _type_name(value: Any) -> str:
