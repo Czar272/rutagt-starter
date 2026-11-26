@@ -36,7 +36,11 @@ src/rutagt/
 │   │   ├── geojson.py          # perfil de campos y geometrías (funciones puras)
 │   │   ├── report.py           # reporte en Markdown
 │   │   └── cli.py              # punto de entrada `rutagt-profile`
-│   ├── normalizers/            # Sprint 6
+│   ├── normalizers/
+│   │   ├── models.py           # modelos de staging (Pydantic, ADR-0033)
+│   │   ├── base.py             # contrato del adaptador y registro por source_id
+│   │   ├── runner.py           # ejecución sobre un snapshot y escritura de staging
+│   │   └── cli.py              # punto de entrada `rutagt-normalize`
 │   └── exporters/              # Sprint 8 (GTFS)
 └── api/                        # Sprint 10 (ADR-0022)
 ```
@@ -60,12 +64,12 @@ flowchart LR
 
 ## 2. Etapas y contratos
 
-| Etapa      | Entrada                              | Salida                                                                | Contrato                |
-| ---------- | ------------------------------------ | --------------------------------------------------------------------- | ----------------------- |
-| Collector  | Configuración de una fuente          | Archivo en el snapshot `data/raw/<snapshot_id>/` + `.provenance.json` | `Collector`             |
-| Validator  | Datos de una capa                    | Lista de advertencias o errores de calidad                            | Función pura            |
-| Normalizer | Archivo de `data/raw/` + procedencia | Archivo en `data/staging/` o `data/normalized/` + procedencia         | Por definir en Sprint 6 |
-| Exporter   | Base canónica                        | Feed en `data/gtfs/`                                                  | Por definir en Sprint 8 |
+| Etapa      | Entrada                                  | Salida                                                                | Contrato                                                       |
+| ---------- | ---------------------------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Collector  | Configuración de una fuente              | Archivo en el snapshot `data/raw/<snapshot_id>/` + `.provenance.json` | `Collector`                                                    |
+| Validator  | Datos de una capa                        | Lista de advertencias o errores de calidad                            | Función pura                                                   |
+| Normalizer | Fuente cruda de un snapshot (`RawInput`) | `StagingBatch` en `data/staging/<snapshot>/` + procedencia            | `Adapter` ([ADR-0033](adr/0033-contrato-de-normalizadores.md)) |
+| Exporter   | Base canónica                            | Feed en `data/gtfs/`                                                  | Por definir en Sprint 8                                        |
 
 ### Collectors
 
@@ -130,9 +134,8 @@ RutaGTError
 
 ## 8. Evolución prevista
 
-| Tema                                    | Cambio previsto                                                                      | Momento                              |
-| --------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------ |
-| Modelos tipados de fuente y procedencia | Reemplazar los diccionarios por modelos validados (Pydantic, compartidos con la API) | Al incorporar normalizers (Sprint 6) |
-| Contrato de normalizers                 | Definir entrada, salida e identificadores estables                                   | Sprint 6                             |
-| Exportador GTFS                         | Contrato y validación con el validador oficial                                       | Sprint 8                             |
-| Paquete `rutagt.api`                    | Servicio FastAPI dentro del mismo paquete                                            | Sprint 10                            |
+| Tema                                    | Cambio previsto                                                                                       | Momento                       |
+| --------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------- |
+| Modelos tipados de fuente y procedencia | Llevar a modelos Pydantic el catálogo de fuentes y la procedencia, como ya lo está staging (ADR-0033) | Al cargar en PostGIS (RGT-42) |
+| Exportador GTFS                         | Contrato y validación con el validador oficial                                                        | Sprint 8                      |
+| Paquete `rutagt.api`                    | Servicio FastAPI dentro del mismo paquete                                                             | Sprint 10                     |
