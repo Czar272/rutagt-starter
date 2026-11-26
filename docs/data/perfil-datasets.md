@@ -97,6 +97,7 @@ Este documento añade las **comprobaciones entre datasets**, que dependen del do
 | B4 | Direcciones mixtas | 141 sin «zona» (usan colonia o barrio), 104 con ordinales «10a» y 5 con «10ª», 14 con abreviaturas, 16 terminan en punto; duplicados que solo difieren en el punto final | Normalizar formato; la colonia es útil para búsqueda y debe conservarse |
 | B5 | `Zona` contradice la dirección | 6 casos (p. ej. FID 204–206: `Zona = 7` con dirección «zona 3») | Igual que E3 |
 | B6 | Espacios anómalos | 3 nombres y 14 direcciones | Igual que E5 |
+| B7 | Registro probablemente duplicado | FID 143 y 258 de la ruta 402 tienen el mismo nombre («Parada 190») y la misma dirección, a 6 m; en cambio, los dos «Parada 105» de la ruta 801 están a 519 m y son paradas distintas (lo detectó el adaptador de RGT-37) | Se marca `numero_repetido`; el constructor canónico decide si se fusionan por proximidad, y se pregunta a la fuente |
 
 ## 4. Comprobaciones entre datasets
 
@@ -116,6 +117,7 @@ Para incluir en el primer contacto técnico con la Municipalidad:
 3. ¿Las estaciones con el mismo nombre separadas hasta 200 m son andenes de distinto sentido?
 4. ¿La numeración de paradas TuBus («Parada NNN») tiene un significado operativo?
 5. ¿El andén FID 145 de la estación Granai (Periférico Sur) corresponde a la dirección USAC Periférico?
+6. ¿Los registros FID 143 y 258 de la ruta 402 («Parada 190») son la misma parada?
 
 ## 6. Brechas que el perfil confirma
 
