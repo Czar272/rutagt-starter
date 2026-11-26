@@ -1,4 +1,8 @@
-"""Carga y selección del catálogo de fuentes (`config/sources.json`)."""
+"""Carga y selección del catálogo de fuentes (`config/sources.json`).
+
+Una fuente con `disabled_reason` queda deshabilitada: `--all` la omite y solo se
+descarga si se pide explícitamente con `--source`.
+"""
 
 from collections.abc import Iterable
 from pathlib import Path
@@ -22,15 +26,26 @@ def load_sources(config_path: Path) -> list[Source]:
     ids = [source.get("id") for source in sources]
     if len(ids) != len(set(ids)):
         raise ConfigurationError("Hay identificadores de fuente duplicados")
+    for source in sources:
+        reason = source.get("disabled_reason")
+        if reason is not None and not (isinstance(reason, str) and reason.strip()):
+            raise ConfigurationError(
+                f"La fuente {source.get('id')} tiene un 'disabled_reason' vacío"
+            )
     return sources
+
+
+def is_enabled(source: Source) -> bool:
+    """Indica si la fuente participa en `--all`."""
+    return source.get("disabled_reason") is None
 
 
 def select_sources(
     sources: list[Source], requested: Iterable[str], fetch_all: bool
 ) -> list[Source]:
-    """Selecciona todas las fuentes o las solicitadas por identificador."""
+    """Selecciona las fuentes habilitadas o las solicitadas por identificador."""
     if fetch_all:
-        return sources
+        return [source for source in sources if is_enabled(source)]
     requested_set = set(requested)
     selected = [source for source in sources if source["id"] in requested_set]
     missing = requested_set - {source["id"] for source in selected}
