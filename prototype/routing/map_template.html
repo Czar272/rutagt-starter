@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RutaGT · Ruta $route_code (spike)</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/maplibre-gl@$maplibre_version/dist/maplibre-gl.css"
+      integrity="$css_sri"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/maplibre-gl@$maplibre_version/dist/maplibre-gl.js"
+      integrity="$js_sri"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      :root {
+        --probable: #2da44e;
+        --unverified: #d29922;
+        --excluded: #cf222e;
+        --route: #1f6feb;
+        --text: #1f2328;
+        --muted: #59636e;
+        --panel: #ffffff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        color: var(--text);
+      }
+      #panel {
+        width: 340px;
+        max-width: 90vw;
+        overflow-y: auto;
+        padding: 16px;
+        background: var(--panel);
+        border-right: 1px solid #d0d7de;
+      }
+      #map {
+        flex: 1;
+      }
+      h1 {
+        font-size: 1.15rem;
+        margin: 0 0 4px;
+      }
+      h2 {
+        font-size: 0.95rem;
+        margin: 20px 0 8px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .badge {
+        display: inline-block;
+        padding: 1px 8px;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        background: #fff8c5;
+        border: 1px solid #d4a72c;
+      }
+      dl {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 4px 12px;
+        margin: 0;
+      }
+      dt {
+        color: var(--muted);
+      }
+      dd {
+        margin: 0;
+        font-weight: 600;
+        text-align: right;
+      }
+      .legend li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 4px 0;
+      }
+      .swatch {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 1px #8c959f;
+      }
+      .line {
+        width: 22px;
+        height: 4px;
+        background: var(--route);
+        border-radius: 2px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #issues button {
+        width: 100%;
+        text-align: left;
+        padding: 8px;
+        margin: 0 0 6px;
+        border: 1px solid #d0d7de;
+        border-radius: 6px;
+        background: #f6f8fa;
+        cursor: pointer;
+        font: inherit;
+      }
+      #issues button:hover,
+      #issues button:focus-visible {
+        background: #eaeef2;
+      }
+      .popup h3 {
+        margin: 0 0 6px;
+        font-size: 1rem;
+      }
+      .popup p {
+        margin: 2px 0;
+        font-size: 0.85rem;
+      }
+      .popup ul {
+        list-style: disc;
+        padding-left: 18px;
+        font-size: 0.8rem;
+      }
+      @media (max-width: 720px) {
+        body {
+          flex-direction: column-reverse;
+        }
+        #panel {
+          width: 100%;
+          max-width: none;
+          height: 40vh;
+          border-right: 0;
+          border-top: 1px solid #d0d7de;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <aside id="panel" aria-label="Información de la ruta">
+      <h1>Ruta $route_code — TuBus</h1>
+      <p class="muted" id="route-name"></p>
+      <span class="badge">Spike experimental · RGT-130</span>
+
+      <h2>Resumen</h2>
+      <dl id="summary"></dl>
+
+      <h2>Leyenda</h2>
+      <ul class="legend">
+        <li>
+          <span class="line"></span> Trazado oficial y sentido de circulación
+        </li>
+        <li>
+          <span class="swatch" style="background: var(--probable)"></span>
+          Ubicación probable (capa y rutero concuerdan)
+        </li>
+        <li>
+          <span class="swatch" style="background: var(--unverified)"></span>
+          Ubicación no verificada (capa y rutero discrepan)
+        </li>
+        <li>
+          <span class="swatch" style="background: var(--excluded)"></span>
+          Registro sin parada en el rutero vigente
+        </li>
+      </ul>
+
+      <h2>Paradas con discrepancias</h2>
+      <ul id="issues"></ul>
+
+      <h2>Fuentes</h2>
+      <p class="muted">
+        Rutero oficial versión 4 y capas de paradas y rutas de TuBus,
+        Municipalidad de Guatemala. Mapa base © OpenStreetMap, OpenMapTiles y
+        OpenFreeMap. Las ubicaciones no han sido verificadas en campo.
+      </p>
+    </aside>
+    <main id="map" aria-label="Mapa de la ruta $route_code"></main>
+
+    <script id="route-data" type="application/json">
+      $data
+    </script>
+    <script>
+      const data = JSON.parse(
+        document.getElementById("route-data").textContent,
+      );
+      const byType = (type) =>
+        data.features.filter((f) => f.properties.feature_type === type);
+      const stops = byType("stop");
+      const shape = byType("shape")[0];
+      const meta = data.metadata;
+      const byFid = new Map(
+        data.features
+          .filter((f) => f.properties.layer_fid !== undefined)
+          .map((f) => [f.properties.layer_fid, f]),
+      );
+
+      const element = (tag, text, className) => {
+        const node = document.createElement(tag);
+        if (text !== undefined) node.textContent = text;
+        if (className) node.className = className;
+        return node;
+      };
+
+      document.getElementById("route-name").textContent = meta.route_name;
+      const summary = document.getElementById("summary");
+      [
+        ["Paradas", meta.summary.stops],
+        ["Ubicación probable", meta.summary.location_probable],
+        ["Ubicación no verificada", meta.summary.location_unverified],
+        ["Con discrepancias", meta.summary.with_discrepancies],
+        ["Registros excluidos", meta.summary.excluded_records],
+        [
+          "Longitud del trazado",
+          (meta.summary.shape_length_m / 1000).toFixed(1) + " km",
+        ],
+      ].forEach(([label, value]) => {
+        summary.append(element("dt", label), element("dd", String(value)));
+      });
+
+      const map = new maplibregl.Map({
+        container: "map",
+        style: "$basemap_style",
+        center: [-90.53, 14.63],
+        zoom: 12,
+      });
+      map.addControl(new maplibregl.NavigationControl(), "top-right");
+      map.addControl(new maplibregl.ScaleControl({ unit: "metric" }));
+
+      const coordinates = shape.geometry.coordinates;
+      const bounds = coordinates.reduce(
+        (b, c) => b.extend(c),
+        new maplibregl.LngLatBounds(coordinates[0], coordinates[0]),
+      );
+
+      function popupContent(p) {
+        const root = element("div", undefined, "popup");
+        const title =
+          p.feature_type === "stop"
+            ? "Parada #" + p.stop_code + " (secuencia " + p.sequence + ")"
+            : "Registro excluido · FID " + p.layer_fid;
+        root.append(element("h3", title));
+        if (p.official_address)
+          root.append(element("p", "Rutero: " + p.official_address));
+        root.append(
+          element(
+            "p",
+            "Capa: " + (p.layer_name || "") + " — " + (p.layer_address || ""),
+          ),
+        );
+        if (p.feature_type === "stop") {
+          root.append(
+            element(
+              "p",
+              "FID " +
+                p.layer_fid +
+                " · " +
+                p.match_status +
+                " (" +
+                p.match_score +
+                ") · ubicación " +
+                p.quality.location,
+            ),
+          );
+          if (p.distance_to_next_m !== null) {
+            root.append(
+              element("p", "Siguiente parada a " + p.distance_to_next_m + " m"),
+            );
+          }
+          if (p.discrepancies.length) {
+            const list = element("ul");
+            p.discrepancies.forEach((d) => list.append(element("li", d)));
+            root.append(list);
+          }
+        } else {
+          root.append(element("p", p.reason));
+        }
+        return root;
+      }
+
+      function showPopup(feature, lngLat) {
+        new maplibregl.Popup({ maxWidth: "320px" })
+          .setLngLat(lngLat)
+          .setDOMContent(popupContent(feature.properties))
+          .addTo(map);
+      }
+
+      const issues = document.getElementById("issues");
+      stops
+        .filter((f) => f.properties.discrepancies.length)
+        .forEach((f) => {
+          const button = element(
+            "button",
+            "#" +
+              f.properties.stop_code +
+              " · " +
+              f.properties.discrepancies.length +
+              " discrepancia(s) · " +
+              f.properties.quality.location,
+          );
+          button.type = "button";
+          button.addEventListener("click", () => {
+            map.flyTo({ center: f.geometry.coordinates, zoom: 16.5 });
+            showPopup(f, f.geometry.coordinates);
+          });
+          const item = element("li");
+          item.append(button);
+          issues.append(item);
+        });
+
+      map.on("load", () => {
+        map.fitBounds(bounds, { padding: 40 });
+        map.addSource("route", { type: "geojson", data });
+        map.addLayer({
+          id: "route-line",
+          type: "line",
+          source: "route",
+          filter: ["==", ["get", "feature_type"], "shape"],
+          paint: {
+            "line-color": "#1f6feb",
+            "line-width": 4,
+            "line-opacity": 0.85,
+          },
+          layout: { "line-cap": "round", "line-join": "round" },
+        });
+        map.addLayer({
+          id: "route-direction",
+          type: "symbol",
+          source: "route",
+          filter: ["==", ["get", "feature_type"], "shape"],
+          layout: {
+            "symbol-placement": "line",
+            "symbol-spacing": 120,
+            "text-field": "›",
+            "text-size": 22,
+            "text-keep-upright": false,
+          },
+          paint: {
+            "text-color": "#ffffff",
+            "text-halo-color": "#1f6feb",
+            "text-halo-width": 1,
+          },
+        });
+        map.addLayer({
+          id: "stops",
+          type: "circle",
+          source: "route",
+          filter: [
+            "in",
+            ["get", "feature_type"],
+            ["literal", ["stop", "excluded_stop"]],
+          ],
+          paint: {
+            "circle-radius": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              11,
+              4,
+              16,
+              9,
+            ],
+            "circle-color": [
+              "case",
+              ["==", ["get", "feature_type"], "excluded_stop"],
+              "#cf222e",
+              ["==", ["get", "location_quality"], "probable"],
+              "#2da44e",
+              "#d29922",
+            ],
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 2,
+          },
+        });
+        map.addLayer({
+          id: "stop-labels",
+          type: "symbol",
+          source: "route",
+          minzoom: 14,
+          filter: ["==", ["get", "feature_type"], "stop"],
+          layout: {
+            "text-field": ["concat", "#", ["get", "stop_code"]],
+            "text-size": 12,
+            "text-offset": [0, 1.3],
+          },
+          paint: {
+            "text-color": "#1f2328",
+            "text-halo-color": "#ffffff",
+            "text-halo-width": 1.5,
+          },
+        });
+        // Las propiedades anidadas llegan serializadas; se usa la entidad original.
+        map.on("click", "stops", (event) => {
+          const original = byFid.get(event.features[0].properties.layer_fid);
+          showPopup(original, event.lngLat);
+        });
+        map.on(
+          "mouseenter",
+          "stops",
+          () => (map.getCanvas().style.cursor = "pointer"),
+        );
+        map.on(
+          "mouseleave",
+          "stops",
+          () => (map.getCanvas().style.cursor = ""),
+        );
+      });
+    </script>
+  </body>
+</html>
