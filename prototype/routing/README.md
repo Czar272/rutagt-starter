@@ -111,6 +111,15 @@ Genera `output/route_801_map.html`, un archivo autocontenido que se abre con dob
 - Los datos se incrustan escapando los caracteres sensibles de HTML y se insertan en la página con `textContent`, nunca con `innerHTML`.
 - La plantilla está en `map_template.html`.
 
+### Prueba de extremo a extremo del mapa (RGT-135)
+
+```powershell
+uv run playwright install chromium   # una sola vez
+uv run pytest prototype/routing -m e2e
+```
+
+Abre el mapa en Chromium sin interfaz (Playwright) y verifica que se dibujen el trazado y todas las paradas, que el panel muestre el resumen y las discrepancias, que un botón de discrepancia centre el mapa y abra la ventana de la parada, y que no haya errores en consola. El mapa base se sustituye por un estilo mínimo local; MapLibre se descarga del CDN, lo que también comprueba su hash de integridad. Se ejecuta en el CI en el trabajo «Pruebas e2e».
+
 ## Resultados
 
 Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
