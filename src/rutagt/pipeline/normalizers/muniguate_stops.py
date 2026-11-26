@@ -14,6 +14,7 @@ from rutagt.pipeline.normalizers.base import RawInput
 from rutagt.pipeline.normalizers.common import (
     address_zone,
     clean_optional,
+    issue,
     point_position,
 )
 from rutagt.pipeline.normalizers.models import Issue, Severity, SourceRef, StagedStop
@@ -25,19 +26,6 @@ NameParser = Callable[[str], tuple[str, str | None]]
 def keep_name(name: str) -> tuple[str, str | None]:
     """Parser por omisión: el nombre no lleva sentido."""
     return name, None
-
-
-def issue(
-    severity: Severity, code: str, message: str, external_id: str, **evidence: Any
-) -> Issue:
-    """Problema de un registro con su evidencia."""
-    return Issue(
-        severity=severity,
-        code=code,
-        message=message,
-        external_id=external_id,
-        evidence=evidence,
-    )
 
 
 def _zone(
