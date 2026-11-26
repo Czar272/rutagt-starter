@@ -120,6 +120,22 @@ uv run pytest prototype/routing -m e2e
 
 Abre el mapa en Chromium sin interfaz (Playwright) y verifica que se dibujen el trazado y todas las paradas, que el panel muestre el resumen y las discrepancias, que un botón de discrepancia centre el mapa y abra la ventana de la parada, y que no haya errores en consola. El mapa base se sustituye por un estilo mínimo local; MapLibre se descarga del CDN, lo que también comprueba su hash de integridad. Se ejecuta en el CI en el trabajo «Pruebas e2e».
 
+### Grafo dirigido (RGT-131)
+
+```powershell
+uv run python prototype/routing/route_graph.py
+```
+
+Construye `output/route_801_graph.json` a partir del GeoJSON enriquecido:
+
+- **Nodos:** las 47 paradas con su sentido: `0` de #063 a la terminal #087 (hacia la zona 9) y `1` de #088 a #109 (hacia Parque Los Pinos).
+- **Aristas de viaje:** de cada parada a la siguiente, con la distancia medida sobre el trazado y el tiempo como rango; la arista que sale de la terminal ya pertenece al regreso.
+- **Arista de cierre:** #109 → #063 (358 m), porque el trazado es un circuito cerrado.
+- **Calidad de la arista:** `probable` solo si ambas paradas tienen ubicación `probable`.
+- `RouteGraph.shortest_path()` calcula el recorrido más corto en el sentido de circulación (Dijkstra).
+
+Resultado: circuito de 19,9 km en **82–115 min**. Los tiempos usan supuestos sin fuente oficial (velocidad comercial de 12–18 km/h y 20 s de detención por parada), declarados en el archivo con calidad `unverified`; deben reemplazarse por datos operativos de la Municipalidad.
+
 ## Resultados
 
 Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
