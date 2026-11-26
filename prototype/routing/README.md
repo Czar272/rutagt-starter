@@ -41,6 +41,19 @@ El script compara cada parada del rutero con los registros GeoJSON de la ruta 80
 
 Puntaje: 0,55 por número de parada, 0,10 por zona y 0,35 × similitud de dirección normalizada.
 
+### Auditoría de candidatos (RGT-126)
+
+```powershell
+uv run python prototype/routing/audit_candidates.py
+```
+
+Genera `output/route_801_candidate_audit.md` y `.json` con las paradas que no son `EXACT` o que tienen alertas, sus tres mejores candidatos y alertas por:
+
+- salto mayor a 800 m respecto de la parada anterior de la secuencia;
+- número de parada del registro distinto al del rutero o repetido en varios registros;
+- registros fuera de orden respecto de la secuencia;
+- registros sin asignar con una dirección más parecida que la del candidato elegido.
+
 ## Resultados
 
 Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
