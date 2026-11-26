@@ -5,13 +5,23 @@ from collections import Counter
 from difflib import SequenceMatcher
 from pathlib import Path
 
+from rutagt.core.snapshots import resolve_snapshot
+
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-GEOJSON_FILE = PROJECT_ROOT / "data" / "raw" / "muniguate" / "tubus_stops_2025.geojson"
+RAW_ROOT = PROJECT_ROOT / "data" / "raw"
+STOPS_LAYER = "muniguate/tubus_stops_2025.geojson"
+ROUTES_LAYER = "muniguate/tubus_routes_2025.geojson"
 
 OFFICIAL_FILE = (
     PROJECT_ROOT / "prototype" / "routing" / "data" / "route_801_official.json"
 )
+
+
+def raw_file(layer: str) -> Path:
+    """Capa del snapshot crudo vigente (`data/raw/LATEST`, ADR-0032)."""
+    return resolve_snapshot(RAW_ROOT) / layer
+
 
 ROUTE_CODE = "801"
 
@@ -271,7 +281,7 @@ def print_candidate_usage(results, geojson_stops):
 
 
 def main():
-    geojson = load_json(GEOJSON_FILE)
+    geojson = load_json(raw_file(STOPS_LAYER))
     official = load_json(OFFICIAL_FILE)
 
     geojson_stops = get_route_stops(geojson)

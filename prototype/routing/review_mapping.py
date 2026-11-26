@@ -21,19 +21,19 @@ from pathlib import Path
 from typing import Any
 
 from analyze_route import (
-    GEOJSON_FILE,
     OFFICIAL_FILE,
-    PROJECT_ROOT,
     ROUTE_CODE,
+    ROUTES_LAYER,
+    STOPS_LAYER,
     address_similarity,
     extract_stop_code,
     get_route_stops,
     load_json,
+    raw_file,
     reconcile,
 )
 from linear_reference import Polyline
 
-ROUTES_FILE = PROJECT_ROOT / "data" / "raw" / "muniguate" / "tubus_routes_2025.geojson"
 DATA_DIR = Path(__file__).resolve().parent / "data"
 OUTPUT_DIR = Path(__file__).resolve().parent / "output"
 REVIEWED_AT = "2026-11-25"
@@ -68,7 +68,7 @@ EXCLUDED_NOTES: dict[int, str] = {
 
 
 def route_polyline() -> Polyline:
-    routes = load_json(ROUTES_FILE)
+    routes = load_json(raw_file(ROUTES_LAYER))
     for feature in routes["features"]:
         if str(feature["properties"].get("Codigoruta")) == ROUTE_CODE:
             return Polyline(feature["geometry"]["coordinates"])
@@ -255,7 +255,7 @@ def render_markdown(review: dict[str, Any]) -> str:
 def main() -> None:
     for stream in (sys.stdout, sys.stderr):
         stream.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
-    features = get_route_stops(load_json(GEOJSON_FILE))
+    features = get_route_stops(load_json(raw_file(STOPS_LAYER)))
     official_stops = load_json(OFFICIAL_FILE)["stops"]
     review = build_review(official_stops, features)
 

@@ -18,14 +18,15 @@ from pathlib import Path
 from typing import Any
 
 from analyze_route import (
-    GEOJSON_FILE,
     OFFICIAL_FILE,
     ROUTE_CODE,
+    STOPS_LAYER,
     address_similarity,
     candidate_score,
     extract_stop_code,
     get_route_stops,
     load_json,
+    raw_file,
     reconcile,
 )
 
@@ -226,7 +227,7 @@ def render_markdown(audit: dict[str, Any]) -> str:
 def main() -> None:
     for stream in (sys.stdout, sys.stderr):
         stream.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
-    features = get_route_stops(load_json(GEOJSON_FILE))
+    features = get_route_stops(load_json(raw_file(STOPS_LAYER)))
     official_stops = load_json(OFFICIAL_FILE)["stops"]
     audit = build_audit(official_stops, features)
 

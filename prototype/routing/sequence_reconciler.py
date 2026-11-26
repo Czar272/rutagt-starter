@@ -26,18 +26,18 @@ from pathlib import Path
 from typing import Any
 
 from analyze_route import (
-    GEOJSON_FILE,
     OFFICIAL_FILE,
-    PROJECT_ROOT,
     ROUTE_CODE,
+    ROUTES_LAYER,
+    STOPS_LAYER,
     extract_stop_code,
     get_route_stops,
     load_json,
     normalize_text,
+    raw_file,
 )
 from linear_reference import Polyline
 
-ROUTES_FILE = PROJECT_ROOT / "data" / "raw" / "muniguate" / "tubus_routes_2025.geojson"
 REVIEWED_FILE = (
     Path(__file__).resolve().parent
     / "data"
@@ -251,7 +251,7 @@ def render_markdown(
 
 
 def route_polyline() -> Polyline:
-    for feature in load_json(ROUTES_FILE)["features"]:
+    for feature in load_json(raw_file(ROUTES_LAYER))["features"]:
         if str(feature["properties"].get("Codigoruta")) == ROUTE_CODE:
             return Polyline(feature["geometry"]["coordinates"])
     raise SystemExit(f"No se encontró el trazado de la ruta {ROUTE_CODE}")
@@ -260,7 +260,7 @@ def route_polyline() -> Polyline:
 def main() -> int:
     for stream in (sys.stdout, sys.stderr):
         stream.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
-    features = get_route_stops(load_json(GEOJSON_FILE))
+    features = get_route_stops(load_json(raw_file(STOPS_LAYER)))
     official_stops = load_json(OFFICIAL_FILE)["stops"]
     assignments, unassigned = reconcile_sequence(
         official_stops, features, route_polyline()
