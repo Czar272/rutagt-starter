@@ -84,6 +84,8 @@ Ante una exposición: revocar y rotar el secreto inmediatamente; eliminarlo del 
 
 ## 8. Actualizaciones y parches
 
+Plazos para vulnerabilidades conocidas en dependencias que ya tienen una versión corregida. Los reportes de vulnerabilidades en el código propio siguen los plazos de [`SECURITY.md`](../../SECURITY.md).
+
 | Severidad de la vulnerabilidad | Plazo para corregir o mitigar       |
 | ------------------------------ | ----------------------------------- |
 | Crítica                        | 48 horas                            |
