@@ -1,0 +1,871 @@
+{
+  "route_code": "801",
+  "route_name": "Parque Los Pinos Z.7 / Terminal 4a avenida y 4a calle Z.9",
+  "experimental": true,
+  "ticket": "RGT-131",
+  "assumptions": {
+    "speed_kmh_range": [12.0, 18.0],
+    "dwell_seconds": 20,
+    "terminal_stop": "087",
+    "quality": "unverified",
+    "note": "El rutero no publica tiempos de recorrido; los tiempos son estimaciones a reemplazar por datos operativos oficiales."
+  },
+  "summary": {
+    "nodes": 47,
+    "edges": 47,
+    "circuit_length_m": 19856,
+    "circuit_time_min": [82, 115],
+    "direction_0_stops": 25,
+    "direction_1_stops": 22
+  },
+  "nodes": {
+    "063": {
+      "sequence": 1,
+      "direction_id": 0,
+      "coordinates": [-90.5284768883342, 14.6597971233314],
+      "position_m": 34,
+      "official_address": "Parque Los Pinos, 33 avenida y 39 calle, Colonia El Amparo I",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "064": {
+      "sequence": 2,
+      "direction_id": 0,
+      "coordinates": [-90.529952256204, 14.6570444466016],
+      "position_m": 377,
+      "official_address": "33 avenida y 36 calle, Colonia Sakerty I",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "065": {
+      "sequence": 3,
+      "direction_id": 0,
+      "coordinates": [-90.5310648915486, 14.6549216295056],
+      "position_m": 641,
+      "official_address": "33 avenida y 35 calle \"A\", Colonia Sakerty II",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "066": {
+      "sequence": 4,
+      "direction_id": 0,
+      "coordinates": [-90.533101726234, 14.651213894742],
+      "position_m": 1109,
+      "official_address": "33 avenida y 33 calle \"A\", Colonia Banvi I, frente a Parque Tecún Umán",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "067": {
+      "sequence": 5,
+      "direction_id": 0,
+      "coordinates": [-90.5341454024058, 14.6498133428979],
+      "position_m": 1301,
+      "official_address": "33 avenida y 31 calle, Colonia Bethania",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "068": {
+      "sequence": 6,
+      "direction_id": 0,
+      "coordinates": [-90.5356277304224, 14.647768770328],
+      "position_m": 1577,
+      "official_address": "33 avenida y 26 calle, Colonia Bethania",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "069": {
+      "sequence": 7,
+      "direction_id": 0,
+      "coordinates": [-90.5368464505138, 14.6461515245196],
+      "position_m": 1808,
+      "official_address": "33 avenida y 24 calle, Colonia Kjell Laugerud",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "070": {
+      "sequence": 8,
+      "direction_id": 0,
+      "coordinates": [-90.5399931690041, 14.6450507511459],
+      "position_m": 2185,
+      "official_address": "Anillo Periférico y 22 calle, Colonia Niño Dormido",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "071": {
+      "sequence": 9,
+      "direction_id": 0,
+      "coordinates": [-90.5421342136522, 14.6438494673065],
+      "position_m": 2453,
+      "official_address": "Anillo Periférico sur y 31 avenida, Colonia El Incienso",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "072": {
+      "sequence": 10,
+      "direction_id": 0,
+      "coordinates": [-90.5453150294957, 14.6424998903982],
+      "position_m": 2827,
+      "official_address": "Anillo Periférico sur y 20 calle, Cond. Bosques de Linda Villa",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "073": {
+      "sequence": 11,
+      "direction_id": 0,
+      "coordinates": [-90.5473504744873, 14.6405157075432],
+      "position_m": 3210,
+      "official_address": "Diagonal 24 y 16 calle, Colonia Ciudad de Plata II",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "074": {
+      "sequence": 12,
+      "direction_id": 0,
+      "coordinates": [-90.5466829795188, 14.637742758906],
+      "position_m": 3560,
+      "official_address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata I",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "075": {
+      "sequence": 13,
+      "direction_id": 0,
+      "coordinates": [-90.5475975623944, 14.6342774649145],
+      "position_m": 3961,
+      "official_address": "Parque Kaminaljuyú, diagonal 24 y 13 calle, Colonia Ciudad de Plata I",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "076": {
+      "sequence": 14,
+      "direction_id": 0,
+      "coordinates": [-90.5452969796467, 14.6287324396713],
+      "position_m": 4655,
+      "official_address": "9a calle y 14 avenida, Colonia Quinta Samayoa",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "077": {
+      "sequence": 15,
+      "direction_id": 0,
+      "coordinates": [-90.5430591657812, 14.6259212483372],
+      "position_m": 5048,
+      "official_address": "9a calle y 12 avenida, Colonia Quinta Samayoa",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "078": {
+      "sequence": 16,
+      "direction_id": 0,
+      "coordinates": [-90.5417054783098, 14.6219820305984],
+      "position_m": 5638,
+      "official_address": "9a avenida y 6a calle",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "079": {
+      "sequence": 17,
+      "direction_id": 0,
+      "coordinates": [-90.5435291311001, 14.6205951006691],
+      "position_m": 5887,
+      "official_address": "9a avenida y 4a calle",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "080": {
+      "sequence": 18,
+      "direction_id": 0,
+      "coordinates": [-90.5431873068632, 14.6190919899665],
+      "position_m": 6156,
+      "official_address": "Calz. San Juan y 11 avenida",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "081": {
+      "sequence": 19,
+      "direction_id": 0,
+      "coordinates": [-90.5403164600984, 14.6164698095009],
+      "position_m": 6589,
+      "official_address": "Pasarela Hosp. Roosevelt, calzada Roosevelt y 6a avenida, Colonia El Progreso",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "082": {
+      "sequence": 20,
+      "direction_id": 0,
+      "coordinates": [-90.5359213708242, 14.6138403220895],
+      "position_m": 7152,
+      "official_address": "Calz. Roosevelt, cuchilla antes del puente El Trébol",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "083": {
+      "sequence": 21,
+      "direction_id": 0,
+      "coordinates": [-90.5346383556129, 14.6121770075912],
+      "position_m": 7382,
+      "official_address": "Blvr. Liberación después del puente El Trébol",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "084": {
+      "sequence": 22,
+      "direction_id": 0,
+      "coordinates": [-90.5320651377697, 14.6086520604494],
+      "position_m": 7871,
+      "official_address": "Blvr. Liberación antes de la pasarela IGSS Pamplona",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "085": {
+      "sequence": 23,
+      "direction_id": 0,
+      "coordinates": [-90.5272026658329, 14.6064313721257],
+      "position_m": 8810,
+      "official_address": "Avenida La Castellana y 9a calle, Cantón Tívoli",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "086": {
+      "sequence": 24,
+      "direction_id": 0,
+      "coordinates": [-90.5262149969241, 14.6085399927816],
+      "position_m": 9066,
+      "official_address": "Parque de la Industria, avenida La Castellana y 8a calle, Cantón Guarda Viejo",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "087": {
+      "sequence": 25,
+      "direction_id": 0,
+      "coordinates": [-90.5211997808463, 14.6107879373507],
+      "position_m": 9839,
+      "official_address": "Terminal, 4a avenida y 4a calle, Cantón Tívoli",
+      "location_quality": "probable",
+      "is_terminal": true
+    },
+    "088": {
+      "sequence": 26,
+      "direction_id": 1,
+      "coordinates": [-90.5230743833846, 14.6108298428877],
+      "position_m": 10367,
+      "official_address": "5a calle y 2a avenida, Cantón Tívoli",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "089": {
+      "sequence": 27,
+      "direction_id": 1,
+      "coordinates": [-90.5258576830367, 14.6098417635182],
+      "position_m": 10754,
+      "official_address": "Parque de la Industria, avenida La Castellana y 39 calle, Cantón Guarda Viejo",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "090": {
+      "sequence": 28,
+      "direction_id": 1,
+      "coordinates": [-90.5277087236634, 14.6059104678696],
+      "position_m": 11232,
+      "official_address": "Avenida La Castellana y 41 calle, Cantón Guarda Viejo",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "091": {
+      "sequence": 29,
+      "direction_id": 1,
+      "coordinates": [-90.531776207235, 14.6090236546637],
+      "position_m": 12089,
+      "official_address": "Blvr. Liberación y 11 avenida",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "092": {
+      "sequence": 30,
+      "direction_id": 1,
+      "coordinates": [-90.5339607653772, 14.6122423733102],
+      "position_m": 12518,
+      "official_address": "Blvr. Liberación y 4a avenida",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "093": {
+      "sequence": 31,
+      "direction_id": 1,
+      "coordinates": [-90.5354664468963, 14.6140431926575],
+      "position_m": 12777,
+      "official_address": "Calzada Roosevelt y Cuchilla Trébol",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "094": {
+      "sequence": 32,
+      "direction_id": 1,
+      "coordinates": [-90.5380064019211, 14.6158903332312],
+      "position_m": 13130,
+      "official_address": "Pasarela Hosp. Roosevelt, calzada Roosevelt y 4a avenida, Colonia Landívar",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "095": {
+      "sequence": 33,
+      "direction_id": 1,
+      "coordinates": [-90.5426911843998, 14.619031130649],
+      "position_m": 13748,
+      "official_address": "Calz. San Juan y 8a avenida, Colonia Quinta Samayoa",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "096": {
+      "sequence": 34,
+      "direction_id": 1,
+      "coordinates": [-90.5436796132833, 14.6222845262517],
+      "position_m": 14360,
+      "official_address": "10a avenida y 5a calle, Colonia Quinta Samayoa",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "097": {
+      "sequence": 35,
+      "direction_id": 1,
+      "coordinates": [-90.5423223379407, 14.6233073382881],
+      "position_m": 14545,
+      "official_address": "10a avenida y 7a calle \"A\", Colonia Quinta Samayoa",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "098": {
+      "sequence": 36,
+      "direction_id": 1,
+      "coordinates": [-90.542945002485, 14.6260642743019],
+      "position_m": 14954,
+      "official_address": "9a calle y Calle de La Verbena, Colonia Castillo Lara",
+      "location_quality": "unverified",
+      "is_terminal": false
+    },
+    "099": {
+      "sequence": 37,
+      "direction_id": 1,
+      "coordinates": [-90.5459393855676, 14.629781419931],
+      "position_m": 15490,
+      "official_address": "9a calle y 15 avenida, Colonia Quinta Samayoa",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "100": {
+      "sequence": 38,
+      "direction_id": 1,
+      "coordinates": [-90.5474275930578, 14.6345097762988],
+      "position_m": 16074,
+      "official_address": "Diagonal 24 y 13 calle, Colonia Kaminal Juyú II",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "101": {
+      "sequence": 39,
+      "direction_id": 1,
+      "coordinates": [-90.5465556064963, 14.6377371563096],
+      "position_m": 16447,
+      "official_address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "102": {
+      "sequence": 40,
+      "direction_id": 1,
+      "coordinates": [-90.5462102419988, 14.6409228706572],
+      "position_m": 16814,
+      "official_address": "31 avenida y 18 calle, Colonia Mario Julio Salazar",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "103": {
+      "sequence": 41,
+      "direction_id": 1,
+      "coordinates": [-90.5426327867198, 14.6432972099302],
+      "position_m": 17299,
+      "official_address": "Anillo Periférico y 21 calle, Colonia El Incienso",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "104": {
+      "sequence": 42,
+      "direction_id": 1,
+      "coordinates": [-90.5398294474503, 14.6447702489403],
+      "position_m": 17642,
+      "official_address": "Anillo Periférico y 30 avenida, Colonia 4 de febrero",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "105": {
+      "sequence": 43,
+      "direction_id": 1,
+      "coordinates": [-90.5358332119588, 14.647385510308],
+      "position_m": 18253,
+      "official_address": "33 avenida y 26 calle, Colonia Bethania",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "106": {
+      "sequence": 44,
+      "direction_id": 1,
+      "coordinates": [-90.5341127504418, 14.6495473913726],
+      "position_m": 18556,
+      "official_address": "33 avenida y 30 calle, Colonia Bethania",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "107": {
+      "sequence": 45,
+      "direction_id": 1,
+      "coordinates": [-90.5326728094319, 14.6514903630121],
+      "position_m": 18821,
+      "official_address": "33 avenida y 33 calle",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "108": {
+      "sequence": 46,
+      "direction_id": 1,
+      "coordinates": [-90.5307584429676, 14.6550887294693],
+      "position_m": 19271,
+      "official_address": "33 avenida y 35 calle \"B\", Colonia Sakerty II",
+      "location_quality": "probable",
+      "is_terminal": false
+    },
+    "109": {
+      "sequence": 47,
+      "direction_id": 1,
+      "coordinates": [-90.529628119795, 14.6571752729618],
+      "position_m": 19532,
+      "official_address": "33 avenida y 36 calle, Colonia Sakerty I",
+      "location_quality": "probable",
+      "is_terminal": false
+    }
+  },
+  "edges": [
+    {
+      "origin": "063",
+      "destination": "064",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 343,
+      "time_min": [1.5, 2.0],
+      "quality": "probable"
+    },
+    {
+      "origin": "064",
+      "destination": "065",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 264,
+      "time_min": [1.2, 1.7],
+      "quality": "probable"
+    },
+    {
+      "origin": "065",
+      "destination": "066",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 468,
+      "time_min": [1.9, 2.7],
+      "quality": "unverified"
+    },
+    {
+      "origin": "066",
+      "destination": "067",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 192,
+      "time_min": [1.0, 1.3],
+      "quality": "unverified"
+    },
+    {
+      "origin": "067",
+      "destination": "068",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 276,
+      "time_min": [1.3, 1.7],
+      "quality": "unverified"
+    },
+    {
+      "origin": "068",
+      "destination": "069",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 231,
+      "time_min": [1.1, 1.5],
+      "quality": "probable"
+    },
+    {
+      "origin": "069",
+      "destination": "070",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 377,
+      "time_min": [1.6, 2.2],
+      "quality": "probable"
+    },
+    {
+      "origin": "070",
+      "destination": "071",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 268,
+      "time_min": [1.2, 1.7],
+      "quality": "probable"
+    },
+    {
+      "origin": "071",
+      "destination": "072",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 374,
+      "time_min": [1.6, 2.2],
+      "quality": "probable"
+    },
+    {
+      "origin": "072",
+      "destination": "073",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 383,
+      "time_min": [1.6, 2.2],
+      "quality": "unverified"
+    },
+    {
+      "origin": "073",
+      "destination": "074",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 350,
+      "time_min": [1.5, 2.1],
+      "quality": "unverified"
+    },
+    {
+      "origin": "074",
+      "destination": "075",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 401,
+      "time_min": [1.7, 2.3],
+      "quality": "unverified"
+    },
+    {
+      "origin": "075",
+      "destination": "076",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 694,
+      "time_min": [2.6, 3.8],
+      "quality": "unverified"
+    },
+    {
+      "origin": "076",
+      "destination": "077",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 393,
+      "time_min": [1.6, 2.3],
+      "quality": "unverified"
+    },
+    {
+      "origin": "077",
+      "destination": "078",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 590,
+      "time_min": [2.3, 3.3],
+      "quality": "unverified"
+    },
+    {
+      "origin": "078",
+      "destination": "079",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 249,
+      "time_min": [1.2, 1.6],
+      "quality": "unverified"
+    },
+    {
+      "origin": "079",
+      "destination": "080",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 269,
+      "time_min": [1.2, 1.7],
+      "quality": "unverified"
+    },
+    {
+      "origin": "080",
+      "destination": "081",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 433,
+      "time_min": [1.8, 2.5],
+      "quality": "unverified"
+    },
+    {
+      "origin": "081",
+      "destination": "082",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 563,
+      "time_min": [2.2, 3.1],
+      "quality": "unverified"
+    },
+    {
+      "origin": "082",
+      "destination": "083",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 230,
+      "time_min": [1.1, 1.5],
+      "quality": "unverified"
+    },
+    {
+      "origin": "083",
+      "destination": "084",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 489,
+      "time_min": [2.0, 2.8],
+      "quality": "unverified"
+    },
+    {
+      "origin": "084",
+      "destination": "085",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 939,
+      "time_min": [3.5, 5.0],
+      "quality": "unverified"
+    },
+    {
+      "origin": "085",
+      "destination": "086",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 256,
+      "time_min": [1.2, 1.6],
+      "quality": "unverified"
+    },
+    {
+      "origin": "086",
+      "destination": "087",
+      "kind": "ride",
+      "direction_id": 0,
+      "distance_m": 773,
+      "time_min": [2.9, 4.2],
+      "quality": "unverified"
+    },
+    {
+      "origin": "087",
+      "destination": "088",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 528,
+      "time_min": [2.1, 3.0],
+      "quality": "probable"
+    },
+    {
+      "origin": "088",
+      "destination": "089",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 387,
+      "time_min": [1.6, 2.3],
+      "quality": "probable"
+    },
+    {
+      "origin": "089",
+      "destination": "090",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 478,
+      "time_min": [1.9, 2.7],
+      "quality": "probable"
+    },
+    {
+      "origin": "090",
+      "destination": "091",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 857,
+      "time_min": [3.2, 4.6],
+      "quality": "probable"
+    },
+    {
+      "origin": "091",
+      "destination": "092",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 429,
+      "time_min": [1.8, 2.5],
+      "quality": "probable"
+    },
+    {
+      "origin": "092",
+      "destination": "093",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 259,
+      "time_min": [1.2, 1.6],
+      "quality": "probable"
+    },
+    {
+      "origin": "093",
+      "destination": "094",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 353,
+      "time_min": [1.5, 2.1],
+      "quality": "probable"
+    },
+    {
+      "origin": "094",
+      "destination": "095",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 618,
+      "time_min": [2.4, 3.4],
+      "quality": "probable"
+    },
+    {
+      "origin": "095",
+      "destination": "096",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 612,
+      "time_min": [2.4, 3.4],
+      "quality": "probable"
+    },
+    {
+      "origin": "096",
+      "destination": "097",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 185,
+      "time_min": [0.9, 1.3],
+      "quality": "probable"
+    },
+    {
+      "origin": "097",
+      "destination": "098",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 409,
+      "time_min": [1.7, 2.4],
+      "quality": "unverified"
+    },
+    {
+      "origin": "098",
+      "destination": "099",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 536,
+      "time_min": [2.1, 3.0],
+      "quality": "unverified"
+    },
+    {
+      "origin": "099",
+      "destination": "100",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 584,
+      "time_min": [2.3, 3.3],
+      "quality": "probable"
+    },
+    {
+      "origin": "100",
+      "destination": "101",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 373,
+      "time_min": [1.6, 2.2],
+      "quality": "probable"
+    },
+    {
+      "origin": "101",
+      "destination": "102",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 367,
+      "time_min": [1.6, 2.2],
+      "quality": "probable"
+    },
+    {
+      "origin": "102",
+      "destination": "103",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 485,
+      "time_min": [1.9, 2.8],
+      "quality": "probable"
+    },
+    {
+      "origin": "103",
+      "destination": "104",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 343,
+      "time_min": [1.5, 2.0],
+      "quality": "probable"
+    },
+    {
+      "origin": "104",
+      "destination": "105",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 611,
+      "time_min": [2.4, 3.4],
+      "quality": "probable"
+    },
+    {
+      "origin": "105",
+      "destination": "106",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 303,
+      "time_min": [1.3, 1.8],
+      "quality": "probable"
+    },
+    {
+      "origin": "106",
+      "destination": "107",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 265,
+      "time_min": [1.2, 1.7],
+      "quality": "probable"
+    },
+    {
+      "origin": "107",
+      "destination": "108",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 450,
+      "time_min": [1.8, 2.6],
+      "quality": "probable"
+    },
+    {
+      "origin": "108",
+      "destination": "109",
+      "kind": "ride",
+      "direction_id": 1,
+      "distance_m": 261,
+      "time_min": [1.2, 1.6],
+      "quality": "probable"
+    },
+    {
+      "origin": "109",
+      "destination": "063",
+      "kind": "circuit_closure",
+      "direction_id": 1,
+      "distance_m": 358,
+      "time_min": [1.5, 2.1],
+      "quality": "probable"
+    }
+  ]
+}
