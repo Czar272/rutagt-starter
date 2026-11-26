@@ -21,3 +21,6 @@ package-lock.json
 
 # Datos geoespaciales: no se reformatean
 *.geojson
+
+# Reportes HTML generados por los spikes
+prototype/**/output/*.html
