@@ -56,6 +56,7 @@ El proceso está definido en [ADR-0001](0001-registrar-decisiones-de-arquitectur
 | [0029](0029-convenciones-del-esquema-canonico.md)                     | Adoptar convenciones para el esquema canónico de la base de datos                             | Aceptado                 | 2026-11-25 | RGT-28                 |
 | [0030](0030-migraciones-con-alembic-en-sql-explicito.md)              | Gestionar las migraciones del esquema con Alembic y SQL explícito                             | Aceptado                 | 2026-11-26 | RGT-29                 |
 | [0031](0031-escala-de-calidad-y-reglas-de-vigencia.md)                | Adoptar una escala de calidad de datos con reglas de vigencia                                 | Aceptado                 | 2026-11-26 | RGT-31                 |
+| [0032](0032-versionado-de-datasets-con-snapshots-inmutables.md)       | Versionar los datasets con snapshots inmutables y versiones publicadas por fecha              | Aceptado                 | 2026-11-26 | RGT-32                 |
 
 ## Decisiones pendientes
 
@@ -63,7 +64,6 @@ Decisiones identificadas que todavía no tienen ADR. Cada una se registrará al 
 
 | Decisión                                      | Ticket  |
 | --------------------------------------------- | ------- |
-| Política de versionado de datasets            | RGT-32  |
 | Función de ranking de itinerarios             | RGT-60  |
 | Licencia del código y de los datos publicados | RGT-111 |
 
