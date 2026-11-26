@@ -24,6 +24,8 @@ database/migrations/versions/
   r0001_initial_schema.py                Revisión
   r0001_initial_schema/upgrade.sql       SQL que aplica
   r0001_initial_schema/downgrade.sql     SQL que revierte
+  r0002_quality_scale_levels/            Niveles estimated y community (ADR-0031)
+  r0003_quality_validity_rules/          Reglas de vigencia de la calidad (ADR-0031)
 ```
 
 | Esquema      | Contenido                                                           |
@@ -34,7 +36,20 @@ database/migrations/versions/
 | `community`  | Reportes de la comunidad                                            |
 | `public`     | Solo la extensión PostGIS, funciones `rutagt_*` y `alembic_version` |
 
-Funciones auxiliares: `rutagt_is_entity_id(id, tipo)` valida identificadores `<agencia>:<tipo>:<código>`, `rutagt_distance_m(a, b)` mide en metros y `rutagt_set_updated_at()` mantiene `updated_at`.
+Funciones auxiliares: `rutagt_is_entity_id(id, tipo)` valida identificadores `<agencia>:<tipo>:<código>`, `rutagt_distance_m(a, b)` mide en metros, `rutagt_set_updated_at()` mantiene `updated_at` y `rutagt_effective_quality(nivel, evaluado_en, vigencia_fuente, momento)` aplica las reglas de vigencia de la calidad.
+
+## Calidad de los datos
+
+La escala `transit.observation_quality` ([ADR-0031](../docs/architecture/adr/0031-escala-de-calidad-y-reglas-de-vigencia.md)) va de mayor a menor confianza: `official`, `verified`, `probable`, `estimated`, `community`, `unverified`. Por eso `max()` sobre varios niveles da el más débil (regla del eslabón más débil).
+
+Las reglas de vigencia están en `provenance.quality_rule`, como datos: cambiarlas no requiere una migración. La calidad efectiva se calcula al consultar:
+
+```sql
+SELECT stop_id,
+       public.rutagt_effective_quality(s.location_quality, s.location_assessed_at, d.valid_to)
+FROM transit.stop s
+LEFT JOIN provenance.data_source d USING (source_id);
+```
 
 ## Agregar una migración
 
