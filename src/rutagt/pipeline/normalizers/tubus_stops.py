@@ -20,13 +20,14 @@ import re
 from collections import defaultdict
 
 from rutagt.pipeline.normalizers.base import RawInput, register_adapter
+from rutagt.pipeline.normalizers.common import issue
 from rutagt.pipeline.normalizers.models import (
     Issue,
     Severity,
     StagedStop,
     StagingBatch,
 )
-from rutagt.pipeline.normalizers.muniguate_stops import adapt_stop_layer, issue
+from rutagt.pipeline.normalizers.muniguate_stops import adapt_stop_layer
 
 SOURCE_ID = "muniguate_tubus_stops_2025"
 
