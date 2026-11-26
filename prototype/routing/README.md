@@ -6,7 +6,7 @@ Investigación técnica aislada ([ADR-0013](../../docs/architecture/adr/0013-ais
 | ------ | -------------------------------------------------------------------------------------------- |
 | Ticket | [RGT-115](https://pablo2003cesar.atlassian.net/browse/RGT-115) y subtareas RGT-126 a RGT-133 |
 | Sprint | 4 — Spike ruta 801                                                                           |
-| Estado | En curso                                                                                     |
+| Estado | Concluido                                                                                    |
 
 > Este código es experimental. No se importa desde `src/rutagt/` y no forma parte del producto. Lo que se decida conservar se reimplementará en el paquete mediante tickets ordinarios.
 
@@ -150,4 +150,4 @@ Supuestos sin fuente oficial (`unverified`): caminata en línea recta × 1,3 a 4
 
 ## Resultados
 
-Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
+Los reportes generados se guardan en `output/`. Los hallazgos, los datos faltantes y las recomendaciones para el código productivo están en el [informe del spike](../../docs/research/spike-ruta-801.md).
