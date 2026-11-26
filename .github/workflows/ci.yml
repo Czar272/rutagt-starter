@@ -103,6 +103,56 @@ jobs:
             junit.xml
           retention-days: 30
 
+  integration:
+    name: Pruebas de integración
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      db:
+        # Misma imagen que compose.yaml.
+        image: postgis/postgis:17-3.5
+        env:
+          POSTGRES_DB: rutagt
+          POSTGRES_USER: rutagt
+          # Contraseña de una base efímera de CI, no es un secreto.
+          POSTGRES_PASSWORD: rutagt-ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U rutagt -d rutagt"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      RUTAGT_DB_HOST: localhost
+      RUTAGT_DB_PORT: "5432"
+      RUTAGT_DB_NAME: rutagt
+      RUTAGT_DB_USER: rutagt
+      RUTAGT_DB_PASSWORD: rutagt-ci
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
+        with:
+          enable-cache: true
+
+      - name: Instalar dependencias
+        run: uv sync
+
+      - name: Aplicar las migraciones a la base vacía
+        run: uv run alembic upgrade head
+
+      - name: Ejecutar pruebas de integración
+        run: uv run pytest -m integration --junitxml=junit-integration.xml
+
+      - name: Publicar resultados
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: pruebas-integracion
+          path: junit-integration.xml
+          retention-days: 30
+
   e2e:
     name: Pruebas e2e
     runs-on: ubuntu-latest
