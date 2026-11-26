@@ -3,7 +3,12 @@
 Importar este paquete registra los adaptadores incluidos en RutaGT (ADR-0033).
 """
 
-from rutagt.pipeline.normalizers import transmetro_routes, transmetro_stops, tubus_stops
+from rutagt.pipeline.normalizers import (
+    transmetro_routes,
+    transmetro_stops,
+    tubus_routes,
+    tubus_stops,
+)
 from rutagt.pipeline.normalizers.base import (
     RawInput,
     get_adapter,
@@ -18,5 +23,6 @@ __all__ = [
     "registered_sources",
     "transmetro_routes",
     "transmetro_stops",
+    "tubus_routes",
     "tubus_stops",
 ]
