@@ -18,6 +18,7 @@ src/rutagt/
 ├── __init__.py                 # versión del paquete
 ├── core/                       # transversal; no depende de ningún otro módulo de rutagt
 │   ├── errors.py               # jerarquía de excepciones
+│   ├── geo.py                  # límites de Guatemala y del Área Metropolitana
 │   ├── io.py                   # lectura/escritura JSON, checksums, marcas de tiempo, commit
 │   ├── logging.py              # configuración del registro
 │   ├── settings.py             # configuración desde variables RUTAGT_*
@@ -46,6 +47,7 @@ src/rutagt/
 │   │   ├── transmetro_stops.py # adaptador de estaciones de Transmetro (RGT-36)
 │   │   ├── tubus_routes.py     # adaptador de rutas y trazados de TuBus (RGT-39)
 │   │   ├── tubus_stops.py      # adaptador de paradas de TuBus (RGT-37)
+│   │   ├── validations.py      # validaciones geoespaciales y severidad (ADR-0034)
 │   │   └── cli.py              # punto de entrada `rutagt-normalize`
 │   └── exporters/              # Sprint 8 (GTFS)
 └── api/                        # Sprint 10 (ADR-0022)
