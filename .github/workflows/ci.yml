@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Lunes 06:00 en Guatemala: detecta vulnerabilidades nuevas sin cambios de código.
+    - cron: "0 12 * * 1"
 
 permissions:
   contents: read
@@ -37,6 +40,30 @@ jobs:
 
       - name: Ejecutar verificaciones de pre-commit
         run: uv run pre-commit run --all-files --show-diff-on-failure
+
+  audit:
+    name: Auditoría de dependencias
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@1db35dd8eee11c5894872e0b383ae6c406cf738d # v10.4.0
+        with:
+          enable-cache: true
+
+      - name: Exportar dependencias fijadas con hashes
+        run: >-
+          uv export --frozen --all-groups --no-emit-project
+          --format requirements-txt -o "$RUNNER_TEMP/requirements.txt"
+
+      - name: Buscar vulnerabilidades conocidas
+        run: >-
+          uvx --python 3.12 pip-audit@2.9.0
+          -r "$RUNNER_TEMP/requirements.txt"
+          --strict --disable-pip --require-hashes --progress-spinner off
 
   tests:
     name: Pruebas (${{ matrix.os }}, Python ${{ matrix.python }})
