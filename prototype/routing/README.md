@@ -98,6 +98,19 @@ Genera `output/route_801_enriched.geojson` (y su `.provenance.json`) con:
 
 La calidad usa los niveles de `observation_quality` del esquema canónico: secuencia, código y dirección son `official` (rutero); la ubicación es `probable` cuando la capa y el rutero concuerdan y `unverified` cuando discrepan. Los metadatos incluyen la procedencia de cada fuente con su checksum.
 
+### Mapa interactivo (RGT-130)
+
+```powershell
+uv run python prototype/routing/render_map.py
+```
+
+Genera `output/route_801_map.html`, un archivo autocontenido que se abre con doble clic (sin servidor). Muestra el trazado con el sentido de circulación, las paradas coloreadas por la calidad de su ubicación (verde `probable`, ámbar `unverified`, rojo registros excluidos), etiquetas con el número de parada y una ventana con la evidencia de cada parada. El panel lateral resume la ruta y lista las paradas con discrepancias; al hacer clic en una, el mapa se centra en ella.
+
+- MapLibre GL JS 5.24.1 desde CDN con verificación de integridad (SRI). Es la última versión distribuida como un único archivo UMD; la PWA usará la versión 6 (módulos ES) mediante npm ([ADR-0023](../../docs/architecture/adr/0023-react-vite-y-maplibre-para-la-pwa.md)).
+- Mapa base vectorial de [OpenFreeMap](https://openfreemap.org/), sin clave de API, con la atribución de OpenStreetMap.
+- Los datos se incrustan escapando los caracteres sensibles de HTML y se insertan en la página con `textContent`, nunca con `innerHTML`.
+- La plantilla está en `map_template.html`.
+
 ## Resultados
 
 Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
