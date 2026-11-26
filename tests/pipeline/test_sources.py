@@ -28,6 +28,7 @@ def test_project_catalog_is_valid() -> None:
         ("{no es json", "No se pudo leer"),
         ('{"sources": [{"id": "x", "disabled_reason": " "}]}', "vacío"),
         ('{"sources": [{"id": "x", "disabled_reason": 1}]}', "vacío"),
+        ('{"sources": [{"id": "x", "shapes_source": "y"}]}', "desconocida: y"),
     ],
 )
 def test_rejects_invalid_catalogs(tmp_path: Path, content: str, message: str) -> None:

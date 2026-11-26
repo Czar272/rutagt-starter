@@ -8,11 +8,12 @@ import pytest
 
 from rutagt.core.io import sha256_bytes, write_json
 from rutagt.core.snapshots import create_snapshot, write_latest
-from rutagt.pipeline.normalizers import base, cli
+from rutagt.pipeline.normalizers import base, cli, runner
 from rutagt.pipeline.normalizers.models import (
     Issue,
     Severity,
     SourceRef,
+    StagedShape,
     StagedStop,
     StagingBatch,
 )
@@ -306,3 +307,90 @@ def test_cli_invalid_log_format(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("RUTAGT_LOG_FORMAT", "xml")
 
     assert cli.main([]) == cli.EXIT_CONFIGURATION_ERROR
+
+
+def shapes_adapter(raw: base.RawInput) -> StagingBatch:
+    """Un trazado de la ruta 801 lejos de las paradas de `COLLECTION`."""
+    ref = SourceRef(source_id=raw.source_id, external_id="1", raw={})
+    shape = StagedShape(
+        source=ref,
+        route_code="801",
+        coordinates=((-90.5, 14.61), (-90.4, 14.61)),
+        length_m=10_760.0,
+    )
+    return StagingBatch(
+        source_id=raw.source_id, snapshot_id=raw.snapshot_id, records=(shape,)
+    )
+
+
+def stops_of_801(raw: base.RawInput) -> StagingBatch:
+    batch = stops_adapter(raw)
+    records = tuple(
+        r.model_copy(update={"route_codes": ("801",)}) for r in batch.records
+    )
+    return batch.model_copy(update={"records": records})
+
+
+def test_validates_stops_against_their_shapes_source(
+    raw: Path, tmp_path: Path, registry: dict[str, base.Adapter]
+) -> None:
+    registry["muni_paradas"] = stops_of_801
+    registry["muni_rutas"] = shapes_adapter
+    sources = [{**SOURCES[0], "shapes_source": "muni_rutas"}, SOURCES[1]]
+
+    summary = normalize_snapshot(sources, raw / SNAPSHOT, tmp_path / "staging")
+
+    batch = StagingBatch.model_validate_json(
+        (tmp_path / "staging" / SNAPSHOT / "muni_paradas.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    far = [i for i in batch.issues if i.code == "parada_lejos_de_ruta"]
+    assert [i.severity for i in far] == [Severity.ERROR]
+    assert summary.ok is False
+    assert summary.successful[0]["issues"] == {"error": 1, "warning": 1}
+
+
+def test_cross_validation_is_skipped_without_the_shapes_source(
+    raw: Path, tmp_path: Path
+) -> None:
+    sources = [{**SOURCES[0], "shapes_source": "muni_rutas"}]
+
+    summary = normalize_snapshot(sources, raw / SNAPSHOT, tmp_path / "staging")
+
+    assert summary.ok
+    assert summary.successful[0]["issues"] == {"info": 1, "warning": 1}
+
+
+def test_batch_validations_run_after_the_adapter(
+    raw: Path, tmp_path: Path, registry: dict[str, base.Adapter]
+) -> None:
+    def outside(raw_input: base.RawInput) -> StagingBatch:
+        batch = stops_adapter(raw_input)
+        moved = batch.records[0].model_copy(update={"position": (-90.5, -14.6)})
+        return batch.model_copy(update={"records": (moved,)})
+
+    registry["muni_paradas"] = outside
+
+    summary = normalize_snapshot(SOURCES[:1], raw / SNAPSHOT, tmp_path / "staging")
+
+    assert summary.successful[0]["issues"] == {"error": 1, "warning": 1}
+    assert summary.ok is False
+
+
+def test_write_failures_do_not_stop_other_sources(
+    raw: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    original = runner.write_batch
+
+    def failing(batch: StagingBatch, *args: Any, **kwargs: Any) -> dict[str, Any]:
+        if batch.source_id == "muni_paradas":
+            raise OSError("disco lleno")
+        return original(batch, *args, **kwargs)
+
+    monkeypatch.setattr(runner, "write_batch", failing)
+
+    summary = normalize_snapshot(SOURCES[:2], raw / SNAPSHOT, tmp_path / "staging")
+
+    assert summary.failed == [{"source_id": "muni_paradas", "error": "disco lleno"}]
+    assert [s["source_id"] for s in summary.successful] == ["muni_rutas"]
