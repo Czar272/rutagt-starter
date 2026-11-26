@@ -64,7 +64,7 @@ Este documento añade las **comprobaciones entre datasets**, que dependen del do
 | --- | --- | --- | --- |
 | P1 | `Codigoruta` codifica línea y variante | `1000`, `2000`, …, `12000`, `12001`, `12002`, `18000`–`18002` (línea × 1000 + variante) | Derivar `route` (línea) y `route_pattern` (variante) del código; documentar la regla y validarla con la Municipalidad |
 | P2 | Las variantes no tienen trazado propio | La Línea 12 y sus dos «Directo» comparten geometría idéntica; también las dos variantes «Expres» de la Línea 18 | La diferencia entre variantes está en las estaciones que sirven, no en el trazado: un mismo `shape` para varios patrones, con paradas distintas |
-| P3 | La Línea 18 es un `MultiLineString` | 4 tramos contiguos (ya medido en el inventario) | Unir en un `LineString` al normalizar, verificando la continuidad |
+| P3 | La Línea 18 es un `MultiLineString` | 4 tramos contiguos (ya medido en el inventario). No van en fila: forman un circuito con un lazo en cada extremo (tramo 0 lazo en A, 1 de A a B, 2 de B a A, 3 lazo en B) | Unir en un `LineString` al normalizar, verificando la continuidad. El adaptador de RGT-38 los une en el orden 0, 1, 3, 2 sin invertir ninguno y lo deja en `tramos_unidos`; confirmar el recorrido con la fuente |
 | P4 | `Shape__Length` no son metros reales | Es ≈3,5 % mayor que la longitud geodésica en las 20 rutas de ambos sistemas, lo que es consistente con medir en Web Mercator | No usarlo; calcular la longitud con `rutagt_distance_m` o geografía de PostGIS |
 | P5 | Errores ortográficos en `Nombre` | «Extención», «Expres» | Corregir en `route_long_name` normalizado conservando el original en `source_record` |
 
