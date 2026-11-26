@@ -54,3 +54,24 @@ def test_git_revision_without_git(
     monkeypatch.setattr("rutagt.core.io.shutil.which", lambda name: None)
 
     assert io.git_revision(tmp_path) is None
+
+
+def test_write_json_atomic_replaces_whole_file(tmp_path: Path) -> None:
+    path = tmp_path / "salida.json"
+    path.write_text("viejo", encoding="utf-8")
+
+    body = io.write_json_atomic(path, {"a": 1})
+
+    assert path.read_bytes() == body
+    assert not list(tmp_path.glob(".*.tmp"))
+
+
+def test_write_json_atomic_keeps_previous_file_on_failure(tmp_path: Path) -> None:
+    path = tmp_path / "salida.json"
+    path.write_text("viejo", encoding="utf-8")
+
+    with pytest.raises(TypeError):
+        io.write_json_atomic(path, {"a": object()})
+
+    assert path.read_text(encoding="utf-8") == "viejo"
+    assert not list(tmp_path.glob(".*.tmp"))

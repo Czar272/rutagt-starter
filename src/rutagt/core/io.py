@@ -4,6 +4,7 @@ import hashlib
 import json
 import shutil
 import subprocess
+import uuid
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -58,3 +59,18 @@ def git_revision(repository: Path) -> str | None:
     )
     revision = result.stdout.strip()
     return revision if result.returncode == 0 and revision else None
+
+
+def write_json_atomic(path: Path, value: Any) -> bytes:
+    """Como `write_json`, pero escribe en un temporal y lo renombra al terminar.
+
+    Quien lea el archivo ve la versión anterior completa o la nueva completa,
+    nunca una escritura a medias.
+    """
+    temporary = path.with_name(f".{path.name}.{uuid.uuid4().hex}.tmp")
+    try:
+        body = write_json(temporary, value)
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
+    return body
