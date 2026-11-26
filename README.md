@@ -177,7 +177,7 @@ uv run rutagt-collect fetch --source muniguate_transmetro_stops_2025
 # Perfilar los GeoJSON del snapshot vigente (salida en data/staging/<snapshot>/profiles)
 uv run rutagt-profile
 
-# Traducir el snapshot vigente a la capa staging con los adaptadores registrados (ADR-0033)
+# Traducir el snapshot vigente a staging con los adaptadores registrados y validar la geometría (ADR-0033, ADR-0034)
 uv run rutagt-normalize
 ```
 
