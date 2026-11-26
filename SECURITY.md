@@ -22,12 +22,14 @@ Repórtala de forma privada desde la pestaña [**Security → Report a vulnerabi
 
 ## Qué esperar
 
-| Etapa                                  | Plazo objetivo                                            |
-| -------------------------------------- | --------------------------------------------------------- |
-| Confirmación de recepción              | 3 días hábiles                                            |
-| Evaluación inicial y severidad         | 10 días hábiles                                           |
-| Corrección de severidad alta o crítica | 30 días                                                   |
-| Divulgación pública                    | Tras publicar la corrección, coordinada con quien reportó |
+| Etapa                                | Plazo objetivo                                            |
+| ------------------------------------ | --------------------------------------------------------- |
+| Confirmación de recepción            | 3 días hábiles                                            |
+| Evaluación inicial y severidad       | 10 días hábiles                                           |
+| Corrección de severidad crítica      | 7 días                                                    |
+| Corrección de severidad alta         | 30 días                                                   |
+| Corrección de severidad media o baja | Siguiente versión planificada                             |
+| Divulgación pública                  | Tras publicar la corrección, coordinada con quien reportó |
 
 Se reconocerá públicamente a quien reporte, salvo que prefiera permanecer en el anonimato.
 
