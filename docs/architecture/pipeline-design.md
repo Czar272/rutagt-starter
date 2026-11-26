@@ -18,9 +18,10 @@ src/rutagt/
 ├── __init__.py                 # versión del paquete
 ├── core/                       # transversal; no depende de ningún otro módulo de rutagt
 │   ├── errors.py               # jerarquía de excepciones
-│   ├── io.py                   # lectura/escritura JSON, checksums, marcas de tiempo
+│   ├── io.py                   # lectura/escritura JSON, checksums, marcas de tiempo, commit
 │   ├── logging.py              # configuración del registro
-│   └── settings.py             # configuración desde variables RUTAGT_*
+│   ├── settings.py             # configuración desde variables RUTAGT_*
+│   └── snapshots.py            # snapshots crudos inmutables y LATEST (ADR-0032)
 ├── pipeline/
 │   ├── sources.py              # carga y selección del catálogo de fuentes
 │   ├── cli.py                  # punto de entrada `rutagt-collect`
@@ -31,6 +32,10 @@ src/rutagt/
 │   │   └── html_links.py       # tipo `html_links`
 │   ├── validators/
 │   │   └── geojson.py          # validaciones de calidad de GeoJSON
+│   ├── profiling/
+│   │   ├── geojson.py          # perfil de campos y geometrías (funciones puras)
+│   │   ├── report.py           # reporte en Markdown
+│   │   └── cli.py              # punto de entrada `rutagt-profile`
 │   ├── normalizers/            # Sprint 6
 │   └── exporters/              # Sprint 8 (GTFS)
 └── api/                        # Sprint 10 (ADR-0022)
@@ -79,6 +84,10 @@ def collect_arcgis(source: Source, destination: Path) -> CollectionResult: ...
 ### Validators
 
 Funciones puras, sin efectos secundarios ni acceso a red o disco, que reciben datos ya cargados y devuelven advertencias. Esto las hace fáciles de probar y reutilizables por collectors, normalizers y exporters.
+
+### Profiling
+
+`rutagt-profile` lee un snapshot crudo (por defecto, `LATEST`) y escribe el perfil de cada GeoJSON en `data/staging/<snapshot>/profiles/`, con procedencia. El análisis es una función pura (`profile_collection`) que el CLI solo orquesta. Su interpretación está en [`docs/data/perfil-datasets.md`](../data/perfil-datasets.md).
 
 ## 3. Procedencia y reproducibilidad
 

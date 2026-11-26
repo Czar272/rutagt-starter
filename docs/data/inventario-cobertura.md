@@ -98,5 +98,5 @@ Priorizadas por su efecto en el [alcance del MVP](../product/alcance-mvp.md) (Tr
 ## 6. Mantenimiento
 
 - Las celdas `?` de Transmetro dependen del catálogo oficial en muniguate.com, que responde HTTP 403 a clientes automatizados y está deshabilitado en el recolector (RGT-33). Se resuelven con una descarga manual desde el navegador o con una solicitud a la Municipalidad, nunca evadiendo el bloqueo (ADR-0007).
-- Se actualiza al incorporar o refrescar una fuente (RGT-33) y con el perfilado de campos (RGT-34).
+- Se actualiza al incorporar o refrescar una fuente y al volver a perfilarla con `rutagt-profile`. El [perfil de los datasets municipales](perfil-datasets.md) (RGT-34) detalla campos, códigos y anomalías de las capas de Transmetro y TuBus.
 - Cuando la base de datos esté poblada, la matriz se generará desde `provenance.data_source` y la cobertura cargada, en lugar de mantenerse a mano.
