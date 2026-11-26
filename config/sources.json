@@ -65,6 +65,7 @@
       "authority": "Municipalidad de Guatemala",
       "url": "https://www.muniguate.com/movilidadurbana/transmetro/",
       "output": "muniguate/transmetro_catalog_links.json",
+      "disabled_reason": "muniguate.com responde HTTP 403 a clientes automatizados (2026-08-24 y 2026-11-26). No se evade el bloqueo (ADR-0007): descargar el catálogo manualmente o solicitarlo a la Municipalidad.",
       "keep_extensions": [".pdf", ".jpg", ".jpeg", ".png", ".webp"],
       "license_note": "Catálogo de referencia; confirmar permiso antes de redistribuir imágenes o PDF completos."
     },
@@ -75,6 +76,7 @@
       "authority": "Municipalidad de Guatemala",
       "url": "https://www.muniguate.com/movilidadurbana/ruta-105/",
       "output": "muniguate/tubus_route_105_links.json",
+      "disabled_reason": "muniguate.com responde HTTP 403 a clientes automatizados (2026-08-24 y 2026-11-26). No se evade el bloqueo (ADR-0007): descargar el catálogo manualmente o solicitarlo a la Municipalidad.",
       "keep_extensions": [".pdf", ".jpg", ".jpeg", ".png", ".webp"],
       "license_note": "Catálogo de referencia; confirmar permiso antes de redistribuir imágenes o PDF completos."
     },
@@ -85,6 +87,7 @@
       "authority": "Municipalidad de Guatemala",
       "url": "https://www.muniguate.com/movilidadurbana/ruta-801/",
       "output": "muniguate/tubus_route_801_links.json",
+      "disabled_reason": "muniguate.com responde HTTP 403 a clientes automatizados (2026-08-24 y 2026-11-26). No se evade el bloqueo (ADR-0007): descargar el catálogo manualmente o solicitarlo a la Municipalidad.",
       "keep_extensions": [".pdf", ".jpg", ".jpeg", ".png", ".webp"],
       "license_note": "Catálogo de referencia; confirmar permiso antes de redistribuir imágenes o PDF completos."
     },
