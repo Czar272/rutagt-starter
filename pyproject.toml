@@ -3,6 +3,8 @@ name = "rutagt"
 version = "0.1.0"
 description = "Planificador multimodal de transporte público para el Área Metropolitana de Guatemala."
 readme = "README.md"
+license = "LicenseRef-Propietaria"
+license-files = ["LICENSE"]
 requires-python = ">=3.12"
 dependencies = []
 
