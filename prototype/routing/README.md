@@ -67,6 +67,21 @@ Proyecta los registros GeoJSON sobre el trazado oficial de la ruta (`linear_refe
 
 La transcripción `data/route_801_official.json` se validó contra la tabla del PDF oficial (47 de 47 paradas coinciden); el método y el checksum del documento están en su campo `source`.
 
+### Reconciliación ordenada (RGT-128)
+
+```powershell
+uv run python prototype/routing/sequence_reconciler.py
+uv run pytest prototype/routing
+```
+
+Reemplaza la asignación parada por parada de `analyze_route.py`, que priorizaba el número en el nombre del registro y fallaba con la numeración corrida de la capa municipal. El reconciliador:
+
+1. ordena los registros por su posición a lo largo del trazado oficial;
+2. compara direcciones combinando similitud de texto (60 %) y coincidencia de números de calle y avenida (40 %);
+3. asigna cada parada a un registro distinto conservando el orden (alineación monótona); el número en el nombre del registro solo se usa como alerta.
+
+Genera `output/route_801_sequence_reconciliation.md` y termina con código 1 si el resultado difiere de la correspondencia revisada (`data/route_801_reviewed_mapping.json`). Resultado actual: 47 de 47 paradas iguales a la revisión, 0 registros reutilizados y FID 91 y FID 92 sin parada.
+
 ## Resultados
 
 Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
