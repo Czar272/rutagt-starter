@@ -148,3 +148,85 @@ def issue(
         external_id=external_id,
         evidence=evidence,
     )
+
+
+def features_of(content: Any, issues: list[Issue]) -> list[dict[str, Any]]:
+    """Features de un FeatureCollection; las que no son objetos quedan vacías."""
+    features = content.get("features") if isinstance(content, dict) else None
+    if not isinstance(features, list):
+        issues.append(
+            Issue(
+                severity=Severity.ERROR,
+                code="sin_features",
+                message="El contenido no es un FeatureCollection con features",
+            )
+        )
+        return []
+    return [feature if isinstance(feature, dict) else {} for feature in features]
+
+
+def external_id_of(props: dict[str, Any], issues: list[Issue]) -> str | None:
+    """`FID` como texto, o `None` con un problema `error` si falta."""
+    fid = props.get("FID")
+    external_id = str(fid) if isinstance(fid, int | str) and fid != "" else ""
+    if not external_id:
+        issues.append(
+            Issue(
+                severity=Severity.ERROR,
+                code="sin_identificador",
+                message="Registro sin FID",
+                evidence={"properties": props},
+            )
+        )
+        return None
+    return external_id
+
+
+def read_line(
+    geometry: Any, external_id: str, issues: list[Issue]
+) -> list[Position] | None:
+    """Línea de un `LineString` o de un `MultiLineString` unido; reporta errores."""
+    kind = geometry.get("type") if isinstance(geometry, dict) else None
+    coordinates = geometry.get("coordinates") if isinstance(geometry, dict) else None
+    if kind == "LineString":
+        line = line_positions(coordinates)
+    elif kind == "MultiLineString" and isinstance(coordinates, list):
+        segments = [line_positions(segment) for segment in coordinates]
+        valid = [segment for segment in segments if segment is not None]
+        if not valid or len(valid) != len(segments):
+            line = None
+        elif (chained := chain_segments(valid)) is None:
+            issues.append(
+                issue(
+                    Severity.ERROR,
+                    "tramos_discontinuos",
+                    "Los tramos del MultiLineString no forman una línea continua",
+                    external_id,
+                    tramos=len(segments),
+                )
+            )
+            return None
+        else:
+            line, order = chained
+            issues.append(
+                issue(
+                    Severity.INFO,
+                    "tramos_unidos",
+                    f"{len(segments)} tramos unidos en una sola línea",
+                    external_id,
+                    orden=[{"tramo": i, "invertido": r} for i, r in order],
+                )
+            )
+    else:
+        line = None
+    if line is None:
+        issues.append(
+            issue(
+                Severity.ERROR,
+                "geometria_invalida",
+                "La geometría no es una línea con coordenadas válidas",
+                external_id,
+                tipo=kind,
+            )
+        )
+    return line

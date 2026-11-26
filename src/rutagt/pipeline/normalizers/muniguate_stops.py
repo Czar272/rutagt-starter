@@ -14,6 +14,8 @@ from rutagt.pipeline.normalizers.base import RawInput
 from rutagt.pipeline.normalizers.common import (
     address_zone,
     clean_optional,
+    external_id_of,
+    features_of,
     issue,
     point_position,
 )
@@ -68,17 +70,8 @@ def adapt_feature(
 ) -> StagedStop | None:
     """Traduce un registro; devuelve `None` si no es utilizable (`error`)."""
     props = feature.get("properties") or {}
-    fid = props.get("FID")
-    external_id = str(fid) if isinstance(fid, int | str) and fid != "" else ""
-    if not external_id:
-        issues.append(
-            Issue(
-                severity=Severity.ERROR,
-                code="sin_identificador",
-                message="Registro sin FID",
-                evidence={"properties": props},
-            )
-        )
+    external_id = external_id_of(props, issues)
+    if external_id is None:
         return None
 
     position = point_position(feature.get("geometry"))
@@ -156,21 +149,12 @@ def adapt_stop_layer(
 ) -> tuple[list[StagedStop], list[Issue]]:
     """Traduce todos los registros de una capa de paradas municipal."""
     issues: list[Issue] = []
-    features = raw.content.get("features") if isinstance(raw.content, dict) else None
-    if not isinstance(features, list):
-        issues.append(
-            Issue(
-                severity=Severity.ERROR,
-                code="sin_features",
-                message="El contenido no es un FeatureCollection con features",
-            )
-        )
-        return [], issues
+    features = features_of(raw.content, issues)
 
     stops = []
     for feature in features:
         stop = adapt_feature(
-            feature if isinstance(feature, dict) else {},
+            feature,
             raw.source_id,
             split_name,
             issues,
