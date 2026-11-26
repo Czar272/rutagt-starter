@@ -72,7 +72,7 @@ uv run pytest                                  # suite por defecto
 uv run pytest --cov                            # con cobertura y umbral
 uv run pytest tests/pipeline/collectors/test_http.py   # un archivo
 uv run pytest -k retries                       # por nombre
-uv run pytest -m integration                   # pruebas de integración
+uv run --env-file .env pytest -m integration   # pruebas de integración (PostGIS)
 uv run pytest -m network                       # pruebas contra fuentes reales
 uv run playwright install chromium             # una vez, para las pruebas e2e
 uv run pytest prototype/routing -m e2e         # pruebas e2e del mapa del spike
@@ -80,4 +80,4 @@ uv run pytest prototype/routing -m e2e         # pruebas e2e del mapa del spike
 
 ## Integración continua
 
-La suite por defecto con cobertura se ejecutará en cada push y pull request (RGT-107). Las pruebas de integración se ejecutarán en CI con un servicio PostgreSQL/PostGIS cuando existan migraciones (RGT-29). Las pruebas de red se ejecutarán de forma programada para detectar cambios en las fuentes oficiales sin bloquear el desarrollo.
+La suite por defecto con cobertura se ejecutará en cada push y pull request (RGT-107). Las pruebas de integración se ejecutan en CI en el trabajo «Pruebas de integración», con un servicio PostGIS 17-3.5: aplican y revierten las migraciones y verifican las convenciones del esquema (RGT-29). Las pruebas de red se ejecutarán de forma programada para detectar cambios en las fuentes oficiales sin bloquear el desarrollo.
