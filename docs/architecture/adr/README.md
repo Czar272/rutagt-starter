@@ -57,6 +57,7 @@ El proceso está definido en [ADR-0001](0001-registrar-decisiones-de-arquitectur
 | [0030](0030-migraciones-con-alembic-en-sql-explicito.md)              | Gestionar las migraciones del esquema con Alembic y SQL explícito                             | Aceptado                 | 2026-11-26 | RGT-29                 |
 | [0031](0031-escala-de-calidad-y-reglas-de-vigencia.md)                | Adoptar una escala de calidad de datos con reglas de vigencia                                 | Aceptado                 | 2026-11-26 | RGT-31                 |
 | [0032](0032-versionado-de-datasets-con-snapshots-inmutables.md)       | Versionar los datasets con snapshots inmutables y versiones publicadas por fecha              | Aceptado                 | 2026-11-26 | RGT-32                 |
+| [0033](0033-contrato-de-normalizadores.md)                            | Normalizar en dos pasos con adaptadores por fuente y modelos de staging validados             | Aceptado                 | 2026-11-26 | RGT-35                 |
 
 ## Decisiones pendientes
 

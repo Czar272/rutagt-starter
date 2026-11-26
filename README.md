@@ -176,6 +176,9 @@ uv run rutagt-collect fetch --source muniguate_transmetro_stops_2025
 
 # Perfilar los GeoJSON del snapshot vigente (salida en data/staging/<snapshot>/profiles)
 uv run rutagt-profile
+
+# Traducir el snapshot vigente a la capa staging con los adaptadores registrados (ADR-0033)
+uv run rutagt-normalize
 ```
 
 La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. La carpeta de datos puede cambiarse con `--output` o con `RUTAGT_DATA_DIR`, el nivel de detalle de los mensajes con `RUTAGT_LOG_LEVEL` y su formato con `RUTAGT_LOG_FORMAT`. Códigos de salida: `0` éxito, `1` alguna fuente falló, `2` error de configuración.
