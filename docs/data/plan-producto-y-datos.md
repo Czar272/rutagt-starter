@@ -3,13 +3,9 @@
 Actualizado: 15 de agosto de 2026  
 Zona horaria operativa: `America/Guatemala`
 
-## 1. Nombre recomendado
+## 1. Nombre de trabajo
 
-**RutaGT**  
-Descriptor: **Rutas de transporte público de Guatemala**  
-Promesa corta: **Tu bus, tu ruta, a tiempo.**
-
-Es un nombre de trabajo claro, corto y extensible fuera de la capital. Antes de invertir en marca se debe verificar el Registro de la Propiedad Intelectual, dominios y nombres en App Store/Google Play. Una búsqueda web preliminar no sustituye ese proceso.
+**RutaGT** es el nombre de trabajo del proyecto. El nombre definitivo y la identidad de marca se definen en una investigación específica (épica RGT-137).
 
 ## 2. Decisión de alcance
 
@@ -190,28 +186,30 @@ No se necesitan datos personales del piloto ni del pasajero para calcular la rut
 - Confianza calculada y vínculo con la fuente oficial si luego se confirma.
 - Identificador del reportero anonimizado; no guardar ubicación histórica innecesaria.
 
-## 5. Dónde conseguir la información y cómo
+## 5. Fuentes de información
 
-| Información                                                          | Fuente prioritaria                                                                                                                                                     | Forma de obtención                                                                                                  | Estado                                 |
-| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| geometría y estaciones Transmetro                                    | Portal DIGM/ArcGIS de MuniGuate                                                                                                                                        | REST `FeatureServer` → GeoJSON; revisión diaria/semanal                                                             | pública y comprobada                   |
-| geometría y paradas TuBus                                            | Portal DIGM/ArcGIS de MuniGuate                                                                                                                                        | REST `FeatureServer` → GeoJSON                                                                                      | pública y comprobada                   |
-| mapas, direcciones, ventanas de servicio                             | Movilidad Urbana MuniGuate                                                                                                                                             | catálogo HTML y PDF oficial; extracción asistida y validación                                                       | pública, no estructurada               |
-| secuencia, calendarios, frecuencias, flota y AVL de Transmetro/TuBus | EMT, STP y Centro de Control                                                                                                                                           | solicitud UDI + convenio técnico; pedir GTFS/CSV/GeoJSON y API documentada                                          | por solicitar                          |
-| nuevas rutas urbanas 2026                                            | Acuerdos municipales y Guatecompras NOG 27655148                                                                                                                       | anexos, TDR, adjudicación, contrato y actualizaciones operativas                                                    | pública/documental                     |
-| Transurbano y Rutas Express                                          | SIGA, operadores y STP                                                                                                                                                 | convenio comercial/técnico con SIGA; solicitud a STP de licencias, recorridos y frecuencias                         | sin feed abierto identificado          |
-| recarga y medios SIGA                                                | [SIGA](https://siga.com.gt/)                                                                                                                                           | web oficial y contacto `sac@siga.com.gt`, 1509                                                                      | pública/parcial                        |
-| rutas extraurbanas                                                   | [DGT](https://dgt.gob.gt/)                                                                                                                                             | datos abiertos + solicitud LAIP de licencias, itinerarios, horarios, terminales y tarifas                           | tarifas parciales; resto por solicitar |
-| red vial nacional                                                    | Dirección General de Caminos                                                                                                                                           | capas/cartografía de red vial; verificar licencia y versión                                                         | pública/documental                     |
-| TransMIO y rutas de Villa Nueva                                      | Municipalidad de Villa Nueva                                                                                                                                           | solicitud electrónica/correo de información pública; pedir las 29 urbanas y 8 extraurbanas del inventario municipal | por solicitar                          |
-| Express Mixco y rutas locales                                        | Municipalidad de Mixco, DDUT y EMIXTRA                                                                                                                                 | solicitud de inventario de unidades, rutas y frecuencias que la propia DDUT administra                              | por solicitar                          |
-| Transpinula                                                          | Dirección Municipal de Transporte de Santa Catarina Pinula                                                                                                             | solicitud de rutas, estaciones, horarios, tarifa, flota y AVL                                                       | por solicitar                          |
-| otros municipios metropolitanos                                      | Amatitlán, Chinautla, Fraijanes, Guatemala, Mixco, Palencia, San José Pinula, San Miguel Petapa, San Pedro Ayampuc, Santa Catarina Pinula, Villa Canales y Villa Nueva | una solicitud por entidad para rutas intra-municipales; DGT para las intermunicipales                               | expansión                              |
-| red peatonal y mapa base                                             | [OpenStreetMap](https://www.openstreetmap.org/copyright)                                                                                                               | extracto PBF propio; atribución y cumplimiento ODbL; no depender del Nominatim público en producción                | abierta con obligaciones               |
-| cobertura comparativa                                                | [Moovit Ciudad de Guatemala](https://moovitapp.com/index/es-419/transporte_p%C3%BAblico-Ciudad_de_Guatemala-6097)                                                      | usar como control humano; para producto, contratar sus APIs, no copiar ni raspar su base                            | comercial                              |
-| clima y lluvia                                                       | [INSIVUMEH](https://insivumeh.gob.gt/variables_clima/)                                                                                                                 | descargas de 30 días, CSV disponibles y solicitud de históricos validados                                           | pública/parcial                        |
-| tráfico presente/predicho                                            | telemetría propia; Google Routes API; acuerdo público Waze for Cities                                                                                                  | API comercial para MVP; convenio con autoridad para Waze; construir históricos propios                              | externo                                |
-| incidentes y cierres                                                 | CCIT/EMETRA y PMT municipales                                                                                                                                          | convenio/API o boletín estructurado; reportes comunitarios como complemento                                         | por negociar                           |
+Inventario de fuentes por tipo de información. La forma de obtenerlas respeta [ADR-0007](../architecture/adr/0007-adquirir-datos-solo-por-canales-legitimos.md).
+
+| Información | Fuente | Acceso | Estado |
+| --- | --- | --- | --- |
+| geometría y estaciones Transmetro | Portal DIGM/ArcGIS de MuniGuate | Datos abiertos | pública y comprobada |
+| geometría y paradas TuBus | Portal DIGM/ArcGIS de MuniGuate | Datos abiertos | pública y comprobada |
+| mapas, direcciones, ventanas de servicio | Movilidad Urbana MuniGuate | Documental | pública, no estructurada |
+| secuencia, calendarios, frecuencias, flota y AVL de Transmetro/TuBus | EMT, STP y Centro de Control | Convenio | por solicitar |
+| nuevas rutas urbanas 2026 | Acuerdos municipales y Guatecompras NOG 27655148 | Documental | pública/documental |
+| Transurbano y Rutas Express | SIGA, operadores y STP | Comercial o convenio | sin feed abierto identificado |
+| recarga y medios SIGA | [SIGA](https://siga.com.gt/) | Documental | pública/parcial |
+| rutas extraurbanas | [DGT](https://dgt.gob.gt/) | Solicitud de información | tarifas parciales; resto por solicitar |
+| red vial nacional | Dirección General de Caminos | Documental | pública/documental |
+| TransMIO y rutas de Villa Nueva | Municipalidad de Villa Nueva | Solicitud de información | por solicitar |
+| Express Mixco y rutas locales | Municipalidad de Mixco, DDUT y EMIXTRA | Solicitud de información | por solicitar |
+| Transpinula | Dirección Municipal de Transporte de Santa Catarina Pinula | Solicitud de información | por solicitar |
+| otros municipios metropolitanos | Amatitlán, Chinautla, Fraijanes, Guatemala, Mixco, Palencia, San José Pinula, San Miguel Petapa, San Pedro Ayampuc, Santa Catarina Pinula, Villa Canales y Villa Nueva | Solicitud de información | expansión |
+| red peatonal y mapa base | [OpenStreetMap](https://www.openstreetmap.org/copyright) | Datos abiertos | abierta con obligaciones |
+| cobertura comparativa | [Moovit Ciudad de Guatemala](https://moovitapp.com/index/es-419/transporte_p%C3%BAblico-Ciudad_de_Guatemala-6097) | Comercial o convenio | comercial |
+| clima y lluvia | [INSIVUMEH](https://insivumeh.gob.gt/variables_clima/) | Solicitud de información | pública/parcial |
+| tráfico presente/predicho | telemetría propia; Google Routes API; acuerdo público Waze for Cities | Comercial o convenio | externo |
+| incidentes y cierres | CCIT/EMETRA y PMT municipales | Convenio | por negociar |
 
 ### Fuentes que no deben rasparse sin permiso
 
@@ -221,9 +219,9 @@ No se necesitan datos personales del piloto ni del pasajero para calcular la rut
 
 Se pueden usar sus páginas públicas como pista o verificación manual; para ingestión continua se requiere API, licencia o convenio.
 
-## 6. Solicitudes institucionales: el paquete de datos correcto
+## 6. Paquete de datos requerido por ruta y variante
 
-No pedir simplemente “las rutas de buses”. Pedir, para **cada ruta y variante vigente**:
+Para cada **ruta y variante vigente**, el modelo requiere:
 
 1. Código y nombre oficial; operador y licencia.
 2. Estado y fechas de vigencia.
@@ -237,8 +235,6 @@ No pedir simplemente “las rutas de buses”. Pedir, para **cada ruta y variant
 10. Cambios, cierres, desvíos y suspensión.
 11. Datos AVL históricos y actuales, con diccionario y frecuencia de actualización.
 12. Licencia/permiso de reutilización, atribución, diccionario de datos y contacto técnico.
-
-La [Unidad de Información de MuniGuate](https://udi.muniguate.com/solicitudes/solicitudelectronica/) recibe solicitudes electrónicas y señala un plazo ordinario de 10 días hábiles. El [Decreto 57-2008](https://www.congreso.gob.gt/detalle_pdf/decretos/13082) permite pedir información en poder de autoridades; conviene solicitar entrega digital y formatos editables. Para una relación técnica continua, la LAIP solo es el comienzo: se necesita un convenio de actualización.
 
 ## 7. Cómo decidir “la mejor ruta”
 
@@ -309,8 +305,7 @@ No se recomienda microservicios en el MVP. Un monolito modular, un proceso de da
 
 ### Fase 0 — acceso y gobierno de datos (2–4 semanas)
 
-- Enviar solicitudes a MuniGuate/EMT/STP, DGT, Villa Nueva, Mixco y Santa Catarina Pinula.
-- Contactar SIGA y Moovit para condiciones técnicas/comerciales.
+- Obtener los datos de operación de cada sistema por canales legítimos ([ADR-0007](../architecture/adr/0007-adquirir-datos-solo-por-canales-legitimos.md)).
 - Aprobar política de fuentes, licencias, privacidad y correcciones.
 - Definir el corredor piloto y hacer inventario de campo.
 
