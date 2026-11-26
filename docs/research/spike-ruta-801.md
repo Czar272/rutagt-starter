@@ -10,11 +10,11 @@
 
 ## 1. Resumen ejecutivo
 
-El spike tenía dos objetivos: determinar **hasta dónde se puede construir un itinerario con los datos abiertos disponibles** y **qué información hay que solicitar a las instituciones** para hacerlo bien.
+El spike tenía dos objetivos: determinar **hasta dónde se puede construir un itinerario con los datos abiertos disponibles** y **qué datos faltan** para hacerlo bien.
 
 **Resultado técnico.** Con la capa abierta de paradas, el trazado oficial y la transcripción del rutero en PDF fue posible reconstruir la ruta 801 completa: 47 paradas en orden, separadas por sentido, sobre un circuito de 19,9 km. Sobre esa red se construyó un grafo dirigido y un planificador que resuelve correctamente consultas origen–destino, incluida la elección del lado correcto de la calle. **La capa abierta por sí sola no basta**: no tiene secuencia ni sentido, y su numeración contiene errores que llevan a asignaciones incorrectas si se confía en ella.
 
-**Resultado institucional.** Lo que impide recomendar viajes confiables no es el algoritmo, sino la falta de datos operativos: **frecuencias, tiempos de recorrido, horarios por franja, tarifas y transbordos**. También se identificaron errores concretos en la capa municipal que conviene reportar. Ambos se convierten en preguntas específicas en la [solicitud institucional](../institutions/solicitudes-informacion.md#9-solicitud-específica-derivada-del-spike-de-la-ruta-801).
+**Datos faltantes.** Lo que impide recomendar viajes confiables no es el algoritmo, sino la falta de datos operativos: **frecuencias, tiempos de recorrido, horarios por franja, tarifas y transbordos**. También se identificaron errores concretos en la capa municipal que conviene reportar.
 
 | Pregunta del spike                                         | Respuesta                                                                               |
 | ---------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -123,7 +123,6 @@ Resultados de las consultas de ejemplo (supuestos indicados arriba):
 | Usar la **lista de 14 paradas `unverified`** como plan de validación en campo                                                                                                                                                  | RGT-81                 |
 | Incorporar la **red peatonal de OpenStreetMap** para caminatas y transbordos                                                                                                                                                   | RGT-48, RGT-57         |
 | Aprovechar los minutos a pie a estaciones de Transmetro indicados en el rutero como primera fuente de transbordos                                                                                                              | RGT-48                 |
-| Enviar la solicitud específica de la sección 9 de las solicitudes institucionales                                                                                                                                              | RGT-49                 |
 
 [ADR-0014](../architecture/adr/0014-opentripplanner-como-motor-de-planificacion.md) (OpenTripPlanner) se mantiene como propuesto: el spike confirma que el valor diferencial está en la calidad de los datos y en el ranking, no en el algoritmo de búsqueda, lo que refuerza usar un motor existente.
 
