@@ -177,13 +177,15 @@ uv run rutagt-collect fetch --source muniguate_transmetro_stops_2025
 
 La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. La carpeta de datos puede cambiarse con `--output` o con `RUTAGT_DATA_DIR`, el nivel de detalle de los mensajes con `RUTAGT_LOG_LEVEL` y su formato con `RUTAGT_LOG_FORMAT`. Códigos de salida: `0` éxito, `1` alguna fuente falló, `2` error de configuración.
 
-Cada descarga genera:
+Cada ejecución crea un snapshot nuevo e inmutable, `data/raw/<AAAAMMDDTHHMMSSZ>/` (hora UTC de inicio), según la [política de versionado](docs/data/versionado-datasets.md) ([ADR-0032](docs/architecture/adr/0032-versionado-de-datasets-con-snapshots-inmutables.md)). Dentro del snapshot quedan:
 
 - El archivo original como GeoJSON o JSON, según la fuente.
 - Un archivo `.provenance.json` con URL final, fecha UTC, checksum SHA-256, conteos, licencia declarada y advertencias de validación.
-- `data/raw/run_manifest.json`, con el identificador de la ejecución (`run_id`), su duración, un resumen y las fuentes exitosas y fallidas.
+- `run_manifest.json`, con el identificador del snapshot y de la ejecución (`run_id`), su duración, un resumen y las fuentes exitosas, fallidas y omitidas.
 
-Una ejecución parcial no borra descargas anteriores. Si una fuente falla, el manifiesto registra el error y el proceso continúa con las demás.
+Ninguna ejecución modifica un snapshot anterior. `data/raw/LATEST` apunta al último snapshot completo: una ejecución con `--all` en la que ninguna fuente falló. Si una fuente falla, el manifiesto registra el error, el proceso continúa con las demás y `LATEST` no cambia. Una ejecución con `--source` sirve para pruebas y nunca cambia `LATEST`.
+
+Las fuentes con `disabled_reason` en `config/sources.json` están deshabilitadas: `--all` las omite, `list` las marca y solo se descargan si se piden con `--source`. Hoy lo están los catálogos de muniguate.com, que responden HTTP 403 a clientes automatizados ([ADR-0007](docs/architecture/adr/0007-adquirir-datos-solo-por-canales-legitimos.md)).
 
 <details>
 <summary>Rutas de salida configuradas (relativas a <code>--output</code>)</summary>
