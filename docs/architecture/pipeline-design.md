@@ -40,8 +40,9 @@ src/rutagt/
 │   │   ├── models.py           # modelos de staging (Pydantic, ADR-0033)
 │   │   ├── base.py             # contrato del adaptador y registro por source_id
 │   │   ├── runner.py           # ejecución sobre un snapshot y escritura de staging
-│   │   ├── common.py           # limpieza de texto y lectura de puntos (funciones puras)
+│   │   ├── common.py           # texto, puntos, líneas y longitudes (funciones puras)
 │   │   ├── muniguate_stops.py  # lectura común de las capas de paradas municipales
+│   │   ├── transmetro_routes.py # adaptador de rutas y trazados de Transmetro (RGT-38)
 │   │   ├── transmetro_stops.py # adaptador de estaciones de Transmetro (RGT-36)
 │   │   ├── tubus_stops.py      # adaptador de paradas de TuBus (RGT-37)
 │   │   └── cli.py              # punto de entrada `rutagt-normalize`
