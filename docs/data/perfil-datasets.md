@@ -85,7 +85,7 @@ Este documento añade las **comprobaciones entre datasets**, que dependen del do
 | --- | --- | --- | --- |
 | T1 | `Codigoruta` es **texto** | `"5"`, `"104"`, … `"802"` | En las paradas es número: convertir ambos a texto antes de unir (ver X1) |
 | T2 | `Shape__Length` no son metros | Igual que P4 | Igual que P4 |
-| T3 | Sin nombre ni sentido de la ruta | Solo `FID`, `Codigoruta` y longitud | Nombre, sentido y horario provienen de los ruteros oficiales (PDF) |
+| T3 | Sin nombre ni sentido de la ruta | Solo `FID`, `Codigoruta` y longitud | Nombre, sentido y horario provienen de los ruteros oficiales (PDF). El adaptador de RGT-39 usa el código como `short_name` y deja `long_name` vacío |
 
 ### Paradas TuBus
 
