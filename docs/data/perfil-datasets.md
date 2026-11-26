@@ -77,6 +77,7 @@ Este documento añade las **comprobaciones entre datasets**, que dependen del do
 | E3 | `Zona` contradice la dirección | 32 de 169 registros: p. ej. FID 44 tiene `Zona = 3` y dirección «zona 8»; FID 47–49 tienen `Zona = 11` y dirección «zona 12» sobre la Calzada Aguilar Batres, que en parte separa ambas zonas | Ninguno de los dos campos es confiable por sí solo: calcular la zona por ubicación contra los polígonos oficiales de zonas (fuente por incorporar) y marcar la discrepancia en `data_issue` |
 | E4 | Direcciones sin formato común | 50 empiezan en minúscula, 26 usan abreviaturas («calz.», «av.»), 20 usan ordinales «6ª» y el resto «6» | Normalizar a un formato canónico para búsqueda; conservar el texto original |
 | E5 | Espacios anómalos | 3 nombres y 8 direcciones con espacios dobles, al inicio o al final, o no separables (`U+00A0`) | Limpiar espacios en la capa normalizada |
+| E6 | Sentido repetido en dos andenes | FID 144 y 145 se llaman «Granai - Dir. La Merced» en la Línea 7, a unos 40 m, uno sobre el Periférico Norte y otro sobre el Sur; los demás pares de la línea tienen un andén por sentido (lo detectó el adaptador de RGT-36) | Probablemente FID 145 es «Dir. USAC Periférico»; se marca `sentido_duplicado` y se pregunta a la fuente antes de corregir |
 
 ### Rutas TuBus
 
@@ -114,6 +115,7 @@ Para incluir en el primer contacto técnico con la Municipalidad:
 2. ¿El campo `Zona` se asignó por la dirección o por la ubicación? ¿Cuál es correcto en los 38 casos que no coinciden?
 3. ¿Las estaciones con el mismo nombre separadas hasta 200 m son andenes de distinto sentido?
 4. ¿La numeración de paradas TuBus («Parada NNN») tiene un significado operativo?
+5. ¿El andén FID 145 de la estación Granai (Periférico Sur) corresponde a la dirección USAC Periférico?
 
 ## 6. Brechas que el perfil confirma
 

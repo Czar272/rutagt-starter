@@ -40,6 +40,8 @@ src/rutagt/
 │   │   ├── models.py           # modelos de staging (Pydantic, ADR-0033)
 │   │   ├── base.py             # contrato del adaptador y registro por source_id
 │   │   ├── runner.py           # ejecución sobre un snapshot y escritura de staging
+│   │   ├── common.py           # limpieza de texto y lectura de puntos (funciones puras)
+│   │   ├── transmetro_stops.py # adaptador de estaciones de Transmetro (RGT-36)
 │   │   └── cli.py              # punto de entrada `rutagt-normalize`
 │   └── exporters/              # Sprint 8 (GTFS)
 └── api/                        # Sprint 10 (ADR-0022)
