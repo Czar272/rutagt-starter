@@ -19,6 +19,7 @@ dev = [
     "pre-commit>=4.7.0",
     "pytest>=9.2.0",
     "pytest-cov>=7.1.0",
+    "pytest-playwright>=0.10.0",
     "ruff>=0.17.6",
 ]
 
@@ -72,13 +73,18 @@ addopts = [
   "--strict-markers",
   "--strict-config",
   "--import-mode=importlib",
-  "-m", "not integration and not network",
+  "-m", "not integration and not network and not e2e",
 ]
 markers = [
   "integration: requiere servicios externos locales (PostgreSQL/PostGIS)",
   "network: consulta fuentes reales por Internet",
+  "e2e: prueba de extremo a extremo en un navegador real (Playwright)",
 ]
 xfail_strict = true
+filterwarnings = [
+  # Advertencia interna de pytest-playwright, no del código del proyecto.
+  "ignore:Session-scoped fixtures defined as instance methods:pytest.PytestRemovedIn10Warning",
+]
 
 [tool.coverage.run]
 source = ["rutagt"]
