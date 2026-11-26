@@ -9,6 +9,7 @@ from rutagt.pipeline.normalizers.common import (
     haversine_m,
     line_length_m,
     line_positions,
+    point_to_line_m,
 )
 from rutagt.pipeline.normalizers.models import Position
 
@@ -69,3 +70,16 @@ def test_chain_fails_without_a_continuous_path(
     segments: list[list[Position]],
 ) -> None:
     assert chain_segments(segments) is None
+
+
+def test_point_to_line_distance() -> None:
+    line = [A, C]
+    north = (-90.49, 14.601)  # Unos 111 m al norte del punto medio.
+
+    assert point_to_line_m(B, line) == pytest.approx(0, abs=0.01)
+    assert point_to_line_m(north, line) == pytest.approx(111.2, abs=0.5)
+    # Más allá del extremo, la distancia es al vértice.
+    assert point_to_line_m((-90.47, 14.60), line) == pytest.approx(
+        haversine_m((-90.47, 14.60), C), rel=1e-3
+    )
+    assert point_to_line_m(A, [A, A]) == 0
