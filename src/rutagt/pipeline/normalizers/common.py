@@ -92,6 +92,29 @@ def line_length_m(positions: list[Position]) -> float:
     return sum(haversine_m(a, b) for a, b in itertools.pairwise(positions))
 
 
+def point_to_line_m(point: Position, line: list[Position]) -> float:
+    """Distancia aproximada en metros de un punto a la línea más cercana.
+
+    Proyecta en un plano local equirectangular centrado en el punto, con error
+    despreciable a escala urbana (unos cientos de metros).
+    """
+    lat0 = math.radians(point[1])
+    meters_lon = math.radians(1) * EARTH_RADIUS_M * math.cos(lat0)
+    meters_lat = math.radians(1) * EARTH_RADIUS_M
+
+    def local(p: Position) -> tuple[float, float]:
+        return (p[0] - point[0]) * meters_lon, (p[1] - point[1]) * meters_lat
+
+    best = math.inf
+    for a, b in itertools.pairwise(local(p) for p in line):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        squared = dx * dx + dy * dy
+        t = 0.0 if squared == 0 else -(a[0] * dx + a[1] * dy) / squared
+        t = min(1.0, max(0.0, t))
+        best = min(best, math.hypot(a[0] + t * dx, a[1] + t * dy))
+    return best
+
+
 def chain_segments(
     segments: list[list[Position]], tolerance_m: float = JOIN_TOLERANCE_M
 ) -> tuple[list[Position], list[tuple[int, bool]]] | None:
