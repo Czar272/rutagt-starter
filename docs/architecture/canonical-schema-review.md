@@ -109,6 +109,8 @@ Revisión del esquema canónico antes de convertirlo en la migración inicial (R
 | D22                                 | RGT-29 (tabla) y RGT-40 (validaciones)                       |
 | D3                                  | Épica RGT-9 — tiempo real                                    |
 
+Estado: implementado en la migración inicial `r0001_initial_schema` (RGT-29, [ADR-0030](adr/0030-migraciones-con-alembic-en-sql-explicito.md)).
+
 ## 5. Verificación prevista
 
 La migración inicial (RGT-29) incluirá pruebas de integración contra PostGIS (marcador `integration`) que comprueben:
