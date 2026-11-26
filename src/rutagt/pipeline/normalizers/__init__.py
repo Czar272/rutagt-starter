@@ -1,1 +1,13 @@
-"""Normalizers: transformación de `data/raw/` a capas normalizadas (Sprint 6)."""
+"""Normalizers: traducen `data/raw/` a la capa staging y luego a la canónica.
+
+Importar este paquete registra los adaptadores incluidos en RutaGT (ADR-0033).
+"""
+
+from rutagt.pipeline.normalizers.base import (
+    RawInput,
+    get_adapter,
+    register_adapter,
+    registered_sources,
+)
+
+__all__ = ["RawInput", "get_adapter", "register_adapter", "registered_sources"]
