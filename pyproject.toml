@@ -29,6 +29,8 @@ line-length = 88
 extend-exclude = ["data", "work"]
 
 [tool.ruff.lint]
+# Tipografía correcta en español: guion de rango (10–20 min) y signo de multiplicación.
+allowed-confusables = ["–", "×"]
 select = [
   "E",    # pycodestyle errores
   "W",    # pycodestyle advertencias
