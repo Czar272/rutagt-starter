@@ -187,7 +187,8 @@ docs(RGT-118): add container diagram
   - **Calidad de código:** todos los hooks de pre-commit.
   - **Pruebas:** pytest con cobertura mínima en Ubuntu y Windows (Python 3.12) y Ubuntu (Python 3.13).
   - **Mensajes de commit:** título del pull request y cada commit en formato Conventional Commits.
-- Las tres verificaciones son obligatorias para integrar.
+  - **Auditoría de dependencias:** sin vulnerabilidades conocidas en las dependencias (`pip-audit`).
+- Todas estas verificaciones son obligatorias para integrar. El flujo también se ejecuta cada lunes para detectar vulnerabilidades nuevas.
 - La integración se realiza con **rebase and merge**, lo que conserva los commits atómicos de la rama en un historial lineal.
 - La rama se elimina automáticamente después de integrarse.
 
