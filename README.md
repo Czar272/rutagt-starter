@@ -249,6 +249,7 @@ El alcance, los criterios de éxito y los hitos del MVP están definidos en [`do
 - [`docs/architecture/pipeline-design.md`](docs/architecture/pipeline-design.md): estructura de paquetes y patrones del pipeline.
 - [`docs/architecture/testing-strategy.md`](docs/architecture/testing-strategy.md): estrategia de pruebas.
 - [`docs/architecture/observability.md`](docs/architecture/observability.md): registros, métricas, trazas y objetivos de servicio.
+- [`docs/architecture/security.md`](docs/architecture/security.md): línea base de seguridad; reporte de vulnerabilidades en [`SECURITY.md`](SECURITY.md).
 - [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
 - [`docs/institutions/solicitudes-informacion.md`](docs/institutions/solicitudes-informacion.md): plantillas de solicitudes a municipalidades, DGT y operadores.
 

@@ -163,7 +163,7 @@ GitHub Actions ejecuta calidad de código, pruebas en Ubuntu y Windows y validac
 
 ### Producción (por definir)
 
-El entorno de producción (proveedor, almacenamiento de objetos, publicación de la PWA y de la API) se definirá antes del Sprint 10, junto con la plataforma de [observabilidad](observability.md) y la seguridad (RGT-113).
+El entorno de producción (proveedor, almacenamiento de objetos, publicación de la PWA y de la API) se definirá antes del Sprint 10, junto con la plataforma de [observabilidad](observability.md) y la [seguridad](security.md).
 
 ## 6. Atributos de calidad
 
@@ -175,7 +175,7 @@ El entorno de producción (proveedor, almacenamiento de objetos, publicación de
 | Interoperabilidad               | Terceros consumen los datos sin adaptación        | GTFS Schedule y GTFS-Realtime                                                               |
 | Rendimiento                     | Planificación p95 < 3 s; PWA usable en gama baja  | Ver criterios C6 y C7 del [alcance del MVP](../product/alcance-mvp.md)                      |
 | Mantenibilidad                  | Cambios seguros y verificables                    | Monolito modular, tipado estricto, cobertura ≥ 90 %, CI obligatorio                         |
-| Seguridad                       | Superficie mínima y secretos fuera del código     | Variables de entorno, mínimo privilegio en CI; estrategia en RGT-113                        |
+| Seguridad                       | Superficie mínima y secretos fuera del código     | Línea base de [seguridad](security.md) ([ADR-0028](adr/0028-linea-base-de-seguridad.md))    |
 | Escalabilidad territorial       | Nuevos operadores sin rediseño                    | Catálogo de fuentes, modelo canónico y adaptadores por fuente                               |
 
 ## 7. Decisiones pendientes
