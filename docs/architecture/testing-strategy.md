@@ -11,15 +11,15 @@ Este documento define qué se prueba en RutaGT, con qué herramientas, dónde vi
 
 ## Niveles de prueba
 
-| Nivel             | Qué valida                                                                        | Dependencias                       | Marcador       | Ejecución                                        |
-| ----------------- | --------------------------------------------------------------------------------- | ---------------------------------- | -------------- | ------------------------------------------------ |
-| Unitarias         | Funciones y clases aisladas: parsers, validaciones, transformaciones, CLI         | Ninguna; red y servicios simulados | —              | Siempre, local y CI                              |
-| De datos          | Contratos de archivos versionados: `config/sources.json`, fixtures, salidas GTFS  | Ninguna                            | —              | Siempre, local y CI                              |
-| Integración       | Interacción con PostgreSQL/PostGIS, migraciones, carga de datos y OpenTripPlanner | Servicios de Docker Compose        | `integration`  | Bajo demanda local; CI con servicios             |
-| Red               | Disponibilidad y estructura de fuentes oficiales reales                           | Internet                           | `network`      | Bajo demanda y programadas; nunca bloquean un PR |
-| Extremo a extremo | Itinerarios de la API y la PWA contra rutas doradas                               | Sistema completo                   | `e2e` (futuro) | A partir del Sprint 9                            |
+| Nivel             | Qué valida                                                                                                                                             | Dependencias                            | Marcador      | Ejecución                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------- | ------------- | -------------------------------------------------- |
+| Unitarias         | Funciones y clases aisladas: parsers, validaciones, transformaciones, CLI                                                                              | Ninguna; red y servicios simulados      | —             | Siempre, local y CI                                |
+| De datos          | Contratos de archivos versionados: `config/sources.json`, fixtures, salidas GTFS                                                                       | Ninguna                                 | —             | Siempre, local y CI                                |
+| Integración       | Interacción con PostgreSQL/PostGIS, migraciones, carga de datos y OpenTripPlanner                                                                      | Servicios de Docker Compose             | `integration` | Bajo demanda local; CI con servicios               |
+| Red               | Disponibilidad y estructura de fuentes oficiales reales                                                                                                | Internet                                | `network`     | Bajo demanda y programadas; nunca bloquean un PR   |
+| Extremo a extremo | Interfaces en un navegador real (Playwright + Chromium): hoy el mapa del spike; desde el Sprint 9, itinerarios de la API y la PWA contra rutas doradas | Navegador; servicios externos simulados | `e2e`         | Local bajo demanda; CI en el trabajo «Pruebas e2e» |
 
-Por defecto, `pytest` excluye las pruebas `integration` y `network` (`-m "not integration and not network"` en `pyproject.toml`).
+Por defecto, `pytest` excluye las pruebas `integration`, `network` y `e2e` (`-m "not integration and not network and not e2e"` en `pyproject.toml`).
 
 ## Herramientas
 
@@ -74,6 +74,8 @@ uv run pytest tests/pipeline/collectors/test_http.py   # un archivo
 uv run pytest -k retries                       # por nombre
 uv run pytest -m integration                   # pruebas de integración
 uv run pytest -m network                       # pruebas contra fuentes reales
+uv run playwright install chromium             # una vez, para las pruebas e2e
+uv run pytest prototype/routing -m e2e         # pruebas e2e del mapa del spike
 ```
 
 ## Integración continua
