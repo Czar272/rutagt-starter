@@ -6,7 +6,15 @@
     "authority": "Municipalidad de Guatemala",
     "version": "4",
     "valid_from": "2025-03",
-    "document": "V4-Mapa-y-Rutero-individual-Ruta-801-c.pdf"
+    "document": "V4-Mapa-y-Rutero-individual-Ruta-801-c.pdf",
+    "url": "https://www.muniguate.com/movilidadurbana/wp-content/uploads/sites/33/2025/06/V4-Mapa-y-Rutero-individual-Ruta-801-c.pdf",
+    "document_sha256": "fe8f57f49d0b9f59b587b4efc6228e301f8ab89d25277fa15f06fc7de62b39d2",
+    "validation": {
+      "validated_at": "2026-11-25",
+      "ticket": "RGT-127",
+      "method": "Comparación automática del código, la dirección y la zona de cada parada con la tabla de la página 3 del PDF oficial, extraída con pypdf.",
+      "result": "47 de 47 paradas coinciden en código y zona; similitud de dirección normalizada ≥ 0,97 en todas."
+    }
   },
   "service_hours": {
     "monday_saturday": {
