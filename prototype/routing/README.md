@@ -54,6 +54,19 @@ Genera `output/route_801_candidate_audit.md` y `.json` con las paradas que no so
 - registros fuera de orden respecto de la secuencia;
 - registros sin asignar con una dirección más parecida que la del candidato elegido.
 
+### Correspondencia revisada (RGT-127)
+
+```powershell
+uv run python prototype/routing/review_mapping.py
+```
+
+Proyecta los registros GeoJSON sobre el trazado oficial de la ruta (`linear_reference.py`), los ordena por su posición en el recorrido y alinea con ellos la secuencia del rutero conservando el orden. Las decisiones que requirieron criterio (asignaciones manuales, notas y registros excluidos) están declaradas en el script. Genera:
+
+- `data/route_801_reviewed_mapping.json`: correspondencia parada → FID con su evidencia; es la referencia para validar el reconciliador (RGT-128).
+- `output/route_801_reviewed_mapping.md`: reporte legible.
+
+La transcripción `data/route_801_official.json` se validó contra la tabla del PDF oficial (47 de 47 paradas coinciden); el método y el checksum del documento están en su campo `source`.
+
 ## Resultados
 
 Los reportes generados se guardan en `output/` y los hallazgos se consolidan al cerrar el spike en `docs/research/`.
