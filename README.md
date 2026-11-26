@@ -38,7 +38,7 @@ Desarrollo inicial. La infraestructura base y la recolección de datos están op
   | Rutas TuBus 2025           |         8 | geometría y código de ruta                     |
 
 - Esquema canónico PostgreSQL/PostGIS y entorno local con Docker Compose.
-- Spike de ruteo en curso sobre la ruta 801 de TuBus (`prototype/routing/`).
+- Spike de ruteo de la ruta 801 de TuBus concluido: red reconstruida, grafo dirigido y consultas origen–destino experimentales ([informe](docs/research/spike-ruta-801.md)).
 
 Estas fuentes son una base cartográfica; todavía no bastan para calcular un viaje completo. Faltan secuencias confiables por sentido, calendarios, frecuencias, tarifas estructuradas, transbordos y telemetría.
 
@@ -250,6 +250,7 @@ El alcance, los criterios de éxito y los hitos del MVP están definidos en [`do
 - [`docs/architecture/testing-strategy.md`](docs/architecture/testing-strategy.md): estrategia de pruebas.
 - [`docs/architecture/observability.md`](docs/architecture/observability.md): registros, métricas, trazas y objetivos de servicio.
 - [`docs/architecture/security.md`](docs/architecture/security.md): línea base de seguridad; reporte de vulnerabilidades en [`SECURITY.md`](SECURITY.md).
+- [`docs/research/spike-ruta-801.md`](docs/research/spike-ruta-801.md): informe del spike de ruteo de la ruta 801 (hallazgos y datos faltantes).
 - [`docs/data/plan-producto-y-datos.md`](docs/data/plan-producto-y-datos.md): alcance, datos requeridos, fuentes, módulos, arquitectura y fases.
 - [`docs/institutions/solicitudes-informacion.md`](docs/institutions/solicitudes-informacion.md): plantillas de solicitudes a municipalidades, DGT y operadores.
 
