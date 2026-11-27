@@ -52,6 +52,7 @@ tests/
 - Las pruebas **nunca** leen `data/raw/` ni otras capas de datos reales: su contenido cambia y no está versionado.
 - Los datos de muestra viven en `tests/fixtures/`, son pequeños, anonimizados y representan casos concretos (codificación, geometrías, paginación).
 - Las respuestas de servicios externos se simulan en la propia prueba o como archivos en `tests/fixtures/`.
+- **Extractos reales versionados:** cuando un caso crítico solo se reproduce con datos de una fuente, se versiona un extracto mínimo con atribución, su script de extracción y su procedencia. Por ejemplo, `tests/fixtures/normalizers/` reúne registros de las capas municipales con los hallazgos del perfil. La prueba de extremo a extremo de los normalizers compara un resumen legible de cada lote con `expected_summary.json` y verifica que dos ejecuciones produzcan lotes idénticos.
 - Toda escritura se hace en `tmp_path`.
 
 ## Umbrales y criterios
