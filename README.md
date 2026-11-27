@@ -104,6 +104,7 @@ src/rutagt/                    Paquete Python de RutaGT
   pipeline/exporters/          Exportación de datos derivados, incluido GTFS (Sprint 8)
   pipeline/cli.py              Comando rutagt-collect
 database/migrations/           Migraciones del esquema canónico (Alembic + SQL)
+data/reference/ruteros/        Ruteros oficiales transcritos y validados (secuencias)
 data/                          Capas de datos (raw está excluida de Git)
 prototype/routing/             Spike experimental, aislado del paquete
 tests/                         Pruebas (misma estructura que src/rutagt/)
@@ -182,7 +183,7 @@ uv run rutagt-profile
 # Traducir el snapshot vigente a staging con los adaptadores registrados y validar la geometría (ADR-0033, ADR-0034)
 uv run rutagt-normalize
 
-# Combinar staging en la red canónica: estaciones, andenes e identificadores (ADR-0035)
+# Combinar staging en la red canónica: estaciones, andenes, identificadores y secuencias (ADR-0035, ADR-0036)
 uv run rutagt-canonical
 
 # Cargar la red canónica en PostGIS de forma idempotente (requiere `alembic upgrade head`)

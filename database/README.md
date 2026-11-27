@@ -51,6 +51,7 @@ uv run --env-file .env rutagt-load            # normalized -> PostGIS
 - Recargar el mismo dataset no modifica ninguna fila: solo se actualiza lo que cambió, y `updated_at` y `loaded_by_run` reflejan el último cambio real.
 - `provenance.entity_source_record` enlaza cada entidad con todos sus registros originales; `source_record` no repite registros sin cambios.
 - Lo que una fuente deja de publicar pasa a `status = 'retired'`; nunca se borra.
+- `pattern_stop` guarda la secuencia de cada variante con su calidad ([ADR-0036](../docs/architecture/adr/0036-secuencia-de-paradas-por-variante.md)); si una secuencia se acorta, se quitan las posiciones que sobran.
 - Las incidencias del pipeline se identifican por `issue_key` y conservan su estado de curación; las abiertas que ya no se detectan pasan a `resolved`.
 
 ```sql
