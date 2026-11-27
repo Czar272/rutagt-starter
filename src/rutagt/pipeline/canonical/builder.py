@@ -25,7 +25,7 @@ para curación con evidencia.
 import hashlib
 import json
 from collections import Counter, defaultdict
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -41,12 +41,20 @@ from rutagt.pipeline.canonical.models import (
     DataIssue,
     DataSource,
     Pattern,
+    PatternStop,
     Quality,
     RecordRef,
     Route,
+    Rutero,
     Shape,
     SourceRecord,
     Stop,
+)
+from rutagt.pipeline.canonical.sequences import (
+    SequenceResult,
+    is_circuit,
+    sequence_with_rutero,
+    sequence_without_rutero,
 )
 from rutagt.pipeline.normalizers.common import haversine_m
 from rutagt.pipeline.normalizers.models import (
@@ -443,6 +451,203 @@ def build_stops(
 
 
 # ---------------------------------------------------------------------------
+# Secuencias (ADR-0036)
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class _Sequenced:
+    patterns: list[Pattern]
+    stops: list[Stop]
+    pattern_stops: list[PatternStop]
+
+
+def _ruteros_by_pattern(
+    ruteros: Sequence[Rutero], patterns: Iterable[Pattern], issues: _Issues
+) -> dict[str, Rutero]:
+    known = {pattern.pattern_id for pattern in patterns}
+    found: dict[str, Rutero] = {}
+    for rutero in ruteros:
+        pattern_id = entity_id(rutero.agency_id, "pattern", rutero.pattern_code)
+        if pattern_id not in known:
+            # La fuente dejó de publicar la variante o el dataset es parcial.
+            issues.add(
+                source_id=rutero.source_id,
+                entity_type="data_source",
+                entity_id=rutero.source_id,
+                issue_type="rutero_sin_variante",
+                description=f"El rutero es de {pattern_id}, que no está en el dataset",
+                severity=Severity.WARNING,
+                evidence={"pattern_id": pattern_id},
+            )
+            continue
+        if pattern_id in found:
+            raise ConfigurationError(f"Hay dos ruteros para {pattern_id}")
+        found[pattern_id] = rutero
+    return found
+
+
+def _with_rutero(
+    pattern: Pattern,
+    shape: Shape,
+    served: list[Stop],
+    rutero: Rutero,
+    issues: _Issues,
+    codes: dict[str, set[str]],
+) -> tuple[SequenceResult, dict[str, Any]]:
+    result = sequence_with_rutero(pattern.pattern_id, shape, served, rutero)
+    attributes: dict[str, Any] = {"sequence_source": rutero.source_id}
+    for assignment in result.assignments:
+        stop = assignment.stop
+        if assignment.stop_code == rutero.terminal_stop_code:
+            attributes["terminal_stop_id"] = stop.stop_id
+        if assignment.confirmed:
+            codes[stop.stop_id].add(assignment.stop_code)
+            continue
+        reviewed = assignment.reviewed is not None
+        issues.add(
+            source_id=rutero.source_id,
+            entity_type="stop",
+            entity_id=stop.stop_id,
+            issue_type=(
+                "asignacion_contradice_revision" if reviewed else "parada_por_revisar"
+            ),
+            description=(
+                f"La parada {assignment.stop_code} del rutero se asignó a "
+                f"{stop.stop_name}, "
+                + (
+                    f"pero la revisión manual eligió el registro {assignment.reviewed}"
+                    if reviewed
+                    else "con una dirección poco parecida"
+                )
+            ),
+            severity=Severity.WARNING,
+            evidence={
+                "pattern_id": pattern.pattern_id,
+                "secuencia": assignment.sequence,
+                "codigo": assignment.stop_code,
+                "puntaje": assignment.score,
+                "registros": [r.external_id for r in stop.records],
+                "revision": assignment.reviewed,
+            },
+        )
+    excluded = {r.external_id: r.reason for r in rutero.excluded_layer_records}
+    for stop in result.unassigned:
+        reasons = [
+            excluded[r.external_id] for r in stop.records if r.external_id in excluded
+        ]
+        issues.add(
+            source_id=rutero.source_id,
+            entity_type="stop",
+            entity_id=stop.stop_id,
+            issue_type="parada_fuera_de_rutero",
+            description=(
+                f"{stop.stop_name} sirve a {pattern.pattern_id} según la capa, "
+                "pero no está en su rutero"
+            ),
+            severity=Severity.WARNING,
+            evidence={
+                "pattern_id": pattern.pattern_id,
+                "registros": [r.external_id for r in stop.records],
+                "motivo_revision": reasons[0] if reasons else None,
+            },
+        )
+    return result, attributes
+
+
+def _official_codes(
+    stops: list[Stop], codes: Mapping[str, set[str]], issues: _Issues
+) -> list[Stop]:
+    """Asigna a cada parada el código del rutero que la identificó."""
+    result = []
+    for stop in stops:
+        found = sorted(codes.get(stop.stop_id, set()))
+        if len(found) > 1:
+            issues.add(
+                source_id=stop.source_id,
+                entity_type="stop",
+                entity_id=stop.stop_id,
+                issue_type="codigo_contradictorio",
+                description=f"{stop.stop_name} tiene códigos distintos en los ruteros",
+                severity=Severity.WARNING,
+                evidence={"codigos": found},
+            )
+        result.append(
+            stop.model_copy(update={"stop_code": found[0]}) if len(found) == 1 else stop
+        )
+    return result
+
+
+def sequence_patterns(
+    patterns: list[Pattern],
+    shapes: list[Shape],
+    stops: list[Stop],
+    ruteros: Sequence[Rutero],
+    issues: _Issues,
+) -> _Sequenced:
+    """Secuencia de cada variante con trazado: del rutero o por proyección."""
+    shape_by_id = {shape.shape_id: shape for shape in shapes}
+    by_rutero = _ruteros_by_pattern(ruteros, patterns, issues)
+    served: dict[str, list[Stop]] = defaultdict(list)
+    for stop in stops:
+        if stop.location_type == 0:
+            for pattern_id in stop.pattern_ids:
+                served[pattern_id].append(stop)
+
+    codes: dict[str, set[str]] = defaultdict(set)
+    result_patterns = []
+    pattern_stops: list[PatternStop] = []
+    for pattern in patterns:
+        shape = shape_by_id.get(pattern.shape_id or "")
+        members = served.get(pattern.pattern_id, [])
+        if shape is None or not members:
+            result_patterns.append(pattern)
+            continue
+        attributes: dict[str, Any] = {"circuit": is_circuit(shape)}
+        result: SequenceResult | None = None
+        rutero = by_rutero.get(pattern.pattern_id)
+        if rutero is not None:
+            try:
+                result, extra = _with_rutero(
+                    pattern, shape, members, rutero, issues, codes
+                )
+                attributes.update(extra)
+            except ValueError:
+                issues.add(
+                    source_id=rutero.source_id,
+                    entity_type="route_pattern",
+                    entity_id=pattern.pattern_id,
+                    issue_type="rutero_incompleto",
+                    description=(
+                        f"La capa tiene menos paradas de {pattern.pattern_id} "
+                        "que el rutero"
+                    ),
+                    severity=Severity.WARNING,
+                    evidence={"rutero": len(rutero.stops), "capa": len(members)},
+                )
+        if result is None:
+            result = sequence_without_rutero(pattern.pattern_id, shape, members)
+            attributes["sequence_source"] = "trazado"
+            issues.add(
+                source_id=pattern.source_id,
+                entity_type="route_pattern",
+                entity_id=pattern.pattern_id,
+                issue_type="secuencia_sin_rutero",
+                description=(
+                    f"La secuencia de {pattern.pattern_id} sale del orden sobre "
+                    "el trazado; falta el rutero oficial"
+                ),
+                severity=Severity.WARNING,
+                evidence={"paradas": len(members)},
+            )
+        pattern_stops += result.pattern_stops
+        result_patterns.append(pattern.model_copy(update={"attributes": attributes}))
+    return _Sequenced(
+        result_patterns, _official_codes(stops, codes, issues), pattern_stops
+    )
+
+
+# ---------------------------------------------------------------------------
 # Fuentes, registros y dataset
 # ---------------------------------------------------------------------------
 
@@ -478,6 +683,34 @@ def data_source(source: Source, raw_provenance: Mapping[str, Any]) -> DataSource
     )
 
 
+def rutero_source(rutero: Rutero) -> DataSource:
+    """Fila de `provenance.data_source` de un rutero oficial transcrito."""
+    document = rutero.source
+    validated_at = document.get("validation", {}).get("validated_at")
+    if not (document.get("document_sha256") and validated_at):
+        raise ConfigurationError(
+            f"El rutero {rutero.source_id} no declara document_sha256 ni "
+            "validation.validated_at"
+        )
+    return DataSource(
+        source_id=rutero.source_id,
+        name=f"Rutero oficial {rutero.pattern_code}: {rutero.route_name}",
+        authority=document.get("authority"),
+        source_kind="official_open_data",
+        source_url=document.get("url"),
+        attribution=document.get("authority"),
+        attribution_url=document.get("url"),
+        # Fecha en que la transcripción se validó contra el documento oficial.
+        fetched_at=f"{validated_at}T00:00:00+00:00",
+        sha256=document["document_sha256"],
+        metadata={
+            key: document[key]
+            for key in ("version", "valid_from", "document", "validation")
+            if key in document
+        },
+    )
+
+
 def source_records(batch: StagingBatch) -> list[SourceRecord]:
     """Registros originales del lote, uno por identificador externo."""
     seen: dict[str, SourceRecord] = {}
@@ -500,11 +733,14 @@ def build_dataset(
     sources: list[Source],
     agencies: list[Agency],
     raw_provenance: Mapping[str, Mapping[str, Any]],
+    ruteros: Sequence[Rutero] = (),
 ) -> CanonicalDataset:
     """Combina los lotes de un snapshot en la red canónica.
 
     `sources` son las fuentes del catálogo que llegan a la capa canónica;
     todas deben tener lote en `batches`, sin problemas de severidad `error`.
+    `ruteros` son los ruteros oficiales transcritos que fijan la secuencia de
+    su variante (ADR-0036).
     """
     known_agencies = {agency.agency_id for agency in agencies}
     by_id = {source["id"]: source for source in sources}
@@ -559,12 +795,23 @@ def build_dataset(
         stops += built
         issues.from_staging(batch, entity_of)
 
+    patterns = [p for ps in patterns_by_source.values() for p in ps]
+    sequenced = sequence_patterns(patterns, shapes, stops, ruteros, issues)
+
     used_agencies = {source["agency"] for source in sources}
     return CanonicalDataset(
         snapshot_id=snapshot_id,
         data_sources=tuple(
-            data_source(source, raw_provenance.get(source["id"], {}))
-            for source in sorted(sources, key=lambda s: str(s["id"]))
+            sorted(
+                [
+                    *(
+                        data_source(source, raw_provenance.get(source["id"], {}))
+                        for source in sources
+                    ),
+                    *(rutero_source(rutero) for rutero in ruteros),
+                ],
+                key=lambda s: s.source_id,
+            )
         ),
         source_records=tuple(
             record
@@ -574,7 +821,8 @@ def build_dataset(
         agencies=tuple(a for a in agencies if a.agency_id in used_agencies),
         routes=tuple(routes),
         shapes=tuple(shapes),
-        patterns=tuple(p for ps in patterns_by_source.values() for p in ps),
-        stops=tuple(stops),
+        patterns=tuple(sequenced.patterns),
+        stops=tuple(sequenced.stops),
+        pattern_stops=tuple(sequenced.pattern_stops),
         issues=tuple(issues.items),
     )

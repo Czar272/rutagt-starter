@@ -20,6 +20,7 @@ from rutagt.pipeline.canonical.runner import (
     canonical_sources,
     counts,
     load_agencies,
+    load_ruteros,
 )
 from rutagt.pipeline.sources import load_sources
 
@@ -30,6 +31,7 @@ EXIT_FAILURES = 1
 EXIT_CONFIGURATION_ERROR = 2
 
 AGENCIES_CONFIG = PROJECT_ROOT / "config" / "agencies.json"
+RUTEROS_DIR = PROJECT_ROOT / "data" / "reference" / "ruteros"
 
 
 def build_parser(settings: Settings) -> argparse.ArgumentParser:
@@ -39,6 +41,12 @@ def build_parser(settings: Settings) -> argparse.ArgumentParser:
     )
     parser.add_argument("--config", type=Path, default=settings.sources_config)
     parser.add_argument("--agencies", type=Path, default=AGENCIES_CONFIG)
+    parser.add_argument(
+        "--ruteros",
+        type=Path,
+        default=RUTEROS_DIR,
+        help="Directorio de ruteros oficiales transcritos (ADR-0036)",
+    )
     parser.add_argument(
         "--raw", type=Path, default=settings.data_dir, help="Raíz de los snapshots"
     )
@@ -69,6 +77,7 @@ def main(argv: list[str] | None = None) -> int:
         if not sources:
             raise ConfigurationError("Ninguna fuente del catálogo declara 'agency'")
         agencies = load_agencies(args.agencies)
+        ruteros = load_ruteros(args.ruteros)
         normalized_root = args.normalized or args.raw.parent / "normalized"
         with log_context(snapshot_id=snapshot.name):
             dataset = build_snapshot(
@@ -77,6 +86,7 @@ def main(argv: list[str] | None = None) -> int:
                 snapshot,
                 args.staging or args.raw.parent / "staging",
                 normalized_root,
+                ruteros,
             )
     except ConfigurationError as exc:
         logger.error("%s", exc)
