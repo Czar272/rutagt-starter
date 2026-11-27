@@ -7,7 +7,7 @@ los campos siguen las columnas del esquema canónico.
 """
 
 from enum import StrEnum
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -116,7 +116,11 @@ class Shape(CanonicalModel):
 
 
 class Pattern(CanonicalModel):
-    """Variante de una ruta con su trazado (`transit.route_pattern`)."""
+    """Variante de una ruta con su trazado (`transit.route_pattern`).
+
+    `attributes` guarda lo que no tiene columna propia: si el trazado es un
+    circuito y cuál es su parada terminal según el rutero (ADR-0036).
+    """
 
     pattern_id: PatternId
     route_id: RouteId
@@ -124,6 +128,17 @@ class Pattern(CanonicalModel):
     variant_name: str | None
     source_id: SourceId
     records: tuple[RecordRef, ...]
+    attributes: dict[str, Any] = Field(default_factory=dict)
+
+
+class PatternStop(CanonicalModel):
+    """Parada en la secuencia de una variante (`transit.pattern_stop`)."""
+
+    pattern_id: PatternId
+    stop_id: StopId
+    stop_sequence: Annotated[int, Field(gt=0)]
+    shape_dist_traveled_m: Annotated[float, Field(ge=0)] | None
+    sequence_quality: Quality
 
 
 class Stop(CanonicalModel):
@@ -135,6 +150,7 @@ class Stop(CanonicalModel):
 
     stop_id: StopId
     stop_name: NonEmpty
+    stop_code: str | None = None
     location_type: Annotated[int, Field(ge=0, le=1)]
     location: Position
     location_quality: Quality
@@ -164,6 +180,41 @@ class DataIssue(CanonicalModel):
     evidence: dict[str, Any]
 
 
+class RuteroStop(CanonicalModel):
+    """Parada de un rutero oficial transcrito."""
+
+    sequence: Annotated[int, Field(gt=0)]
+    stop_code: NonEmpty
+    address: NonEmpty
+    zone: int | None = None
+    layer_external_id: str | None = None
+    """Registro de la capa que la revisión manual asignó a esta parada."""
+
+
+class ExcludedRecord(CanonicalModel):
+    """Registro de la capa que la revisión manual dejó fuera del rutero."""
+
+    external_id: NonEmpty
+    reason: NonEmpty
+
+
+class Rutero(CanonicalModel):
+    """Rutero oficial de una variante, transcrito en `data/reference/ruteros/`."""
+
+    schema_version: Literal[1]
+    source_id: SourceId
+    agency_id: AgencyId
+    pattern_code: NonEmpty
+    route_name: NonEmpty
+    terminal_stop_code: str | None = None
+    source: dict[str, Any]
+    service_hours: dict[str, Any] = Field(default_factory=dict)
+    review: dict[str, Any] | None = None
+    """Revisión manual de la correspondencia con la capa, si la hubo."""
+    stops: Annotated[tuple[RuteroStop, ...], Field(min_length=2)]
+    excluded_layer_records: tuple[ExcludedRecord, ...] = ()
+
+
 class CanonicalDataset(CanonicalModel):
     """Red canónica de un snapshot: lo que el cargador escribe en PostGIS."""
 
@@ -175,6 +226,7 @@ class CanonicalDataset(CanonicalModel):
     shapes: tuple[Shape, ...]
     patterns: tuple[Pattern, ...]
     stops: tuple[Stop, ...]
+    pattern_stops: tuple[PatternStop, ...] = ()
     issues: tuple[DataIssue, ...]
 
     @property

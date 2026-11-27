@@ -293,6 +293,22 @@
     "records": [
       {
         "entity": "route",
+        "external_id": "1",
+        "route_code": "801",
+        "variant_code": null,
+        "short_name": "801",
+        "long_name": null
+      },
+      {
+        "entity": "shape",
+        "external_id": "1",
+        "route_code": "801",
+        "variant_code": null,
+        "points": 1797,
+        "length_m": 19913.9
+      },
+      {
+        "entity": "route",
         "external_id": "5",
         "route_code": "305",
         "variant_code": null,
@@ -330,6 +346,366 @@
     "records": [
       {
         "entity": "stop",
+        "external_id": "59",
+        "name": "Parada 063",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 39 calle, colonia El Amaparo I"
+      },
+      {
+        "entity": "stop",
+        "external_id": "60",
+        "name": "Parada 064",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 36 calle Sakerty I"
+      },
+      {
+        "entity": "stop",
+        "external_id": "62",
+        "name": "Parada 066",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 32 calle, Colonia Banvi I"
+      },
+      {
+        "entity": "stop",
+        "external_id": "63",
+        "name": "Parada 067",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 30 calle, Colonia Bethania"
+      },
+      {
+        "entity": "stop",
+        "external_id": "64",
+        "name": "Parada 068",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 26 calle, Colonia Bethania"
+      },
+      {
+        "entity": "stop",
+        "external_id": "65",
+        "name": "Parada 069",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 24 calle, Colonia Kjell Laugerud"
+      },
+      {
+        "entity": "stop",
+        "external_id": "66",
+        "name": "Parada 070",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Anillo Periférico y 22 calle, Colonia Niño Dormido"
+      },
+      {
+        "entity": "stop",
+        "external_id": "67",
+        "name": "Parada 071",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Anillo Periferico sur y 31 avenida, Colonia El Incienso"
+      },
+      {
+        "entity": "stop",
+        "external_id": "68",
+        "name": "Parada 072",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Anillo Periferico sur y 20 calle, Condominio Bosques de Linda Villa"
+      },
+      {
+        "entity": "stop",
+        "external_id": "69",
+        "name": "Parada 073",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "16 calle y 15 calle, Colonia Ciudad de Plata II"
+      },
+      {
+        "entity": "stop",
+        "external_id": "70",
+        "name": "Parada 074",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "14 calle y 28 avenida, Colonia Ciudad de Plata I"
+      },
+      {
+        "entity": "stop",
+        "external_id": "71",
+        "name": "Parada 075",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "13 calle y 29 avenida, Colonia Ciudad de Plata I"
+      },
+      {
+        "entity": "stop",
+        "external_id": "72",
+        "name": "Monumento a la Madre",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "9a calle y 13 avenida, Colonia Quinta Samayoa"
+      },
+      {
+        "entity": "stop",
+        "external_id": "73",
+        "name": "Parada 077",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "9a calle y 11 avenida, Colonia Quinta Samayoa"
+      },
+      {
+        "entity": "stop",
+        "external_id": "74",
+        "name": "Parada 078",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "9a avenida y 7a calle"
+      },
+      {
+        "entity": "stop",
+        "external_id": "75",
+        "name": "Parada 079",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "9a avenida y 4a calle"
+      },
+      {
+        "entity": "stop",
+        "external_id": "76",
+        "name": "Parada 080",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Calzada San Juan y 12 avenida"
+      },
+      {
+        "entity": "stop",
+        "external_id": "77",
+        "name": "Parada 081",
+        "direction_hint": null,
+        "zone": "11",
+        "route_codes": ["801"],
+        "address": "Calzada Roosevelt y 5a avenida, Colonia El Progreso"
+      },
+      {
+        "entity": "stop",
+        "external_id": "78",
+        "name": "Parada 082",
+        "direction_hint": null,
+        "zone": "11",
+        "route_codes": ["801"],
+        "address": "Calzada Roosevelt y calzada Aguilar Batres - Trébol"
+      },
+      {
+        "entity": "stop",
+        "external_id": "79",
+        "name": "Parada 083",
+        "direction_hint": null,
+        "zone": "12",
+        "route_codes": ["801"],
+        "address": "Bulevar Liberación, despúes del puente Trébol"
+      },
+      {
+        "entity": "stop",
+        "external_id": "81",
+        "name": "Parada 085",
+        "direction_hint": null,
+        "zone": "9",
+        "route_codes": ["801"],
+        "address": "Avenida La Castellana y 9a calle, Cantón Tívoli"
+      },
+      {
+        "entity": "stop",
+        "external_id": "82",
+        "name": "Parada 086",
+        "direction_hint": null,
+        "zone": "9",
+        "route_codes": ["801"],
+        "address": "Avenida La Castellana y 6a calle, Cantón Guarda Viejo"
+      },
+      {
+        "entity": "stop",
+        "external_id": "83",
+        "name": "Parada 087",
+        "direction_hint": null,
+        "zone": "9",
+        "route_codes": ["801"],
+        "address": "4a avenida y 4a calle, Cantón Tívolli"
+      },
+      {
+        "entity": "stop",
+        "external_id": "84",
+        "name": "Parada 088",
+        "direction_hint": null,
+        "zone": "9",
+        "route_codes": ["801"],
+        "address": "5a calle y 2a avenida, Cantón Tívoli"
+      },
+      {
+        "entity": "stop",
+        "external_id": "85",
+        "name": "Parada 089",
+        "direction_hint": null,
+        "zone": "8",
+        "route_codes": ["801"],
+        "address": "Avenida la Castellana y 39 calle, Cantón Guarda Viejo"
+      },
+      {
+        "entity": "stop",
+        "external_id": "86",
+        "name": "Parada 090",
+        "direction_hint": null,
+        "zone": "8",
+        "route_codes": ["801"],
+        "address": "Avenida la Castellana y 41 calle, Cantón Guarda Viejo"
+      },
+      {
+        "entity": "stop",
+        "external_id": "87",
+        "name": "Pasarela IGSS Pamplona oriente",
+        "direction_hint": null,
+        "zone": "8",
+        "route_codes": ["801"],
+        "address": "Bulevar Liberación y 11 avenida"
+      },
+      {
+        "entity": "stop",
+        "external_id": "88",
+        "name": "Trebol zona 8",
+        "direction_hint": null,
+        "zone": "8",
+        "route_codes": ["801"],
+        "address": "Bulevar Liberación y 4a avenida"
+      },
+      {
+        "entity": "stop",
+        "external_id": "89",
+        "name": "Trebol zona 3",
+        "direction_hint": null,
+        "zone": "8",
+        "route_codes": ["801"],
+        "address": "Calzada Roosevelt y cuchilla Trébol"
+      },
+      {
+        "entity": "stop",
+        "external_id": "90",
+        "name": "Parada 947",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Calzada Roosevelt y 4a avenida, Colonia Landivar"
+      },
+      {
+        "entity": "stop",
+        "external_id": "91",
+        "name": "Funerales Reforma",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Calzada San Juan y 7a avenida, Colonia Quinta Samayoa"
+      },
+      {
+        "entity": "stop",
+        "external_id": "92",
+        "name": "C.C. Promo Centro",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Calzada San Juan y 9a avenida \"B\", Colonia Quinta Samayoa"
+      },
+      {
+        "entity": "stop",
+        "external_id": "93",
+        "name": "Parada 097",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "10 Avenida y 5a calle, Colonia Quinta Samayoa"
+      },
+      {
+        "entity": "stop",
+        "external_id": "94",
+        "name": "Parada 098",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "10a Avenida y 7a calle \"A\", Colonia Quinta Samayoa"
+      },
+      {
+        "entity": "stop",
+        "external_id": "95",
+        "name": "Parada 100",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "9a calle y 13 avenida, Colonia Castillo Lara"
+      },
+      {
+        "entity": "stop",
+        "external_id": "96",
+        "name": "Pisos Casa Blanca",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "9a calle y 15 avenida, Colonia Quinta Smayoa"
+      },
+      {
+        "entity": "stop",
+        "external_id": "97",
+        "name": "Parada 101",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Diagonal 24 y 13 calle, Colonia Kaminal Juyú II"
+      },
+      {
+        "entity": "stop",
+        "external_id": "98",
+        "name": "Parada 102",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II"
+      },
+      {
+        "entity": "stop",
+        "external_id": "99",
+        "name": "Parada 103",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "31 avenida y 18 calle, Colonia Mario Julio Salazar"
+      },
+      {
+        "entity": "stop",
+        "external_id": "100",
+        "name": "Parada 104",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Anillo Periférico y 21 calle, Colonia El Incienso"
+      },
+      {
+        "entity": "stop",
         "external_id": "101",
         "name": "Parada 105",
         "direction_hint": null,
@@ -345,6 +721,42 @@
         "zone": "7",
         "route_codes": ["801"],
         "address": "33 avenida y 26 calle, Colonia Bethania"
+      },
+      {
+        "entity": "stop",
+        "external_id": "103",
+        "name": "Parada 106",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 30 calle, Colonia Bethania"
+      },
+      {
+        "entity": "stop",
+        "external_id": "104",
+        "name": "Parada 107",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 33 calle"
+      },
+      {
+        "entity": "stop",
+        "external_id": "105",
+        "name": "Parada 108",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 35 calle \"B\", Colonia Sakerty II"
+      },
+      {
+        "entity": "stop",
+        "external_id": "106",
+        "name": "Parada 109",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 36 calle \"A\", Colonia Sakerty I"
       },
       {
         "entity": "stop",
@@ -375,6 +787,15 @@
       },
       {
         "entity": "stop",
+        "external_id": "208",
+        "name": "Parada 096",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Calzada San Juan y 8 avenida zona 7"
+      },
+      {
+        "entity": "stop",
         "external_id": "214",
         "name": "Estación Matamoros",
         "direction_hint": null,
@@ -393,6 +814,24 @@
       },
       {
         "entity": "stop",
+        "external_id": "233",
+        "name": "Parada 065",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 35 calle \"A\""
+      },
+      {
+        "entity": "stop",
+        "external_id": "239",
+        "name": "Parada 084",
+        "direction_hint": null,
+        "zone": "12",
+        "route_codes": ["801"],
+        "address": "Bulevar Liberación, pasarela del IGSS Pamplona"
+      },
+      {
+        "entity": "stop",
         "external_id": "258",
         "name": "Parada 190",
         "direction_hint": null,
@@ -402,6 +841,26 @@
       }
     ],
     "issues": [
+      {
+        "severity": "info",
+        "code": "espacios_anomalos",
+        "external_id": "103"
+      },
+      {
+        "severity": "info",
+        "code": "espacios_anomalos",
+        "external_id": "104"
+      },
+      {
+        "severity": "info",
+        "code": "espacios_anomalos",
+        "external_id": "105"
+      },
+      {
+        "severity": "info",
+        "code": "espacios_anomalos",
+        "external_id": "106"
+      },
       {
         "severity": "warning",
         "code": "zona_discrepante",
@@ -415,12 +874,197 @@
       {
         "severity": "info",
         "code": "nombre_generico",
+        "external_id": "59"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "60"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "62"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "63"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "64"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "65"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "66"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "67"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "68"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "69"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "70"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "71"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "73"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "74"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "75"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "76"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "77"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "78"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "79"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "81"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "82"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "83"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "84"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "85"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "86"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "90"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "93"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "94"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "95"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "97"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "98"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "99"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "100"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
         "external_id": "101"
       },
       {
         "severity": "info",
         "code": "nombre_generico",
         "external_id": "102"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "103"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "104"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "105"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "106"
       },
       {
         "severity": "info",
@@ -436,6 +1080,21 @@
         "severity": "info",
         "code": "nombre_generico",
         "external_id": "205"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "208"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "233"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "239"
       },
       {
         "severity": "info",
@@ -466,11 +1125,6 @@
         "severity": "warning",
         "code": "ruta_sin_trazado",
         "external_id": "214"
-      },
-      {
-        "severity": "warning",
-        "code": "ruta_sin_trazado",
-        "external_id": "101"
       }
     ]
   }

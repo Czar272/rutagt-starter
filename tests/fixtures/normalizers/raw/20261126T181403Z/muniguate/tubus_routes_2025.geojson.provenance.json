@@ -2,7 +2,7 @@
   "source_id": "muniguate_tubus_routes_2025",
   "extracted_from_snapshot": "20261126T181403Z",
   "fetched_at": "2026-11-26T18:14:09+00:00",
-  "fids": [5, 7],
-  "reason": "Código como texto; rutas 305 y 402",
-  "sha256": "1271a1b8db87d3096b1447f9c23725f392f718018c9925d1a0208435530448f4"
+  "fids": [1, 5, 7],
+  "reason": "Código como texto; rutas 801 (con rutero oficial), 305 y 402",
+  "sha256": "6cb1799d298c302eb4a119855dbd1e389a2b0df829523cd130b92c9671299800"
 }

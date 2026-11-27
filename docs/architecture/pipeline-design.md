@@ -57,6 +57,7 @@ src/rutagt/
 │   │   ├── models.py           # modelos de la capa normalizada (ADR-0035)
 │   │   ├── identifiers.py      # identificadores <agencia>:<tipo>:<código>
 │   │   ├── builder.py          # constructor canónico: estaciones, andenes, rutas, trazados
+│   │   ├── sequences.py        # secuencia de paradas: rutero oficial o trazado (ADR-0036)
 │   │   ├── runner.py           # lectura verificada de staging y escritura de normalized
 │   │   └── cli.py              # punto de entrada `rutagt-canonical`
 │   └── exporters/              # Sprint 8 (GTFS)

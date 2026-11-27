@@ -24,6 +24,16 @@ FIXTURE_SNAPSHOT = "20261126T181403Z"
 
 HERE = Path(__file__).parent
 
+ROUTE_801_STOPS = {
+    *range(59, 61),
+    *range(62, 80),
+    *range(81, 107),
+    208,
+    233,
+    239,
+}
+"""Registros de la capa de paradas TuBus con `Codigoruta` 801 en el snapshot."""
+
 SELECTION: dict[str, tuple[str, list[int], str]] = {
     "muniguate_transmetro_stops_2025": (
         "muniguate/transmetro_stops_2025.geojson",
@@ -35,10 +45,12 @@ SELECTION: dict[str, tuple[str, list[int], str]] = {
     ),
     "muniguate_tubus_stops_2025": (
         "muniguate/tubus_stops_2025.geojson",
-        [101, 102, 143, 163, 205, 214, 226, 258],
-        "Número repetido a 519 m (101/102) y registro duplicado (143/258, B7); "
-        "sentido en la dirección (163); zona discrepante (205); "
-        "espacio no separable (214); rutas con y sin trazado en el extracto",
+        sorted({143, 163, 205, 214, 226, 258} | ROUTE_801_STOPS),
+        "Ruta 801 completa (rutero oficial y revisión RGT-127, con la numeración "
+        "corrida y los registros 91/92 fuera del rutero); número repetido a "
+        "519 m (101/102) y registro duplicado (143/258, B7); sentido en la "
+        "dirección (163); zona discrepante (205); espacio no separable (214); "
+        "rutas con y sin trazado en el extracto",
     ),
     "muniguate_transmetro_routes_2025": (
         "muniguate/transmetro_routes_2025.geojson",
@@ -48,8 +60,8 @@ SELECTION: dict[str, tuple[str, list[int], str]] = {
     ),
     "muniguate_tubus_routes_2025": (
         "muniguate/tubus_routes_2025.geojson",
-        [5, 7],
-        "Código como texto; rutas 305 y 402",
+        [1, 5, 7],
+        "Código como texto; rutas 801 (con rutero oficial), 305 y 402",
     ),
 }
 

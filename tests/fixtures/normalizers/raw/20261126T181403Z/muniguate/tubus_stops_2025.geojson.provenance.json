@@ -2,7 +2,12 @@
   "source_id": "muniguate_tubus_stops_2025",
   "extracted_from_snapshot": "20261126T181403Z",
   "fetched_at": "2026-11-26T18:14:06+00:00",
-  "fids": [101, 102, 143, 163, 205, 214, 226, 258],
-  "reason": "Número repetido a 519 m (101/102) y registro duplicado (143/258, B7); sentido en la dirección (163); zona discrepante (205); espacio no separable (214); rutas con y sin trazado en el extracto",
-  "sha256": "9f0702a2186d550a86ae21dec555ae193d299461c1be75ffb8db3f5754fa502b"
+  "fids": [
+    59, 60, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78,
+    79, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,
+    99, 100, 101, 102, 103, 104, 105, 106, 143, 163, 205, 208, 214, 226, 233,
+    239, 258
+  ],
+  "reason": "Ruta 801 completa (rutero oficial y revisión RGT-127, con la numeración corrida y los registros 91/92 fuera del rutero); número repetido a 519 m (101/102) y registro duplicado (143/258, B7); sentido en la dirección (163); zona discrepante (205); espacio no separable (214); rutas con y sin trazado en el extracto",
+  "sha256": "b0d9342d88d74cb85d34f6000b0b498e47316c8433bfc0d0c239305b2929bc7f"
 }

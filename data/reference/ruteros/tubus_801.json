@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "source_id": "muniguate_rutero_tubus_801_v4",
+  "agency_id": "tubus",
+  "pattern_code": "801",
+  "route_name": "Parque Los Pinos Z.7 / Terminal 4a avenida y 4a calle Z.9",
+  "terminal_stop_code": "087",
+  "source": {
+    "type": "official_rutero",
+    "authority": "Municipalidad de Guatemala",
+    "version": "4",
+    "valid_from": "2025-03",
+    "document": "V4-Mapa-y-Rutero-individual-Ruta-801-c.pdf",
+    "url": "https://www.muniguate.com/movilidadurbana/wp-content/uploads/sites/33/2025/06/V4-Mapa-y-Rutero-individual-Ruta-801-c.pdf",
+    "document_sha256": "fe8f57f49d0b9f59b587b4efc6228e301f8ab89d25277fa15f06fc7de62b39d2",
+    "validation": {
+      "validated_at": "2026-11-25",
+      "ticket": "RGT-127",
+      "method": "Comparación automática del código, la dirección y la zona de cada parada con la tabla de la página 3 del PDF oficial, extraída con pypdf.",
+      "result": "47 de 47 paradas coinciden en código y zona; similitud de dirección normalizada ≥ 0,97 en todas."
+    }
+  },
+  "service_hours": {
+    "monday_saturday": {
+      "start": "05:30",
+      "end": "19:00"
+    },
+    "sunday_holidays": {
+      "start": "06:00",
+      "end": "18:00"
+    }
+  },
+  "review": {
+    "reviewed_at": "2026-11-25",
+    "ticket": "RGT-127",
+    "layer_source_id": "muniguate_tubus_stops_2025",
+    "method": "Proyección de los registros sobre el trazado oficial y alineación monótona de la secuencia del rutero por similitud de direcciones, con revisión manual contra el rutero oficial versión 4."
+  },
+  "stops": [
+    {
+      "sequence": 1,
+      "stop_code": "063",
+      "address": "Parque Los Pinos, 33 avenida y 39 calle, Colonia El Amparo I",
+      "zone": 7,
+      "layer_external_id": "59"
+    },
+    {
+      "sequence": 2,
+      "stop_code": "064",
+      "address": "33 avenida y 36 calle, Colonia Sakerty I",
+      "zone": 7,
+      "layer_external_id": "60"
+    },
+    {
+      "sequence": 3,
+      "stop_code": "065",
+      "address": "33 avenida y 35 calle \"A\", Colonia Sakerty II",
+      "zone": 7,
+      "layer_external_id": "233"
+    },
+    {
+      "sequence": 4,
+      "stop_code": "066",
+      "address": "33 avenida y 33 calle \"A\", Colonia Banvi I, frente a Parque Tecún Umán",
+      "zone": 7,
+      "layer_external_id": "62"
+    },
+    {
+      "sequence": 5,
+      "stop_code": "067",
+      "address": "33 avenida y 31 calle, Colonia Bethania",
+      "zone": 7,
+      "layer_external_id": "63"
+    },
+    {
+      "sequence": 6,
+      "stop_code": "068",
+      "address": "33 avenida y 26 calle, Colonia Bethania",
+      "zone": 7,
+      "layer_external_id": "64"
+    },
+    {
+      "sequence": 7,
+      "stop_code": "069",
+      "address": "33 avenida y 24 calle, Colonia Kjell Laugerud",
+      "zone": 7,
+      "layer_external_id": "65"
+    },
+    {
+      "sequence": 8,
+      "stop_code": "070",
+      "address": "Anillo Periférico y 22 calle, Colonia Niño Dormido",
+      "zone": 7,
+      "layer_external_id": "66"
+    },
+    {
+      "sequence": 9,
+      "stop_code": "071",
+      "address": "Anillo Periférico sur y 31 avenida, Colonia El Incienso",
+      "zone": 7,
+      "layer_external_id": "67"
+    },
+    {
+      "sequence": 10,
+      "stop_code": "072",
+      "address": "Anillo Periférico sur y 20 calle, Cond. Bosques de Linda Villa",
+      "zone": 7,
+      "layer_external_id": "68"
+    },
+    {
+      "sequence": 11,
+      "stop_code": "073",
+      "address": "Diagonal 24 y 16 calle, Colonia Ciudad de Plata II",
+      "zone": 7,
+      "layer_external_id": "69"
+    },
+    {
+      "sequence": 12,
+      "stop_code": "074",
+      "address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata I",
+      "zone": 7,
+      "layer_external_id": "70"
+    },
+    {
+      "sequence": 13,
+      "stop_code": "075",
+      "address": "Parque Kaminaljuyú, diagonal 24 y 13 calle, Colonia Ciudad de Plata I",
+      "zone": 7,
+      "layer_external_id": "71"
+    },
+    {
+      "sequence": 14,
+      "stop_code": "076",
+      "address": "9a calle y 14 avenida, Colonia Quinta Samayoa",
+      "zone": 7,
+      "layer_external_id": "72"
+    },
+    {
+      "sequence": 15,
+      "stop_code": "077",
+      "address": "9a calle y 12 avenida, Colonia Quinta Samayoa",
+      "zone": 7,
+      "layer_external_id": "73"
+    },
+    {
+      "sequence": 16,
+      "stop_code": "078",
+      "address": "9a avenida y 6a calle",
+      "zone": 7,
+      "layer_external_id": "74"
+    },
+    {
+      "sequence": 17,
+      "stop_code": "079",
+      "address": "9a avenida y 4a calle",
+      "zone": 7,
+      "layer_external_id": "75"
+    },
+    {
+      "sequence": 18,
+      "stop_code": "080",
+      "address": "Calz. San Juan y 11 avenida",
+      "zone": 7,
+      "layer_external_id": "76"
+    },
+    {
+      "sequence": 19,
+      "stop_code": "081",
+      "address": "Pasarela Hosp. Roosevelt, calzada Roosevelt y 6a avenida, Colonia El Progreso",
+      "zone": 11,
+      "layer_external_id": "77"
+    },
+    {
+      "sequence": 20,
+      "stop_code": "082",
+      "address": "Calz. Roosevelt, cuchilla antes del puente El Trébol",
+      "zone": 11,
+      "layer_external_id": "78"
+    },
+    {
+      "sequence": 21,
+      "stop_code": "083",
+      "address": "Blvr. Liberación después del puente El Trébol",
+      "zone": 12,
+      "layer_external_id": "79"
+    },
+    {
+      "sequence": 22,
+      "stop_code": "084",
+      "address": "Blvr. Liberación antes de la pasarela IGSS Pamplona",
+      "zone": 12,
+      "layer_external_id": "239"
+    },
+    {
+      "sequence": 23,
+      "stop_code": "085",
+      "address": "Avenida La Castellana y 9a calle, Cantón Tívoli",
+      "zone": 9,
+      "layer_external_id": "81"
+    },
+    {
+      "sequence": 24,
+      "stop_code": "086",
+      "address": "Parque de la Industria, avenida La Castellana y 8a calle, Cantón Guarda Viejo",
+      "zone": 9,
+      "layer_external_id": "82"
+    },
+    {
+      "sequence": 25,
+      "stop_code": "087",
+      "address": "Terminal, 4a avenida y 4a calle, Cantón Tívoli",
+      "zone": 9,
+      "layer_external_id": "83"
+    },
+    {
+      "sequence": 26,
+      "stop_code": "088",
+      "address": "5a calle y 2a avenida, Cantón Tívoli",
+      "zone": 9,
+      "layer_external_id": "84"
+    },
+    {
+      "sequence": 27,
+      "stop_code": "089",
+      "address": "Parque de la Industria, avenida La Castellana y 39 calle, Cantón Guarda Viejo",
+      "zone": 8,
+      "layer_external_id": "85"
+    },
+    {
+      "sequence": 28,
+      "stop_code": "090",
+      "address": "Avenida La Castellana y 41 calle, Cantón Guarda Viejo",
+      "zone": 8,
+      "layer_external_id": "86"
+    },
+    {
+      "sequence": 29,
+      "stop_code": "091",
+      "address": "Blvr. Liberación y 11 avenida",
+      "zone": 8,
+      "layer_external_id": "87"
+    },
+    {
+      "sequence": 30,
+      "stop_code": "092",
+      "address": "Blvr. Liberación y 4a avenida",
+      "zone": 8,
+      "layer_external_id": "88"
+    },
+    {
+      "sequence": 31,
+      "stop_code": "093",
+      "address": "Calzada Roosevelt y Cuchilla Trébol",
+      "zone": 8,
+      "layer_external_id": "89"
+    },
+    {
+      "sequence": 32,
+      "stop_code": "094",
+      "address": "Pasarela Hosp. Roosevelt, calzada Roosevelt y 4a avenida, Colonia Landívar",
+      "zone": 7,
+      "layer_external_id": "90"
+    },
+    {
+      "sequence": 33,
+      "stop_code": "095",
+      "address": "Calz. San Juan y 8a avenida, Colonia Quinta Samayoa",
+      "zone": 7,
+      "layer_external_id": "208"
+    },
+    {
+      "sequence": 34,
+      "stop_code": "096",
+      "address": "10a avenida y 5a calle, Colonia Quinta Samayoa",
+      "zone": 7,
+      "layer_external_id": "93"
+    },
+    {
+      "sequence": 35,
+      "stop_code": "097",
+      "address": "10a avenida y 7a calle \"A\", Colonia Quinta Samayoa",
+      "zone": 7,
+      "layer_external_id": "94"
+    },
+    {
+      "sequence": 36,
+      "stop_code": "098",
+      "address": "9a calle y Calle de La Verbena, Colonia Castillo Lara",
+      "zone": 7,
+      "layer_external_id": "95"
+    },
+    {
+      "sequence": 37,
+      "stop_code": "099",
+      "address": "9a calle y 15 avenida, Colonia Quinta Samayoa",
+      "zone": 7,
+      "layer_external_id": "96"
+    },
+    {
+      "sequence": 38,
+      "stop_code": "100",
+      "address": "Diagonal 24 y 13 calle, Colonia Kaminal Juyú II",
+      "zone": 7,
+      "layer_external_id": "97"
+    },
+    {
+      "sequence": 39,
+      "stop_code": "101",
+      "address": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+      "zone": 7,
+      "layer_external_id": "98"
+    },
+    {
+      "sequence": 40,
+      "stop_code": "102",
+      "address": "31 avenida y 18 calle, Colonia Mario Julio Salazar",
+      "zone": 7,
+      "layer_external_id": "99"
+    },
+    {
+      "sequence": 41,
+      "stop_code": "103",
+      "address": "Anillo Periférico y 21 calle, Colonia El Incienso",
+      "zone": 7,
+      "layer_external_id": "100"
+    },
+    {
+      "sequence": 42,
+      "stop_code": "104",
+      "address": "Anillo Periférico y 30 avenida, Colonia 4 de febrero",
+      "zone": 7,
+      "layer_external_id": "101"
+    },
+    {
+      "sequence": 43,
+      "stop_code": "105",
+      "address": "33 avenida y 26 calle, Colonia Bethania",
+      "zone": 7,
+      "layer_external_id": "102"
+    },
+    {
+      "sequence": 44,
+      "stop_code": "106",
+      "address": "33 avenida y 30 calle, Colonia Bethania",
+      "zone": 7,
+      "layer_external_id": "103"
+    },
+    {
+      "sequence": 45,
+      "stop_code": "107",
+      "address": "33 avenida y 33 calle",
+      "zone": 7,
+      "layer_external_id": "104"
+    },
+    {
+      "sequence": 46,
+      "stop_code": "108",
+      "address": "33 avenida y 35 calle \"B\", Colonia Sakerty II",
+      "zone": 7,
+      "layer_external_id": "105"
+    },
+    {
+      "sequence": 47,
+      "stop_code": "109",
+      "address": "33 avenida y 36 calle, Colonia Sakerty I",
+      "zone": 7,
+      "layer_external_id": "106"
+    }
+  ],
+  "excluded_layer_records": [
+    {
+      "external_id": "91",
+      "reason": "Calzada San Juan y 7a avenida («Funerales Reforma»): no figura en el rutero vigente (versión 4); posible parada anterior o de otra ruta."
+    },
+    {
+      "external_id": "92",
+      "reason": "Calzada San Juan y 9a avenida «B» («C.C. Promo Centro»): no figura en el rutero vigente (versión 4); posible parada anterior o de otra ruta."
+    }
+  ]
+}

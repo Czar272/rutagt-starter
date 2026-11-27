@@ -17,6 +17,7 @@ completo o no cambia nada. Reglas:
 """
 
 import json
+from collections import Counter
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any
@@ -67,7 +68,7 @@ class _Table:
     """Tabla con clave canónica y las expresiones SQL de cada columna."""
 
     name: str
-    key: str
+    key: tuple[str, ...]
     columns: Mapping[str, str]
     """Columna → expresión SQL del valor (con parámetros `:nombre`)."""
     on_change: Mapping[str, str] = field(default_factory=dict)
@@ -75,7 +76,7 @@ class _Table:
 
     def upsert_sql(self) -> str:
         names = list(self.columns)
-        compared = [c for c in names if c != self.key]
+        compared = [c for c in names if c not in self.key]
         updates = [f"{c} = EXCLUDED.{c}" for c in compared]
         updates += [f"{c} = {expr}" for c, expr in self.on_change.items()]
         # Tablas y columnas son constantes de este módulo; los valores van como
@@ -83,7 +84,7 @@ class _Table:
         return (
             f"INSERT INTO {self.name} AS t ({', '.join(names)}, loaded_by_run) "  # noqa: S608
             f"VALUES ({', '.join(self.columns.values())}, :run_id) "
-            f"ON CONFLICT ({self.key}) DO UPDATE SET {', '.join(updates)}, "
+            f"ON CONFLICT ({', '.join(self.key)}) DO UPDATE SET {', '.join(updates)}, "
             "loaded_by_run = EXCLUDED.loaded_by_run "
             f"WHERE ({', '.join('t.' + c for c in compared)}) IS DISTINCT FROM "
             f"({', '.join('EXCLUDED.' + c for c in compared)}) "
@@ -97,7 +98,7 @@ def _plain(*names: str) -> dict[str, str]:
 
 AGENCY = _Table(
     "transit.agency",
-    "agency_id",
+    ("agency_id",),
     {
         **_plain(
             "agency_id",
@@ -115,7 +116,7 @@ AGENCY = _Table(
 
 DATA_SOURCE = _Table(
     "provenance.data_source",
-    "source_id",
+    ("source_id",),
     {
         **_plain("source_id", "name", "authority"),
         "source_kind": "CAST(:source_kind AS provenance.source_kind)",
@@ -128,7 +129,7 @@ DATA_SOURCE = _Table(
 
 SHAPE = _Table(
     "transit.shape",
-    "shape_id",
+    ("shape_id",),
     {
         "shape_id": ":shape_id",
         "geom": "ST_SetSRID(ST_GeomFromGeoJSON(:geom), 4326)",
@@ -147,7 +148,7 @@ SHAPE = _Table(
 
 ROUTE = _Table(
     "transit.route",
-    "route_id",
+    ("route_id",),
     {
         **_plain(
             "route_id",
@@ -164,19 +165,36 @@ ROUTE = _Table(
 
 PATTERN = _Table(
     "transit.route_pattern",
-    "pattern_id",
+    ("pattern_id",),
     {
         **_plain("pattern_id", "route_id", "shape_id", "variant_name"),
         "status": "'active'",
         "source_id": ":source_id",
+        "attributes": "CAST(:attributes AS jsonb)",
+    },
+)
+
+PATTERN_STOP = _Table(
+    "transit.pattern_stop",
+    ("pattern_id", "stop_sequence"),
+    {
+        **_plain("pattern_id", "stop_sequence", "stop_id", "shape_dist_traveled_m"),
+        "sequence_quality": "CAST(:sequence_quality AS transit.observation_quality)",
+    },
+    on_change={
+        "sequence_assessed_at": (
+            "CASE WHEN (t.stop_id, t.sequence_quality) IS DISTINCT FROM "
+            "(EXCLUDED.stop_id, EXCLUDED.sequence_quality) THEN now() "
+            "ELSE t.sequence_assessed_at END"
+        )
     },
 )
 
 STOP = _Table(
     "transit.stop",
-    "stop_id",
+    ("stop_id",),
     {
-        **_plain("stop_id", "stop_name", "location_type"),
+        **_plain("stop_id", "stop_name", "stop_code", "location_type"),
         "location": "ST_SetSRID(ST_MakePoint(:lon, :lat), 4326)",
         **_plain(
             "address", "zone", "parent_station_id", "platform_code", "direction_hint"
@@ -237,6 +255,28 @@ def _retire(
         {"run_id": summary.run_id, "sources": list(sources), "keep": list(keep)},
     )
     summary.table(table).retired += result.rowcount
+
+
+def _trim_sequences(
+    conn: Connection, dataset: CanonicalDataset, summary: LoadSummary
+) -> None:
+    """Quita las posiciones que sobran cuando una secuencia se acorta.
+
+    `pattern_stop` es detalle de su variante: una posición que ya no existe
+    no es una entidad que retirar, sino parte de una secuencia anterior.
+    """
+    lengths = Counter(s.pattern_id for s in dataset.pattern_stops)
+    sql = text(
+        "DELETE FROM transit.pattern_stop "
+        "WHERE pattern_id = :pattern_id AND stop_sequence > :length"
+    )
+    counts = summary.table("transit.pattern_stop")
+    for pattern in dataset.patterns:
+        result = conn.execute(
+            sql,
+            {"pattern_id": pattern.pattern_id, "length": lengths[pattern.pattern_id]},
+        )
+        counts.retired += result.rowcount
 
 
 def _source_records(
@@ -425,7 +465,13 @@ def load_dataset(
     _upsert(
         conn,
         PATTERN,
-        (p.model_dump(exclude={"records"}) for p in dataset.patterns),
+        (
+            {
+                **p.model_dump(exclude={"records", "attributes"}),
+                "attributes": _jsonb(p.attributes),
+            }
+            for p in dataset.patterns
+        ),
         summary,
     )
     # Las estaciones antes que sus andenes, por `parent_station_id`.
@@ -439,6 +485,17 @@ def load_dataset(
         ),
         summary,
     )
+
+    _upsert(
+        conn,
+        PATTERN_STOP,
+        (
+            {**s.model_dump(), "sequence_quality": str(s.sequence_quality)}
+            for s in dataset.pattern_stops
+        ),
+        summary,
+    )
+    _trim_sequences(conn, dataset, summary)
 
     for entity_type, entities in (
         ("shape", [(s.shape_id, s.records) for s in dataset.shapes]),

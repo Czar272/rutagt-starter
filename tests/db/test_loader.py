@@ -22,6 +22,7 @@ from rutagt.pipeline.canonical.runner import (
     build_snapshot,
     canonical_sources,
     load_agencies,
+    load_ruteros,
 )
 from rutagt.pipeline.normalizers.runner import (
     normalize_snapshot,
@@ -50,6 +51,7 @@ def normalized(tmp_path_factory: pytest.TempPathFactory) -> Path:
         RAW / SNAPSHOT,
         root / "staging",
         root / "normalized",
+        load_ruteros(PROJECT_ROOT / "data" / "reference" / "ruteros"),
     )
     return root / "normalized"
 
@@ -101,8 +103,9 @@ def test_first_load_writes_the_network_with_provenance(
 ) -> None:
     summary = load(database, dataset, "run-1")
 
-    assert summary.tables["transit.stop"].inserted == len(dataset.stops) == 34
-    assert summary.tables["provenance.source_record"].inserted == 30
+    assert summary.tables["transit.stop"].inserted == len(dataset.stops) == 81
+    assert summary.tables["provenance.source_record"].inserted == 78
+    assert summary.tables["transit.pattern_stop"].inserted == len(dataset.pattern_stops)
     assert summary.tables["provenance.data_issue"].inserted == len(dataset.issues)
     assert (
         scalar(
@@ -229,6 +232,58 @@ def test_changes_update_retire_and_resolve(
     ) == [("open", None)]
 
 
+def test_loads_the_official_sequence_of_route_801(
+    database: Engine, dataset: CanonicalDataset
+) -> None:
+    load(database, dataset, "run-1")
+
+    rows = query(
+        database,
+        "SELECT ps.stop_sequence, s.stop_code, ps.sequence_quality::text "
+        "FROM transit.pattern_stop ps JOIN transit.stop s USING (stop_id) "
+        "WHERE ps.pattern_id = 'tubus:pattern:801' ORDER BY ps.stop_sequence",
+    )
+    assert len(rows) == 47
+    assert [code for _, code, _ in rows] == [f"{n:03d}" for n in range(63, 110)]
+    assert {quality for _, _, quality in rows} == {"official"}
+    assert (
+        scalar(
+            database,
+            "SELECT attributes ->> 'terminal_stop_id' FROM transit.route_pattern "
+            "WHERE pattern_id = 'tubus:pattern:801'",
+        )
+        == "tubus:stop:parada-087"
+    )
+
+
+def test_a_shorter_sequence_drops_the_extra_positions(
+    database: Engine, dataset: CanonicalDataset
+) -> None:
+    load(database, dataset, "run-1")
+    shorter = dataset.model_copy(
+        update={
+            "pattern_stops": tuple(
+                p
+                for p in dataset.pattern_stops
+                if p.pattern_id != "tubus:pattern:801" or p.stop_sequence <= 40
+            )
+        }
+    )
+
+    summary = load(database, shorter, "run-2")
+
+    assert summary.tables["transit.pattern_stop"].retired == 7
+    assert (
+        scalar(
+            database,
+            "SELECT max(stop_sequence) FROM transit.pattern_stop "
+            "WHERE pattern_id = 'tubus:pattern:801'",
+        )
+        == 40
+    )
+    assert not load(database, shorter, "run-3").changed
+
+
 def test_curation_status_is_preserved(
     database: Engine, dataset: CanonicalDataset
 ) -> None:
@@ -285,4 +340,4 @@ def test_cli_loads_the_snapshot(database: Engine, normalized: Path) -> None:
 
     assert cli.main(arguments) == cli.EXIT_OK
     assert cli.main(arguments) == cli.EXIT_OK
-    assert scalar(database, "SELECT count(*) FROM transit.route") == 4
+    assert scalar(database, "SELECT count(*) FROM transit.route") == 5

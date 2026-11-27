@@ -26,7 +26,7 @@ from rutagt.core.io import (
 )
 from rutagt.core.settings import PROJECT_ROOT
 from rutagt.pipeline.canonical.builder import Source, build_dataset
-from rutagt.pipeline.canonical.models import Agency, CanonicalDataset
+from rutagt.pipeline.canonical.models import Agency, CanonicalDataset, Rutero
 from rutagt.pipeline.normalizers.models import StagingBatch
 
 GENERATOR = "rutagt-canonical"
@@ -53,6 +53,17 @@ def load_agencies(path: Path) -> list[Agency]:
     if len(ids) != len(set(ids)):
         raise ConfigurationError(f"Hay agencias duplicadas en {path}")
     return agencies
+
+
+def load_ruteros(directory: Path) -> list[Rutero]:
+    """Ruteros oficiales transcritos (`*.json`) de un directorio, validados."""
+    ruteros = []
+    for path in sorted(directory.glob("*.json")):
+        try:
+            ruteros.append(Rutero.model_validate_json(path.read_bytes()))
+        except (OSError, ValidationError) as exc:
+            raise ConfigurationError(f"Rutero inválido {path}: {exc}") from exc
+    return ruteros
 
 
 def read_verified(path: Path) -> tuple[bytes, dict[str, Any]]:
@@ -93,6 +104,7 @@ def build_snapshot(
     raw_snapshot: Path,
     staging_root: Path,
     normalized_root: Path,
+    ruteros: list[Rutero] | None = None,
 ) -> CanonicalDataset:
     """Construye la red canónica de un snapshot y la escribe con su procedencia."""
     snapshot_id = raw_snapshot.name
@@ -113,6 +125,7 @@ def build_snapshot(
         sources,
         agencies,
         {source["id"]: raw_provenance(raw_snapshot, source) for source in sources},
+        ruteros or [],
     )
     destination = normalized_root / snapshot_id / DATASET_FILE
     body = write_json_atomic(destination, dataset.model_dump(mode="json"))
@@ -140,6 +153,7 @@ def counts(dataset: CanonicalDataset) -> dict[str, Any]:
         "shapes": len(dataset.shapes),
         "stations": sum(stop.location_type == 1 for stop in dataset.stops),
         "stops": sum(stop.location_type == 0 for stop in dataset.stops),
+        "pattern_stops": len(dataset.pattern_stops),
         "source_records": len(dataset.source_records),
         "issues": dict(
             sorted(Counter(str(i.evidence["severity"]) for i in dataset.issues).items())
