@@ -17,6 +17,8 @@ dependencies = [
 rutagt-collect = "rutagt.pipeline.cli:main"
 rutagt-profile = "rutagt.pipeline.profiling.cli:main"
 rutagt-normalize = "rutagt.pipeline.normalizers.cli:main"
+rutagt-canonical = "rutagt.pipeline.canonical.cli:main"
+rutagt-load = "rutagt.db.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.13.10,<0.14"]
