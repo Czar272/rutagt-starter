@@ -1,7 +1,8 @@
 """Regenera el snapshot de prueba de los normalizers a partir de un snapshot real.
 
 Copia sin modificar los registros elegidos de las cuatro capas municipales y
-escribe la procedencia mínima que exige el runner (SHA-256). Uso, desde la raíz
+escribe la procedencia mínima que exigen el runner (SHA-256) y el constructor
+canónico (`fetched_at` de la descarga original). Uso, desde la raíz
 del repositorio y con el recolector ya ejecutado:
 
     uv run python tests/fixtures/normalizers/extract_fixture.py [snapshot_id]
@@ -14,7 +15,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from rutagt.core.io import read_json, sha256_bytes, write_json
+from rutagt.core.io import provenance_path, read_json, sha256_bytes, write_json
 from rutagt.core.settings import PROJECT_ROOT
 from rutagt.core.snapshots import resolve_snapshot
 
@@ -57,6 +58,7 @@ def extract(snapshot: Path, destination: Path) -> None:
     """Escribe en `destination` los registros elegidos de `snapshot`."""
     for source_id, (relative, fids, reason) in SELECTION.items():
         collection: dict[str, Any] = read_json(snapshot / relative)
+        original: dict[str, Any] = read_json(provenance_path(snapshot / relative))
         wanted = set(fids)
         features = [
             f for f in collection["features"] if f["properties"]["FID"] in wanted
@@ -67,10 +69,11 @@ def extract(snapshot: Path, destination: Path) -> None:
         path = destination / relative
         body = write_json(path, {**collection, "features": features})
         write_json(
-            path.with_name(path.name + ".provenance.json"),
+            provenance_path(path),
             {
                 "source_id": source_id,
                 "extracted_from_snapshot": snapshot.name,
+                "fetched_at": original["fetched_at"],
                 "fids": sorted(wanted),
                 "reason": reason,
                 "sha256": sha256_bytes(body),

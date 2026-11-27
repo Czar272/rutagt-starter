@@ -9,7 +9,7 @@ Extractos de las cuatro capas GIS de la Municipalidad de Guatemala (Dirección d
 | `raw/.../transmetro_routes_2025.geojson` | 6, 7, 9, 12                                                        | Línea 18 en circuito (`MultiLineString`), correcciones ortográficas, variantes con trazado compartido                             |
 | `raw/.../tubus_routes_2025.geojson`      | 5, 7                                                               | Código como texto (rutas 305 y 402)                                                                                               |
 
-Cada archivo tiene su `.provenance.json` con el snapshot de origen, los `FID` elegidos, el motivo y el SHA-256 que verifica el runner.
+Cada archivo tiene su `.provenance.json` con el snapshot de origen, la fecha de la descarga original (`fetched_at`, que usa el constructor canónico), los `FID` elegidos, el motivo y el SHA-256 que verifica el runner. El mismo fixture alimenta las pruebas del constructor canónico y de la carga a PostGIS.
 
 ## Regenerar
 

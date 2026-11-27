@@ -1,6 +1,7 @@
 {
   "source_id": "muniguate_tubus_stops_2025",
   "extracted_from_snapshot": "20261126T181403Z",
+  "fetched_at": "2026-11-26T18:14:06+00:00",
   "fids": [101, 102, 143, 163, 205, 214, 226, 258],
   "reason": "Número repetido a 519 m (101/102) y registro duplicado (143/258, B7); sentido en la dirección (163); zona discrepante (205); espacio no separable (214); rutas con y sin trazado en el extracto",
   "sha256": "9f0702a2186d550a86ae21dec555ae193d299461c1be75ffb8db3f5754fa502b"
