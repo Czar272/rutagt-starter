@@ -1,0 +1,150 @@
+{
+  "type": "FeatureCollection",
+  "name": "muniguate_tubus_stops_2025",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 101,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5398294474503,
+          14.6447702489403
+        ]
+      },
+      "properties": {
+        "FID": 101,
+        "Nombre_lug": "Parada 105",
+        "Codigoruta": 801,
+        "Direccion": "Anillo Periférico y 30 avenida, Colonia 4 de febrero",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 102,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5358332119588,
+          14.647385510308
+        ]
+      },
+      "properties": {
+        "FID": 102,
+        "Nombre_lug": "Parada 105",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y 26 calle, Colonia Bethania",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 143,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5359947928273,
+          14.5674478632259
+        ]
+      },
+      "properties": {
+        "FID": 143,
+        "Nombre_lug": "Parada 190",
+        "Codigoruta": 402,
+        "Direccion": "10a avenida y 28 calle zona 13",
+        "Zona": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 163,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.531434550983,
+          14.5884968158937
+        ]
+      },
+      "properties": {
+        "FID": 163,
+        "Nombre_lug": "Parada 199",
+        "Codigoruta": 404,
+        "Direccion": "8a avenida zona 13. Aeropuerto Nacional La Aurora dirección norte",
+        "Zona": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 205,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5373652159123,
+          14.6187992827021
+        ]
+      },
+      "properties": {
+        "FID": 205,
+        "Nombre_lug": "Parada 173",
+        "Codigoruta": 105,
+        "Direccion": "4 avenida y 7 calle zona 3",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 214,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5038407955848,
+          14.6403864948081
+        ]
+      },
+      "properties": {
+        "FID": 214,
+        "Nombre_lug": "Estación Matamoros ",
+        "Codigoruta": 5,
+        "Direccion": "Avenida Ferrocaril y 7 calle zona 1",
+        "Zona": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 226,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5150044228269,
+          14.6249222265689
+        ]
+      },
+      "properties": {
+        "FID": 226,
+        "Nombre_lug": "Estación Puente de la Penitenciaría",
+        "Codigoruta": 5,
+        "Direccion": "via 1 y 7 avenida zona 4",
+        "Zona": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 258,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.53597557966,
+          14.5674946936763
+        ]
+      },
+      "properties": {
+        "FID": 258,
+        "Nombre_lug": "Parada 190",
+        "Codigoruta": 402,
+        "Direccion": "10a avenida y 28 calle zona 13",
+        "Zona": 13
+      }
+    }
+  ]
+}

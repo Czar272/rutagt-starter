@@ -1,0 +1,7 @@
+{
+  "source_id": "muniguate_transmetro_routes_2025",
+  "extracted_from_snapshot": "20261126T181403Z",
+  "fids": [6, 7, 9, 12],
+  "reason": "Línea 18 como MultiLineString en circuito (7); corrección ortográfica (6, 9, 12); variantes con trazado compartido (9/12)",
+  "sha256": "80fefd98dc270e42017ccedbc18b9cfa418b3808a7e74b68fcf4b318312e5843"
+}
