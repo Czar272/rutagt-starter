@@ -1,0 +1,477 @@
+{
+  "muniguate_transmetro_routes_2025": {
+    "records": [
+      {
+        "entity": "route",
+        "external_id": "6",
+        "route_code": "13",
+        "variant_code": "13001",
+        "short_name": "13",
+        "long_name": "Línea 13 Extensión"
+      },
+      {
+        "entity": "shape",
+        "external_id": "6",
+        "route_code": "13",
+        "variant_code": "13001",
+        "points": 295,
+        "length_m": 4489.8
+      },
+      {
+        "entity": "route",
+        "external_id": "7",
+        "route_code": "18",
+        "variant_code": "18000",
+        "short_name": "18",
+        "long_name": "Línea 18"
+      },
+      {
+        "entity": "shape",
+        "external_id": "7",
+        "route_code": "18",
+        "variant_code": "18000",
+        "points": 575,
+        "length_m": 12494.7
+      },
+      {
+        "entity": "route",
+        "external_id": "9",
+        "route_code": "18",
+        "variant_code": "18002",
+        "short_name": "18",
+        "long_name": "Línea 18 Exprés (Directo Plaza Barrios)"
+      },
+      {
+        "entity": "shape",
+        "external_id": "9",
+        "route_code": "18",
+        "variant_code": "18002",
+        "points": 374,
+        "length_m": 21105.3
+      },
+      {
+        "entity": "route",
+        "external_id": "12",
+        "route_code": "18",
+        "variant_code": "18001",
+        "short_name": "18",
+        "long_name": "Línea 18 Exprés (Directo San Rafael)"
+      },
+      {
+        "entity": "shape",
+        "external_id": "12",
+        "route_code": "18",
+        "variant_code": "18001",
+        "points": 374,
+        "length_m": 21105.3
+      }
+    ],
+    "issues": [
+      {
+        "severity": "info",
+        "code": "nombre_corregido",
+        "external_id": "6"
+      },
+      {
+        "severity": "info",
+        "code": "tramos_unidos",
+        "external_id": "7"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_corregido",
+        "external_id": "9"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_corregido",
+        "external_id": "12"
+      },
+      {
+        "severity": "info",
+        "code": "trazado_compartido",
+        "external_id": "9"
+      }
+    ]
+  },
+  "muniguate_transmetro_stops_2025": {
+    "records": [
+      {
+        "entity": "stop",
+        "external_id": "19",
+        "name": "Francos Monroy",
+        "direction_hint": null,
+        "zone": "1",
+        "route_codes": ["6000"],
+        "address": "11 avenida y 15 calle zona 1"
+      },
+      {
+        "entity": "stop",
+        "external_id": "20",
+        "name": "Estación San Martín",
+        "direction_hint": null,
+        "zone": "1",
+        "route_codes": ["18000"],
+        "address": "20 avenida y 1ª calle zona 1"
+      },
+      {
+        "entity": "stop",
+        "external_id": "22",
+        "name": "Estación Atlántida",
+        "direction_hint": null,
+        "zone": "18",
+        "route_codes": ["18000"],
+        "address": "11 avenida (boulevard álvaro arzú) zona 18"
+      },
+      {
+        "entity": "stop",
+        "external_id": "24",
+        "name": "Estación San Martín",
+        "direction_hint": null,
+        "zone": "1",
+        "route_codes": ["18000"],
+        "address": "1ª calle y 9ª avenida zona 1"
+      },
+      {
+        "entity": "stop",
+        "external_id": "25",
+        "name": "Estación Juan Pablo II",
+        "direction_hint": null,
+        "zone": "14",
+        "route_codes": ["13001"],
+        "address": "avenida las américa y 21 calle zona 14"
+      },
+      {
+        "entity": "stop",
+        "external_id": "26",
+        "name": "Estación Plaza Berlín",
+        "direction_hint": null,
+        "zone": "13",
+        "route_codes": ["13001"],
+        "address": "frente a plaza berlín zona 13"
+      },
+      {
+        "entity": "stop",
+        "external_id": "44",
+        "name": "Estación Bolívar",
+        "direction_hint": "Plaza Barrios",
+        "zone": "3",
+        "route_codes": ["12000"],
+        "address": "avenida bolivar y 32 calle zona 8"
+      },
+      {
+        "entity": "stop",
+        "external_id": "54",
+        "name": "Estación Las Charcas",
+        "direction_hint": "Central Sur",
+        "zone": "11",
+        "route_codes": ["12000"],
+        "address": "calz. aguilar batres y 34 calle zona 12"
+      },
+      {
+        "entity": "stop",
+        "external_id": "82",
+        "name": "Estación La Merced",
+        "direction_hint": null,
+        "zone": "1",
+        "route_codes": ["7000"],
+        "address": "11 avenida y 5 calle zona 1"
+      },
+      {
+        "entity": "stop",
+        "external_id": "85",
+        "name": "Estación San Rafael",
+        "direction_hint": null,
+        "zone": "18",
+        "route_codes": ["18001"],
+        "address": "Boulevard San Rafael y 3 aveniada B zona 18"
+      },
+      {
+        "entity": "stop",
+        "external_id": "86",
+        "name": "Estación Paraíso I",
+        "direction_hint": null,
+        "zone": "18",
+        "route_codes": ["18001"],
+        "address": "Boulevard San Rafael y 20 avenida zona 18"
+      },
+      {
+        "entity": "stop",
+        "external_id": "91",
+        "name": "Estación Plaza Argentina",
+        "direction_hint": null,
+        "zone": "13",
+        "route_codes": ["13001"],
+        "address": "15 avenida y 11 calle zona 13"
+      },
+      {
+        "entity": "stop",
+        "external_id": "141",
+        "name": "Estación San Rafael",
+        "direction_hint": null,
+        "zone": "18",
+        "route_codes": ["18002"],
+        "address": "Boulvard San Rafael y 3 avenida b"
+      },
+      {
+        "entity": "stop",
+        "external_id": "142",
+        "name": "Estación Paraíso I",
+        "direction_hint": null,
+        "zone": "18",
+        "route_codes": ["18002"],
+        "address": "Boulevard San Rafael y 20 avenida"
+      },
+      {
+        "entity": "stop",
+        "external_id": "144",
+        "name": "Granai",
+        "direction_hint": "La Merced",
+        "zone": "11",
+        "route_codes": ["7000"],
+        "address": "Anillo Periferico Norte zona 11"
+      },
+      {
+        "entity": "stop",
+        "external_id": "145",
+        "name": "Granai",
+        "direction_hint": "La Merced",
+        "zone": "11",
+        "route_codes": ["7000"],
+        "address": "Anillo Periferico Sur zona 11"
+      }
+    ],
+    "issues": [
+      {
+        "severity": "info",
+        "code": "espacios_anomalos",
+        "external_id": "19"
+      },
+      {
+        "severity": "warning",
+        "code": "zona_discrepante",
+        "external_id": "44"
+      },
+      {
+        "severity": "warning",
+        "code": "zona_discrepante",
+        "external_id": "54"
+      },
+      {
+        "severity": "info",
+        "code": "espacios_anomalos",
+        "external_id": "82"
+      },
+      {
+        "severity": "info",
+        "code": "espacios_anomalos",
+        "external_id": "144"
+      },
+      {
+        "severity": "warning",
+        "code": "sentido_duplicado",
+        "external_id": "144"
+      },
+      {
+        "severity": "warning",
+        "code": "ruta_sin_trazado",
+        "external_id": "44"
+      },
+      {
+        "severity": "warning",
+        "code": "ruta_sin_trazado",
+        "external_id": "19"
+      },
+      {
+        "severity": "warning",
+        "code": "ruta_sin_trazado",
+        "external_id": "82"
+      }
+    ]
+  },
+  "muniguate_tubus_routes_2025": {
+    "records": [
+      {
+        "entity": "route",
+        "external_id": "5",
+        "route_code": "305",
+        "variant_code": null,
+        "short_name": "305",
+        "long_name": null
+      },
+      {
+        "entity": "shape",
+        "external_id": "5",
+        "route_code": "305",
+        "variant_code": null,
+        "points": 259,
+        "length_m": 12564.7
+      },
+      {
+        "entity": "route",
+        "external_id": "7",
+        "route_code": "402",
+        "variant_code": null,
+        "short_name": "402",
+        "long_name": null
+      },
+      {
+        "entity": "shape",
+        "external_id": "7",
+        "route_code": "402",
+        "variant_code": null,
+        "points": 426,
+        "length_m": 14055.7
+      }
+    ],
+    "issues": []
+  },
+  "muniguate_tubus_stops_2025": {
+    "records": [
+      {
+        "entity": "stop",
+        "external_id": "101",
+        "name": "Parada 105",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "Anillo Periférico y 30 avenida, Colonia 4 de febrero"
+      },
+      {
+        "entity": "stop",
+        "external_id": "102",
+        "name": "Parada 105",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["801"],
+        "address": "33 avenida y 26 calle, Colonia Bethania"
+      },
+      {
+        "entity": "stop",
+        "external_id": "143",
+        "name": "Parada 190",
+        "direction_hint": null,
+        "zone": "13",
+        "route_codes": ["402"],
+        "address": "10a avenida y 28 calle zona 13"
+      },
+      {
+        "entity": "stop",
+        "external_id": "163",
+        "name": "Parada 199",
+        "direction_hint": "norte",
+        "zone": "13",
+        "route_codes": ["404"],
+        "address": "8a avenida zona 13. Aeropuerto Nacional La Aurora dirección norte"
+      },
+      {
+        "entity": "stop",
+        "external_id": "205",
+        "name": "Parada 173",
+        "direction_hint": null,
+        "zone": "7",
+        "route_codes": ["105"],
+        "address": "4 avenida y 7 calle zona 3"
+      },
+      {
+        "entity": "stop",
+        "external_id": "214",
+        "name": "Estación Matamoros",
+        "direction_hint": null,
+        "zone": "1",
+        "route_codes": ["5"],
+        "address": "Avenida Ferrocaril y 7 calle zona 1"
+      },
+      {
+        "entity": "stop",
+        "external_id": "226",
+        "name": "Estación Puente de la Penitenciaría",
+        "direction_hint": null,
+        "zone": "4",
+        "route_codes": ["5"],
+        "address": "via 1 y 7 avenida zona 4"
+      },
+      {
+        "entity": "stop",
+        "external_id": "258",
+        "name": "Parada 190",
+        "direction_hint": null,
+        "zone": "13",
+        "route_codes": ["402"],
+        "address": "10a avenida y 28 calle zona 13"
+      }
+    ],
+    "issues": [
+      {
+        "severity": "warning",
+        "code": "zona_discrepante",
+        "external_id": "205"
+      },
+      {
+        "severity": "info",
+        "code": "espacios_anomalos",
+        "external_id": "214"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "101"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "102"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "143"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "163"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "205"
+      },
+      {
+        "severity": "info",
+        "code": "nombre_generico",
+        "external_id": "258"
+      },
+      {
+        "severity": "warning",
+        "code": "numero_repetido",
+        "external_id": "143"
+      },
+      {
+        "severity": "warning",
+        "code": "numero_repetido",
+        "external_id": "101"
+      },
+      {
+        "severity": "warning",
+        "code": "ruta_sin_trazado",
+        "external_id": "205"
+      },
+      {
+        "severity": "warning",
+        "code": "ruta_sin_trazado",
+        "external_id": "163"
+      },
+      {
+        "severity": "warning",
+        "code": "ruta_sin_trazado",
+        "external_id": "214"
+      },
+      {
+        "severity": "warning",
+        "code": "ruta_sin_trazado",
+        "external_id": "101"
+      }
+    ]
+  }
+}
