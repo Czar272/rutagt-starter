@@ -4,6 +4,726 @@
   "features": [
     {
       "type": "Feature",
+      "id": 59,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5284768883342,
+          14.6597971233314
+        ]
+      },
+      "properties": {
+        "FID": 59,
+        "Nombre_lug": "Parada 063",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y 39 calle, colonia El Amaparo I",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 60,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.529952256204,
+          14.6570444466016
+        ]
+      },
+      "properties": {
+        "FID": 60,
+        "Nombre_lug": "Parada 064",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y 36 calle Sakerty I",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 62,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.533101726234,
+          14.651213894742
+        ]
+      },
+      "properties": {
+        "FID": 62,
+        "Nombre_lug": "Parada 066",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y 32 calle, Colonia Banvi I",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 63,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5341454024058,
+          14.6498133428979
+        ]
+      },
+      "properties": {
+        "FID": 63,
+        "Nombre_lug": "Parada 067",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y 30 calle, Colonia Bethania",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 64,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5356277304224,
+          14.647768770328
+        ]
+      },
+      "properties": {
+        "FID": 64,
+        "Nombre_lug": "Parada 068",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y 26 calle, Colonia Bethania",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 65,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5368464505138,
+          14.6461515245196
+        ]
+      },
+      "properties": {
+        "FID": 65,
+        "Nombre_lug": "Parada 069",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y 24 calle, Colonia Kjell Laugerud",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 66,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5399931690041,
+          14.6450507511459
+        ]
+      },
+      "properties": {
+        "FID": 66,
+        "Nombre_lug": "Parada 070",
+        "Codigoruta": 801,
+        "Direccion": "Anillo Periférico y 22 calle, Colonia Niño Dormido",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 67,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5421342136522,
+          14.6438494673065
+        ]
+      },
+      "properties": {
+        "FID": 67,
+        "Nombre_lug": "Parada 071",
+        "Codigoruta": 801,
+        "Direccion": "Anillo Periferico sur y 31 avenida, Colonia El Incienso",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 68,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5453150294957,
+          14.6424998903982
+        ]
+      },
+      "properties": {
+        "FID": 68,
+        "Nombre_lug": "Parada 072",
+        "Codigoruta": 801,
+        "Direccion": "Anillo Periferico sur y 20 calle, Condominio Bosques de Linda Villa",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 69,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5473504744873,
+          14.6405157075432
+        ]
+      },
+      "properties": {
+        "FID": 69,
+        "Nombre_lug": "Parada 073",
+        "Codigoruta": 801,
+        "Direccion": "16 calle y 15 calle, Colonia Ciudad de Plata II",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 70,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5466829795188,
+          14.637742758906
+        ]
+      },
+      "properties": {
+        "FID": 70,
+        "Nombre_lug": "Parada 074",
+        "Codigoruta": 801,
+        "Direccion": "14 calle y 28 avenida, Colonia Ciudad de Plata I",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 71,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5475975623944,
+          14.6342774649145
+        ]
+      },
+      "properties": {
+        "FID": 71,
+        "Nombre_lug": "Parada 075",
+        "Codigoruta": 801,
+        "Direccion": "13 calle y 29 avenida, Colonia Ciudad de Plata I",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 72,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5452969796467,
+          14.6287324396713
+        ]
+      },
+      "properties": {
+        "FID": 72,
+        "Nombre_lug": "Monumento a la Madre",
+        "Codigoruta": 801,
+        "Direccion": "9a calle y 13 avenida, Colonia Quinta Samayoa",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 73,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5430591657812,
+          14.6259212483372
+        ]
+      },
+      "properties": {
+        "FID": 73,
+        "Nombre_lug": "Parada 077",
+        "Codigoruta": 801,
+        "Direccion": "9a calle y 11 avenida, Colonia Quinta Samayoa",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 74,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5417054783098,
+          14.6219820305984
+        ]
+      },
+      "properties": {
+        "FID": 74,
+        "Nombre_lug": "Parada 078",
+        "Codigoruta": 801,
+        "Direccion": "9a avenida y 7a calle",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 75,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5435291311001,
+          14.6205951006691
+        ]
+      },
+      "properties": {
+        "FID": 75,
+        "Nombre_lug": "Parada 079",
+        "Codigoruta": 801,
+        "Direccion": "9a avenida y 4a calle",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 76,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5431873068632,
+          14.6190919899665
+        ]
+      },
+      "properties": {
+        "FID": 76,
+        "Nombre_lug": "Parada 080",
+        "Codigoruta": 801,
+        "Direccion": "Calzada San Juan y 12 avenida",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 77,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5403164600984,
+          14.6164698095009
+        ]
+      },
+      "properties": {
+        "FID": 77,
+        "Nombre_lug": "Parada 081",
+        "Codigoruta": 801,
+        "Direccion": "Calzada Roosevelt y 5a avenida, Colonia El Progreso",
+        "Zona": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 78,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5359213708242,
+          14.6138403220895
+        ]
+      },
+      "properties": {
+        "FID": 78,
+        "Nombre_lug": "Parada 082",
+        "Codigoruta": 801,
+        "Direccion": "Calzada Roosevelt y calzada Aguilar Batres - Trébol",
+        "Zona": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 79,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5346383556129,
+          14.6121770075912
+        ]
+      },
+      "properties": {
+        "FID": 79,
+        "Nombre_lug": "Parada 083",
+        "Codigoruta": 801,
+        "Direccion": "Bulevar Liberación, despúes del puente Trébol",
+        "Zona": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 81,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5272026658329,
+          14.6064313721257
+        ]
+      },
+      "properties": {
+        "FID": 81,
+        "Nombre_lug": "Parada 085",
+        "Codigoruta": 801,
+        "Direccion": "Avenida La Castellana y 9a calle, Cantón Tívoli",
+        "Zona": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 82,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5262149969241,
+          14.6085399927816
+        ]
+      },
+      "properties": {
+        "FID": 82,
+        "Nombre_lug": "Parada 086",
+        "Codigoruta": 801,
+        "Direccion": "Avenida La Castellana y 6a calle, Cantón Guarda Viejo",
+        "Zona": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 83,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5211997808463,
+          14.6107879373507
+        ]
+      },
+      "properties": {
+        "FID": 83,
+        "Nombre_lug": "Parada 087",
+        "Codigoruta": 801,
+        "Direccion": "4a avenida y 4a calle, Cantón Tívolli",
+        "Zona": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 84,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5230743833846,
+          14.6108298428877
+        ]
+      },
+      "properties": {
+        "FID": 84,
+        "Nombre_lug": "Parada 088",
+        "Codigoruta": 801,
+        "Direccion": "5a calle y 2a avenida, Cantón Tívoli",
+        "Zona": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 85,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5258576830367,
+          14.6098417635182
+        ]
+      },
+      "properties": {
+        "FID": 85,
+        "Nombre_lug": "Parada 089",
+        "Codigoruta": 801,
+        "Direccion": "Avenida la Castellana y 39 calle, Cantón Guarda Viejo",
+        "Zona": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 86,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5277087236634,
+          14.6059104678696
+        ]
+      },
+      "properties": {
+        "FID": 86,
+        "Nombre_lug": "Parada 090",
+        "Codigoruta": 801,
+        "Direccion": "Avenida la Castellana y 41 calle, Cantón Guarda Viejo",
+        "Zona": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 87,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.531776207235,
+          14.6090236546637
+        ]
+      },
+      "properties": {
+        "FID": 87,
+        "Nombre_lug": "Pasarela IGSS Pamplona oriente",
+        "Codigoruta": 801,
+        "Direccion": "Bulevar Liberación y 11 avenida",
+        "Zona": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 88,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5339607653772,
+          14.6122423733102
+        ]
+      },
+      "properties": {
+        "FID": 88,
+        "Nombre_lug": "Trebol zona 8",
+        "Codigoruta": 801,
+        "Direccion": "Bulevar Liberación y 4a avenida",
+        "Zona": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 89,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5354664468963,
+          14.6140431926575
+        ]
+      },
+      "properties": {
+        "FID": 89,
+        "Nombre_lug": "Trebol zona 3",
+        "Codigoruta": 801,
+        "Direccion": "Calzada Roosevelt y cuchilla Trébol",
+        "Zona": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 90,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5380064019211,
+          14.6158903332312
+        ]
+      },
+      "properties": {
+        "FID": 90,
+        "Nombre_lug": "Parada 947",
+        "Codigoruta": 801,
+        "Direccion": "Calzada Roosevelt y 4a avenida, Colonia Landivar",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 91,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5407539387435,
+          14.6175136233446
+        ]
+      },
+      "properties": {
+        "FID": 91,
+        "Nombre_lug": "Funerales Reforma",
+        "Codigoruta": 801,
+        "Direccion": "Calzada San Juan y 7a avenida, Colonia Quinta Samayoa",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 92,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5450366281144,
+          14.6205889891375
+        ]
+      },
+      "properties": {
+        "FID": 92,
+        "Nombre_lug": "C.C. Promo Centro",
+        "Codigoruta": 801,
+        "Direccion": "Calzada San Juan y 9a avenida \"B\", Colonia Quinta Samayoa",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 93,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5436796132833,
+          14.6222845262517
+        ]
+      },
+      "properties": {
+        "FID": 93,
+        "Nombre_lug": "Parada 097",
+        "Codigoruta": 801,
+        "Direccion": "10 Avenida y 5a calle, Colonia Quinta Samayoa",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 94,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5423223379407,
+          14.6233073382881
+        ]
+      },
+      "properties": {
+        "FID": 94,
+        "Nombre_lug": "Parada 098",
+        "Codigoruta": 801,
+        "Direccion": "10a Avenida y 7a calle \"A\", Colonia Quinta Samayoa",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 95,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.542945002485,
+          14.6260642743019
+        ]
+      },
+      "properties": {
+        "FID": 95,
+        "Nombre_lug": "Parada 100",
+        "Codigoruta": 801,
+        "Direccion": "9a calle y 13 avenida, Colonia Castillo Lara",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 96,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5459393855676,
+          14.629781419931
+        ]
+      },
+      "properties": {
+        "FID": 96,
+        "Nombre_lug": "Pisos Casa Blanca",
+        "Codigoruta": 801,
+        "Direccion": "9a calle y 15 avenida, Colonia Quinta Smayoa",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 97,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5474275930578,
+          14.6345097762988
+        ]
+      },
+      "properties": {
+        "FID": 97,
+        "Nombre_lug": "Parada 101",
+        "Codigoruta": 801,
+        "Direccion": "Diagonal 24 y 13 calle, Colonia Kaminal Juyú II",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 98,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5465556064963,
+          14.6377371563096
+        ]
+      },
+      "properties": {
+        "FID": 98,
+        "Nombre_lug": "Parada 102",
+        "Codigoruta": 801,
+        "Direccion": "Diagonal 24 y 14 calle, Colonia Ciudad de Plata II",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 99,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5462102419988,
+          14.6409228706572
+        ]
+      },
+      "properties": {
+        "FID": 99,
+        "Nombre_lug": "Parada 103",
+        "Codigoruta": 801,
+        "Direccion": "31 avenida y 18 calle, Colonia Mario Julio Salazar",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 100,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5426327867198,
+          14.6432972099302
+        ]
+      },
+      "properties": {
+        "FID": 100,
+        "Nombre_lug": "Parada 104",
+        "Codigoruta": 801,
+        "Direccion": "Anillo Periférico y 21 calle, Colonia El Incienso",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
       "id": 101,
       "geometry": {
         "type": "Point",
@@ -35,6 +755,78 @@
         "Nombre_lug": "Parada 105",
         "Codigoruta": 801,
         "Direccion": "33 avenida y 26 calle, Colonia Bethania",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 103,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5341127504418,
+          14.6495473913726
+        ]
+      },
+      "properties": {
+        "FID": 103,
+        "Nombre_lug": "Parada 106",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida  y 30 calle, Colonia Bethania",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 104,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5326728094319,
+          14.6514903630121
+        ]
+      },
+      "properties": {
+        "FID": 104,
+        "Nombre_lug": "Parada 107",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida  y 33 calle",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 105,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5307584429676,
+          14.6550887294693
+        ]
+      },
+      "properties": {
+        "FID": 105,
+        "Nombre_lug": "Parada 108",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y  35 calle \"B\", Colonia Sakerty II",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 106,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.529628119795,
+          14.6571752729618
+        ]
+      },
+      "properties": {
+        "FID": 106,
+        "Nombre_lug": "Parada 109",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida  y 36 calle \"A\", Colonia Sakerty I",
         "Zona": 7
       }
     },
@@ -94,6 +886,24 @@
     },
     {
       "type": "Feature",
+      "id": 208,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5426911843998,
+          14.619031130649
+        ]
+      },
+      "properties": {
+        "FID": 208,
+        "Nombre_lug": "Parada 096",
+        "Codigoruta": 801,
+        "Direccion": "Calzada San Juan y 8 avenida zona 7",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
       "id": 214,
       "geometry": {
         "type": "Point",
@@ -126,6 +936,42 @@
         "Codigoruta": 5,
         "Direccion": "via 1 y 7 avenida zona 4",
         "Zona": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 233,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5310648915486,
+          14.6549216295056
+        ]
+      },
+      "properties": {
+        "FID": 233,
+        "Nombre_lug": "Parada 065",
+        "Codigoruta": 801,
+        "Direccion": "33 avenida y 35 calle \"A\"",
+        "Zona": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 239,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5320651377697,
+          14.6086520604494
+        ]
+      },
+      "properties": {
+        "FID": 239,
+        "Nombre_lug": "Parada 084",
+        "Codigoruta": 801,
+        "Direccion": "Bulevar Liberación, pasarela del IGSS Pamplona",
+        "Zona": 12
       }
     },
     {
