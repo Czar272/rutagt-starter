@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "agencies": [
+    {
+      "agency_id": "transmetro",
+      "agency_name": "Transmetro",
+      "public_brand": "Transmetro",
+      "regulator_name": "Municipalidad de Guatemala - Dirección de Movilidad Urbana",
+      "agency_url": "https://www.muniguate.com/movilidadurbana/transmetro/",
+      "agency_timezone": "America/Guatemala",
+      "agency_lang": "es",
+      "municipality": "Guatemala"
+    },
+    {
+      "agency_id": "tubus",
+      "agency_name": "TuBus",
+      "public_brand": "TuBus",
+      "regulator_name": "Municipalidad de Guatemala - Dirección de Movilidad Urbana",
+      "agency_url": "https://www.muniguate.com/movilidadurbana/",
+      "agency_timezone": "America/Guatemala",
+      "agency_lang": "es",
+      "municipality": "Guatemala"
+    }
+  ]
+}

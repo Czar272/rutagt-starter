@@ -29,6 +29,9 @@ def test_project_catalog_is_valid() -> None:
         ('{"sources": [{"id": "x", "disabled_reason": " "}]}', "vacío"),
         ('{"sources": [{"id": "x", "disabled_reason": 1}]}', "vacío"),
         ('{"sources": [{"id": "x", "shapes_source": "y"}]}', "desconocida: y"),
+        ('{"sources": [{"id": "x", "agency": "Trans Metro"}]}', "'agency' inválida"),
+        ('{"sources": [{"id": "x", "agency": 1}]}', "'agency' inválida"),
+        ('{"sources": [{"id": "x", "group_stations": "si"}]}', "no booleano"),
     ],
 )
 def test_rejects_invalid_catalogs(tmp_path: Path, content: str, message: str) -> None:
