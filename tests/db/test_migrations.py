@@ -6,26 +6,23 @@ con `RUTAGT_DB_*` y eliminada al terminar:
     uv run --env-file .env pytest -m integration
 """
 
-from collections.abc import Iterator
-from contextlib import contextmanager
+from collections.abc import Callable
+from contextlib import AbstractContextManager
 from typing import Any, cast
-from uuid import uuid4
 
 import psycopg
 import pytest
-from alembic import command
-from alembic.config import Config
-from alembic.script import ScriptDirectory
-from sqlalchemy import Connection, Engine, create_engine
-
-from rutagt.core.settings import PROJECT_ROOT
-from rutagt.db.settings import DatabaseSettings
+from sqlalchemy import Connection, Engine
 
 pytestmark = pytest.mark.integration
+
+TemporaryDatabase = Callable[[], AbstractContextManager[Engine]]
+Alembic = Callable[..., None]
 
 SCHEMAS = ["provenance", "transit", "realtime", "community"]
 APPEND_ONLY_TABLES = {
     "provenance.source_record",
+    "provenance.entity_source_record",
     "transit.feed_version",
     "realtime.vehicle_position",
     "realtime.stop_event",
@@ -128,6 +125,24 @@ INVALID_STATEMENTS = {
     "borrar una parada usada en un patrón": (
         "DELETE FROM transit.stop WHERE stop_id = 'tubus:stop:801-095'"
     ),
+    "clave de incidencia sin formato": (
+        "INSERT INTO provenance.data_issue (entity_type, entity_id, issue_type, "
+        "description, source_id, issue_key) VALUES ('stop', 'x', 't', 'd', "
+        "'muniguate_tubus_stops_2025', 'abc')"
+    ),
+    "incidencia del pipeline repetida": (
+        "INSERT INTO provenance.data_issue (entity_type, entity_id, issue_type, "
+        "description, source_id, issue_key) SELECT 'stop', 'x', 't', 'd', "
+        "'muniguate_tubus_stops_2025', repeat('a', 64) FROM generate_series(1, 2)"
+    ),
+    "procedencia de una entidad de tipo desconocido": (
+        "INSERT INTO provenance.source_record (source_id, external_id, entity_type, "
+        "fetched_at, raw_payload) VALUES ('muniguate_tubus_stops_2025', '1', 'stop', "
+        "now(), '{}');"
+        "INSERT INTO provenance.entity_source_record (entity_type, entity_id, "
+        "source_record_id) SELECT 'trip', 'x', max(source_record_id) "
+        "FROM provenance.source_record"
+    ),
     "regla de calidad que asciende de nivel": (
         "UPDATE provenance.quality_rule SET degrades_to = 'official' "
         "WHERE quality = 'verified'"
@@ -137,45 +152,6 @@ INVALID_STATEMENTS = {
         "WHERE quality = 'probable'"
     ),
 }
-
-
-@contextmanager
-def temporary_database() -> Iterator[Engine]:
-    """Crea una base vacía, la entrega y la elimina al terminar."""
-    settings = DatabaseSettings.from_env()
-    name = f"rutagt_test_{uuid4().hex[:12]}"
-    admin = create_engine(settings.url(), isolation_level="AUTOCOMMIT")
-    with admin.connect() as conn:
-        conn.exec_driver_sql(f'CREATE DATABASE "{name}"')
-    engine = create_engine(settings.url(name))
-    try:
-        with pytest.MonkeyPatch.context() as mp:
-            mp.setenv("RUTAGT_DB_NAME", name)
-            yield engine
-    finally:
-        engine.dispose()
-        with admin.connect() as conn:
-            conn.exec_driver_sql(f'DROP DATABASE "{name}" WITH (FORCE)')
-        admin.dispose()
-
-
-def alembic_config() -> Config:
-    config = Config(str(PROJECT_ROOT / "alembic.ini"))
-    config.attributes["configure_logger"] = False
-    return config
-
-
-def head_revision() -> str | None:
-    return ScriptDirectory.from_config(alembic_config()).get_current_head()
-
-
-def alembic(revision: str, *, downgrade: bool = False) -> None:
-    """Ejecuta Alembic con la configuración del repositorio."""
-    config = alembic_config()
-    if downgrade:
-        command.downgrade(config, revision)
-    else:
-        command.upgrade(config, revision)
 
 
 def rows(
@@ -192,13 +168,6 @@ def rows(
 def names(conn: Connection, sql: str) -> set[str]:
     """Primera columna de una consulta filtrada por los esquemas del proyecto."""
     return {str(r[0]) for r in rows(conn, sql, {"schemas": SCHEMAS})}
-
-
-@pytest.fixture(scope="module")
-def migrated() -> Iterator[Engine]:
-    with temporary_database() as engine:
-        alembic("head")
-        yield engine
 
 
 def test_creates_the_four_schemas(migrated: Engine) -> None:
@@ -258,8 +227,9 @@ def test_audit_columns_and_updated_at_triggers(migrated: Engine) -> None:
             """,
         )
 
-    # 23 tablas originales + data_issue (D22), feed_version (D17) y quality_rule.
-    assert len(tables) == 26
+    # 23 tablas originales + data_issue (D22), feed_version (D17), quality_rule
+    # y entity_source_record (ADR-0035).
+    assert len(tables) == 27
     assert created == tables
     assert tables - updated == APPEND_ONLY_TABLES
     assert triggered == updated
@@ -343,7 +313,9 @@ def test_constraints_reject_invalid_data(migrated: Engine, statement: str) -> No
         tx.rollback()
 
 
-def test_downgrade_removes_everything_and_upgrade_is_repeatable() -> None:
+def test_downgrade_removes_everything_and_upgrade_is_repeatable(
+    temporary_database: TemporaryDatabase, alembic: Alembic, head_revision: str
+) -> None:
     with temporary_database() as engine:
         alembic("head")
         alembic("base", downgrade=True)
@@ -359,7 +331,7 @@ def test_downgrade_removes_everything_and_upgrade_is_repeatable() -> None:
             version = rows(conn, "SELECT version_num FROM public.alembic_version")
 
     assert leftover == set()
-    assert version == [(head_revision(),)]
+    assert version == [(head_revision,)]
 
 
 # ---------------------------------------------------------------------------
@@ -425,7 +397,9 @@ def test_effective_quality_degrades_when_expired(
     assert effective == expected
 
 
-def test_downgrading_the_scale_maps_new_levels_to_old_ones() -> None:
+def test_downgrading_the_scale_maps_new_levels_to_old_ones(
+    temporary_database: TemporaryDatabase, alembic: Alembic
+) -> None:
     with temporary_database() as engine:
         alembic("head")
         with engine.begin() as conn:
