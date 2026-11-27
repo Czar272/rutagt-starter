@@ -23,6 +23,10 @@ src/rutagt/
 │   ├── logging.py              # configuración del registro
 │   ├── settings.py             # configuración desde variables RUTAGT_*
 │   └── snapshots.py            # snapshots crudos inmutables y LATEST (ADR-0032)
+├── db/
+│   ├── settings.py             # conexión desde variables RUTAGT_DB_*
+│   ├── loader.py               # carga idempotente del dataset canónico (ADR-0035)
+│   └── cli.py                  # punto de entrada `rutagt-load`
 ├── pipeline/
 │   ├── sources.py              # carga y selección del catálogo de fuentes
 │   ├── cli.py                  # punto de entrada `rutagt-collect`
@@ -49,6 +53,12 @@ src/rutagt/
 │   │   ├── tubus_stops.py      # adaptador de paradas de TuBus (RGT-37)
 │   │   ├── validations.py      # validaciones geoespaciales y severidad (ADR-0034)
 │   │   └── cli.py              # punto de entrada `rutagt-normalize`
+│   ├── canonical/
+│   │   ├── models.py           # modelos de la capa normalizada (ADR-0035)
+│   │   ├── identifiers.py      # identificadores <agencia>:<tipo>:<código>
+│   │   ├── builder.py          # constructor canónico: estaciones, andenes, rutas, trazados
+│   │   ├── runner.py           # lectura verificada de staging y escritura de normalized
+│   │   └── cli.py              # punto de entrada `rutagt-canonical`
 │   └── exporters/              # Sprint 8 (GTFS)
 └── api/                        # Sprint 10 (ADR-0022)
 ```
@@ -72,12 +82,14 @@ flowchart LR
 
 ## 2. Etapas y contratos
 
-| Etapa      | Entrada                                  | Salida                                                                | Contrato                                                       |
-| ---------- | ---------------------------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Collector  | Configuración de una fuente              | Archivo en el snapshot `data/raw/<snapshot_id>/` + `.provenance.json` | `Collector`                                                    |
-| Validator  | Datos de una capa                        | Lista de advertencias o errores de calidad                            | Función pura                                                   |
-| Normalizer | Fuente cruda de un snapshot (`RawInput`) | `StagingBatch` en `data/staging/<snapshot>/` + procedencia            | `Adapter` ([ADR-0033](adr/0033-contrato-de-normalizadores.md)) |
-| Exporter   | Base canónica                            | Feed en `data/gtfs/`                                                  | Por definir en Sprint 8                                        |
+| Etapa                | Entrada                                  | Salida                                                                | Contrato                                                                                   |
+| -------------------- | ---------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Collector            | Configuración de una fuente              | Archivo en el snapshot `data/raw/<snapshot_id>/` + `.provenance.json` | `Collector`                                                                                |
+| Validator            | Datos de una capa                        | Lista de advertencias o errores de calidad                            | Función pura                                                                               |
+| Normalizer           | Fuente cruda de un snapshot (`RawInput`) | `StagingBatch` en `data/staging/<snapshot>/` + procedencia            | `Adapter` ([ADR-0033](adr/0033-contrato-de-normalizadores.md))                             |
+| Constructor canónico | Lotes de staging de un snapshot          | `CanonicalDataset` en `data/normalized/<snapshot>/` + procedencia     | Función pura ([ADR-0035](adr/0035-constructor-canonico-y-carga-idempotente.md))            |
+| Cargador             | `CanonicalDataset`                       | Base canónica (PostGIS)                                               | Transacción idempotente ([ADR-0035](adr/0035-constructor-canonico-y-carga-idempotente.md)) |
+| Exporter             | Base canónica                            | Feed en `data/gtfs/`                                                  | Por definir en Sprint 8                                                                    |
 
 ### Collectors
 

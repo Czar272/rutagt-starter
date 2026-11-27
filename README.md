@@ -93,12 +93,14 @@ data/raw → data/staging → data/normalized → data/gtfs → data/published
 
 ```text
 config/sources.json            Catálogo versionado de fuentes y rutas de salida
+config/agencies.json           Agencias de la red canónica (Transmetro, TuBus)
 src/rutagt/                    Paquete Python de RutaGT
-  db/                          Conexión a la base de datos
+  db/                          Conexión y carga idempotente a la base de datos
   core/                        Errores, E/S, configuración y logging compartidos
   pipeline/collectors/         Collectors registrados por tipo de fuente (ArcGIS, HTML)
   pipeline/validators/         Validaciones de calidad
-  pipeline/normalizers/        Normalización de datos (Sprint 6)
+  pipeline/normalizers/        Normalización de datos a staging (Sprint 6)
+  pipeline/canonical/          Constructor de la red canónica (Sprint 6)
   pipeline/exporters/          Exportación de datos derivados, incluido GTFS (Sprint 8)
   pipeline/cli.py              Comando rutagt-collect
 database/migrations/           Migraciones del esquema canónico (Alembic + SQL)
@@ -179,6 +181,12 @@ uv run rutagt-profile
 
 # Traducir el snapshot vigente a staging con los adaptadores registrados y validar la geometría (ADR-0033, ADR-0034)
 uv run rutagt-normalize
+
+# Combinar staging en la red canónica: estaciones, andenes e identificadores (ADR-0035)
+uv run rutagt-canonical
+
+# Cargar la red canónica en PostGIS de forma idempotente (requiere `alembic upgrade head`)
+uv run --env-file .env rutagt-load
 ```
 
 La configuración se resuelve por defecto desde `config/sources.json` y la salida desde `data/raw/`, incluso si el comando se ejecuta desde otra carpeta. La carpeta de datos puede cambiarse con `--output` o con `RUTAGT_DATA_DIR`, el nivel de detalle de los mensajes con `RUTAGT_LOG_LEVEL` y su formato con `RUTAGT_LOG_FORMAT`. Códigos de salida: `0` éxito, `1` alguna fuente falló, `2` error de configuración.
