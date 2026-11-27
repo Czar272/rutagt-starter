@@ -1,6 +1,7 @@
 {
   "source_id": "muniguate_transmetro_stops_2025",
   "extracted_from_snapshot": "20261126T181403Z",
+  "fetched_at": "2026-11-26T18:14:05+00:00",
   "fids": [19, 20, 22, 24, 25, 26, 44, 54, 82, 85, 86, 91, 141, 142, 144, 145],
   "reason": "Líneas 18 y 13 con trazado; sentido en el nombre (44, 54, 144, 145); sentido repetido (Granai 144/145, E6); zona discrepante (44, 54); espacio no separable (19); espacio inicial en la dirección (82); sufijo de líneas (19); andenes de líneas sin trazado en el extracto",
   "sha256": "5ae15ef5f0b0a0b8a40d3b9d4f0a5b75b9dfe81312da04649bde3e48bea7637d"
