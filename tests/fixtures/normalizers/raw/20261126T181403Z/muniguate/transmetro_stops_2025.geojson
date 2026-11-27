@@ -1,0 +1,294 @@
+{
+  "type": "FeatureCollection",
+  "name": "muniguate_transmetro_stops_2025",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.509330733561,
+          14.6326462831673
+        ]
+      },
+      "properties": {
+        "FID": 19,
+        "Nombre_lug": "Francos Monroy  - Líneas 6 y 18",
+        "Direccion": "11 avenida y 15 calle zona 1",
+        "Zona": 1,
+        "Codigoruta": 6000
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4965206228622,
+          14.6448896796389
+        ]
+      },
+      "properties": {
+        "FID": 20,
+        "Nombre_lug": "Estación San Martín",
+        "Direccion": "20 avenida y 1ª calle zona 1",
+        "Zona": 1,
+        "Codigoruta": 18000
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4782308877449,
+          14.6497964725886
+        ]
+      },
+      "properties": {
+        "FID": 22,
+        "Nombre_lug": "Estación Atlántida",
+        "Direccion": "11 avenida (boulevard álvaro arzú) zona 18",
+        "Zona": 18,
+        "Codigoruta": 18000
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4967084893342,
+          14.6452673311885
+        ]
+      },
+      "properties": {
+        "FID": 24,
+        "Nombre_lug": "Estación San Martín",
+        "Direccion": "1ª calle y 9ª avenida zona 1",
+        "Zona": 1,
+        "Codigoruta": 18000
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.524209923074,
+          14.5741304060958
+        ]
+      },
+      "properties": {
+        "FID": 25,
+        "Nombre_lug": "Estación Juan Pablo II",
+        "Direccion": "avenida las américa y 21 calle zona 14",
+        "Zona": 14,
+        "Codigoruta": 13001
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.526674220189,
+          14.5699219420411
+        ]
+      },
+      "properties": {
+        "FID": 26,
+        "Nombre_lug": "Estación Plaza Berlín",
+        "Direccion": "frente a plaza berlín zona 13",
+        "Zona": 13,
+        "Codigoruta": 13001
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 44,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5276901905208,
+          14.619146979342
+        ]
+      },
+      "properties": {
+        "FID": 44,
+        "Nombre_lug": "Estación Bolívar Direccion Plaza Barrios",
+        "Direccion": "avenida bolivar y 32 calle zona 8",
+        "Zona": 3,
+        "Codigoruta": 12000
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 54,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5581758420075,
+          14.5938512312623
+        ]
+      },
+      "properties": {
+        "FID": 54,
+        "Nombre_lug": "Estación Las Charcas Dirección Central Sur",
+        "Direccion": "calz. aguilar batres y 34 calle zona 12",
+        "Zona": 11,
+        "Codigoruta": 12000
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 82,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5079219048026,
+          14.6434701089393
+        ]
+      },
+      "properties": {
+        "FID": 82,
+        "Nombre_lug": "Estación La Merced",
+        "Direccion": " 11 avenida y 5 calle zona 1",
+        "Zona": 1,
+        "Codigoruta": 7000
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 85,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4520611902441,
+          14.6549819756642
+        ]
+      },
+      "properties": {
+        "FID": 85,
+        "Nombre_lug": "Estación San Rafael",
+        "Direccion": "Boulevard San Rafael y 3 aveniada B zona 18",
+        "Zona": 18,
+        "Codigoruta": 18001
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 86,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4466947796026,
+          14.6590402271086
+        ]
+      },
+      "properties": {
+        "FID": 86,
+        "Nombre_lug": "Estación Paraíso I",
+        "Direccion": "Boulevard San Rafael y 20 avenida zona 18",
+        "Zona": 18,
+        "Codigoruta": 18001
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 91,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5225092487478,
+          14.585881614124
+        ]
+      },
+      "properties": {
+        "FID": 91,
+        "Nombre_lug": "Estación Plaza Argentina",
+        "Direccion": "15 avenida y 11 calle zona 13",
+        "Zona": 13,
+        "Codigoruta": 13001
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 141,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4520611902441,
+          14.6549819756642
+        ]
+      },
+      "properties": {
+        "FID": 141,
+        "Nombre_lug": "Estación San Rafael",
+        "Direccion": "Boulvard San Rafael y 3 avenida b",
+        "Zona": 18,
+        "Codigoruta": 18002
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 142,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.4466947796026,
+          14.6590402271086
+        ]
+      },
+      "properties": {
+        "FID": 142,
+        "Nombre_lug": "Estación Paraíso I",
+        "Direccion": "Boulevard San Rafael y 20 avenida",
+        "Zona": 18,
+        "Codigoruta": 18002
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 144,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5591350585763,
+          14.5996353207151
+        ]
+      },
+      "properties": {
+        "FID": 144,
+        "Nombre_lug": "Granai - Dir. La Merced",
+        "Direccion": "Anillo Periferico Norte  zona 11",
+        "Zona": 11,
+        "Codigoruta": 7000
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 145,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.5595286697911,
+          14.5995718480816
+        ]
+      },
+      "properties": {
+        "FID": 145,
+        "Nombre_lug": "Granai - Dir. La Merced",
+        "Direccion": "Anillo Periferico Sur zona 11",
+        "Zona": 11,
+        "Codigoruta": 7000
+      }
+    }
+  ]
+}
