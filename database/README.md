@@ -26,17 +26,40 @@ database/migrations/versions/
   r0001_initial_schema/downgrade.sql     SQL que revierte
   r0002_quality_scale_levels/            Niveles estimated y community (ADR-0031)
   r0003_quality_validity_rules/          Reglas de vigencia de la calidad (ADR-0031)
+  r0004_canonical_load/                  Procedencia por entidad y clave de incidencias (ADR-0035)
 ```
 
-| Esquema      | Contenido                                                           |
-| ------------ | ------------------------------------------------------------------- |
-| `provenance` | Fuentes, registros originales e incidencias de datos                |
-| `transit`    | Red y servicio programado (compatible con GTFS)                     |
-| `realtime`   | Observaciones, alertas y predicciones                               |
-| `community`  | Reportes de la comunidad                                            |
-| `public`     | Solo la extensión PostGIS, funciones `rutagt_*` y `alembic_version` |
+| Esquema      | Contenido                                                               |
+| ------------ | ----------------------------------------------------------------------- |
+| `provenance` | Fuentes, registros originales, su enlace con cada entidad e incidencias |
+| `transit`    | Red y servicio programado (compatible con GTFS)                         |
+| `realtime`   | Observaciones, alertas y predicciones                                   |
+| `community`  | Reportes de la comunidad                                                |
+| `public`     | Solo la extensión PostGIS, funciones `rutagt_*` y `alembic_version`     |
 
 Funciones auxiliares: `rutagt_is_entity_id(id, tipo)` valida identificadores `<agencia>:<tipo>:<código>`, `rutagt_distance_m(a, b)` mide en metros, `rutagt_set_updated_at()` mantiene `updated_at` y `rutagt_effective_quality(nivel, evaluado_en, vigencia_fuente, momento)` aplica las reglas de vigencia de la calidad.
+
+## Carga de la red canónica
+
+`rutagt-load` escribe `data/normalized/<snapshot>/canonical.json` (de `rutagt-canonical`) en una sola transacción ([ADR-0035](../docs/architecture/adr/0035-constructor-canonico-y-carga-idempotente.md)):
+
+```powershell
+uv run rutagt-canonical                       # staging -> data/normalized/<snapshot>/
+uv run --env-file .env rutagt-load            # normalized -> PostGIS
+```
+
+- Recargar el mismo dataset no modifica ninguna fila: solo se actualiza lo que cambió, y `updated_at` y `loaded_by_run` reflejan el último cambio real.
+- `provenance.entity_source_record` enlaza cada entidad con todos sus registros originales; `source_record` no repite registros sin cambios.
+- Lo que una fuente deja de publicar pasa a `status = 'retired'`; nunca se borra.
+- Las incidencias del pipeline se identifican por `issue_key` y conservan su estado de curación; las abiertas que ya no se detectan pasan a `resolved`.
+
+```sql
+-- Registros de origen de un andén
+SELECT r.external_id, r.raw_payload
+FROM provenance.entity_source_record e
+JOIN provenance.source_record r USING (source_record_id)
+WHERE e.entity_type = 'stop' AND e.entity_id = 'transmetro:stop:bolivar.1';
+```
 
 ## Calidad de los datos
 
